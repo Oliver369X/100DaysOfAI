@@ -15,7 +15,7 @@
 # Temas Aprendidos en Cada Día
 | **Días** | **Temas Cubiertos** | 
 |--------- | ------------------ |
-| [Día1](#Día1) |  | 
+| [Día1](#Día1) | Introducción a Deep Learning | 
 | [Día2](#Día2) |  | 
 | [Día3](#Día3) |  | 
 | [Día4](#Día4) |  | 
@@ -117,6 +117,40 @@
 | [Día100](#Día100) |  | 
 
 # Día1
+---
+## Introducción a Deep Learning 🌟
+
+¡Bienvenidos al primer día de mi viaje de 100 días explorando la Inteligencia Artificial! 🚀 Hoy comenzamos con **Deep Learning**.
+
+### ¿Qué es Deep Learning?
+
+Deep Learning, o Aprendizaje Profundo, es una rama avanzada del **Machine Learning** que se inspira en la estructura y función del cerebro humano. Utiliza **redes neuronales artificiales** para aprender de grandes volúmenes de datos y tomar decisiones o hacer predicciones precisas.
+
+### ¿Por qué es importante?
+
+En los últimos años, el Deep Learning ha revolucionado muchas industrias. Desde la **visión por computadora** que permite a los vehículos autónomos ver el mundo, hasta el **procesamiento de lenguaje natural** que ayuda a las máquinas a entender y responder en lenguaje humano. Deep Learning es la tecnología detrás de innovaciones impresionantes que están cambiando la forma en que interactuamos con el mundo digital.
+
+### ¿Cómo funciona?
+
+Las redes neuronales profundas están compuestas por capas de neuronas artificiales. Cada capa transforma la entrada de datos en algo más útil para la siguiente capa. A través de un proceso de entrenamiento, estas redes aprenden a extraer características complejas y patrones directamente de los datos.
+
+### Ejemplos de Aplicaciones de Deep Learning:
+
+- **Reconocimiento de Imágenes**: Identificar objetos y personas en fotos y videos.
+- **Traducción Automática**: Convertir texto de un idioma a otro con gran precisión.
+- **Diagnóstico Médico**: Analizar imágenes médicas para detectar enfermedades.
+
+
+
+ **Recursos para comenzar**🧠:
+- **[APRENDIZAJE PROFUNDO EN INTELIGENCIA ARTIFICIAL](https://youtu.be/Zcb8R2TF3bI?si=f1NIEJgXh7cWdadV)** - Una breve esplicacion dew que es deep learning.
+- **[¿QUE ES EL DEEP LEARNING? - EXPLICADO MUY FACIL](https://youtu.be/s0SbvGiG28w?si=Rr51xld8H8ilsrz9)** - Video de Dalto explicando que es deep learning.
+- **[¿Qué son el MACHINE LEARNING y el DEEP LEARNING?](https://youtu.be/HMEjoBnCc9c?si=U5MXn98cY7Yovy8w)** - Diferencias entre el Machine Learning y el Deep Learning.
+- **[¿De qué es capaz la inteligencia artificial? ](https://youtu.be/34Kz-PP_X7c?si=sbV0ENQYtvT2JKiI)** - Documental de DW.
+
+¡Únete a mí en este emocionante viaje y no dudes en compartir tus pensamientos y preguntas! 🚀
+
+---
 # Día2
 # Día3
 # Día4
