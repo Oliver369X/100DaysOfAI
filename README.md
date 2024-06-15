@@ -5,6 +5,8 @@
 | 1. [**Machine Learning Specialization**](https://www.coursera.org/specializations/machine-learning-introduction?page=1) | ✅ |
 | 2. [**Deep Learning Specialization**](https://www.coursera.org/specializations/deep-learning?)| ✅  |
 | 3. [**IA generativa con grandes modelos lingüísticos**](https://www.coursera.org/learn/generative-ai-with-llms/) | ✅ |
+| 4. [**Curso de Deep Learning**](https://youtube.com/playlist?list=PLcfxtMhW8iFNMTFKrYMYYzVTNzu-xG-Ys&si=lqAlbDIhtOJ5zMP8) | ✅ |
+| 5. [**Computer Vision**](https://youtube.com/playlist?list=PLISuMnTdVU-yvm6X7SwKtUosfr4ZarStU&si=FOMUjJ5SvotgMhHW) | ✅ |
 
 | Proyectos Completados |
 | ----------------- |
@@ -152,6 +154,66 @@ Las redes neuronales profundas están compuestas por capas de neuronas artificia
 
 ---
 # Día2
+---
+## Historia y Evolución de Deep Learning 📜
+
+¡Bienvenidos al segundo día de nuestra travesía de 100 días en el mundo de la Inteligencia Artificial! Hoy, exploramos la fascinante **historia y evolución de Deep Learning**. 🌟
+
+### Orígenes y Primeros Pasos
+
+#### 1943: La Idea de una Neurona Artificial 💡
+El viaje de Deep Learning comenzó con Warren McCulloch y Walter Pitts, quienes propusieron el primer modelo matemático de una **neurona artificial**. Su trabajo sentó las bases para las redes neuronales, sugiriendo que las neuronas podrían ser el equivalente funcional de un interruptor binario.
+
+#### 1958: El Perceptrón 🤖
+Frank Rosenblatt desarrolló el **Perceptrón**, el primer modelo de red neuronal capaz de aprender. El perceptrón es un tipo simple de red que puede clasificar datos en dos categorías. Aunque su capacidad era limitada, fue un hito importante que inspiró investigaciones futuras.
+
+### El Invierno de la IA ❄️
+
+#### Años 70-80: Desafíos y Dudas
+Durante los años 70 y 80, las expectativas sobre las redes neuronales no se cumplieron, y la falta de poder computacional y datos llevó a lo que se conoce como el **"invierno de la IA"**. Durante este período, la investigación en redes neuronales se desaceleró debido al escepticismo y la falta de avances significativos.
+
+### Renacimiento y Avances 🚀
+
+#### 1986: El Redescubrimiento de la Propagación hacia Atrás
+En 1986, David Rumelhart, Geoffrey Hinton y Ronald Williams revitalizaron el interés en las redes neuronales con su trabajo sobre la **retropropagación**. Este algoritmo permitió el entrenamiento eficaz de redes neuronales multicapa, allanando el camino para el desarrollo de modelos más complejos.
+
+#### Años 90: Aplicaciones Prácticas 🌐
+A medida que aumentaba el poder computacional y se disponía de más datos, las redes neuronales comenzaron a mostrar su potencial en áreas como el reconocimiento de patrones y la predicción financiera. Sin embargo, aún quedaban desafíos significativos por superar.
+
+### La Era de Deep Learning 💥
+
+#### 2006: El Avance de las Redes Profundas
+Geoffrey Hinton y su equipo introdujeron el concepto de **preentrenamiento de capas** en redes profundas, lo que permitió entrenar eficientemente modelos con muchas capas. Este avance marcó el comienzo de la **era de Deep Learning**, demostrando que las redes neuronales profundas podían superar a los métodos tradicionales en tareas complejas.
+
+#### 2012: El Triunfo en ImageNet 🏆
+El hito crucial llegó en 2012 cuando una red profunda conocida como **AlexNet**, desarrollada por Alex Krizhevsky, Ilya Sutskever y Geoffrey Hinton, ganó el desafío de reconocimiento de imágenes de **ImageNet** con un margen significativo. Esto consolidó a Deep Learning como la tecnología líder en visión por computadora.
+
+### Transformadores y Nuevas Fronteras 🚀
+
+#### 2017: El Surgimiento de los Transformadores
+En 2017, el artículo "Attention is All You Need" de Google introdujo el **modelo Transformer**, revolucionando el procesamiento del lenguaje natural (NLP). Los Transformers, como **BERT** y **GPT**, demostraron capacidades impresionantes en tareas de lenguaje, superando a los modelos anteriores.
+
+#### 2018: GPT y el Avance de los Modelos de Lenguaje
+OpenAI lanzó **GPT (Generative Pre-trained Transformer)**, seguido por GPT-2 y el famoso **GPT-3** en 2020. Estos modelos mostraron habilidades sin precedentes en generación de texto, comprensión y traducción, marcando un hito en el desarrollo de la IA.
+
+### Innovaciones Recientes 🔄
+
+#### 2021: DALL-E y la Creatividad Artificial
+OpenAI presentó **DALL-E**, un modelo capaz de generar imágenes a partir de descripciones textuales. Esta innovación destacó la capacidad de la IA para combinar lenguaje y visión, abriendo nuevas posibilidades en arte y diseño.
+
+#### 2021: AlphaFold y la Revolución en la Biología
+DeepMind's **AlphaFold** resolvió uno de los mayores desafíos en biología: la predicción de estructuras proteicas. Este avance promete acelerar el descubrimiento de medicamentos y mejorar nuestra comprensión de la biología molecular.
+
+#### 2022: ChatGPT y la Conversación Natural
+OpenAI lanzó **ChatGPT**, una versión mejorada de GPT-3 optimizada para conversaciones interactivas. Este modelo demostró habilidades avanzadas en el diálogo, respondiendo preguntas y asistiendo en diversas tareas de manera coherente y precisa.
+
+
+### Recursos para Explorar Más:
+
+- **[Breve Historia de las Redes Neuronales Artificiales](https://www.aprendemachinelearning.com/breve-historia-de-las-redes-neuronales-artificiales/)** - Un artículo detallado sobre la evolución de las redes neuronales.
+- **[The brief history of artificial intelligence](https://ourworldindata.org/brief-history-of-ai)** - Un artículo detallado sobre la evolución de la IA.
+
+---
 # Día3
 # Día4
 # Día5
