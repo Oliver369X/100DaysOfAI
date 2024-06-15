@@ -215,10 +215,7 @@ OpenAI lanzó **ChatGPT**, una versión mejorada de GPT-3 optimizada para conver
 
 ### Evolución de los modelos de IA con respecto a la computación utilizada en su entrenamiento
 
-<video width="420" height="240" controls>
-  <source src="videos/evolucion_modelos.mp4" type="video/mp4">
-  Tu navegador no soporta el elemento de video.
-</video>
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/64c6b46d-4c12-4e7a-8511-b35a2ad5be8e
 
 ---
 # Día3
