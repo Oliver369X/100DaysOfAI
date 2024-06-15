@@ -212,7 +212,13 @@ OpenAI lanzó **ChatGPT**, una versión mejorada de GPT-3 optimizada para conver
 
 - **[Breve Historia de las Redes Neuronales Artificiales](https://www.aprendemachinelearning.com/breve-historia-de-las-redes-neuronales-artificiales/)** - Un artículo detallado sobre la evolución de las redes neuronales.
 - **[The brief history of artificial intelligence](https://ourworldindata.org/brief-history-of-ai)** - Un artículo detallado sobre la evolución de la IA.
-[Evolucion de los modelos de IA con respescto a la computacion utilizada en su entrenamiento  ](videos/evolución de los modelos.mp4)
+
+### Evolución de los modelos de IA con respecto a la computación utilizada en su entrenamiento
+
+<video width="420" height="240" controls>
+  <source src="videos/evolucion_modelos.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
 ---
 # Día3
 # Día4
