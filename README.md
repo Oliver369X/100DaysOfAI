@@ -18,7 +18,7 @@
 | **Días** | **Temas Cubiertos** | 
 |--------- | ------------------ |
 | [Día1](#Día1) | Introducción a Deep Learning | 
-| [Día2](#Día2) |  | 
+| [Día2](#Día2) | Historia y Evolución de Deep Learning | 
 | [Día3](#Día3) |  | 
 | [Día4](#Día4) |  | 
 | [Día5](#Día5) |  | 
@@ -212,7 +212,7 @@ OpenAI lanzó **ChatGPT**, una versión mejorada de GPT-3 optimizada para conver
 
 - **[Breve Historia de las Redes Neuronales Artificiales](https://www.aprendemachinelearning.com/breve-historia-de-las-redes-neuronales-artificiales/)** - Un artículo detallado sobre la evolución de las redes neuronales.
 - **[The brief history of artificial intelligence](https://ourworldindata.org/brief-history-of-ai)** - Un artículo detallado sobre la evolución de la IA.
-
+[Evolucion de los modelos de IA con respescto a la computacion utilizada en su entrenamiento  ](videos/evolución de los modelos.mp4)
 ---
 # Día3
 # Día4
