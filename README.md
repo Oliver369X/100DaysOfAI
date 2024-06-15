@@ -219,6 +219,7 @@ OpenAI lanzó **ChatGPT**, una versión mejorada de GPT-3 optimizada para conver
   <source src="videos/evolucion_modelos.mp4" type="video/mp4">
   Tu navegador no soporta el elemento de video.
 </video>
+
 ---
 # Día3
 # Día4
