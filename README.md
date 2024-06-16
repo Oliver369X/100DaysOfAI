@@ -19,7 +19,7 @@
 |--------- | ------------------ |
 | [Día1](#Día1) | Introducción a Deep Learning | 
 | [Día2](#Día2) | Historia y Evolución de Deep Learning | 
-| [Día3](#Día3) |  | 
+| [Día3](#Día3) | Breve Descripción de las Diferentes Técnicas en Deep Learning | 
 | [Día4](#Día4) |  | 
 | [Día5](#Día5) |  | 
 | [Día6](#Día6) |  | 
@@ -215,13 +215,80 @@ OpenAI lanzó **ChatGPT**, una versión mejorada de GPT-3 optimizada para conver
 
 ### Evolución de los modelos de IA con respecto a la computación utilizada en su entrenamiento
 
-<video width="420" height="240" controls>
-  <source src="videos/evolucion_modelos.mp4" type="video/mp4">
-  Tu navegador no soporta el elemento de video.
-</video>
-
 ---
 # Día3
+---
+## Breve Descripción de las Diferentes Técnicas en Deep Learning 🧠
+
+
+### 1. Redes Neuronales Convolucionales (CNN) 🖼️
+
+#### Descripción
+Las **Redes Neuronales Convolucionales (CNN)** están diseñadas para procesar datos con una estructura de grilla, como las imágenes. Utilizan capas convolucionales que aplican filtros para detectar características como bordes, texturas y patrones en las imágenes.
+
+#### Componentes Clave
+- **Capas Convolucionales**: Aplican filtros para extraer características locales.
+- **Capas de Pooling**: Reducen la dimensionalidad y ayudan a generalizar.
+- **Capas Completamente Conectadas**: Usadas para clasificar y tomar decisiones basadas en las características extraídas.
+
+### 2. Redes Neuronales Recurrentes (RNN) 🔁
+
+#### Descripción
+Las **Redes Neuronales Recurrentes (RNN)** están diseñadas para procesar secuencias de datos, como texto o series temporales. Tienen conexiones recurrentes que permiten que la información persista, lo que es útil para modelar dependencias temporales.
+
+#### Componentes Clave
+- **Celdas Recurrentes**: Mantienen un estado oculto que captura información de pasos anteriores.
+- **LSTM y GRU**: Variantes avanzadas de RNN que abordan problemas de memoria a largo plazo.
+
+### 3. Redes Generativas Adversariales (GAN) 🎨
+
+#### Descripción
+Las **Redes Generativas Adversariales (GAN)** constan de dos redes: una generadora y una discriminadora. La generadora crea datos falsos, mientras que la discriminadora intenta distinguir entre datos reales y falsos. Este proceso competitivo mejora la capacidad de la generadora para producir datos realistas.
+
+#### Componentes Clave
+- **Generador**: Crea datos sintéticos.
+- **Discriminador**: Distingue entre datos reales y generados.
+- **Juego Adversarial**: La competencia entre las dos redes mejora el rendimiento del sistema.
+
+### 4. Transformadores 🔄
+
+#### Descripción
+Los **Transformadores** han revolucionado el procesamiento del lenguaje natural (NLP) con su mecanismo de atención que permite procesar todas las palabras de una oración en paralelo. Esto los hace altamente eficientes y precisos en tareas de lenguaje.
+
+#### Componentes Clave
+- **Mecanismo de Atención**: Pondera la importancia de diferentes palabras en una oración.
+- **Codificadores y Decodificadores**: Procesan las secuencias de entrada y generan secuencias de salida.
+
+### 5. Modelos de Difusión 🌫️
+
+#### Descripción
+Los **Modelos de Difusión** son una técnica emergente en generación de datos. Funcionan modelando la distribución de los datos y luego generando nuevos ejemplos a partir de esta distribución, similar a los procesos físicos de difusión.
+
+#### Componentes Clave
+- **Proceso de Difusión**: Modela cómo los datos cambian con el tiempo.
+- **Reconstrucción Inversa**: Genera nuevos datos a partir del proceso de difusión.
+
+### 6. Modelos Multimodales 🎥🎵📝
+
+#### Descripción
+Los **Modelos Multimodales** integran y procesan múltiples tipos de datos, como texto, imágenes y audio, para realizar tareas complejas que requieren comprensión de información diversa.
+
+#### Componentes Clave
+- **Fusión de Modalidades**: Combina diferentes tipos de datos en una representación unificada.
+- **Atención Cruzada**: Captura interacciones entre diferentes modalidades.
+
+
+### Recursos para Explorar Más:
+
+- **[¡Redes Neuronales CONVOLUCIONALES! ](https://youtu.be/V8j1oENVz00?si=RY91rvLjMXPbjRbF)** - Video detallado sobre CNN.
+- **[Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)** - Una explicación profunda sobre las RNN y LSTM.
+- **[GANs in Action](https://www.youtube.com/watch?v=8L11aMN5KY8)** - Un video tutorial sobre GANs.
+- **[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)** - Una guía visual sobre transformadores.
+- **[Cómo funciona la generación de imágenes con IA (modelos de difusión)](https://youtu.be/mNxzQvdVSQI?si=_Lno74MYiqcbidei)** - Introducción a los modelos de difusión.
+- **[Multimodal learning](https://en.wikipedia.org/wiki/Multimodal_learning)** - Definicion de Wikipedia.
+
+--
+
 # Día4
 # Día5
 # Día6
