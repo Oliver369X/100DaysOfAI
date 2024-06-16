@@ -215,6 +215,11 @@ OpenAI lanzó **ChatGPT**, una versión mejorada de GPT-3 optimizada para conver
 
 ### Evolución de los modelos de IA con respecto a la computación utilizada en su entrenamiento
 
+<<<<<<< HEAD
+=======
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/64c6b46d-4c12-4e7a-8511-b35a2ad5be8e
+
+>>>>>>> 52f223851c1f64cb143e7b84519e39d23a2985f8
 ---
 # Día3
 ---
@@ -287,7 +292,7 @@ Los **Modelos Multimodales** integran y procesan múltiples tipos de datos, como
 - **[Cómo funciona la generación de imágenes con IA (modelos de difusión)](https://youtu.be/mNxzQvdVSQI?si=_Lno74MYiqcbidei)** - Introducción a los modelos de difusión.
 - **[Multimodal learning](https://en.wikipedia.org/wiki/Multimodal_learning)** - Definicion de Wikipedia.
 
---
+---
 
 # Día4
 # Día5
