@@ -411,6 +411,9 @@ El aprendizaje en redes neuronales implica ajustar los pesos y los sesgos de la 
 - **[Funciones de activación a detalle](https://youtu.be/_0wdproot34?si=B27NeiOze7QGGi6K)** - (Video).
 - **[Juegue con una red neuronal ](https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=1&seed=0.87931&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false)** - Juegue con una red neuronal aquí mismo en su navegador.
 No te preocupes, no puedes romperlo.
+![ANNs](https://github.com/Oliver369X/100DaysOfAI/assets/110129950/6de8c3e3-ea5a-46e0-8fd0-600e794b422d)
+
+![back2](https://github.com/Oliver369X/100DaysOfAI/assets/110129950/2ebfb67d-7af9-49bd-a509-b1d6babf0148)
 
 ---
 
