@@ -21,7 +21,7 @@
 | [Día2](#Día2) | Historia y Evolución de Deep Learning | 
 | [Día3](#Día3) | Breve Descripción de las Diferentes Técnicas en Deep Learning | 
 | [Día4](#Día4) | Comparación y Aplicaciones de Técnicas de Deep Learning en el Mundo Real | 
-| [Día5](#Día5) |  | 
+| [Día5](#Día5) | Redes Neuronales Artificiales (ANNs) | 
 | [Día6](#Día6) |  | 
 | [Día7](#Día7) |  | 
 | [Día8](#Día8) |  | 
@@ -366,6 +366,54 @@ Los **Modelos Multimodales** integran y procesan múltiples tipos de datos, como
 ---
 
 # Día5
+---
+## Redes Neuronales Artificiales (ANNs)  🧠
+
+¡Hola a todos! En el quinto día de nuestra travesía de 100 días en el mundo de la Inteligencia Artificial, exploraremos la estructura básica de las Redes Neuronales Artificiales (ANNs) y entenderemos cómo funcionan sus capas neuronales. 🌟
+
+### ¿Qué son las Redes Neuronales Artificiales (ANNs)?
+
+Las Redes Neuronales Artificiales (ANNs) son modelos computacionales inspirados en el funcionamiento del cerebro humano. Están diseñadas para reconocer patrones y resolver problemas complejos mediante el aprendizaje a partir de datos. 🌐
+
+### Estructura Básica de una Red Neuronal
+
+Una red neuronal típica consta de tres tipos de capas:
+
+1. **Capa de Entrada (Input Layer)**: Recibe los datos iniciales.
+2. **Capas Ocultas (Hidden Layers)**: Procesan la información recibida de la capa de entrada.
+3. **Capa de Salida (Output Layer)**: Genera el resultado final.
+
+
+#### 1. **Capa de Entrada (Input Layer)**
+La capa de entrada es la primera capa de la red neuronal. Cada nodo en esta capa representa una característica del conjunto de datos de entrada. Por ejemplo, en una red que procesa imágenes, cada nodo podría representar el valor de un píxel de la imagen.
+
+#### 2. **Capas Ocultas (Hidden Layers)**
+Las capas ocultas son las encargadas de realizar la mayor parte del procesamiento de la red. Pueden existir múltiples capas ocultas, cada una compuesta por múltiples nodos o "neuronas". Cada neurona en una capa está conectada a todas las neuronas de la capa anterior y de la capa siguiente.
+
+##### Funcionamiento de las Capas Ocultas:
+- **Pesos y Sesgos (Weights and Biases)**: Cada conexión entre neuronas tiene un peso asignado que indica la importancia de la entrada correspondiente. Además, cada neurona tiene un valor de sesgo que ajusta la salida del nodo.
+- **Funciones de Activación (Activation Functions)**: Después de que una neurona recibe la entrada ponderada, aplica una función de activación para introducir no linealidades en el modelo. Las funciones de activación comunes incluyen ReLU (Rectified Linear Unit), Sigmoid y Tanh.
+
+
+
+#### 3. **Capa de Salida (Output Layer)**
+La capa de salida es la última capa de la red neuronal y proporciona el resultado final. La estructura de esta capa depende del tipo de tarea que esté realizando la red. Por ejemplo, en un problema de clasificación binaria, la capa de salida podría tener una sola neurona con una función de activación Sigmoid.
+
+### ¿Cómo Aprenden las Redes Neuronales?
+
+El aprendizaje en redes neuronales implica ajustar los pesos y los sesgos de la red para minimizar el error en las predicciones. Este proceso se realiza mediante un algoritmo de optimización llamado **Backpropagation** (retropropagación), que utiliza el **Gradiente Descendente** para ajustar los pesos de manera iterativa.
+
+
+### Recursos para Explorar Más:
+
+- **[Cómo funcionan las redes neuronales](https://youtu.be/CU24iC3grq8?si=9UT2DpOAA1cQ1Ay0)** (Video).
+- **[¿Qué es una Red Neuronal?](https://youtu.be/jKCQsndqEGQ?si=jNASfwuoQB9tXyle)** - (Video).
+- **[Funciones de activación a detalle](https://youtu.be/_0wdproot34?si=B27NeiOze7QGGi6K)** - (Video).
+- **[Juegue con una red neuronal ](https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=1&seed=0.87931&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false)** - Juegue con una red neuronal aquí mismo en su navegador.
+No te preocupes, no puedes romperlo.
+
+---
+
 # Día6
 # Día7
 # Día8
