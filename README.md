@@ -22,7 +22,7 @@
 | [Día3](#Día3) | Breve Descripción de las Diferentes Técnicas en Deep Learning | 
 | [Día4](#Día4) | Comparación y Aplicaciones de Técnicas de Deep Learning en el Mundo Real | 
 | [Día5](#Día5) | Redes Neuronales Artificiales (ANNs) | 
-| [Día6](#Día6) |  | 
+| [Día6](#Día6) | Conceptos de Forward y Backward Propagation | 
 | [Día7](#Día7) |  | 
 | [Día8](#Día8) |  | 
 | [Día9](#Día9) |  | 
@@ -418,6 +418,63 @@ No te preocupes, no puedes romperlo.
 ---
 
 # Día6
+---
+## Conceptos de Forward y Backward Propagation 🧠🔄
+
+¡Hola a todos! Hoy, en el sexto día de nuestro viaje de 100 días en el mundo de la Inteligencia Artificial, exploraremos dos conceptos fundamentales para el entrenamiento de redes neuronales: **Forward Propagation** y **Backward Propagation**. Estos procesos son esenciales para que las redes neuronales aprendan de los datos y mejoren su rendimiento. 🚀
+
+### ¿Qué es Forward Propagation?
+
+**Forward Propagation** es el proceso mediante el cual los datos de entrada se transmiten a través de la red neuronal para generar una salida. Este flujo de información comienza en la capa de entrada, pasa por las capas ocultas y finalmente llega a la capa de salida.
+
+#### Pasos de Forward Propagation:
+
+1. **Entrada**: Los datos de entrada se presentan a la red neuronal.
+2. **Ponderación**: Cada neurona en la capa de entrada envía sus datos ponderados a cada neurona de la primera capa oculta.
+3. **Activación**: Las neuronas de la capa oculta calculan una suma ponderada de sus entradas, aplican una función de activación y transmiten el resultado a la siguiente capa.
+4. **Salida**: Este proceso se repite capa por capa hasta que los datos alcanzan la capa de salida, donde se generan las predicciones finales.
+
+### ¿Qué es Backward Propagation?
+
+**Backward Propagation** (o retropropagación) es el proceso mediante el cual la red neuronal ajusta sus pesos y sesgos para minimizar el error en sus predicciones. Este ajuste se realiza mediante la propagación del error desde la capa de salida hacia atrás a través de las capas ocultas, hasta llegar a la capa de entrada.
+
+#### Pasos de Backward Propagation:
+
+1. **Cálculo del Error**: Se calcula la diferencia entre la salida real de la red y la salida esperada (etiquetas verdaderas).
+2. **Propagación del Error**: El error se propaga hacia atrás a través de la red. En cada neurona, se calcula el gradiente del error con respecto a sus pesos y sesgos.
+3. **Ajuste de Pesos y Sesgos**: Los pesos y sesgos se actualizan utilizando el gradiente calculado y una tasa de aprendizaje, reduciendo así el error de la red.
+
+### Cómo Funcionan Juntos Forward y Backward Propagation
+
+1. **Forward Propagation**: Los datos de entrada se procesan a través de la red para generar una predicción.
+2. **Cálculo del Error**: Se compara la predicción con la etiqueta verdadera para calcular el error.
+3. **Backward Propagation**: El error se propaga hacia atrás a través de la red, y los pesos y sesgos se ajustan en consecuencia.
+4. **Actualización de Parámetros**: Los parámetros de la red se actualizan para reducir el error en futuras predicciones.
+
+### Ejemplo Simplificado
+
+Imaginemos que estamos entrenando una red neuronal para predecir el precio de una casa basado en su tamaño.
+
+1. **Forward Propagation**:
+   - Entrada: Tamaño de la casa.
+   - Cálculo: La red multiplica el tamaño por un peso, añade un sesgo y aplica una función de activación.
+   - Salida: Predicción del precio de la casa.
+
+2. **Cálculo del Error**:
+   - Comparamos la predicción con el precio real y calculamos el error.
+
+3. **Backward Propagation**:
+   - Propagamos el error hacia atrás a través de la red, calculando el gradiente del error con respecto a cada peso y sesgo.
+   - Ajustamos los pesos y sesgos para minimizar el error en futuras predicciones.
+
+
+### Recursos para Explorar Más:
+
+- **[Redes Neuronales (forward propagation y backpropagation)](https://youtu.be/A9jZflhT2R0?si=uQj8Xw1xa2_O1kDO)** -Explicacion matematica(Video).
+- **[Las Matemáticas de Backpropagation | DotCSV](https://youtu.be/M5QHwkkHgAA?si=ZiX3Gp9I25liaNFq)** - Explicacion matematica(Video).
+
+---
+
 # Día7
 # Día8
 # Día9
