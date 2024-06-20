@@ -22,8 +22,8 @@
 | [Día3](#Día3) | Breve Descripción de las Diferentes Técnicas en Deep Learning | 
 | [Día4](#Día4) | Comparación y Aplicaciones de Técnicas de Deep Learning en el Mundo Real | 
 | [Día5](#Día5) | Redes Neuronales Artificiales (ANNs) | 
-| [Día6](#Día6) | Conceptos de Forward y Backward Propagation | 
-| [Día7](#Día7) |  | 
+| [Día6](#Día6) | Forward y Backward Propagation | 
+| [Día7](#Día7) | Coste y Funciones de Pérdida | 
 | [Día8](#Día8) |  | 
 | [Día9](#Día9) |  | 
 | [Día10](#Día10) |  | 
@@ -476,6 +476,48 @@ Imaginemos que estamos entrenando una red neuronal para predecir el precio de un
 ---
 
 # Día7
+
+---
+## Conceptos de Coste y Funciones de Pérdida 💡📉
+
+¡Hola a todos! Hoy, en el séptimo día de nuestro reto #100DaysOfAI, exploraremos dos conceptos fundamentales para el entrenamiento de redes neuronales: **coste** y **funciones de pérdida**. Estos conceptos son esenciales para evaluar el rendimiento de nuestros modelos y guiar el proceso de aprendizaje. 🚀
+
+### ¿Qué es el Coste?
+
+El **coste** se refiere a la medida de lo mal que un modelo de red neuronal está realizando sus predicciones en comparación con los valores reales. En otras palabras, es una representación cuantitativa del error del modelo. Cuanto menor sea el coste, mejor será el rendimiento del modelo.
+
+### ¿Qué es una Función de Pérdida?
+
+Una **función de pérdida** es una función matemática que mide la discrepancia entre las predicciones del modelo y los valores reales. Durante el entrenamiento, el objetivo es minimizar esta función de pérdida para mejorar la precisión del modelo. 
+
+### Tipos Comunes de Funciones de Pérdida:
+
+1. **Error Cuadrático Medio (Mean Squared Error, MSE)**:
+
+2. **Error Absoluto Medio (Mean Absolute Error, MAE)**:
+
+
+3. **Entropía Cruzada (Cross-Entropy)**:
+
+
+### Relación entre Coste y Función de Pérdida:
+
+- **Coste Total**: La función de pérdida calcula el error para una sola instancia de datos, mientras que el coste total (también conocido como función de coste o función de error) es la media de las pérdidas para todo el conjunto de entrenamiento.
+- **Optimización**: Durante el entrenamiento, el algoritmo de optimización ajusta los pesos de la red neuronal para minimizar el coste total. Esto se realiza típicamente mediante un algoritmo de optimización como el gradiente descendente.
+
+### Importancia en el Entrenamiento
+
+1. **Evaluación del Modelo**: Las funciones de pérdida nos permiten evaluar cuán bien o mal está desempeñándose el modelo.
+2. **Guía para la Optimización**: Proveen la señal que guía el proceso de optimización durante el entrenamiento. Sin una función de pérdida, no podríamos ajustar los pesos de manera efectiva.
+3. **Selección de Modelos**: Diferentes problemas pueden requerir diferentes funciones de pérdida. Elegir la función correcta es crucial para el éxito del modelo.
+
+
+### Recursos para Explorar Más:
+
+- **[3Blue1Brown's YouTube Series on Neural Networks](https://youtu.be/mwHiaTrQOiI?si=j_a-9WxP_1um9YVc)** - Una serie de videos educativos que visualizan estos procesos de manera intuitiva.
+
+---
+
 # Día8
 # Día9
 # Día10
