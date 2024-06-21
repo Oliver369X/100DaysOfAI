@@ -24,7 +24,7 @@
 | [Día5](#Día5) | Redes Neuronales Artificiales (ANNs) | 
 | [Día6](#Día6) | Forward y Backward Propagation | 
 | [Día7](#Día7) | Coste y Funciones de Pérdida | 
-| [Día8](#Día8) |  | 
+| [Día8](#Día8) | Algoritmos de Optimización | 
 | [Día9](#Día9) |  | 
 | [Día10](#Día10) |  | 
 | [Día11](#Día11) |  | 
@@ -519,6 +519,64 @@ Una **función de pérdida** es una función matemática que mide la discrepanci
 ---
 
 # Día8
+
+---
+## Algoritmos de Optimización  🚀📈
+
+¡Hola a todos! En el día 8 de nuestro reto #100DaysOfAI, vamos a profundizar en los **algoritmos de optimización avanzados**. Estos algoritmos son esenciales para mejorar el rendimiento y la eficiencia de los modelos de aprendizaje profundo. ¡Vamos a explorarlos juntos! 🌟
+
+### ¿Qué es la Optimización?
+
+La **optimización** en el contexto del aprendizaje profundo se refiere al proceso de ajustar los parámetros del modelo (como los pesos de las redes neuronales) para minimizar la función de pérdida. Este proceso es crucial para que el modelo pueda aprender de los datos y hacer predicciones precisas.
+
+### Algoritmos de Optimización Comunes
+
+1. **Gradiente Descendente Estocástico (SGD)**:
+   - **Descripción**: En lugar de utilizar todo el conjunto de datos para calcular los gradientes, el SGD actualiza los parámetros del modelo usando un solo ejemplo de entrenamiento a la vez.
+   - **Ventaja**: Es más rápido y puede manejar grandes conjuntos de datos.
+
+2. **Gradiente Descendente por Minilotes (Mini-batch Gradient Descent)**:
+   - **Descripción**: Combina los enfoques de SGD y del gradiente descendente de lote completo, actualizando los parámetros utilizando un pequeño subconjunto (mini-lote) de los datos de entrenamiento.
+   - **Ventaja**: Equilibra la estabilidad del gradiente descendente de lote completo y la rapidez del SGD.
+
+### Algoritmos de Optimización Avanzados
+
+1. **Momentum**:
+   - **Descripción**: Agrega una fracción del gradiente anterior al gradiente actual para acelerar la convergencia y evitar quedarse atrapado en mínimos locales.
+   - **Ventaja**: Mejora la velocidad y estabilidad del SGD.
+  
+
+2. **RMSprop**:
+   - **Descripción**: Divide la tasa de aprendizaje por una media móvil de la magnitud de los gradientes recientes. Esto ayuda a mantener una tasa de aprendizaje adecuada y evita oscilaciones.
+   - **Ventaja**: Mantiene una tasa de aprendizaje adaptativa.
+  
+
+3. **Adam (Adaptive Moment Estimation)**:
+   - **Descripción**: Combina las ideas de Momentum y RMSprop. Utiliza medias móviles de los gradientes y sus cuadrados, adaptando así la tasa de aprendizaje para cada parámetro.
+   - **Ventaja**: Convergencia rápida y robusta.
+  
+
+4. **AdaGrad**:
+   - **Descripción**: Ajusta la tasa de aprendizaje para cada parámetro en función de los gradientes acumulados pasados. 
+   - **Ventaja**: Beneficioso para características raras y evita el ajuste excesivo en características comunes.
+   
+### Comparación de Algoritmos
+
+- **SGD**: Simple y eficiente para grandes conjuntos de datos, pero puede ser ruidoso.
+- **Momentum**: Acelera el SGD y suaviza la convergencia.
+- **RMSprop**: Adapta la tasa de aprendizaje, útil para problemas con tasas de aprendizaje inestables.
+- **Adam**: Combina las ventajas de Momentum y RMSprop, ampliamente utilizado.
+- **AdaGrad**: Ajusta la tasa de aprendizaje para cada parámetro, útil para datos dispersos.
+
+
+### Recursos para Explorar Más:
+
+- **[Adam - A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)** - El artículo original que introduce Adam.
+- **[Algoritmos de Optimización ](https://youtu.be/1GFu3nOya4c?si=v3jnhocKnb_R0Xw_)** - Explicacion completa (Video).
+
+
+---
+
 # Día9
 # Día10
 # Día11
