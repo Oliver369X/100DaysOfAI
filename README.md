@@ -25,7 +25,7 @@
 | [Día6](#Día6) | Forward y Backward Propagation | 
 | [Día7](#Día7) | Coste y Funciones de Pérdida | 
 | [Día8](#Día8) | Algoritmos de Optimización | 
-| [Día9](#Día9) |  | 
+| [Día9](#Día9) | Overfitting y Técnicas de Regularización | 
 | [Día10](#Día10) |  | 
 | [Día11](#Día11) |  | 
 | [Día12](#Día12) |  | 
@@ -578,6 +578,46 @@ La **optimización** en el contexto del aprendizaje profundo se refiere al proce
 ---
 
 # Día9
+---
+## Overfitting y Técnicas de Regularización 🧠🔍
+
+¡Hola a todos! En el día 9 de nuestro desafío #100DaysOfAI, vamos a sumergirnos en el concepto de **overfitting** y las técnicas de **regularización**. Estas son herramientas fundamentales para mejorar la capacidad predictiva y la generalización de nuestros modelos de aprendizaje profundo. ¡Vamos a explorarlas juntos! 📉📚
+
+### ¿Qué es el Overfitting?
+
+El **overfitting** ocurre cuando nuestro modelo se ajusta demasiado bien a los datos de entrenamiento, capturando no solo la señal real sino también el ruido. Como resultado, el modelo puede tener un rendimiento deficiente en datos nuevos y no vistos, lo que lleva a una baja capacidad de generalización.
+
+### Técnicas de Regularización
+
+1. **Regularización L1 y L2**:
+   - **Descripción**: Agrega un término de penalización a la función de pérdida que es proporcional a la norma L1 o L2 de los pesos del modelo.
+   - **Ventaja**: Ayuda a prevenir el overfitting al penalizar los pesos grandes.
+
+2. **Dropout**:
+   - **Descripción**: Aleatoriamente "apaga" una fracción de las neuronas durante el entrenamiento, lo que obliga al modelo a aprender características más robustas y reduce la dependencia entre las neuronas.
+   - **Ventaja**: Actúa como una forma de regularización al evitar la coadaptación de las neuronas.
+
+3. **Data Augmentation**:
+   - **Descripción**: Aumenta el tamaño del conjunto de datos de entrenamiento aplicando transformaciones como rotaciones, traslaciones y zoom a las imágenes originales.
+   - **Ventaja**: Ayuda a diversificar el conjunto de datos de entrenamiento y a mejorar la generalización del modelo.
+
+4. **Early Stopping**:
+   - **Descripción**: Detiene el entrenamiento del modelo cuando el rendimiento en un conjunto de datos de validación deja de mejorar.
+   - **Ventaja**: Evita el sobreajuste al detener el entrenamiento antes de que el modelo comience a sobreajustarse a los datos de entrenamiento.
+
+### Aplicación en la Práctica
+
+Para aplicar estas técnicas de regularización en nuestros modelos, debemos ajustar los hiperparámetros adecuados y experimentar con diferentes configuraciones para encontrar el equilibrio óptimo entre la capacidad de ajuste y la generalización.
+
+### Recursos para Explorar Más:
+
+- **[Overfitting ](https://youtube.com/playlist?list=PLWP2CHQigyUSw1TJkOdAxzBC0BtKrYAnz&si=InFqmXxk1iRgX611)** - Playlists de underfitting y overfitting.
+- **[Dropout: A Simple Way to Prevent Neural Networks from Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)** - El artículo seminal que introduce la técnica de dropout.
+- **[Técnicas de Regularización](https://youtu.be/qa9M4NBV9Lk?si=G09xw9uQaTsmwmY4)** - Explicaion practica.
+
+
+---
+
 # Día10
 # Día11
 # Día12
