@@ -26,7 +26,7 @@
 | [Día7](#Día7) | Coste y Funciones de Pérdida | 
 | [Día8](#Día8) | Algoritmos de Optimización | 
 | [Día9](#Día9) | Overfitting y Técnicas de Regularización | 
-| [Día10](#Día10) |  | 
+| [Día10](#Día10) | Construyendo una Red Neuronal desde Cero: Clasificación de Flores Iris | 
 | [Día11](#Día11) |  | 
 | [Día12](#Día12) |  | 
 | [Día13](#Día13) |  | 
@@ -619,6 +619,260 @@ Para aplicar estas técnicas de regularización en nuestros modelos, debemos aju
 ---
 
 # Día10
+---
+## Construyendo una Red Neuronal desde Cero: Clasificación de Flores Iris
+### Introducción al Problema y Objetivos
+
+En esta práctica, vamos a implementar una red neuronal simple desde cero para resolver el problema de clasificación de flores Iris. Este es un problema clásico en el aprendizaje automático y es perfecto para entender los fundamentos de las redes neuronales.
+
+**Objetivo:** Crear una red neuronal que pueda clasificar correctamente las flores Iris en sus tres especies (setosa, versicolor, virginica) basándose en cuatro características: longitud del sépalo, ancho del sépalo, longitud del pétalo y ancho del pétalo.
+
+**¿Por qué usar redes neuronales?** Las redes neuronales son excelentes para encontrar patrones complejos en los datos. En este caso, pueden aprender las relaciones no lineales entre las características de las flores y sus especies, permitiendo una clasificación precisa.
+
+---
+
+## Importación de Librerías
+
+Primero, importaremos las librerías necesarias para nuestro proyecto.
+
+```python
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+import matplotlib.pyplot as plt
+```
+
+Explicación:
+- `numpy`: Para operaciones numéricas eficientes.
+- `sklearn.datasets`: Para cargar el conjunto de datos Iris.
+- `sklearn.model_selection`: Para dividir nuestros datos en conjuntos de entrenamiento y prueba.
+- `sklearn.preprocessing`: Para codificar nuestras etiquetas.
+- `matplotlib.pyplot`: Para visualizar nuestros resultados.
+
+---
+
+## Carga y Preparación del Conjunto de Datos
+
+El conjunto de datos Iris es un conjunto clásico en aprendizaje automático. Contiene 150 muestras de flores Iris, con 50 muestras de cada una de las tres especies.
+
+```python
+# Cargar el conjunto de datos Iris
+iris = load_iris()
+X = iris.data
+y = iris.target.reshape(-1, 1)
+
+# One-hot encoding para las etiquetas
+encoder = OneHotEncoder(sparse=False)
+y = encoder.fit_transform(y)
+
+# Dividir datos en entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+print("Forma de X_train:", X_train.shape)
+print("Forma de y_train:", y_train.shape)
+print("Forma de X_test:", X_test.shape)
+print("Forma de y_test:", y_test.shape)
+```
+
+Explicación:
+- Cargamos el conjunto de datos Iris.
+- Aplicamos one-hot encoding a las etiquetas para convertirlas en un formato adecuado para la red neuronal.
+- Dividimos los datos en conjuntos de entrenamiento (80%) y prueba (20%).
+- Imprimimos las formas de nuestros conjuntos de datos para verificar.
+
+---
+
+## Implementación de la Red Neuronal
+
+Ahora, implementaremos nuestra clase de red neuronal simple.
+
+```python
+class SimpleNeuralNetwork:
+    def __init__(self, input_size, hidden_size, output_size):
+        self.W1 = np.random.randn(input_size, hidden_size) * 0.01
+        self.b1 = np.zeros((1, hidden_size))
+        self.W2 = np.random.randn(hidden_size, output_size) * 0.01
+        self.b2 = np.zeros((1, output_size))
+
+    def sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+
+    def softmax(self, x):
+        exp_x = np.exp(x - np.max(x, axis=1, keepdims=True))
+        return exp_x / np.sum(exp_x, axis=1, keepdims=True)
+```
+
+Explicación:
+- Inicializamos los pesos (`W1`, `W2`) y sesgos (`b1`, `b2`) de nuestra red.
+- Implementamos la función de activación sigmoid para la capa oculta.
+- Implementamos la función softmax para la capa de salida, que nos dará probabilidades para cada clase.
+
+---
+
+## Forward Propagation
+
+Implementamos el paso hacia adelante (forward propagation) de nuestra red.
+
+```python
+def forward(self, X):
+    self.z1 = np.dot(X, self.W1) + self.b1
+    self.a1 = self.sigmoid(self.z1)
+    self.z2 = np.dot(self.a1, self.W2) + self.b2
+    self.a2 = self.softmax(self.z2)
+    return self.a2
+```
+
+Explicación:
+- Calculamos la salida de la capa oculta (`z1`) y aplicamos la función sigmoid (`a1`).
+- Calculamos la salida de la capa final (`z2`) y aplicamos softmax (`a2`).
+- Retornamos la salida final, que son las probabilidades para cada clase.
+
+---
+
+## Función de Pérdida
+
+Implementamos la función de pérdida de entropía cruzada.
+
+```python
+def cross_entropy_loss(self, y_true, y_pred):
+    m = y_true.shape[0]
+    log_likelihood = -np.log(y_pred[range(m), y_true.argmax(axis=1)])
+    loss = np.sum(log_likelihood) / m
+    return loss
+```
+
+Explicación:
+- Calculamos la pérdida de entropía cruzada entre las etiquetas verdaderas y las predicciones.
+- Esta función mide qué tan bien nuestras predicciones se ajustan a las etiquetas reales.
+
+---
+
+## Backward Propagation
+
+Implementamos la retropropagación (backward propagation) para actualizar los pesos.
+
+```python
+def backward(self, X, y, learning_rate):
+    m = X.shape[0]
+    
+    dZ2 = self.a2 - y
+    dW2 = np.dot(self.a1.T, dZ2) / m
+    db2 = np.sum(dZ2, axis=0, keepdims=True) / m
+    
+    dZ1 = np.dot(dZ2, self.W2.T) * (self.a1 * (1 - self.a1))
+    dW1 = np.dot(X.T, dZ1) / m
+    db1 = np.sum(dZ1, axis=0, keepdims=True) / m
+    
+    self.W2 -= learning_rate * dW2
+    self.b2 -= learning_rate * db2
+    self.W1 -= learning_rate * dW1
+    self.b1 -= learning_rate * db1
+```
+
+Explicación:
+- Calculamos los gradientes para cada capa.
+- Actualizamos los pesos y sesgos usando estos gradientes y la tasa de aprendizaje.
+
+---
+
+## Entrenamiento
+
+Implementamos el bucle de entrenamiento.
+
+```python
+def train(self, X, y, epochs, learning_rate, batch_size):
+    losses = []
+    for epoch in range(epochs):
+        for i in range(0, X.shape[0], batch_size):
+            X_batch = X[i:i+batch_size]
+            y_batch = y[i:i+batch_size]
+            
+            y_pred = self.forward(X_batch)
+            loss = self.cross_entropy_loss(y_batch, y_pred)
+            self.backward(X_batch, y_batch, learning_rate)
+            
+        if epoch % 100 == 0:
+            losses.append(loss)
+            print(f"Epoch {epoch}, Loss: {loss}")
+    return losses
+```
+
+Explicación:
+- Entrenamos la red durante un número especificado de épocas.
+- Usamos mini-batch gradient descent para actualizar los pesos.
+- Registramos la pérdida cada 100 épocas para monitorear el progreso.
+
+---
+
+## Evaluación
+
+Implementamos funciones para hacer predicciones y calcular la precisión.
+
+```python
+def predict(self, X):
+    return np.argmax(self.forward(X), axis=1)
+
+def accuracy(self, X, y):
+    predictions = self.predict(X)
+    return np.mean(predictions == np.argmax(y, axis=1))
+```
+
+Explicación:
+- `predict`: Hace predicciones para nuevos datos.
+- `accuracy`: Calcula la precisión de nuestras predicciones.
+
+---
+
+## Entrenamiento y Evaluación del Modelo
+
+Ahora, entrenamos nuestro modelo y evaluamos su rendimiento.
+
+```python
+# Crear y entrenar el modelo
+model = SimpleNeuralNetwork(input_size=4, hidden_size=10, output_size=3)
+losses = model.train(X_train, y_train, epochs=1000, learning_rate=0.1, batch_size=32)
+
+# Evaluar el modelo
+train_accuracy = model.accuracy(X_train, y_train)
+test_accuracy = model.accuracy(X_test, y_test)
+
+print(f"Precisión en entrenamiento: {train_accuracy:.4f}")
+print(f"Precisión en prueba: {test_accuracy:.4f}")
+```
+
+Explicación:
+- Creamos una instancia de nuestra red neuronal.
+- Entrenamos el modelo durante 1000 épocas.
+- Evaluamos la precisión en los conjuntos de entrenamiento y prueba.
+
+---
+
+## Visualización de Resultados
+
+Finalmente, visualizamos cómo la pérdida cambia durante el entrenamiento.
+
+```python
+plt.plot(range(0, 1000, 100), losses)
+plt.xlabel('Épocas')
+plt.ylabel('Pérdida')
+plt.title('Pérdida durante el entrenamiento')
+plt.show()
+```
+
+Explicación:
+- Graficamos la pérdida a lo largo de las épocas de entrenamiento.
+- Esto nos ayuda a visualizar cómo el modelo aprende con el tiempo.
+
+
+### Recursos para Explorar Más:
+
+- **[Análisis exploratorio de datos del conjunto de datos Iris](https://youtu.be/yu4SYEYkZ6U?si=oOb1DEuG5GcS-f4e)** MasterClass (video)
+- **[Analisis Exploratorio de Datos dataset Iris](https://www.kaggle.com/code/joeportilla/analisis-exploratorio-de-datos-dataset-iris)** - Notebook Kaggle.
+
+
+---
+
 # Día11
 # Día12
 # Día13
