@@ -893,6 +893,7 @@ Las ANNs son modelos computacionales inspirados en el cerebro humano. Están dis
 - **Capa de Salida**: Genera el resultado final.
 
 Nuestro objetivo es construir, entrenar y evaluar una ANN usando el dataset MNIST para clasificar imágenes de dígitos escritos a mano.
+![Clasificación de Numeros Escritos a Mano](https://github.com/Oliver369X/100DaysOfAI/assets/110129950/4ca7e2c8-2f28-423c-b13b-2fcca5647892)
 
 ### Importación de Bibliotecas y Dataset
 
