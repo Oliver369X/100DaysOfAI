@@ -27,7 +27,7 @@
 | [Día8](#Día8) | Algoritmos de Optimización | 
 | [Día9](#Día9) | Overfitting y Técnicas de Regularización | 
 | [Día10](#Día10) | Construyendo una Red Neuronal desde Cero: Clasificación de Flores Iris | 
-| [Día11](#Día11) |  | 
+| [Día11](#Día11) | Construyendo una Red Neuronal con Tensorflow: Clasificación de Digitos Escritos a Mano | 
 | [Día12](#Día12) |  | 
 | [Día13](#Día13) |  | 
 | [Día14](#Día14) |  | 
@@ -870,10 +870,236 @@ Explicación:
 - **[Análisis exploratorio de datos del conjunto de datos Iris](https://youtu.be/yu4SYEYkZ6U?si=oOb1DEuG5GcS-f4e)** MasterClass (video)
 - **[Analisis Exploratorio de Datos dataset Iris](https://www.kaggle.com/code/joeportilla/analisis-exploratorio-de-datos-dataset-iris)** - Notebook Kaggle.
 
+## Colab Notebooks
+
+- [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Qv7LRrhvzGuJPkelYWz9zYJz-oPYIqDJ?usp=sharing) [Día 10: Clasificación de Flores Iris](https://colab.research.google.com/drive/1Qv7LRrhvzGuJPkelYWz9zYJz-oPYIqDJ?usp=sharing) 
+
 
 ---
 
 # Día11
+---
+
+## Redes Neuronales Artificiales (ANNs) con MNIST
+
+### Introducción
+
+En este proyecto, exploraremos la estructura básica de las Redes Neuronales Artificiales (ANNs) y su funcionamiento implementando un modelo para clasificar dígitos escritos a mano utilizando el dataset MNIST.
+
+Las ANNs son modelos computacionales inspirados en el cerebro humano. Están diseñadas para reconocer patrones y resolver problemas complejos a partir de datos. Una ANN típica consta de tres tipos de capas:
+- **Capa de Entrada**: Recibe los datos iniciales.
+- **Capas Ocultas**: Procesan la información.
+- **Capa de Salida**: Genera el resultado final.
+
+Nuestro objetivo es construir, entrenar y evaluar una ANN usando el dataset MNIST para clasificar imágenes de dígitos escritos a mano.
+
+### Importación de Bibliotecas y Dataset
+
+En este punto, importaremos las bibliotecas necesarias y cargaremos el dataset MNIST. También explicaremos el dataset y proporcionaremos el enlace original.
+
+#### Explicación del Código y Dataset
+
+```python
+# Importación de Bibliotecas
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, Flatten
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Cargando y Preprocesando el Dataset MNIST
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+# Normalización de las Imágenes
+x_train = x_train.reshape(-1, 28*28).astype('float32') / 255
+x_test = x_test.reshape(-1, 28*28).astype('float32') / 255
+
+# Conversión de Etiquetas a Categóricas
+y_train = to_categorical(y_train, 10)
+y_test = to_categorical(y_test, 10)
+
+# Visualización de ejemplos de imágenes y sus etiquetas
+plt.figure(figsize=(10, 5))
+for i in range(10):
+    plt.subplot(2, 5, i+1)
+    plt.imshow(x_train[i].reshape(28, 28), cmap='gray')
+    plt.title(f"Etiqueta: {np.argmax(y_train[i])}")
+    plt.axis('off')
+plt.show()
+```
+
+### Explicación del Dataset MNIST
+
+El dataset MNIST (Modified National Institute of Standards and Technology) es una colección de imágenes de dígitos escritos a mano, ampliamente utilizado para entrenar y probar modelos de reconocimiento de imágenes. El dataset contiene:
+- **60,000 imágenes de entrenamiento**: utilizadas para entrenar el modelo.
+- **10,000 imágenes de prueba**: utilizadas para evaluar el rendimiento del modelo.
+
+Cada imagen tiene un tamaño de 28x28 píxeles y está en escala de grises. Las etiquetas corresponden a dígitos del 0 al 9.
+
+Enlace original al dataset MNIST: [MNIST Database](http://yann.lecun.com/exdb/mnist/)
+
+### Definiendo la Estructura de la Red Neuronal
+
+Ahora definiremos la estructura básica de nuestra red neuronal usando Keras, una biblioteca de alto nivel para redes neuronales.
+
+```python
+# Definición de la Estructura de la Red Neuronal
+model = Sequential([
+    Dense(512, input_shape=(784,), activation='relu'), # Primera capa oculta con 512 neuronas y ReLU
+    Dropout(0.2), # Dropout con el 20% de las neuronas apagadas durante el entrenamiento
+    Dense(512, activation='relu'), # Segunda capa oculta con 512 neuronas y ReLU
+    Dropout(0.2), # Dropout con el 20% de las neuronas apagadas durante el entrenamiento
+    Dense(10, activation='softmax') # Capa de salida con 10 neuronas (una por clase) y Softmax
+])
+
+# Compilando el Modelo
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+# Resumen de la Red Neuronal
+model.summary()
+```
+
+### Explicación de la Estructura de la Red Neuronal
+
+- **Primera Capa Oculta**: Tiene 512 neuronas y utiliza la función de activación ReLU (Rectified Linear Unit) para introducir no linealidades en el modelo.
+- **Dropout**: Aplica Dropout con una tasa del 20% para evitar el sobreajuste.
+- **Segunda Capa Oculta**: Similar a la primera, con 512 neuronas y ReLU.
+- **Dropout**: Otro Dropout con una tasa del 20%.
+- **Capa de Salida**: Tiene 10 neuronas, una para cada clase en el dataset MNIST, y utiliza la función de activación Softmax para producir probabilidades de clasificación.
+
+La red se compila utilizando la pérdida de entropía cruzada categórica y el optimizador Adam, y se evalúa la precisión durante el entrenamiento.
+
+### Entrenamiento del Modelo
+
+#### Propagación Hacia Adelante
+
+La Propagación Hacia Adelante es el proceso mediante el cual los datos de entrada se transmiten a través de la red neuronal para generar una salida. Este flujo de información comienza en la capa de entrada, pasa por las capas ocultas y finalmente llega a la capa de salida.
+
+### Explicación del Proceso
+
+1. **Entrada**: Los datos de entrada se presentan a la red neuronal.
+2. **Ponderación**: Cada neurona en la capa de entrada envía sus datos ponderados a cada neurona en la primera capa oculta.
+3. **Activación**: Las neuronas en la capa oculta calculan una suma ponderada de sus entradas, aplican una función de activación y transmiten el resultado a la siguiente capa.
+4. **Salida**: Este proceso se repite capa por capa hasta que los datos llegan a la capa de salida, donde se generan las predicciones finales.
+
+```python
+# Propagación Hacia Adelante usando Keras
+# Ya hemos definido y compilado el modelo en el paso anterior
+# Entrenamiento del Modelo
+history = model.fit(x_train, y_train, epochs=10, batch_size=128, validation_split=0.2, verbose=1)
+```
+
+### Visualización del Proceso
+
+Podemos visualizar cómo se transmiten los datos a través de la red utilizando gráficos de entrenamiento.
+
+```python
+# Graficando precisión y pérdida durante el entrenamiento
+plt.figure(figsize=(12, 4))
+# Precisión
+plt.subplot(1, 2, 1)
+plt.plot(history.history['accuracy'], label='Precisión de Entrenamiento')
+plt.plot(history.history['val_accuracy'], label='Precisión de Validación')
+plt.title('Precisión durante el Entrenamiento')
+plt.xlabel('Época')
+plt.ylabel('Precisión')
+plt.legend()
+# Pérdida
+plt.subplot(1, 2, 2)
+plt.plot(history.history['loss'], label='Pérdida de Entrenamiento')
+plt.plot(history.history['val_loss'], label='Pérdida de Validación')
+plt.title('Pérdida durante el Entrenamiento')
+plt.xlabel('Época')
+plt.ylabel('Pérdida')
+plt.legend()
+plt.show()
+```
+
+### Evaluación del Modelo
+
+Evaluaremos el rendimiento del modelo en el conjunto de datos de prueba y mostraremos ejemplos de predicciones.
+
+```python
+# La retropropagación y el ajuste de pesos se realizan automáticamente durante el entrenamiento
+# utilizando el método fit como se mostró anteriormente
+# Aquí mostramos la evaluación del modelo
+loss, accuracy = model.evaluate(x_test, y_test, verbose=0)
+print(f'Pérdida en el conjunto de prueba: {loss:.4f}')
+print(f'Precisión en el conjunto de prueba: {accuracy:.4f}')
+
+import numpy as np
+# Haciendo predicciones
+predictions = model.predict(x_test)
+
+# Mostrando ejemplos de predicciones
+num_rows, num_cols = 2, 5
+num_images = num_rows * num_cols
+plt.figure(figsize=(10, 5))
+for i in range(num_images):
+    plt.subplot(num_rows, num_cols, i+1)
+    plt.imshow(x_test[i].reshape(28, 28), cmap='gray')
+    plt.title(f"Pred: {np.argmax(predictions[i])}")
+    plt.axis('off')
+plt.show()
+```
+
+### Técnicas de Regularización
+
+Implementaremos y explicaremos técnicas como Dropout y regularización L2, y mostraremos cómo estas técnicas afectan el rendimiento del modelo.
+
+```python
+from keras.layers import Dropout
+# Redefiniendo el modelo con Dropout y Regularización L2
+from keras.regularizers import l2
+
+model = Sequential([
+    Dense(512, activation='relu', input_shape=(784,), kernel_regularizer=l2(0.001)),
+    Dropout(0.5),
+    Dense(512, activation='relu', kernel_regularizer=l2(0.001)),
+    Dropout(0.5),
+    Dense(10, activation='softmax')
+])
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+# Entrenando el modelo con regularización
+history = model.fit(x_train, y_train, epochs=10, batch_size=128, validation_split=0.2, verbose=1)
+
+# Graficando precisión y pérdida durante el entrenamiento con regularización
+plt.figure(figsize=(12, 4))
+#
+
+ Precisión
+plt.subplot(1, 2, 1)
+plt.plot(history.history['accuracy'], label='Precisión de Entrenamiento')
+plt.plot(history.history['val_accuracy'], label='Precisión de Validación')
+plt.title('Precisión durante el Entrenamiento con Regularización')
+plt.xlabel('Época')
+plt.ylabel('Precisión')
+plt.legend()
+# Pérdida
+plt.subplot(1, 2, 2)
+plt.plot(history.history['loss'], label='Pérdida de Entrenamiento')
+plt.plot(history.history['val_loss'], label='Pérdida de Validación')
+plt.title('Pérdida durante el Entrenamiento con Regularización')
+plt.xlabel('Época')
+plt.ylabel('Pérdida')
+plt.legend()
+plt.show()
+```
+
+### Recursos para Explorar Más:
+
+- **[Hola Mundo del Deep Learning](https://youtube.com/playlist?list=PLWP2CHQigyURotrsA7m39odxXuYAOMvEc&si=nJKJn4Xm1szrwGEZ)** PlayList de 0 a 100 para poder hacer y enteder el hola mundo del Deep Learning
+- **[Taller - Fundamentos de Deep Learning con Python y PyTorch](https://youtu.be/XtLpw3SFrz4?si=YeQQu8yB_zmoxcf4)** 
+
+## Colab Notebooks
+
+
+- [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1jokMDImAKHwhucMxo6ZW1Cs2OXlHUpyR?usp=sharing) [Día 11: Hola Mundo (Deep Learning)](https://colab.research.google.com/drive/1jokMDImAKHwhucMxo6ZW1Cs2OXlHUpyR?usp=sharing)
+
+---
 # Día12
 # Día13
 # Día14
