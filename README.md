@@ -628,6 +628,7 @@ En esta práctica, vamos a implementar una red neuronal simple desde cero para r
 **Objetivo:** Crear una red neuronal que pueda clasificar correctamente las flores Iris en sus tres especies (setosa, versicolor, virginica) basándose en cuatro características: longitud del sépalo, ancho del sépalo, longitud del pétalo y ancho del pétalo.
 
 **¿Por qué usar redes neuronales?** Las redes neuronales son excelentes para encontrar patrones complejos en los datos. En este caso, pueden aprender las relaciones no lineales entre las características de las flores y sus especies, permitiendo una clasificación precisa.
+![iris_flowers](https://github.com/Oliver369X/100DaysOfAI/assets/110129950/c98d7fec-a4ad-478e-ba49-bdc24b63e98e)
 
 ---
 
