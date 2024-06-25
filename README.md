@@ -28,7 +28,7 @@
 | [Día9](#Día9) | Overfitting y Técnicas de Regularización | 
 | [Día10](#Día10) | Construyendo una Red Neuronal desde Cero: Clasificación de Flores Iris | 
 | [Día11](#Día11) | Construyendo una Red Neuronal con Tensorflow: Clasificación de Digitos Escritos a Mano | 
-| [Día12](#Día12) |  | 
+| [Día12](#Día12) | Redes Neuronales Profundas | 
 | [Día13](#Día13) |  | 
 | [Día14](#Día14) |  | 
 | [Día15](#Día15) |  | 
@@ -1103,6 +1103,60 @@ plt.show()
 
 ---
 # Día12
+---
+## ¿Qué son las Redes Profundas? 🌐🧠
+
+
+Las **redes profundas**, también conocidas como **redes neuronales profundas**, son un tipo de arquitectura de aprendizaje profundo que consta de múltiples capas de neuronas artificiales. A diferencia de las redes neuronales poco profundas, que tienen solo una o dos capas ocultas, las redes profundas pueden tener muchas capas ocultas, lo que les permite aprender representaciones cada vez más abstractas y complejas de los datos de entrada.
+
+### Características Principales:
+
+1. **Capas Ocultas Múltiples**: Las redes profundas consisten en una serie de capas ocultas entre la capa de entrada y la capa de salida. Cada capa oculta realiza transformaciones no lineales en los datos de entrada, permitiendo que el modelo aprenda características jerárquicas.
+
+2. **Aprendizaje Jerárquico de Características**: A medida que los datos fluyen a través de las capas de la red, se extraen y aprenden características cada vez más abstractas y significativas. Esto permite a las redes profundas capturar y modelar relaciones complejas en los datos.
+
+3. **Representaciones de Datos Abstracciones**: Las capas intermedias de una red profunda actúan como extractores de características, aprendiendo representaciones de datos cada vez más abstractas y de alto nivel. Estas representaciones abstraídas son esenciales para la capacidad del modelo de comprender y generalizar a partir de datos no vistos.
+
+### Aplicaciones:
+
+- **Visión por Computadora**: Las redes profundas han demostrado un rendimiento sobresaliente en tareas como clasificación de imágenes, detección de objetos, segmentación semántica y generación de imágenes.
+
+- **Procesamiento del Lenguaje Natural**: En el campo del procesamiento del lenguaje natural (NLP), las redes profundas se utilizan para tareas como clasificación de texto, traducción automática, generación de texto y análisis de sentimientos.
+
+- **Reconocimiento de Voz**: Las redes profundas son fundamentales en sistemas de reconocimiento de voz, donde se utilizan para traducir señales de audio en texto y viceversa.
+
+
+
+## Ventajas y Desafíos de Redes Más Profundas 🌟🧠
+
+Vamos a explorar las ventajas y desafíos asociados con el uso de **redes más profundas** en el aprendizaje profundo. Estas redes neuronales, con múltiples capas ocultas, han demostrado ser poderosas en la extracción de características complejas de los datos, pero también presentan ciertos desafíos que debemos tener en cuenta. ¡Vamos a sumergirnos en este tema! 🚀📊
+
+### Ventajas de las Redes Más Profundas:
+
+1. **Extracción Jerárquica de Características**: Las redes profundas pueden aprender representaciones de datos jerárquicas y complejas, lo que les permite capturar características abstractas y significativas de los datos de entrada.
+
+2. **Mayor Capacidad de Aprendizaje**: Con más capas ocultas, las redes profundas tienen una mayor capacidad para aprender y modelar relaciones complejas en los datos, lo que puede llevar a un rendimiento mejorado en tareas de aprendizaje automático.
+
+3. **Generalización Mejorada**: Al aprender representaciones de datos más abstractas y de alto nivel, las redes profundas tienden a generalizar mejor a datos no vistos, lo que les permite realizar predicciones precisas en nuevas instancias.
+
+4. **Rendimiento Superior en Tareas Complejas**: Las redes más profundas han demostrado un rendimiento sobresaliente en una variedad de tareas complejas, como la visión por computadora, el procesamiento del lenguaje natural y el reconocimiento de voz.
+
+### Desafíos de las Redes Más Profundas:
+
+1. **Dificultad de Entrenamiento**: Entrenar redes profundas puede ser computacionalmente costoso y requiere grandes conjuntos de datos etiquetados, así como una capacidad de cómputo significativa, lo que puede ser un desafío en entornos con recursos limitados.
+
+2. **Sobreajuste (Overfitting)**: Las redes profundas pueden ser propensas al sobreajuste, especialmente en conjuntos de datos pequeños o ruidosos, lo que puede resultar en un rendimiento deficiente en datos no vistos.
+
+3. **Gradiente que Desaparece/Explode**: En redes muy profundas, el gradiente puede desvanecerse (cuando se vuelve muy pequeño) o explotar (cuando se vuelve muy grande) durante el entrenamiento, lo que puede dificultar la convergencia del modelo.
+
+4. **Interpretabilidad Limitada**: A medida que aumenta la complejidad de la red, la interpretación de sus decisiones puede volverse más difícil, lo que puede ser problemático en aplicaciones donde la transparencia y la explicabilidad son importantes.
+
+### Recursos para Explorar Más:
+
+- **[¿Cuáles son los desafíos y limitaciones actuales de las redes neuronales y el aprendizaje profundo?](https://www.linkedin.com/advice/3/what-current-challenges-limitations-neural?lang=es&originalSubdomain=es)**.
+
+---
+
 # Día13
 # Día14
 # Día15
