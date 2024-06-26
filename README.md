@@ -29,7 +29,7 @@
 | [Día10](#Día10) | Construyendo una Red Neuronal desde Cero: Clasificación de Flores Iris | 
 | [Día11](#Día11) | Construyendo una Red Neuronal con Tensorflow: Clasificación de Digitos Escritos a Mano | 
 | [Día12](#Día12) | Redes Neuronales Profundas | 
-| [Día13](#Día13) |  | 
+| [Día13](#Día13) | Conceptos básicos y arquitectura general de las CNNs | 
 | [Día14](#Día14) |  | 
 | [Día15](#Día15) |  | 
 | [Día16](#Día16) |  | 
@@ -1158,6 +1158,39 @@ Vamos a explorar las ventajas y desafíos asociados con el uso de **redes más p
 ---
 
 # Día13
+---
+## Conceptos básicos y arquitectura general de las CNNs 🧠🖼️
+
+1️⃣ Definición de CNN 🤖
+Las Redes Neuronales Convolucionales son un tipo especializado de red neuronal diseñada principalmente para procesar datos con estructura de cuadrícula, como imágenes. Se inspiran en el procesamiento visual del cerebro humano y son muy eficaces en tareas de visión por computador. 👁️‍🗨️
+
+2️⃣ Componentes principales de una CNN 🧱
+a) Capa de entrada: Recibe la imagen como tensor 3D
+b) Capas convolucionales: Aplican filtros para detectar características
+c) Funciones de activación: Introducen no-linealidad (típicamente ReLU)
+d) Capas de pooling: Reducen la dimensionalidad espacial
+e) Capa de aplanamiento: Convierte datos en vector unidimensional
+f) Capas completamente conectadas: Realizan la clasificación final
+g) Capa de salida: Produce la predicción final
+
+3️⃣ Proceso de convolución 🔄
+- Operación fundamental en CNNs
+- Un filtro se desliza sobre la imagen de entrada
+- Multiplicación elemento por elemento y suma del resultado
+- Crea un mapa de características que resalta patrones específicos
+
+4️⃣ Características clave de las CNNs 🔑
+a) Conectividad local: Cada neurona se conecta solo a una región local
+b) Compartición de parámetros: Mismos pesos en múltiples ubicaciones
+c) Invariancia a la traslación: Detectan características independientemente de su posición
+
+### Recursos para Explorar Más:
+
+- **[funcionamiento de las redes neuronales convolucionales](https://youtu.be/4sWhhQwHqug?si=qvxBksruxjAbWVkC)** 
+- **[¡Redes Neuronales CONVOLUCIONALES! ¿Cómo funcionan?](https://youtu.be/V8j1oENVz00?si=1PNlj6GPLEqP66sZ)**
+
+---
+
 # Día14
 # Día15
 # Día16
