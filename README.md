@@ -1109,6 +1109,10 @@ plt.show()
 
 Las **redes profundas**, también conocidas como **redes neuronales profundas**, son un tipo de arquitectura de aprendizaje profundo que consta de múltiples capas de neuronas artificiales. A diferencia de las redes neuronales poco profundas, que tienen solo una o dos capas ocultas, las redes profundas pueden tener muchas capas ocultas, lo que les permite aprender representaciones cada vez más abstractas y complejas de los datos de entrada.
 
+
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/10319956-2748-4d00-885a-f9f590ead99f
+
+
 ### Características Principales:
 
 1. **Capas Ocultas Múltiples**: Las redes profundas consisten en una serie de capas ocultas entre la capa de entrada y la capa de salida. Cada capa oculta realiza transformaciones no lineales en los datos de entrada, permitiendo que el modelo aprenda características jerárquicas.
@@ -1154,6 +1158,10 @@ Vamos a explorar las ventajas y desafíos asociados con el uso de **redes más p
 ### Recursos para Explorar Más:
 
 - **[¿Cuáles son los desafíos y limitaciones actuales de las redes neuronales y el aprendizaje profundo?](https://www.linkedin.com/advice/3/what-current-challenges-limitations-neural?lang=es&originalSubdomain=es)**.
+
+
+
+
 
 ---
 
