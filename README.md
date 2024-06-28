@@ -31,7 +31,7 @@
 | [Día12](#Día12) | Redes Neuronales Profundas | 
 | [Día13](#Día13) | Conceptos básicos y arquitectura general de las CNNs | 
 | [Día14](#Día14) | ¿Cómo funcionan las CNNs en comparación con las ANNs? | 
-| [Día15](#Día15) |  | 
+| [Día15](#Día15) | Ejemplos Prácticos de Aplicación en la Industria | 
 | [Día16](#Día16) |  | 
 | [Día17](#Día17) |  | 
 | [Día18](#Día18) |  | 
@@ -1236,6 +1236,51 @@ Las Redes Neuronales Convolucionales (CNNs) son una variante especializada de la
 
 ---
 # Día15
+---
+## Ejemplos Prácticos de Aplicación en la Industria 🏭🤖
+
+Vamos a explorar algunos ejemplos prácticos de cómo se aplican las redes neuronales convolucionales (CNNs) en la industria. Las CNNs son una poderosa herramienta en el campo del aprendizaje profundo, especialmente en aplicaciones de visión por computadora. Veamos algunos ejemplos interesantes:
+
+#### 1. Diagnóstico Médico:
+- **Detección de Cáncer de Mama:** Las CNNs pueden analizar imágenes de mamografías para detectar signos tempranos de cáncer de mama, ayudando a los médicos en el diagnóstico precoz y la planificación del tratamiento.
+
+#### 2. Automatización Industrial:
+- **Inspección de Calidad en Manufactura:** Las CNNs pueden inspeccionar visualmente productos manufacturados en busca de defectos o imperfecciones, garantizando la calidad del producto final y reduciendo el desperdicio.
+
+#### 3. Automotriz y Conducción Autónoma:
+- **Detección de Peatones y Objetos:** Las CNNs integradas en sistemas de conducción autónoma pueden identificar peatones, vehículos y otros objetos en tiempo real, permitiendo que los vehículos tomen decisiones de conducción seguras.
+
+#### 4. Agricultura de Precisión:
+- **Monitoreo de Cultivos:** Las CNNs pueden analizar imágenes satelitales para monitorear el crecimiento de los cultivos, identificar áreas de estrés vegetal y optimizar el uso de recursos agrícolas como el agua y los fertilizantes.
+
+#### 5. Seguridad y Vigilancia:
+- **Reconocimiento Facial y de Objeto:** Las CNNs pueden analizar imágenes de cámaras de seguridad para identificar caras de interés, detectar intrusiones no autorizadas y alertar sobre actividades sospechosas.
+
+#### 6. Retail y Experiencia del Cliente:
+- **Personalización de Recomendaciones:** Las CNNs pueden analizar el historial de compras y las preferencias del cliente para ofrecer recomendaciones de productos altamente personalizadas, mejorando la experiencia de compra en línea.
+
+## Recursos sobre Aplicaciones Prácticas de Redes Neuronales Convolucionales (CNNs):
+
+### **1. Diagnóstico Médico:**
+
+* **Detección de Cáncer de Mama:**
+    * **Artículo:** "Aplicación de redes neuronales convolucionales para la detección de cáncer de mama en imágenes de mamografía" ([https://revistascientificas.cuc.edu.co/CESTA/article/view/3922/3919](https://revistascientificas.cuc.edu.co/CESTA/article/view/3922/3919))
+    * **Video:** "Redes Neuronales Convolucionales para Detección de Cáncer de Mama" ([https://www.youtube.com/watch?v=06TugnwqZCQ](https://www.youtube.com/watch?v=06TugnwqZCQ))
+
+### **2. Automatización Industrial:**
+
+* **Inspección de Calidad en Manufactura:**
+    * **Artículo:** "Inspección de defectos en productos manufacturados utilizando redes neuronales convolucionales" ([http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0121-750X2023000100204](http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S0121-750X2023000100204))
+    * **Video:** "Automatización de la Inspección Visual en la Industria Manufacturera con Redes Neuronales Convolucionales" ([https://www.youtube.com/watch?v=FkvWe00Pjgs](https://www.youtube.com/watch?v=FkvWe00Pjgs))
+
+### **3. Automotriz y Conducción Autónoma:**
+
+* **Detección de Peatones y Objetos:**
+
+    * **Video:** "Visión Artificial para Vehículos Autónomos: Detección de Peatones y Objetos con Redes Neuronales Convolucionales" ([https://www.youtube.com/watch?v=WC8dm4dxqPw](https://www.youtube.com/watch?v=WC8dm4dxqPw))
+
+---
+
 # Día16
 # Día17
 # Día18
