@@ -30,7 +30,7 @@
 | [Día11](#Día11) | Construyendo una Red Neuronal con Tensorflow: Clasificación de Digitos Escritos a Mano | 
 | [Día12](#Día12) | Redes Neuronales Profundas | 
 | [Día13](#Día13) | Conceptos básicos y arquitectura general de las CNNs | 
-| [Día14](#Día14) |  | 
+| [Día14](#Día14) | ¿Cómo funcionan las CNNs en comparación con las ANNs? | 
 | [Día15](#Día15) |  | 
 | [Día16](#Día16) |  | 
 | [Día17](#Día17) |  | 
@@ -1200,6 +1200,41 @@ c) Invariancia a la traslación: Detectan características independientemente de
 ---
 
 # Día14
+----
+## ¿Cómo funcionan las CNNs en comparación con las ANNs? 🤔🔍
+Vamos a explorar cómo funcionan las Redes Neuronales Convolucionales (CNNs) en comparación con las Redes Neuronales Artificiales (ANNs). Ambas son arquitecturas importantes en el campo del aprendizaje profundo, pero tienen diferencias clave en su estructura y funcionamiento. ¡Vamos a analizarlas! 🧠📊
+
+### Redes Neuronales Artificiales (ANNs):
+
+Las Redes Neuronales Artificiales (ANNs), también conocidas como perceptrones multicapa, son una arquitectura clásica de redes neuronales que consiste en múltiples capas de neuronas artificiales interconectadas. Cada neurona en una capa está conectada a todas las neuronas de la capa siguiente, lo que permite una representación compleja de funciones no lineales.
+
+**Funcionamiento:**
+1. **Propagación hacia Adelante (Forward Propagation):** Durante la propagación hacia adelante, los datos de entrada se alimentan a través de la red neuronal, capa por capa, y se calculan las activaciones de cada neurona utilizando una combinación lineal de las entradas y pesos, seguida de una función de activación no lineal.
+
+2. **Cálculo del Error:** Después de la propagación hacia adelante, se compara la salida predicha de la red con la salida deseada utilizando una función de pérdida, y se calcula el error de predicción.
+
+3. **Propagación hacia Atrás (Backward Propagation):** Durante la propagación hacia atrás, el error calculado se propaga hacia atrás a través de la red para ajustar los pesos de cada neurona, utilizando algoritmos de optimización como el descenso de gradiente estocástico (SGD).
+
+### Redes Neuronales Convolucionales (CNNs):
+
+Las Redes Neuronales Convolucionales (CNNs) son una variante especializada de las ANNs diseñadas específicamente para el procesamiento de imágenes. Integran capas convolucionales que aplican filtros a las imágenes de entrada para extraer características relevantes de manera eficiente.
+
+**Principales Diferencias:**
+1. **Estructura:** Mientras que las ANNs están completamente conectadas, las CNNs utilizan capas convolucionales y de pooling para operar directamente sobre las características de la imagen, lo que reduce drásticamente el número de parámetros y la complejidad computacional.
+
+2. **Convolución:** Las CNNs utilizan operaciones de convolución para detectar características locales en las imágenes, lo que les permite capturar patrones espaciales y de proximidad que son fundamentales en tareas de visión por computadora.
+
+3. **Parámetros Compartidos:** En las CNNs, los mismos pesos de filtro se comparten en diferentes regiones de la imagen, lo que les permite generalizar y aprender patrones independientemente de su ubicación en la imagen.
+
+### Aplicaciones:
+- Las ANNs son más adecuadas para tareas de aprendizaje supervisado en datos tabulares o secuenciales.
+- Las CNNs son ideales para tareas de visión por computadora, como reconocimiento de objetos, detección de objetos, segmentación semántica y más.
+
+### Recursos para Explorar Más:
+- **[CNN vs RNN vs ANN: Explicando las redes neuronales](https://www.linkedin.com/advice/0/how-do-you-explain-concepts-intuitions-behind?lang=es&originalSubdomain=es)**.
+
+
+---
 # Día15
 # Día16
 # Día17
