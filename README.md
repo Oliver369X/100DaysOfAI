@@ -1169,6 +1169,10 @@ Vamos a explorar las ventajas y desafíos asociados con el uso de **redes más p
 ---
 ## Conceptos básicos y arquitectura general de las CNNs 🧠🖼️
 
+
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/f76483f7-fe9f-4c48-8e66-bc8ab8d8d360
+
+
 1️⃣ Definición de CNN 🤖
 Las Redes Neuronales Convolucionales son un tipo especializado de red neuronal diseñada principalmente para procesar datos con estructura de cuadrícula, como imágenes. Se inspiran en el procesamiento visual del cerebro humano y son muy eficaces en tareas de visión por computador. 👁️‍🗨️
 
@@ -1240,6 +1244,10 @@ Las Redes Neuronales Convolucionales (CNNs) son una variante especializada de la
 ## Ejemplos Prácticos de Aplicación en la Industria 🏭🤖
 
 Vamos a explorar algunos ejemplos prácticos de cómo se aplican las redes neuronales convolucionales (CNNs) en la industria. Las CNNs son una poderosa herramienta en el campo del aprendizaje profundo, especialmente en aplicaciones de visión por computadora. Veamos algunos ejemplos interesantes:
+
+
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/996d7620-d10f-40dd-b6ae-329945c07cd0
+
 
 #### 1. Diagnóstico Médico:
 - **Detección de Cáncer de Mama:** Las CNNs pueden analizar imágenes de mamografías para detectar signos tempranos de cáncer de mama, ayudando a los médicos en el diagnóstico precoz y la planificación del tratamiento.
