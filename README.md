@@ -32,7 +32,7 @@
 | [Día13](#Día13) | Conceptos básicos y arquitectura general de las CNNs | 
 | [Día14](#Día14) | ¿Cómo funcionan las CNNs en comparación con las ANNs? | 
 | [Día15](#Día15) | Ejemplos Prácticos de Aplicación en la Industria | 
-| [Día16](#Día16) |  | 
+| [Día16](#Día16) | Comprendiendo la Convolución en Imágenes | 
 | [Día17](#Día17) |  | 
 | [Día18](#Día18) |  | 
 | [Día19](#Día19) |  | 
@@ -1282,6 +1282,29 @@ Vamos a explorar algunos ejemplos prácticos de cómo se aplican las redes neuro
 ---
 
 # Día16
+---
+## Comprendiendo la Convolución en Imágenes 📸🔍
+
+#### ¿Qué es la Convolución?
+La convolución es una operación matemática fundamental en el procesamiento de señales y el aprendizaje profundo. En el contexto de las imágenes, la convolución implica deslizar una pequeña ventana (llamada kernel o filtro) sobre la imagen de entrada y realizar operaciones matemáticas en cada región de la imagen.
+
+#### Aplicación en Imágenes:
+- **Extracción de Características:** La convolución se utiliza para extraer características importantes de una imagen, como bordes, texturas y patrones, mediante la detección de características locales en diferentes partes de la imagen.
+- **Reducción de Dimensionalidad:** Al aplicar convoluciones sucesivas con diferentes filtros, se obtienen mapas de características que resumen la información clave de la imagen, lo que permite una representación más compacta y manejable para la red neuronal.
+- **Detección de Objetos:** En el contexto del aprendizaje profundo, las convoluciones son fundamentales en las arquitecturas de redes neuronales convolucionales (CNNs) para la detección y clasificación de objetos en imágenes.
+
+#### Proceso de Convolución:
+1. **Deslizamiento del Kernel:** El kernel se desliza sobre la imagen de entrada, multiplicando sus valores por los píxeles correspondientes en cada región.
+2. **Operación de Producto Punto:** Se calcula el producto punto entre los valores del kernel y los píxeles de la región de la imagen.
+3. **Suma y Bias:** Se suman los resultados de la operación de producto punto y se agrega un término de sesgo (bias).
+4. **Aplicación de Función de Activación:** Opcionalmente, se aplica una función de activación no lineal, como ReLU, para introducir no linealidades en la red.
+
+### Recursos para Explorar Más:
+- **[La CONVOLUCIÓN en las REDES CONVOLUCIONALES](https://youtu.be/ySbmdeqR0-4?si=_lp6W3jjBWVu0E5e)**.
+- **[Convoluciones y filtros](https://youtu.be/AwTH_0yW9_I?si=2EuPLMROMmReZR1T)**.
+
+---
+
 # Día17
 # Día18
 # Día19
