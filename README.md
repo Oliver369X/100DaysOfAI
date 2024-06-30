@@ -33,7 +33,7 @@
 | [Día14](#Día14) | ¿Cómo funcionan las CNNs en comparación con las ANNs? | 
 | [Día15](#Día15) | Ejemplos Prácticos de Aplicación en la Industria | 
 | [Día16](#Día16) | Comprendiendo la Convolución en Imágenes | 
-| [Día17](#Día17) |  | 
+| [Día17](#Día17) | Entendiendo los Filtros y su Papel en la Extracción de Características | 
 | [Día18](#Día18) |  | 
 | [Día19](#Día19) |  | 
 | [Día20](#Día20) |  | 
@@ -1314,6 +1314,35 @@ La convolución es una operación matemática fundamental en el procesamiento de
 ---
 
 # Día17
+---
+## Entendiendo los Filtros y su Papel en la Extracción de Características 🌟🔍
+
+Hoy vamos a explorar más a fondo los filtros en el contexto de las redes neuronales convolucionales (CNNs) y cómo desempeñan un papel crucial en la extracción de características de las imágenes.
+
+#### ¿Qué son los Filtros en CNNs?
+Los filtros, también conocidos como kernels, son matrices pequeñas de pesos que se utilizan en las capas convolucionales de las CNNs. Cada filtro se desliza sobre la imagen de entrada y realiza operaciones de convolución para extraer características específicas.
+
+#### Función de los Filtros:
+- **Detección de Características:** Cada filtro está diseñado para detectar una característica específica en la imagen, como bordes, texturas, formas o patrones.
+- **Aprendizaje de Características:** Durante el entrenamiento de la red neuronal, los valores de los filtros se ajustan automáticamente para aprender las características más relevantes para la tarea específica.
+
+#### Proceso de Extracción de Características:
+1. **Convolución:** El filtro se aplica a la imagen de entrada mediante la operación de convolución, multiplicando sus valores por los píxeles correspondientes y sumando los resultados.
+2. **Mapa de Activación:** La salida de la convolución se conoce como mapa de activación, que resalta la presencia de la característica detectada en diferentes regiones de la imagen.
+3. **Pooling:** Opcionalmente, se puede aplicar una capa de pooling después de la convolución para reducir la dimensionalidad y mejorar la eficiencia computacional.
+
+
+
+#### Importancia en el Aprendizaje Profundo:
+- Los filtros son esenciales para el aprendizaje profundo, ya que permiten que la red neuronal aprenda representaciones jerárquicas de las características de las imágenes.
+- Al apilar capas convolucionales con diferentes filtros, la red puede aprender características cada vez más abstractas y complejas, lo que mejora su capacidad para realizar tareas de visión por computadora.
+
+
+### Recursos para Explorar Más:
+- **[Filtros espaciales aplicados a imágenes](https://youtu.be/K9Tx4NOWUSg?si=4UdJDFUQuzCJRTJJ)**.
+
+---
+
 # Día18
 # Día19
 # Día20
