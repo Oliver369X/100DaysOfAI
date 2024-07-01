@@ -34,7 +34,7 @@
 | [Día15](#Día15) | Ejemplos Prácticos de Aplicación en la Industria | 
 | [Día16](#Día16) | Comprendiendo la Convolución en Imágenes | 
 | [Día17](#Día17) | Entendiendo los Filtros y su Papel en la Extracción de Características | 
-| [Día18](#Día18) |  | 
+| [Día18](#Día18) | Stride y Padding en CNNs | 
 | [Día19](#Día19) |  | 
 | [Día20](#Día20) |  | 
 | [Día21](#Día21) |  | 
@@ -1344,6 +1344,34 @@ Los filtros, también conocidos como kernels, son matrices pequeñas de pesos qu
 ---
 
 # Día18
+---
+## Stride y Padding en CNNs 🚶🏻‍♂️🛌
+
+Hoy vamos a explorar dos conceptos importantes en las redes neuronales convolucionales (CNNs): Stride y Padding. Estos conceptos son fundamentales para el diseño y la configuración de las capas convolucionales.
+
+#### Stride:
+- **Definición:** El stride (paso) es la cantidad de píxeles que el filtro se desplaza en cada paso mientras se aplica a la imagen de entrada.
+- **Efecto:** Un stride mayor reduce la dimensión espacial de la salida (mapa de activación), ya que el filtro se mueve más rápido a lo largo de la imagen.
+- **Control de Dimensionalidad:** El stride se utiliza para controlar la reducción de dimensionalidad en las capas convolucionales, lo que puede ser útil para reducir el costo computacional y el overfitting.
+
+#### Padding:
+- **Definición:** El padding (relleno) consiste en agregar píxeles adicionales alrededor de la imagen de entrada antes de aplicar la convolución.
+- **Uso:** El padding se utiliza para mantener la dimensión espacial de la salida después de la convolución, especialmente en los bordes de la imagen.
+- **Beneficios:** Al agregar padding, se conserva más información espacial de la imagen de entrada y se evita la pérdida de características en los bordes.
+- **Tipos de Padding:** Se pueden utilizar diferentes tipos de padding, como "same" (mismo tamaño de entrada y salida) o "valid" (sin relleno), según los requisitos de la arquitectura de la red.
+
+
+
+
+#### Importancia en las CNNs:
+- El stride y el padding son parámetros importantes que afectan la dimensión espacial de la salida y la cantidad de información preservada.
+- Ajustar adecuadamente el stride y el padding puede mejorar el rendimiento y la eficiencia de la red neuronal convolucional en tareas de visión por computadora.
+
+### Recursos para Explorar Más:
+- **[Padding, strides, max pooling y stacking en las REDES CONVOLUCIONALES](https://youtu.be/QLy8v6LL_4A?si=6ElSwovGCi-Eljj3)**.
+
+---
+
 # Día19
 # Día20
 # Día21
