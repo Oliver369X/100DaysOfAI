@@ -35,7 +35,7 @@
 | [Día16](#Día16) | Comprendiendo la Convolución en Imágenes | 
 | [Día17](#Día17) | Entendiendo los Filtros y su Papel en la Extracción de Características | 
 | [Día18](#Día18) | Stride y Padding en CNNs | 
-| [Día19](#Día19) |  | 
+| [Día19](#Día19) | Pooling en CNNs | 
 | [Día20](#Día20) |  | 
 | [Día21](#Día21) |  | 
 | [Día22](#Día22) |  | 
@@ -1373,6 +1373,34 @@ Hoy vamos a explorar dos conceptos importantes en las redes neuronales convoluci
 ---
 
 # Día19
+---
+## Pooling en CNNs 🏊‍♂️🔍
+
+¡Hola a todos! Hoy vamos a explorar una técnica fundamental en las redes neuronales convolucionales (CNNs): el Pooling. El Pooling es una operación importante para la reducción de dimensionalidad y la extracción de características en las CNNs.
+
+#### Introducción al Pooling:
+- **Definición:** El Pooling es una operación que reduce la dimensionalidad de cada mapa de activación, conservando solo la información más importante.
+- **Tipos de Pooling:** Los tipos comunes de Pooling son el Max Pooling y el Average Pooling.
+- **Funcionamiento:** En el Max Pooling, se selecciona el valor máximo de un área definida en el mapa de activación. En el Average Pooling, se calcula el promedio de los valores en el área especificada.
+- **Reducción de Dimensionalidad:** El Pooling reduce el tamaño espacial de la entrada, lo que disminuye el número de parámetros y operaciones en la red neuronal.
+
+#### Impacto en las CNNs:
+- **Reducción de Overfitting:** Al reducir la dimensionalidad, el Pooling ayuda a prevenir el overfitting al eliminar información redundante y mejorar la generalización del modelo.
+- **Invariancia a las Transformaciones:** El Pooling hace que la red sea más invariante a pequeñas traslaciones y deformaciones en las características detectadas.
+- **Extracción de Características:** Al conservar solo las características más importantes, el Pooling facilita la identificación de patrones relevantes en los mapas de activación.
+
+
+
+En la imagen de arriba, se muestra un ejemplo de Max Pooling aplicado a un mapa de activación. La región de 2x2 se desliza sobre el mapa, seleccionando el valor máximo en cada región para formar la salida.
+
+### Recursos para Explorar Más:
+- **[CNN vs RNN vs ANN: Explicando las redes neuronales](https://www.linkedin.com/advice/0/how-do-you-explain-concepts-intuitions-behind?lang=es&originalSubdomain=es)**.
+- **[Capas de pooling en una red neuronal convolucional](https://keepcoding.io/blog/capas-pooling-red-neuronal-convolucional/)**.
+- **[Pooling and their types in CNN
+](https://medium.com/@abhishekjainindore24/pooling-and-their-types-in-cnn-4a4b8a7a4611)**.
+
+---
+
 # Día20
 # Día21
 # Día22
