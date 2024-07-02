@@ -1378,6 +1378,9 @@ Hoy vamos a explorar dos conceptos importantes en las redes neuronales convoluci
 
 ¡Hola a todos! Hoy vamos a explorar una técnica fundamental en las redes neuronales convolucionales (CNNs): el Pooling. El Pooling es una operación importante para la reducción de dimensionalidad y la extracción de características en las CNNs.
 
+![Pooling](https://github.com/Oliver369X/100DaysOfAI/assets/110129950/9e06b087-f42c-4ce3-af88-cbfc80ce9d82)
+![pooling](https://github.com/Oliver369X/100DaysOfAI/assets/110129950/38bc0a1a-fc89-4c66-94d4-5c43a2443bb9)
+
 #### Introducción al Pooling:
 - **Definición:** El Pooling es una operación que reduce la dimensionalidad de cada mapa de activación, conservando solo la información más importante.
 - **Tipos de Pooling:** Los tipos comunes de Pooling son el Max Pooling y el Average Pooling.
