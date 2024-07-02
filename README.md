@@ -1293,6 +1293,10 @@ https://github.com/Oliver369X/100DaysOfAI/assets/110129950/996d7620-d10f-40dd-b6
 ---
 ## Comprendiendo la Convolución en Imágenes 📸🔍
 
+
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/65915ade-08c5-47b8-8b9b-85dbc69435f8
+
+
 #### ¿Qué es la Convolución?
 La convolución es una operación matemática fundamental en el procesamiento de señales y el aprendizaje profundo. En el contexto de las imágenes, la convolución implica deslizar una pequeña ventana (llamada kernel o filtro) sobre la imagen de entrada y realizar operaciones matemáticas en cada región de la imagen.
 
@@ -1316,6 +1320,10 @@ La convolución es una operación matemática fundamental en el procesamiento de
 # Día17
 ---
 ## Entendiendo los Filtros y su Papel en la Extracción de Características 🌟🔍
+
+
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/15eb563d-a718-4ab5-9153-42a19c8839e1
+
 
 Hoy vamos a explorar más a fondo los filtros en el contexto de las redes neuronales convolucionales (CNNs) y cómo desempeñan un papel crucial en la extracción de características de las imágenes.
 
