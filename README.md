@@ -1293,6 +1293,10 @@ https://github.com/Oliver369X/100DaysOfAI/assets/110129950/996d7620-d10f-40dd-b6
 ---
 ## Comprendiendo la Convolución en Imágenes 📸🔍
 
+
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/65915ade-08c5-47b8-8b9b-85dbc69435f8
+
+
 #### ¿Qué es la Convolución?
 La convolución es una operación matemática fundamental en el procesamiento de señales y el aprendizaje profundo. En el contexto de las imágenes, la convolución implica deslizar una pequeña ventana (llamada kernel o filtro) sobre la imagen de entrada y realizar operaciones matemáticas en cada región de la imagen.
 
@@ -1316,6 +1320,10 @@ La convolución es una operación matemática fundamental en el procesamiento de
 # Día17
 ---
 ## Entendiendo los Filtros y su Papel en la Extracción de Características 🌟🔍
+
+
+https://github.com/Oliver369X/100DaysOfAI/assets/110129950/15eb563d-a718-4ab5-9153-42a19c8839e1
+
 
 Hoy vamos a explorar más a fondo los filtros en el contexto de las redes neuronales convolucionales (CNNs) y cómo desempeñan un papel crucial en la extracción de características de las imágenes.
 
@@ -1377,6 +1385,9 @@ Hoy vamos a explorar dos conceptos importantes en las redes neuronales convoluci
 ## Pooling en CNNs 🏊‍♂️🔍
 
 ¡Hola a todos! Hoy vamos a explorar una técnica fundamental en las redes neuronales convolucionales (CNNs): el Pooling. El Pooling es una operación importante para la reducción de dimensionalidad y la extracción de características en las CNNs.
+
+![Pooling](https://github.com/Oliver369X/100DaysOfAI/assets/110129950/9e06b087-f42c-4ce3-af88-cbfc80ce9d82)
+![pooling](https://github.com/Oliver369X/100DaysOfAI/assets/110129950/38bc0a1a-fc89-4c66-94d4-5c43a2443bb9)
 
 #### Introducción al Pooling:
 - **Definición:** El Pooling es una operación que reduce la dimensionalidad de cada mapa de activación, conservando solo la información más importante.
