@@ -36,7 +36,7 @@
 | [Día17](#Día17) | Entendiendo los Filtros y su Papel en la Extracción de Características | 
 | [Día18](#Día18) | Stride y Padding en CNNs | 
 | [Día19](#Día19) | Pooling en CNNs | 
-| [Día20](#Día20) |  | 
+| [Día20](#Día20) | Funciones de Activación | 
 | [Día21](#Día21) |  | 
 | [Día22](#Día22) |  | 
 | [Día23](#Día23) |  | 
@@ -1402,6 +1402,79 @@ En la imagen de arriba, se muestra un ejemplo de Max Pooling aplicado a un mapa 
 ---
 
 # Día20
+---
+##  Funciones de Activación
+
+- **Definición**: Las funciones de activación son componentes cruciales en las redes neuronales que introducen no-linealidad en el modelo.
+ - **Propósito**: Permiten a la red aprender y aproximar funciones complejas.
+- **Importancia**: Sin ellas, la red sería equivalente a un modelo lineal simple.
+
+#### ReLU (Rectified Linear Unit)
+**Definición Matemática**: f(x) = max(0, x)
+**Funcionamiento**:
+- Si la entrada es negativa, la salida es 0.
+- Si la entrada es positiva, la salida es igual a la entrada.
+**Ventajas**:
+- Reduce el problema del desvanecimiento del gradiente.
+- Computacionalmente eficiente.
+- Converge más rápido que las funciones sigmoide o tangente hiperbólica.
+**Desventajas**:
+- Problema de "neuronas muertas": si una neurona siempre produce salidas negativas, puede "morir" y dejar de aprender.
+
+#### LeakyReLU
+**Definición Matemática**: f(x) = max(αx, x), donde α es un valor pequeño (típicamente 0.01).
+**Funcionamiento**:
+- Similar a ReLU, pero permite un pequeño gradiente negativo cuando la unidad no está activa.
+**Ventajas sobre ReLU**:
+- Evita el problema de las neuronas muertas.
+- Permite un pequeño flujo de gradientes negativos.
+**Cómo elegir el valor de α**:
+- Generalmente se usa 0.01, pero puede ser un hiperparámetro a optimizar.
+
+#### Otras Variantes de ReLU
+**a) PReLU (Parametric ReLU)**
+- Similar a LeakyReLU, pero α es un parámetro aprendible.
+- Puede adaptarse mejor a los datos específicos del problema.
+
+**b) ELU (Exponential Linear Unit)**
+- **Definición**: f(x) = x si x > 0, α(exp(x) - 1) si x ≤ 0.
+- Produce salidas negativas suaves, lo que puede ayudar a empujar las activaciones medias más cerca de cero.
+
+#### Implementación Práctica
+**En TensorFlow/Keras**:
+```python
+from tensorflow.keras.layers import ReLU, LeakyReLU
+
+# ReLU
+model.add(ReLU())
+
+# LeakyReLU
+model.add(LeakyReLU(alpha=0.01))
+```
+
+**En PyTorch**:
+```python
+import torch.nn as nn
+
+# ReLU
+model.add_module('relu', nn.ReLU())
+
+# LeakyReLU
+model.add_module('leaky_relu', nn.LeakyReLU(negative_slope=0.01))
+```
+
+#### Consideraciones al Elegir Funciones de Activación
+- Depende del problema específico y la arquitectura de la red.
+- ReLU es una buena opción por defecto para capas ocultas.
+- Para la capa de salida, la elección depende del tipo de problema (por ejemplo, softmax para clasificación multiclase).
+
+### Recursos para Explorar Más:
+- **[La FUNCIÓN DE ACTIVACIÓN
+](https://youtu.be/lFODTDO8mMw?si=XZ0tsIUvYpqrtVzz)**.
+- **[Funciones de Activación – Fundamentos de Deep Learning ](https://youtu.be/IdlYuBKeFXo?si=5RwnIieB0vBf-3o0)**.
+- **[Clase 5 - Deep Learning - Funciones de activación: ReLU, Softmax](https://youtu.be/psVhj3Y8_rw?si=dzM13mjw1a_kc7cl)**.
+
+---
 # Día21
 # Día22
 # Día23
