@@ -38,7 +38,7 @@
 | [Día19](#Día19) | Pooling en CNNs | 
 | [Día20](#Día20) | Funciones de Activación | 
 | [Día21](#Día21) | Construcción de Capas en CNNs | 
-| [Día22](#Día22) |  | 
+| [Día22](#Día22) | Capas Completamente Conectadas (Fully Connected Layers) | 
 | [Día23](#Día23) |  | 
 | [Día24](#Día24) |  | 
 | [Día25](#Día25) |  | 
@@ -1490,7 +1490,6 @@ model.add_module('leaky_relu', nn.LeakyReLU(negative_slope=0.01))
 ---
 ## Construcción de Capas en CNNs 🛠️🧱
 
-
 ### Construcción de Capas Convolucionales: 🔍
 * **Definición:** Las capas convolucionales son fundamentales en las CNNs para la detección de características en datos de alta dimensión, como imágenes.
 * **Operación de Convolución:** La operación de convolución aplica un filtro (o kernel) a una región de la entrada, produciendo un mapa de activación que resalta ciertas características.
@@ -1534,9 +1533,41 @@ model.compile(optimizer='adam',
 
 ### Recursos para Explorar Más:
 - **[¿Qué es una red neuronal convolucional (CNN) y qué capas tiene?](https://youtu.be/3u3wW4T4sSA?si=cud0FqPhhwFwkvnR)**.
+- **[Capas convolucionales y de pooling
+](https://youtu.be/oTjzC8yxrRs?si=ijO9X7zFowr4j2Gp)**.
+
 ---
 
 # Día22
+---
+## Capas Completamente Conectadas (Fully Connected Layers) 🔗🤖
+
+#### Integración de Capas Completamente Conectadas:
+- **Definición:** Las capas completamente conectadas, también conocidas como capas densas, son aquellas donde cada neurona está conectada a todas las neuronas de la capa anterior.
+- **Transformación de Datos:** Después de varias capas convolucionales y de pooling, las características extraídas se aplanan en un vector de una dimensión antes de ser alimentadas a las capas completamente conectadas.
+- **Función:** Estas capas combinan las características aprendidas para tomar decisiones finales. Son esenciales para tareas de clasificación y regresión.
+
+#### Uso en la Fase de Clasificación Final:
+- **Proceso de Clasificación:** En una CNN típica, después de que las capas convolucionales y de pooling han extraído y reducido las características, las capas completamente conectadas procesan esta información para realizar la clasificación final.
+- **Softmax y Activaciones:** La última capa completamente conectada en un modelo de clasificación suele utilizar una función de activación softmax para convertir las salidas en probabilidades de las diferentes clases.
+- **Entrenamiento:** Durante el entrenamiento, los pesos de las capas completamente conectadas se ajustan para minimizar la función de pérdida, mejorando la precisión de las predicciones.
+
+#### Estructura de una CNN con Capas Completamente Conectadas:
+- **Capas Iniciales:** Varias capas convolucionales y de pooling para extraer características.
+- **Aplanamiento:** Transformación de los mapas de características en un vector de una dimensión.
+- **Capas Densas:** Una o más capas completamente conectadas que procesan el vector de características.
+- **Clasificación Final:** Una capa completamente conectada final con softmax para la salida de clasificación.
+
+Las capas completamente conectadas juegan un papel crucial en la toma de decisiones finales de una CNN, integrando todas las características aprendidas y proporcionando la salida del modelo.
+### Recursos para Explorar Más:
+- **[Capa totalmente conectada](https://es.mathworks.com/help/deeplearning/ref/nnet.cnn.layer.fullyconnectedlayer.html)**.
+- **[Fully Connected Layer
+](https://medium.com/@vaibhav1403/fully-connected-layer-f13275337c7c)**.
+- **[Layer (deep learning)
+](https://en.wikipedia.org/wiki/Layer_(deep_learning))**.
+
+
+---
 # Día23
 # Día24
 # Día25
