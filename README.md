@@ -37,7 +37,7 @@
 | [Día18](#Día18) | Stride y Padding en CNNs | 
 | [Día19](#Día19) | Pooling en CNNs | 
 | [Día20](#Día20) | Funciones de Activación | 
-| [Día21](#Día21) |  | 
+| [Día21](#Día21) | Construcción de Capas en CNNs | 
 | [Día22](#Día22) |  | 
 | [Día23](#Día23) |  | 
 | [Día24](#Día24) |  | 
@@ -1487,6 +1487,55 @@ model.add_module('leaky_relu', nn.LeakyReLU(negative_slope=0.01))
 
 ---
 # Día21
+---
+## Construcción de Capas en CNNs 🛠️🧱
+
+
+### Construcción de Capas Convolucionales: 🔍
+* **Definición:** Las capas convolucionales son fundamentales en las CNNs para la detección de características en datos de alta dimensión, como imágenes.
+* **Operación de Convolución:** La operación de convolución aplica un filtro (o kernel) a una región de la entrada, produciendo un mapa de activación que resalta ciertas características.
+* **Parámetros:** Las capas convolucionales tienen parámetros que se aprenden durante el entrenamiento de la red, lo que permite adaptarse a patrones específicos en los datos de entrada.
+* **Construcción de Capas:** En la construcción de una capa convolucional, se especifican el número de filtros, el tamaño del filtro, el paso (stride) y el tipo de relleno (padding) para controlar la salida de la capa.
+
+```python
+import tensorflow as tf
+
+inputs = tf.keras.Input(shape=(28, 28, 1))
+x = tf.keras.layers.Conv2D(32, (3, 3), activation='relu', padding='same')(inputs)
+```
+
+### Construcción de Capas de Pooling: 🔽
+* **Reducción de Dimensionalidad:** Las capas de pooling reducen la dimensionalidad de los mapas de activación, manteniendo las características más importantes.
+* **Operación de Pooling:** El Max Pooling y el Average Pooling son operaciones comunes en las capas de pooling, que seleccionan el valor máximo o calculan el promedio en una región definida.
+* **Conexión con Capas Convolutivas:** Las capas de pooling suelen seguir a las capas convolucionales para reducir la resolución espacial y el número de parámetros.
+
+```python
+x = tf.keras.layers.MaxPooling2D((2, 2))(x)
+```
+
+### Conexión de Capas y Formación de una Red Profunda: 🏗️
+* **Construcción de la Red:** Las capas convolucionales y de pooling se apilan para formar una red profunda. La conexión entre estas capas permite que la red aprenda representaciones jerárquicas de los datos.
+* **Apilamiento de Capas:** Las capas convolucionales y de pooling se apilan secuencialmente, seguidas a menudo por capas totalmente conectadas (densas) para la clasificación final.
+
+```python
+x = tf.keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same')(x)
+x = tf.keras.layers.MaxPooling2D((2, 2))(x)
+x = tf.keras.layers.Flatten()(x)
+x = tf.keras.layers.Dense(64, activation='relu')(x)
+outputs = tf.keras.layers.Dense(10, activation='softmax')(x)
+
+model = tf.keras.Model(inputs=inputs, outputs=outputs)
+
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+```
+
+
+### Recursos para Explorar Más:
+- **[¿Qué es una red neuronal convolucional (CNN) y qué capas tiene?](https://youtu.be/3u3wW4T4sSA?si=cud0FqPhhwFwkvnR)**.
+---
+
 # Día22
 # Día23
 # Día24
