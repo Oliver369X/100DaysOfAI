@@ -39,7 +39,7 @@
 | [Día20](#Día20) | Funciones de Activación | 
 | [Día21](#Día21) | Construcción de Capas en CNNs | 
 | [Día22](#Día22) | Capas Completamente Conectadas (Fully Connected Layers) | 
-| [Día23](#Día23) |  | 
+| [Día23](#Día23) | Regularización en CNNs | 
 | [Día24](#Día24) |  | 
 | [Día25](#Día25) |  | 
 | [Día26](#Día26) |  | 
@@ -1569,6 +1569,109 @@ Las capas completamente conectadas juegan un papel crucial en la toma de decisio
 
 ---
 # Día23
+---
+## Regularización en CNNs 📚🛡️
+
+¡Hola a todos! Hoy, en el día 23 de nuestro desafío #100DaysOfAI, vamos a explorar las **técnicas de regularización en CNNs**. Estas técnicas son esenciales para prevenir el overfitting y asegurar que nuestros modelos generalicen bien en datos no vistos. ¡Vamos a sumergirnos en ellas!
+
+#### ¿Qué es la Regularización?
+
+La regularización en redes neuronales y, específicamente, en CNNs, se refiere a un conjunto de técnicas utilizadas para reducir el error en un conjunto de datos de prueba que es diferente del conjunto de datos de entrenamiento. En términos sencillos, ayuda a nuestro modelo a no "memorizar" el conjunto de entrenamiento y a ser capaz de generalizar bien en datos nuevos.
+
+
+#### Técnicas de Regularización en CNNs
+
+1. **Dropout**
+
+   Dropout es una técnica muy popular para prevenir el overfitting. Implica "desconectar" aleatoriamente algunas neuronas durante el entrenamiento. Esto fuerza a la red a no depender demasiado de ninguna neurona específica y a aprender representaciones más robustas.
+
+   **Cómo Implementar Dropout:**
+   ```python
+   from tensorflow.keras.layers import Dropout, Dense
+
+   model = Sequential()
+   model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+   model.add(MaxPooling2D((2, 2)))
+   model.add(Conv2D(64, (3, 3), activation='relu'))
+   model.add(MaxPooling2D((2, 2)))
+   model.add(Flatten())
+   model.add(Dense(128, activation='relu'))
+   model.add(Dropout(0.5))  # Aplicar Dropout con 50% de neuronas desconectadas
+   model.add(Dense(10, activation='softmax'))
+   ```
+
+2. **Data Augmentation**
+
+   La augmentación de datos es una técnica en la que se generan nuevas muestras de datos a partir de los datos existentes aplicando transformaciones como rotaciones, desplazamientos, cambios de escala, etc. Esto ayuda a que el modelo vea una mayor diversidad de datos durante el entrenamiento y mejore su capacidad de generalización.
+
+   **Cómo Implementar Data Augmentation:**
+   ```python
+   from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+   datagen = ImageDataGenerator(
+       rotation_range=20,
+       width_shift_range=0.2,
+       height_shift_range=0.2,
+       shear_range=0.2,
+       zoom_range=0.2,
+       horizontal_flip=True,
+       fill_mode='nearest'
+   )
+
+   datagen.fit(X_train)
+   model.fit(datagen.flow(X_train, y_train, batch_size=32), epochs=50)
+   ```
+
+3. **Regularización L2 (Weight Decay)**
+
+   La regularización L2 añade una penalización a la función de pérdida basada en el tamaño de los pesos. Esta técnica desincentiva que los pesos crezcan demasiado, lo cual puede ayudar a prevenir el overfitting.
+
+   **Cómo Implementar L2 Regularization:**
+   ```python
+   from tensorflow.keras.regularizers import l2
+
+   model = Sequential()
+   model.add(Conv2D(32, (3, 3), activation='relu', kernel_regularizer=l2(0.01), input_shape=(28, 28, 1)))
+   model.add(MaxPooling2D((2, 2)))
+   model.add(Conv2D(64, (3, 3), activation='relu', kernel_regularizer=l2(0.01)))
+   model.add(MaxPooling2D((2, 2)))
+   model.add(Flatten())
+   model.add(Dense(128, activation='relu', kernel_regularizer=l2(0.01)))
+   model.add(Dense(10, activation='softmax'))
+   ```
+
+4. **Batch Normalization**
+
+   La normalización por lotes (Batch Normalization) es una técnica que normaliza las activaciones de una capa para cada mini-lote. Esto acelera el entrenamiento y puede tener un efecto regularizador.
+
+   **Cómo Implementar Batch Normalization:**
+   ```python
+   from tensorflow.keras.layers import BatchNormalization
+
+   model = Sequential()
+   model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+   model.add(BatchNormalization())  # Aplicar Batch Normalization
+   model.add(MaxPooling2D((2, 2)))
+   model.add(Conv2D(64, (3, 3), activation='relu'))
+   model.add(BatchNormalization())
+   model.add(MaxPooling2D((2, 2)))
+   model.add(Flatten())
+   model.add(Dense(128, activation='relu'))
+   model.add(BatchNormalization())
+   model.add(Dense(10, activation='softmax'))
+   ```
+
+---
+
+### Recursos Adicionales
+
+1. **[Regularización L2 y Dropout](https://youtu.be/DVpiSJVMOVo?si=As8auc_DjMfi-sKZ)**
+2. **[Dropout: A Simple Way to Prevent Neural Networks from Overfitting (JMLR)](http://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf)**
+3. **[Image Augmentation for Deep Learning with Keras](https://machinelearningmastery.com/how-to-configure-image-data-augmentation-when-training-deep-learning-neural-networks/)**
+4. **[Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift (arXiv)](https://arxiv.org/abs/1502.03167)**
+
+
+---
 # Día24
 # Día25
 # Día26
