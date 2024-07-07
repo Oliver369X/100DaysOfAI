@@ -40,7 +40,7 @@
 | [Día21](#Día21) | Construcción de Capas en CNNs | 
 | [Día22](#Día22) | Capas Completamente Conectadas (Fully Connected Layers) | 
 | [Día23](#Día23) | Regularización en CNNs | 
-| [Día24](#Día24) |  | 
+| [Día24](#Día24) | Backpropagation en CNNs | 
 | [Día25](#Día25) |  | 
 | [Día26](#Día26) |  | 
 | [Día27](#Día27) |  | 
@@ -1673,6 +1673,44 @@ La regularización en redes neuronales y, específicamente, en CNNs, se refiere 
 
 ---
 # Día24
+
+---
+
+## Cómo Funciona el Backpropagation en las CNNs 🧠🔄
+
+### ¿Qué es el Backpropagation?
+- **Definición:** El backpropagation, o retropropagación, es un algoritmo utilizado para ajustar los pesos de una red neuronal durante el entrenamiento, permitiendo que la red aprenda al minimizar la función de pérdida.
+- **Proceso:** Involucra dos fases principales: la propagación hacia adelante (forward propagation) y la propagación hacia atrás (backward propagation).
+
+### Propagación Hacia Adelante (Forward Propagation)
+- **Paso Inicial:** Los datos de entrada se pasan a través de la red capa por capa.
+- **Cálculo de la Pérdida:** Se obtiene una predicción que se compara con la etiqueta real para calcular la pérdida usando una función de pérdida.
+
+### Propagación Hacia Atrás (Backward Propagation)
+- **Cálculo del Gradiente:** Se calcula el gradiente de la función de pérdida con respecto a cada peso usando la regla de la cadena, indicando cómo cambiar los pesos para reducir la pérdida.
+- **Ajuste de Pesos:** Los pesos se actualizan en la dirección opuesta al gradiente para minimizar la función de pérdida, usando un optimizador como el descenso de gradiente.
+
+### Backpropagation en CNNs
+1. **Cálculo de la Pérdida:**
+   - La pérdida se calcula después de la fase de forward propagation, que implica pasar la imagen de entrada a través de capas convolucionales, de pooling y completamente conectadas.
+2. **Cálculo del Gradiente en Capas Completamente Conectadas:**
+   - Similar a una red neuronal estándar, se calculan los gradientes de la pérdida con respecto a los pesos y sesgos en las capas completamente conectadas.
+3. **Cálculo del Gradiente en Capas Convolucionales:**
+   - Los gradientes se calculan con respecto a los filtros convolucionales, propagándose hacia atrás a través de las operaciones de convolución y pooling.
+   - **Convolución Transpuesta:** Se realiza una operación de convolución transpuesta (deconvolución) para calcular el gradiente con respecto a los filtros.
+4. **Actualización de Pesos:**
+   - Los pesos y filtros en todas las capas se actualizan usando los gradientes calculados, repitiendo el proceso hasta que la función de pérdida se minimice adecuadamente.
+
+### Resumen del Proceso
+1. **Forward Propagation:** Pasar los datos de entrada a través de la red para obtener una predicción.
+2. **Cálculo de la Pérdida:** Comparar la predicción con la etiqueta real y calcular la pérdida.
+3. **Backward Propagation:** Calcular los gradientes de la pérdida con respecto a los pesos y filtros.
+4. **Actualización de Pesos:** Ajustar los pesos y filtros en la dirección opuesta a los gradientes.
+
+### Recursos para Explorar Más:
+- **[Cómo ven el mundo las redes neuronales convolucionales](https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html)**.
+- - **[Backpropagation en CNNs](https://youtu.be/kDUe0RuONYo?si=7HSe8JjALmR_oW-K)**.
+---
 # Día25
 # Día26
 # Día27
