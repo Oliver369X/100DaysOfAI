@@ -10,11 +10,11 @@
 
 | Proyectos Completados |
 | ----------------- |
-| 1.  |
-| 2.  |
-| 3. ... |
+| [1. Clasificación de Flores Iris](https://colab.research.google.com/drive/1Qv7LRrhvzGuJPkelYWz9zYJz-oPYIqDJ?usp=sharing)  |
+| [2. Hola Mundo (Deep Learning)](https://colab.research.google.com/drive/1jokMDImAKHwhucMxo6ZW1Cs2OXlHUpyR?usp=sharing) |
+| 3.  |
 
-# Temas Aprendidos en Cada Día
+# Temas Cubiertos en Cada Día
 | **Días** | **Temas Cubiertos** | 
 |--------- | ------------------ |
 | [Día1](#Día1) | Introducción a Deep Learning | 
