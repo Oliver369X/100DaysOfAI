@@ -12,7 +12,8 @@
 | ----------------- |
 | [1. Clasificación de Flores Iris](https://colab.research.google.com/drive/1Qv7LRrhvzGuJPkelYWz9zYJz-oPYIqDJ?usp=sharing)  |
 | [2. Hola Mundo (Deep Learning)](https://colab.research.google.com/drive/1jokMDImAKHwhucMxo6ZW1Cs2OXlHUpyR?usp=sharing) |
-| 3.  |
+| [3. Clasificador de perros y gatos](https://colab.research.google.com/drive/1Efva3sau54WHusFRnfcFxL-9sLuO27L0) |
+| 4.  |
 
 # Temas Cubiertos en Cada Día
 | **Días** | **Temas Cubiertos** | 
@@ -2225,9 +2226,20 @@ modeloCNN2_AD.fit(
 Esta celda entrena el segundo modelo CNN con datos aumentados. Se utiliza el mismo enfoque que los modelos anteriores para aplicar aumentos de datos y registrar métricas en TensorBoard.
 
 
+### Demo y video en youtube por el canal de youtube Ringa Tech
+
+https://ringa-tech.com/exportacion/perros-gatos/index.html
+
+https://youtu.be/DbwKbsCWPSg?si=_FiIy7Lt7w-yIS3R
+
+### Recursos para Explorar Más:
+- **[Redes neuronales convolucionales
+](https://www.youtube.com/live/2cz1hEb52n4?si=Z6UTm834iX2htzHI)** Taller completo de 3 horas con proyecto de Redes neuronales convolucionales.
+
+## Colab Notebooks
 
 
-
+- [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Efva3sau54WHusFRnfcFxL-9sLuO27L0) [Día 26: Clasificador de perros y gatos](https://colab.research.google.com/drive/1Efva3sau54WHusFRnfcFxL-9sLuO27L0)
 
 ---
 
