@@ -41,7 +41,7 @@
 | [Día22](#Día22) | Capas Completamente Conectadas (Fully Connected Layers) | 
 | [Día23](#Día23) | Regularización en CNNs | 
 | [Día24](#Día24) | Backpropagation en CNNs | 
-| [Día25](#Día25) |  | 
+| [Día25](#Día25) | Actualización de Pesos y Ajuste de Filtros | 
 | [Día26](#Día26) |  | 
 | [Día27](#Día27) |  | 
 | [Día28](#Día28) |  | 
@@ -1712,6 +1712,46 @@ La regularización en redes neuronales y, específicamente, en CNNs, se refiere 
 - - **[Backpropagation en CNNs](https://youtu.be/kDUe0RuONYo?si=7HSe8JjALmR_oW-K)**.
 ---
 # Día25
+---
+## Actualización de Pesos y Ajuste de Filtros 🛠️🔄
+
+
+#### Actualización de Pesos y Filtros en CNNs
+
+1. **Cálculo de Gradientes:**
+  - Durante el proceso de backpropagation, calculamos los gradientes de la función de pérdida con respecto a cada peso y filtro en la red. Estos gradientes nos indican en qué dirección y cuánto debemos ajustar los pesos y filtros para minimizar la pérdida.
+
+2. **Uso de un Optimizador:**
+  - **Descenso de Gradiente Estocástico (SGD):** Es uno de los métodos más comunes para actualizar los pesos. El SGD ajusta los pesos en la dirección opuesta a los gradientes con una tasa de aprendizaje definida.
+   - **Optimizadores Avanzados:** Otros optimizadores como Adam, RMSprop y Adagrad también se utilizan ampliamente. Estos optimizadores adaptan la tasa de aprendizaje para cada peso individualmente y pueden acelerar el proceso de convergencia.
+
+
+
+3. **Actualización de Filtros:**
+  - Similar a los pesos, los filtros en las capas convolucionales se actualizan usando los gradientes calculados durante backpropagation.
+   - **Convolución Transpuesta:** Se usa para propagar los gradientes a través de las capas convolucionales y calcular el ajuste necesario para los filtros.
+
+4. **Normalización de Pesos:**
+  - Para evitar problemas como el "vanishing gradient" o "exploding gradient", es importante normalizar los pesos. Técnicas como Batch Normalization se utilizan para estabilizar y acelerar el entrenamiento.
+
+#### Ejemplo Práctico:
+
+Imaginemos que estamos entrenando una CNN para clasificar imágenes de gatos y perros. Durante el entrenamiento, cada imagen se pasa a través de múltiples capas convolucionales y de pooling. Después de cada pasada, calculamos la pérdida y luego los gradientes para cada peso y filtro.
+
+Usamos un optimizador, digamos Adam, para ajustar los pesos y filtros de acuerdo a las fórmulas mencionadas anteriormente. Este proceso se repite iterativamente hasta que la pérdida se minimice y la precisión del modelo se maximice.
+
+#### Resumen:
+
+1. **Forward Propagation:** Pasar los datos de entrada a través de la red.
+2. **Cálculo de Pérdida:** Comparar la predicción con la etiqueta real.
+3. **Backward Propagation:** Calcular los gradientes.
+4. **Actualización de Pesos y Filtros:** Usar un optimizador para ajustar los pesos y filtros.
+
+La actualización de pesos y el ajuste de filtros son fundamentales para el aprendizaje efectivo de las CNNs, permitiendo que el modelo mejore su precisión con el tiempo.
+
+### Recursos para Explorar Más:
+- **[¿Qué es una red neuronal convolucional (CNN) y qué capas tiene?](https://youtu.be/3u3wW4T4sSA?si=cud0FqPhhwFwkvnR)**.
+---
 # Día26
 # Día27
 # Día28
