@@ -42,7 +42,7 @@
 | [Día23](#Día23) | Regularización en CNNs | 
 | [Día24](#Día24) | Backpropagation en CNNs | 
 | [Día25](#Día25) | Actualización de Pesos y Ajuste de Filtros | 
-| [Día26](#Día26) |  | 
+| [Día26](#Día26) | Clasificador de perros y gatos | 
 | [Día27](#Día27) |  | 
 | [Día28](#Día28) |  | 
 | [Día29](#Día29) |  | 
@@ -1753,6 +1753,484 @@ La actualización de pesos y el ajuste de filtros son fundamentales para el apre
 - **[¿Qué es una red neuronal convolucional (CNN) y qué capas tiene?](https://youtu.be/3u3wW4T4sSA?si=cud0FqPhhwFwkvnR)**.
 ---
 # Día26
+---
+Este proyecto tiene como objetivo desarrollar modelos de inteligencia artificial capaces de clasificar imágenes de perros y gatos utilizando técnicas avanzadas de aprendizaje profundo y aumentando los datos para mejorar la precisión del modelo. Utilizando TensorFlow y TensorFlow.js, se construyen y entrenan varios modelos neurales para lograr una clasificación precisa y robusta.
+
+### 1. **Importación de bibliotecas y descarga del conjunto de datos**
+
+```python
+# Importar las bibliotecas necesarias
+import tensorflow as tf
+import tensorflow_datasets as tfds
+
+# Corrección temporal para solucionar un error en la descarga del conjunto de datos
+setattr(tfds.image_classification.cats_vs_dogs, '_URL',
+        "https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip")
+
+# Descargar el conjunto de datos de perros y gatos
+datos, metadatos = tfds.load('cats_vs_dogs', as_supervised=True, with_info=True)
+```
+
+Esta celda se encarga de:
+
+- Importar las bibliotecas TensorFlow y TensorFlow Datasets.
+- Aplicar una corrección temporal a la URL de descarga del conjunto de datos.
+- Descargar el conjunto de datos de perros y gatos, junto con los metadatos.
+
+### 2. **Visualización de metadatos**
+
+```python
+# Imprimir los metadatos para revisarlos
+metadatos
+```
+
+Esta celda muestra los metadatos del conjunto de datos, proporcionando información sobre el mismo.
+
+### 3. **Visualización de ejemplos del conjunto de datos (Método 1)**
+
+```python
+# Una forma de mostrar 5 ejemplos del conjunto de datos
+tfds.as_dataframe(datos['train'].take(5), metadatos)
+```
+
+Esta celda convierte 5 ejemplos del conjunto de datos de entrenamiento en un DataFrame para su visualización.
+
+### 4. **Visualización de ejemplos del conjunto de datos (Método 2)**
+
+```python
+# Otra forma de mostrar ejemplos del conjunto de datos
+tfds.show_examples(datos['train'], metadatos)
+```
+
+Esta celda utiliza una función de visualización incorporada para mostrar ejemplos del conjunto de datos de entrenamiento.
+
+### 5. **Preprocesamiento y visualización de imágenes**
+
+```python
+# Importar matplotlib para visualización y cv2 para manipulación de imágenes
+import matplotlib.pyplot as plt
+import cv2
+
+# Establecer el tamaño de la figura para la visualización
+plt.figure(figsize=(20,20))
+
+# Definir tamaño de la imagen
+TAMANO_IMG = 100
+
+# Procesar y visualizar 25 imágenes del conjunto de datos de entrenamiento
+for i, (imagen, etiqueta) in enumerate(datos['train'].take(25)):
+    # Redimensionar la imagen a 100x100 píxeles
+    imagen = cv2.resize(imagen.numpy(), (TAMANO_IMG, TAMANO_IMG))
+    # Convertir la imagen a escala de grises
+    imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
+    # Añadir la imagen al subplot correspondiente
+    plt.subplot(5, 5, i + 1)
+    plt.xticks([])  # Eliminar marcas del eje x
+    plt.yticks([])  # Eliminar marcas del eje y
+    plt.imshow(imagen, cmap='gray')  # Mostrar la imagen en escala de grises
+plt.show()
+```
+
+Esta celda:
+
+- Preprocesa las imágenes redimensionándolas a 100x100 píxeles y convirtiéndolas a escala de grises.
+- Visualiza 25 imágenes del conjunto de datos de entrenamiento utilizando subplots.
+
+### 6. **Preparación de datos de entrenamiento**
+
+```python
+# Lista que contendrá todas las imágenes preprocesadas y sus etiquetas
+datos_entrenamiento = []
+
+# Procesar todas las imágenes del conjunto de datos de entrenamiento
+for i, (imagen, etiqueta) in enumerate(datos['train']):
+    # Redimensionar la imagen a 100x100 píxeles
+    imagen = cv2.resize(imagen.numpy(), (TAMANO_IMG, TAMANO_IMG))
+    # Convertir la imagen a escala de grises
+    imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
+    # Añadir una dimensión para canales (necesario para modelos de TF)
+    imagen = imagen.reshape(TAMANO_IMG, TAMANO_IMG, 1)
+    # Añadir la imagen y su etiqueta a la lista de datos de entrenamiento
+    datos_entrenamiento.append([imagen, etiqueta])
+```
+
+Esta celda:
+
+- Prepara los datos de entrenamiento redimensionando todas las imágenes a 100x100 píxeles, convirtiéndolas a escala de grises y agregándoles una dimensión adicional.
+- Almacena cada imagen preprocesada junto con su etiqueta correspondiente en una lista.
+
+
+### 7. **Separación de datos en entradas (X) y etiquetas (y)**
+
+```python
+# Preparar variables X (entradas) y y (etiquetas) separadas
+X = []  # Lista para almacenar las imágenes de entrada (píxeles)
+y = []  # Lista para almacenar las etiquetas (perro o gato)
+
+# Separar las imágenes y etiquetas del conjunto de datos de entrenamiento
+for imagen, etiqueta in datos_entrenamiento:
+    X.append(imagen)
+    y.append(etiqueta)
+```
+
+Esta celda separa las imágenes y las etiquetas en dos listas diferentes: `X` para las imágenes y `y` para las etiquetas.
+
+### 8. **Normalización de datos**
+
+```python
+# Importar numpy para manipulación de arrays
+import numpy as np
+
+# Normalizar los datos de las imágenes
+# Convertir las listas a arrays de NumPy, convertir a flotantes y dividir por 255 para normalizar al rango 0-1
+X = np.array(X).astype(float) / 255
+```
+
+Esta celda normaliza los datos de las imágenes convirtiéndolas a valores flotantes entre 0 y 1.
+
+### 9. **Conversión de etiquetas a array**
+
+```python
+# Convertir etiquetas a un array de NumPy
+y = np.array(y)
+```
+
+Esta celda convierte la lista de etiquetas en un array de NumPy.
+
+### 10. **Creación de modelos**
+
+```python
+# Crear modelos iniciales
+
+# Modelo denso completamente conectado
+modeloDenso = tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=(100, 100, 1)),  # Aplanar la imagen de entrada
+    tf.keras.layers.Dense(150, activation='relu'),  # Capa densa con 150 neuronas y ReLU
+    tf.keras.layers.Dense(150, activation='relu'),  # Capa densa con 150 neuronas y ReLU
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Capa de salida con sigmoid para clasificación binaria
+])
+
+# Modelo de red neuronal convolucional (CNN)
+modeloCNN = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(100, 100, 1)),  # Capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Capa de max pooling
+    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),  # Segunda capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Segunda capa de max pooling
+    tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),  # Tercera capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Tercera capa de max pooling
+    tf.keras.layers.Flatten(),  # Aplanar antes de las capas densas
+    tf.keras.layers.Dense(100, activation='relu'),  # Capa densa con 100 neuronas y ReLU
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Capa de salida con sigmoid para clasificación binaria
+])
+
+# Modelo CNN con dropout para regularización
+modeloCNN2 = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(100, 100, 1)),  # Capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Capa de max pooling
+    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),  # Segunda capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Segunda capa de max pooling
+    tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),  # Tercera capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Tercera capa de max pooling
+    tf.keras.layers.Dropout(0.5),  # Capa de dropout para regularización
+    tf.keras.layers.Flatten(),  # Aplanar antes de las capas densas
+    tf.keras.layers.Dense(250, activation='relu'),  # Capa densa con 250 neuronas y ReLU
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Capa de salida con sigmoid para clasificación binaria
+])
+```
+
+Esta celda crea tres modelos diferentes: un modelo denso (completamente conectado) y dos modelos de red neuronal convolucional (CNN) con diferentes arquitecturas.
+
+### 11. **Compilación de modelos**
+
+```python
+# Compilar modelos usando binary_crossentropy para la clasificación binaria
+# Usar el optimizador 'adam' y métricas de 'accuracy' para evaluar el rendimiento
+
+modeloDenso.compile(optimizer='adam',
+                    loss='binary_crossentropy',
+                    metrics=['accuracy'])
+
+modeloCNN.compile(optimizer='adam',
+                  loss='binary_crossentropy',
+                  metrics=['accuracy'])
+
+modeloCNN2.compile(optimizer='adam',
+                   loss='binary_crossentropy',
+                   metrics=['accuracy'])
+```
+
+Esta celda compila los tres modelos, especificando el optimizador `adam`, la función de pérdida `binary_crossentropy`, y las métricas de precisión (`accuracy`).
+
+### 12. **Entrenamiento del modelo denso con TensorBoard**
+
+```python
+# Importar TensorBoard para visualización de los resultados del entrenamiento
+from tensorflow.keras.callbacks import TensorBoard
+
+# Configurar TensorBoard para el modelo denso
+tensorboardDenso = TensorBoard(log_dir='logs/denso')
+
+# Entrenar el modelo denso
+modeloDenso.fit(X, y, batch_size=32,  # Tamaño del lote
+                validation_split=0.15,  # División del conjunto de datos para validación
+                epochs=100,  # Número de épocas de entrenamiento
+                callbacks=[tensorboardDenso])  # Registrar el progreso con TensorBoard
+```
+
+Esta celda entrena el modelo denso usando TensorBoard para registrar y visualizar el progreso del entrenamiento.
+
+Continuando con la explicación mejorada y comentarios detallados:
+
+### 13. **Carga de la extensión TensorBoard**
+
+```python
+# Cargar la extensión de TensorBoard de Colab para visualizar los resultados del entrenamiento
+%load_ext tensorboard
+```
+
+Esta celda carga la extensión de TensorBoard en Colab, lo que permite visualizar los registros de entrenamiento directamente en el entorno de Colab.
+
+### 14. **Ejecución de TensorBoard**
+
+```python
+# Ejecutar TensorBoard e indicarle que lea la carpeta "logs"
+%tensorboard --logdir logs
+```
+
+Esta celda inicia TensorBoard y le indica que lea los registros de la carpeta "logs", lo que permite monitorear el progreso del entrenamiento en tiempo real.
+
+### 15. **Entrenamiento del modelo CNN con TensorBoard**
+
+```python
+# Configurar TensorBoard para el modelo CNN
+tensorboardCNN = TensorBoard(log_dir='logs/cnn')
+
+# Entrenar el modelo CNN
+modeloCNN.fit(X, y, batch_size=32,  # Tamaño del lote
+              validation_split=0.15,  # División del conjunto de datos para validación
+              epochs=100,  # Número de épocas de entrenamiento
+              callbacks=[tensorboardCNN])  # Registrar el progreso con TensorBoard
+```
+
+Esta celda entrena el primer modelo CNN y utiliza TensorBoard para registrar el progreso del entrenamiento.
+
+### 16. **Entrenamiento del modelo CNN2 con TensorBoard**
+
+```python
+# Configurar TensorBoard para el modelo CNN2
+tensorboardCNN2 = TensorBoard(log_dir='logs/cnn2')
+
+# Entrenar el modelo CNN2
+modeloCNN2.fit(X, y, batch_size=32,  # Tamaño del lote
+               validation_split=0.15,  # División del conjunto de datos para validación
+               epochs=100,  # Número de épocas de entrenamiento
+               callbacks=[tensorboardCNN2])  # Registrar el progreso con TensorBoard
+```
+
+Esta celda entrena el segundo modelo CNN y utiliza TensorBoard para registrar el progreso del entrenamiento.
+
+### 17. **Visualización de imágenes sin aumento de datos**
+
+```python
+# Ver las imágenes de la variable X sin modificaciones por aumento de datos
+plt.figure(figsize=(20, 8))
+
+# Visualizar las primeras 10 imágenes del conjunto de datos sin modificaciones
+for i in range(10):
+    plt.subplot(2, 5, i + 1)
+    plt.xticks([])  # Eliminar marcas del eje x
+    plt.yticks([])  # Eliminar marcas del eje y
+    plt.imshow(X[i].reshape(100, 100), cmap="gray")  # Mostrar la imagen en escala de grises
+plt.show()
+```
+
+Esta celda visualiza 10 imágenes del conjunto de datos sin aplicar aumento de datos, mostrando las imágenes originales.
+
+### 18. **Aumento de datos y visualización**
+
+```python
+# Importar ImageDataGenerator para realizar el aumento de datos
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+# Configurar el generador de datos con varias transformaciones
+datagen = ImageDataGenerator(
+    rotation_range=30,  # Rotar imágenes hasta 30 grados
+    width_shift_range=0.2,  # Desplazar imágenes horizontalmente hasta un 20%
+    height_shift_range=0.2,  # Desplazar imágenes verticalmente hasta un 20%
+    shear_range=15,  # Aplicar cizalladura a las imágenes hasta 15 grados
+    zoom_range=[0.7, 1.4],  # Aplicar zoom a las imágenes entre 0.7x y 1.4x
+    horizontal_flip=True,  # Permitir voltear horizontalmente las imágenes
+    vertical_flip=True  # Permitir voltear verticalmente las imágenes
+)
+
+# Ajustar el generador a las imágenes
+datagen.fit(X)
+
+# Visualizar ejemplos de imágenes aumentadas
+plt.figure(figsize=(20, 8))
+
+# Generar y mostrar 10 imágenes aumentadas
+for imagen, etiqueta in datagen.flow(X, y, batch_size=10, shuffle=False):
+    for i in range(10):
+        plt.subplot(2, 5, i + 1)
+        plt.xticks([])  # Eliminar marcas del eje x
+        plt.yticks([])  # Eliminar marcas del eje y
+        plt.imshow(imagen[i].reshape(100, 100), cmap="gray")  # Mostrar la imagen en escala de grises
+    break  # Salir del bucle después de visualizar 10 imágenes
+plt.show()
+```
+
+Esta celda realiza el aumento de datos aplicando varias transformaciones a las imágenes y luego visualiza 10 ejemplos de imágenes aumentadas.
+
+### 19. **Creación de modelos con aumento de datos**
+
+```python
+# Crear nuevos modelos para entrenar con aumento de datos
+
+# Modelo denso con aumento de datos
+modeloDenso_AD = tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=(100, 100, 1)),  # Aplanar la imagen de entrada
+    tf.keras.layers.Dense(150, activation='relu'),  # Capa densa con 150 neuronas y ReLU
+    tf.keras.layers.Dense(150, activation='relu'),  # Capa densa con 150 neuronas y ReLU
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Capa de salida con sigmoid para clasificación binaria
+])
+
+# Modelo CNN con aumento de datos
+modeloCNN_AD = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(100, 100, 1)),  # Capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Capa de max pooling
+    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),  # Segunda capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Segunda capa de max pooling
+    tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),  # Tercera capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Tercera capa de max pooling
+    tf.keras.layers.Flatten(),  # Aplanar antes de las capas densas
+    tf.keras.layers.Dense(100, activation='relu'),  # Capa densa con 100 neuronas y ReLU
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Capa de salida con sigmoid para clasificación binaria
+])
+
+# Modelo CNN con dropout y aumento de datos
+modeloCNN2_AD = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(100, 100, 1)),  # Capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Capa de max pooling
+    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),  # Segunda capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Segunda capa de max pooling
+    tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),  # Tercera capa convolucional
+    tf.keras.layers.MaxPooling2D(2, 2),  # Tercera capa de max pooling
+    tf.keras.layers.Dropout(0.5),  # Capa de dropout para regularización
+    tf.keras.layers.Flatten(),  # Aplanar antes de las capas densas
+    tf.keras.layers.Dense(250, activation='relu'),  # Capa densa con 250 neuronas y ReLU
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Capa de salida con sigmoid para clasificación binaria
+])
+```
+
+Esta celda crea nuevos modelos con las mismas estructuras que los anteriores, pero se utilizarán para entrenar con datos aumentados.
+
+Continuando con la explicación detallada y comentarios del código:
+
+### 20. **Compilación de modelos con aumento de datos**
+
+```python
+# Compilar los nuevos modelos con datos aumentados
+modeloDenso_AD.compile(optimizer='adam',
+                       loss='binary_crossentropy',
+                       metrics=['accuracy'])
+
+modeloCNN_AD.compile(optimizer='adam',
+                     loss='binary_crossentropy',
+                     metrics=['accuracy'])
+
+modeloCNN2_AD.compile(optimizer='adam',
+                      loss='binary_crossentropy',
+                      metrics=['accuracy'])
+```
+
+Esta celda compila los modelos `modeloDenso_AD`, `modeloCNN_AD` y `modeloCNN2_AD` para ser entrenados con datos aumentados. Se utiliza el optimizador Adam, la función de pérdida `binary_crossentropy` adecuada para problemas de clasificación binaria, y se evalúa la métrica de precisión (`accuracy`).
+
+### 21. **Separación de datos de entrenamiento y validación**
+
+```python
+# Separar los datos en conjuntos de entrenamiento y validación
+split_index = int(len(X) * 0.85)
+
+X_entrenamiento = X[:split_index]
+X_validacion = X[split_index:]
+
+y_entrenamiento = y[:split_index]
+y_validacion = y[split_index:]
+```
+
+Esta celda divide los datos en conjuntos de entrenamiento (85%) y validación (15%). `X_entrenamiento` y `y_entrenamiento` contienen los datos para entrenar los modelos, mientras que `X_validacion` y `y_validacion` se utilizan para validar el rendimiento de los modelos durante el entrenamiento.
+
+### 22. **Creación del generador de datos de entrenamiento**
+
+```python
+# Crear un generador de datos para aplicar aumento de datos en tiempo real durante el entrenamiento
+data_gen_entrenamiento = datagen.flow(X_entrenamiento, y_entrenamiento, batch_size=32)
+```
+
+Esta celda crea un generador de datos utilizando `datagen.flow`, que aplica aumentos de datos en tiempo real durante el entrenamiento. `batch_size=32` especifica el tamaño del lote utilizado para el entrenamiento.
+
+### 23. **Entrenamiento del modelo denso con aumento de datos**
+
+```python
+tensorboardDenso_AD = TensorBoard(log_dir='logs/denso_AD')
+
+modeloDenso_AD.fit(
+    data_gen_entrenamiento,
+    epochs=100,
+    batch_size=32,
+    validation_data=(X_validacion, y_validacion),
+    steps_per_epoch=int(np.ceil(len(X_entrenamiento) / float(32))),
+    validation_steps=int(np.ceil(len(X_validacion) / float(32))),
+    callbacks=[tensorboardDenso_AD]
+)
+```
+
+Esta celda entrena el modelo denso con datos aumentados. Se utiliza `data_gen_entrenamiento` como fuente de datos de entrenamiento, se especifica la validación usando `X_validacion` y `y_validacion`, y se registran métricas y registros de entrenamiento en TensorBoard con `TensorBoard`.
+
+### 24. **Entrenamiento del modelo CNN con aumento de datos**
+
+```python
+tensorboardCNN_AD = TensorBoard(log_dir='logs-new/cnn_AD')
+
+modeloCNN_AD.fit(
+    data_gen_entrenamiento,
+    epochs=150,
+    batch_size=32,
+    validation_data=(X_validacion, y_validacion),
+    steps_per_epoch=int(np.ceil(len(X_entrenamiento) / float(32))),
+    validation_steps=int(np.ceil(len(X_validacion) / float(32))),
+    callbacks=[tensorboardCNN_AD]
+)
+```
+
+Esta celda entrena el modelo CNN inicial con datos aumentados. Al igual que el modelo denso, se utiliza el generador de datos `data_gen_entrenamiento` para aplicar aumentos de datos en tiempo real durante el entrenamiento, se especifican las épocas (`epochs`) y el tamaño del lote (`batch_size`), y se registran métricas y registros de entrenamiento en TensorBoard.
+
+### 25. **Entrenamiento del modelo CNN2 con aumento de datos**
+
+```python
+tensorboardCNN2_AD = TensorBoard(log_dir='logs/cnn2_AD')
+
+modeloCNN2_AD.fit(
+    data_gen_entrenamiento,
+    epochs=100,
+    batch_size=32,
+    validation_data=(X_validacion, y_validacion),
+    steps_per_epoch=int(np.ceil(len(X_entrenamiento) / float(32))),
+    validation_steps=int(np.ceil(len(X_validacion) / float(32))),
+    callbacks=[tensorboardCNN2_AD]
+)
+```
+
+Esta celda entrena el segundo modelo CNN con datos aumentados. Se utiliza el mismo enfoque que los modelos anteriores para aplicar aumentos de datos y registrar métricas en TensorBoard.
+
+
+
+
+
+
+---
+
 # Día27
 # Día28
 # Día29
