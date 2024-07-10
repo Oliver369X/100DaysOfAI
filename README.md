@@ -44,7 +44,7 @@
 | [Día24](#Día24) | Backpropagation en CNNs | 
 | [Día25](#Día25) | Actualización de Pesos y Ajuste de Filtros | 
 | [Día26](#Día26) | Clasificador de perros y gatos | 
-| [Día27](#Día27) |  | 
+| [Día27](#Día27) | Explorando arquitecturas influyentes en el aprendizaje profundo | 
 | [Día28](#Día28) |  | 
 | [Día29](#Día29) |  | 
 | [Día30](#Día30) |  | 
@@ -2244,6 +2244,37 @@ https://youtu.be/DbwKbsCWPSg?si=_FiIy7Lt7w-yIS3R
 ---
 
 # Día27
+---
+## Explorando arquitecturas influyentes en el aprendizaje profundo 🧠🔍
+
+¡Hola a todos! En el día 27 de nuestro desafío #100DaysOfAI, vamos a explorar algunas de las arquitecturas más influyentes y populares en el Deep Learning. Estas arquitecturas han definido el camino del aprendizaje profundo en la última década, con aplicaciones que van desde la clasificación de imágenes hasta la detección de objetos en tiempo real. ¡Vamos a descubrirlas!
+
+| **Arquitectura** | **Año** | **Características Principales** | **Ventajas** | **Desventajas** | **Paper** |
+|------------------|---------|-----------------------------|--------------|-----------------|-----------|
+| **LeNet** | 1998 | Capas convolucionales y submuestreo | Pionera en el uso de CNNs para la clasificación de dígitos manuscritos | Muy simple y no adecuada para tareas modernas complejas | [LeNet Paper](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf) |
+| **AlexNet** | 2012 | 5 capas convolucionales, 3 fully connected | Pionera en CNNs profundas, ganó ImageNet 2012 | Relativamente simple comparada con modelos modernos | [AlexNet Paper](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) |
+| **VGGNet** | 2014 | Capas 3x3 apiladas, profundidad aumentada | Simplicidad, buena transferencia de aprendizaje | Muchos parámetros, computacionalmente costosa | [VGGNet Paper](https://arxiv.org/pdf/1409.1556.pdf) |
+| **Inception (GoogLeNet)** | 2014 | Módulos Inception, 1x1 convolutions | Eficiente en parámetros, buena escala | Compleja de implementar | [Inception Paper](https://arxiv.org/pdf/1409.4842.pdf) |
+| **R-CNN (y variantes)** | 2014-2015 | Regiones de interés, fine-tuning | Precisión en detección de objetos | Lenta (original), versiones posteriores más rápidas | [R-CNN Paper](https://arxiv.org/pdf/1311.2524.pdf) |
+| **Faster R-CNN** | 2015 | Regiones de interés generadas por una red, detección rápida | Mejor equilibrio entre velocidad y precisión | Más compleja de implementar y entrenar | [Faster R-CNN Paper](https://arxiv.org/pdf/1506.01497.pdf) |
+| **ResNet** | 2015 | Conexiones residuales (skip connections) | Muy profunda (hasta 152 capas), resuelve desvanecimiento del gradiente | Puede ser overkill para tareas simples | [ResNet Paper](https://arxiv.org/pdf/1512.03385.pdf) |
+| **U-Net** | 2015 | Arquitectura en forma de U, skip connections | Excelente para segmentación de imágenes médicas | Puede ser excesiva para tareas de clasificación simples | [U-Net Paper](https://arxiv.org/pdf/1505.04597.pdf) |
+| **SqueezeNet** | 2016 | Módulos Fire, convoluciones 1x1 | Muy compacta, pocos parámetros | Precisión algo menor que modelos más grandes | [SqueezeNet Paper](https://arxiv.org/pdf/1602.07360.pdf) |
+| **YOLO** | 2016 | Detección en tiempo real, una sola red convolucional | Rápida y precisa en la detección de objetos | Menor precisión en comparación con métodos más lentos | [YOLO Paper](https://arxiv.org/pdf/1506.02640.pdf) |
+| **DenseNet** | 2017 | Conexiones densas entre capas | Uso eficiente de parámetros, fuerte propagación de características | Alto consumo de memoria | [DenseNet Paper](https://arxiv.org/pdf/1608.06993.pdf) |
+| **MobileNet** | 2017 | Convoluciones separables en profundidad | Eficiente para dispositivos móviles | Precisión ligeramente menor que modelos más grandes | [MobileNet Paper](https://arxiv.org/pdf/1704.04861.pdf) |
+| **Xception** | 2017 | Convoluciones separables en profundidad extremas | Eficiente en parámetros, buena precisión | Puede ser compleja de implementar | [Xception Paper](https://arxiv.org/pdf/1610.02357.pdf) |
+| **ShuffleNet** | 2017 | Group convolutions, channel shuffle | Muy eficiente para dispositivos móviles | Posible pérdida de precisión en tareas complejas | [ShuffleNet Paper](https://arxiv.org/pdf/1707.01083.pdf) |
+| **NASNet** | 2018 | Arquitectura encontrada por búsqueda neural | Altamente optimizada | Compleja, costosa de entrenar | [NASNet Paper](https://arxiv.org/pdf/1707.07012.pdf) |
+| **SENet** | 2017 | Módulos Squeeze-and-Excitation | Mejora la calidad de las representaciones | Ligero aumento en costo computacional | [SENet Paper](https://arxiv.org/pdf/1709.01507.pdf) |
+| **FPN** | 2017 | Pirámide de características multi-escala | Excelente para detección de objetos | Puede ser excesiva para tareas de clasificación simples | [FPN Paper](https://arxiv.org/pdf/1612.03144.pdf) |
+| **EfficientNet** | 2019 | Escalado compuesto de profundidad/anchura/resolución | Muy eficiente, estado del arte en precisión/eficiencia | Compleja de implementar y ajustar | [EfficientNet Paper](https://arxiv.org/pdf/1905.11946.pdf) |
+| **Vision Transformers (ViT)** | 2020 | Uso de transformadores en tareas de visión por computadora | Alta precisión en tareas de clasificación de imágenes | Requiere una gran cantidad de datos para entrenar eficazmente | [ViT Paper](https://arxiv.org/pdf/2010.11929.pdf) |
+
+Estas arquitecturas han desempeñado un papel fundamental en la evolución de la visión por computadora y el Deep Learning. Cada una tiene sus propias ventajas y desventajas, pero todas han contribuido de manera significativa al avance de la tecnología.
+
+---
+
 # Día28
 # Día29
 # Día30
