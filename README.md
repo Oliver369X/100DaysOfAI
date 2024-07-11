@@ -45,7 +45,7 @@
 | [Día25](#Día25) | Actualización de Pesos y Ajuste de Filtros | 
 | [Día26](#Día26) | Clasificador de perros y gatos | 
 | [Día27](#Día27) | Explorando arquitecturas influyentes en el aprendizaje profundo | 
-| [Día28](#Día28) |  | 
+| [Día28](#Día28) | Arquitecturas Específicas en Visión por Computadora | 
 | [Día29](#Día29) |  | 
 | [Día30](#Día30) |  | 
 | [Día31](#Día31) |  | 
@@ -2276,6 +2276,50 @@ Estas arquitecturas han desempeñado un papel fundamental en la evolución de la
 ---
 
 # Día28
+---
+
+
+## Arquitecturas Específicas en Visión por Computadora 🎯🖥️
+
+Continuando con nuestro viaje por las arquitecturas de redes neuronales, hoy exploramos cómo diferentes arquitecturas destacan en tareas específicas dentro de la visión por computadora:
+
+1. **Clasificación a gran escala: EfficientNet 🏆**
+   - **Equilibrio óptimo:** Combina profundidad, anchura y resolución de manera eficiente.
+   - **Precisión alta con menos parámetros:** Logra resultados superiores con una menor cantidad de parámetros.
+
+2. **Detección en tiempo real: YOLO 🏃‍♂️**
+   - **Enfoque de una sola pasada:** Permite una detección rápida y eficiente.
+   - **Ideal para aplicaciones como conducción autónoma:** Su velocidad lo hace perfecto para escenarios que requieren respuestas inmediatas.
+
+3. **Segmentación médica: U-Net 🏥**
+   - **Arquitectura en U con conexiones de salto (skip connections):** Mejora la precisión en la segmentación.
+   - **Excelente con datos limitados en imágenes biomédicas:** Ideal para aplicaciones médicas donde los datos son escasos.
+
+4. **Dispositivos móviles: MobileNet 📱**
+   - **Convoluciones separables en profundidad:** Reduce la carga computacional manteniendo un buen rendimiento.
+   - **Eficiente en recursos limitados:** Diseñado para funcionar bien en dispositivos con capacidades limitadas.
+
+5. **Visión de alto nivel: Vision Transformers (ViT) 👁️**
+   - **Adaptación de transformadores a visión:** Utiliza la atención a escala completa para procesar imágenes.
+   - **Rendimiento superior con grandes conjuntos de datos:** Necesita grandes volúmenes de datos para entrenarse adecuadamente.
+
+6. **Transferencia de aprendizaje: ResNet 🔄**
+   - **Conexiones residuales:** Facilitan el entrenamiento de redes muy profundas.
+   - **Excelente extractor de características generales:** Muy útil en diversas tareas de visión por computadora.
+
+Cada arquitectura brilla en su dominio, demostrando la diversidad y especialización en el campo de la visión por computadora. La elección correcta puede marcar la diferencia en el éxito de un proyecto de IA. 🌟
+
+### Recursos Adicionales
+
+- **EfficientNet:** [Estudio comparativo en ImageNet](https://arxiv.org/abs/1905.11946)
+- **YOLO:** [Caso de éxito en conducción autónoma](https://pjreddie.com/darknet/yolo/)
+- **U-Net:** [Aplicación en imágenes biomédicas](https://arxiv.org/abs/1505.04597)
+- **MobileNet:** [Evaluación en dispositivos móviles](https://arxiv.org/abs/1704.04861)
+- **Vision Transformers (ViT):** [Adaptación de transformadores a visión](https://arxiv.org/abs/2010.11929)
+- **ResNet:** [Desempeño en diversas tareas](https://arxiv.org/abs/1512.03385)
+
+---
+
 # Día29
 # Día30
 # Día31
