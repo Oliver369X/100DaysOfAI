@@ -47,7 +47,7 @@
 | [Día27](#Día27) | Explorando arquitecturas influyentes en el aprendizaje profundo | 
 | [Día28](#Día28) | Arquitecturas Específicas en Visión por Computadora | 
 | [Día29](#Día29) | Concepto de Transfer Learning | 
-| [Día30](#Día30) |  | 
+| [Día30](#Día30) | Técnicas de Transfer Learning | 
 | [Día31](#Día31) |  | 
 | [Día32](#Día32) |  | 
 | [Día33](#Día33) |  | 
@@ -2399,6 +2399,154 @@ model.fit(train_generator, epochs=10, steps_per_epoch=100)
 El Transfer Learning es una herramienta poderosa en el arsenal del Deep Learning, permitiendo aprovechar modelos robustos y aplicarlos a nuevas tareas con eficiencia y precisión.
 
 # Día30
+---
+###  Técnicas de Transfer Learning 📚🚀
+
+¡Hola a todos! En el día 30 de nuestro desafío #100DaysOfAI, vamos a profundizar en las **técnicas de Transfer Learning** y cómo utilizar modelos preentrenados para abordar nuevas tareas. Esta metodología permite ahorrar tiempo y mejorar el rendimiento en tareas específicas. ¡Vamos a explorar cómo hacerlo!
+
+
+#### Técnicas de Transfer Learning
+
+1. **Feature Extraction (Extracción de Características)**
+
+   En esta técnica, utilizamos un modelo preentrenado como extractor de características. Las capas convolucionales de un modelo, por ejemplo, ResNet o VGG, actúan como un filtro que extrae características relevantes de las imágenes. Luego, agregamos y entrenamos capas adicionales para la tarea específica que queremos abordar.
+
+   **Pasos:**
+   - Cargar un modelo preentrenado sin la última capa de clasificación.
+   - Congelar las capas del modelo base.
+   - Añadir nuevas capas personalizadas para la tarea específica.
+   - Entrenar solo las nuevas capas.
+
+   ```python
+   from tensorflow.keras.applications import VGG16
+   from tensorflow.keras.models import Model
+   from tensorflow.keras.layers import Dense, Flatten
+
+   # Cargar el modelo VGG16 preentrenado sin la última capa
+   base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+
+   # Congelar las capas del modelo base
+   for layer in base_model.layers:
+       layer.trainable = False
+
+   # Añadir nuevas capas personalizadas
+   x = base_model.output
+   x = Flatten()(x)
+   x = Dense(1024, activation='relu')(x)
+   predictions = Dense(10, activation='softmax')(x)  # Asumiendo 10 clases en el nuevo conjunto de datos
+
+   # Crear el modelo final
+   model = Model(inputs=base_model.input, outputs=predictions)
+
+   # Compilar el modelo
+   model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+   ```
+
+2. **Fine-Tuning (Ajuste Fino)**
+
+   El ajuste fino implica descongelar algunas de las capas superiores del modelo base y entrenarlas junto con las nuevas capas añadidas. Esto permite que el modelo ajuste las características preentrenadas a la tarea específica de manera más precisa.
+
+   **Pasos:**
+   - Cargar un modelo preentrenado sin la última capa de clasificación.
+   - Congelar la mayoría de las capas del modelo base, pero dejar algunas capas superiores entrenables.
+   - Añadir nuevas capas personalizadas para la tarea específica.
+   - Entrenar tanto las nuevas capas como las capas superiores descongeladas del modelo base.
+
+   ```python
+   # Descongelar algunas capas del modelo base para el fine-tuning
+   for layer in base_model.layers[-4:]:
+       layer.trainable = True
+
+   # Recompilar el modelo
+   model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+   # Entrenar el modelo
+   model.fit(train_generator, epochs=10, steps_per_epoch=100)
+   ```
+
+   Consejos adicionales para Fine-Tuning:
+   - Utiliza una tasa de aprendizaje más baja para evitar destruir el conocimiento preentrenado.
+   - Considera el uso de "discriminative fine-tuning", donde diferentes capas tienen diferentes tasas de aprendizaje.
+   - Monitorea el rendimiento en un conjunto de validación para evitar el sobreajuste.
+
+3. **Gradual Unfreezing**
+   Esta técnica es una extensión del fine-tuning donde descongelamos gradualmente más capas del modelo base a medida que avanza el entrenamiento.
+
+   **Pasos:**
+   - Comenzar con todas las capas del modelo base congeladas, excepto la última.
+   - Entrenar por algunas épocas.
+   - Descongelar la siguiente capa y continuar el entrenamiento.
+   - Repetir hasta alcanzar el rendimiento deseado o hasta descongelar todas las capas.
+
+```python
+def unfreeze_model(model):
+    for layer in model.layers:
+        layer.trainable = True
+    return model
+
+epochs_per_stage = 5
+total_stages = len(base_model.layers) // 3
+
+for i in range(total_stages):
+    if i > 0:
+        base_model.layers[-3*i:] = unfreeze_model(base_model.layers[-3*i:])
+    
+    model.compile(optimizer=tf.keras.optimizers.Adam(1e-5*(0.9**i)),
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+    
+    model.fit(train_generator, epochs=epochs_per_stage, validation_data=val_generator)
+```
+
+4. **Domain Adaptation**
+   Esta técnica se utiliza cuando el dominio de los datos de entrenamiento (fuente) es diferente al dominio de los datos de prueba (objetivo).
+
+   **Idea principal:**
+   - Entrenar un modelo que pueda extraer características que sean invariantes entre los dominios fuente y objetivo.
+   - Utilizar técnicas como Adversarial Domain Adaptation para alinear las distribuciones de características.
+
+```python
+from tensorflow.keras.layers import Input, Dense, Lambda
+from tensorflow.keras.models import Model
+import tensorflow.keras.backend as K
+
+def build_domain_adaptation_model(base_model, num_classes):
+    input = Input(shape=(224, 224, 3))
+    features = base_model(input)
+    class_output = Dense(num_classes, activation='softmax', name='class_output')(features)
+    
+    # Domain classifier
+    domain_output = Dense(1, activation='sigmoid', name='domain_output')(Lambda(lambda x: K.reverse(x, axes=1))(features))
+    
+    model = Model(inputs=input, outputs=[class_output, domain_output])
+    return model
+
+domain_model = build_domain_adaptation_model(base_model, num_classes=10)
+domain_model.compile(optimizer='adam',
+                     loss={'class_output': 'categorical_crossentropy',
+                           'domain_output': 'binary_crossentropy'},
+                     loss_weights={'class_output': 1., 'domain_output': 0.1},
+                     metrics={'class_output': 'accuracy', 'domain_output': 'accuracy'})
+```
+
+5. **Few-shot Learning**
+   Esta técnica se utiliza cuando solo tenemos unos pocos ejemplos de las nuevas clases que queremos clasificar.
+
+   **Enfoques comunes:**
+   - Prototypical Networks: Aprenden un espacio de embedding donde los puntos de la misma clase se agrupan alrededor de un "prototipo".
+   - Matching Networks: Utilizan atención para comparar nuevas muestras con un conjunto de soporte etiquetado.
+
+La elección de la técnica de Transfer Learning dependerá de la naturaleza de tu tarea, la cantidad de datos disponibles y la similitud entre el dominio fuente y el objetivo. Experimenta con diferentes enfoques para encontrar el que mejor se adapte a tu problema específico.
+
+
+
+
+### Recursos Adicionales
+
+1. **[Transfer Learning Guide by TensorFlow](https://www.tensorflow.org/tutorials/images/transfer_learning)**
+2. **[PyTorch Transfer Learning Tutorial](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html)**
+
+---
 # Día31
 # Día32
 # Día33
