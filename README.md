@@ -48,7 +48,7 @@
 | [Día28](#Día28) | Arquitecturas Específicas en Visión por Computadora | 
 | [Día29](#Día29) | Concepto de Transfer Learning | 
 | [Día30](#Día30) | Técnicas de Transfer Learning | 
-| [Día31](#Día31) |  | 
+| [Día31](#Día31) | Detección de Objetos | 
 | [Día32](#Día32) |  | 
 | [Día33](#Día33) |  | 
 | [Día34](#Día34) |  | 
@@ -2548,6 +2548,153 @@ La elección de la técnica de Transfer Learning dependerá de la naturaleza de 
 
 ---
 # Día31
+---
+## Detección de Objetos 🕵️‍♂️🔍
+
+#### ¿Qué es la Detección de Objetos?
+
+La detección de objetos es una técnica que permite a los modelos de visión por computadora identificar y localizar múltiples objetos dentro de una imagen. A diferencia de la clasificación de imágenes, donde el objetivo es identificar la clase principal de una imagen, la detección de objetos busca encontrar todas las instancias de objetos de interés y sus ubicaciones específicas.
+
+
+#### Conceptos Básicos de la Detección de Objetos
+
+1. **Bounding Box (Caja Delimitadora)**
+
+   La detección de objetos generalmente implica la predicción de una caja delimitadora para cada objeto en la imagen. Una caja delimitadora está definida por sus coordenadas (x, y) del vértice superior izquierdo, así como su ancho y alto.
+
+   
+
+2. **Clasificación de Objetos**
+
+   Además de localizar un objeto, el modelo también necesita clasificar qué tipo de objeto está presente dentro de cada caja delimitadora.
+
+3. **Intersección sobre Unión (IoU)**
+
+   IoU es una métrica utilizada para evaluar la precisión de la predicción de la caja delimitadora. Se calcula como el área de superposición entre la caja predicha y la caja real dividida por el área de unión de ambas cajas.
+
+  
+
+4. **Modelos Comunes de Detección de Objetos**
+
+  - **R-CNN (Region-Based Convolutional Neural Networks)**: Propone regiones de interés y aplica CNNs a cada región.
+   - **Fast R-CNN**: Optimiza R-CNN utilizando la detección de regiones propuestas y CNNs en una sola pasada.
+   - **Faster R-CNN**: Introduce una red separada para proponer regiones de interés, lo que mejora la velocidad.
+   - **YOLO (You Only Look Once)**: Predice las cajas delimitadoras y las clases de objetos en una sola pasada de la red, lo que lo hace muy rápido.
+   - **SSD (Single Shot Multibox Detector)**: Similar a YOLO, realiza detección en una sola pasada, pero con múltiples cajas de diferentes tamaños.
+
+---
+
+### Ejemplo Práctico: Implementando YOLO para Detección de Objetos
+
+A continuación, se muestra un ejemplo de cómo implementar el modelo YOLO utilizando la librería `opencv` y un modelo preentrenado.
+
+**Paso 1: Instalación de Dependencias**
+```python
+!pip install opencv-python-headless
+!pip install numpy
+!pip install matplotlib
+
+!wget https://pjreddie.com/media/files/yolov3.weights
+!wget https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3.cfg
+!wget https://raw.githubusercontent.com/pjreddie/darknet/master/data/coco.names
+
+```
+
+**Paso 2: Cargar el Modelo YOLO Preentrenado y Realizar la Detección**
+```python
+
+# Paso 3: Importar las bibliotecas necesarias
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from google.colab.patches import cv2_imshow
+import urllib.request
+
+# Paso 4: Cargar el modelo YOLO preentrenado y los archivos de configuración
+net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
+with open("coco.names", "r") as f:
+    classes = [line.strip() for line in f.readlines()]
+layer_names = net.getLayerNames()
+output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
+
+# Función para descargar una imagen de ejemplo
+def download_image(url, filename):
+    urllib.request.urlretrieve(url, filename)
+
+# Descargar una imagen de ejemplo
+image_url = "https://raw.githubusercontent.com/pjreddie/darknet/master/data/dog.jpg"
+image_filename = "example_image.jpg"
+download_image(image_url, image_filename)
+
+# Paso 5: Cargar y preprocesar la imagen
+image = cv2.imread(image_filename)
+height, width, channels = image.shape
+blob = cv2.dnn.blobFromImage(image, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+
+# Paso 6: Realizar la detección de objetos
+net.setInput(blob)
+outs = net.forward(output_layers)
+
+# Paso 7: Procesar los resultados
+class_ids = []
+confidences = []
+boxes = []
+for out in outs:
+    for detection in out:
+        scores = detection[5:]
+        class_id = np.argmax(scores)
+        confidence = scores[class_id]
+        if confidence > 0.5:
+            # Obtener las coordenadas de la caja delimitadora
+            center_x = int(detection[0] * width)
+            center_y = int(detection[1] * height)
+            w = int(detection[2] * width)
+            h = int(detection[3] * height)
+            # Coordenadas de la caja delimitadora
+            x = int(center_x - w / 2)
+            y = int(center_y - h / 2)
+            boxes.append([x, y, w, h])
+            confidences.append(float(confidence))
+            class_ids.append(class_id)
+
+# Paso 8: Aplicar Non-Maximum Suppression (NMS)
+indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+
+# Paso 9: Dibujar las cajas delimitadoras y etiquetas
+colors = np.random.uniform(0, 255, size=(len(classes), 3))
+for i in range(len(boxes)):
+    if i in indexes:
+        x, y, w, h = boxes[i]
+        label = str(classes[class_ids[i]])
+        color = colors[class_ids[i]]
+        cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
+        cv2.putText(image, f"{label} {confidences[i]:.2f}", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+
+# Paso 10: Mostrar la imagen resultante
+plt.figure(figsize=(12, 8))
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+print("Detección de objetos completada.")
+```
+
+---
+
+### Recursos Adicionales
+
+1. **[YOLO: You Only Look Once (arXiv)](https://arxiv.org/pdf/1506.02640.pdf)**
+2. **[SSD: Single Shot MultiBox Detector (arXiv)](https://arxiv.org/pdf/1512.02325.pdf)**
+3. **[Faster R-CNN: Towards Real-Time Object Detection (arXiv)](https://arxiv.org/pdf/1506.01497.pdf)**
+4. **[Detecting Objects in Images Using OpenCV YOLO](https://www.learnopencv.com/object-detection-using-yolo/)**
+
+---
+
+La detección de objetos es una técnica poderosa y versátil con muchas aplicaciones prácticas. ¡Espero que esta introducción les haya resultado útil y emocionante!
+
+
+
+---
 # Día32
 # Día33
 # Día34
