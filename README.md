@@ -49,7 +49,7 @@
 | [Día29](#Día29) | Concepto de Transfer Learning | 
 | [Día30](#Día30) | Técnicas de Transfer Learning | 
 | [Día31](#Día31) | Detección de Objetos | 
-| [Día32](#Día32) |  | 
+| [Día32](#Día32) | Evolución de YOLO: Desde 2015 hasta 2024 | 
 | [Día33](#Día33) |  | 
 | [Día34](#Día34) |  | 
 | [Día35](#Día35) |  | 
@@ -2696,6 +2696,70 @@ La detección de objetos es una técnica poderosa y versátil con muchas aplicac
 
 ---
 # Día32
+---
+### Evolución de YOLO: Desde 2015 hasta 2024
+
+La serie de modelos YOLO (You Only Look Once) ha visto una evolución significativa desde su creación en 2015. Aquí se presenta un resumen de las principales versiones y sus mejoras a lo largo del tiempo:
+
+1. **YOLO (2015)**
+   - Introdujo el concepto de detección de objetos en tiempo real utilizando una sola red convolucional.
+   - Ventaja: Alta velocidad de inferencia.
+   - Desventaja: Menor precisión en comparación con otros métodos existentes en ese momento.
+
+2. **YOLO9000 (2016)**
+   - Capaz de detectar más de 9000 clases de objetos mediante la combinación de detección y clasificación jerárquica.
+   - Mejora en precisión y capacidad de detección de múltiples clases.
+
+3. **YOLOv2 (2017)**
+   - Introdujo mejoras como anclas dimensionadas y normalización por lotes.
+   - Aumentó la precisión y la velocidad en comparación con YOLO9000.
+
+4. **Fast YOLO (2017)**
+   - Optimización adicional para aumentar la velocidad de inferencia sin sacrificar demasiada precisión.
+
+5. **YOLOv3 (2018)**
+   - Implementó una arquitectura más profunda con ResNet, mejorando la precisión en detección de objetos pequeños.
+   - Introducción de detección en múltiples escalas.
+
+6. **YOLOv4 (Abril de 2020)**
+   - Incorporó varias técnicas de mejora de precisión como CSPDarknet53, MISH, y regularización por recorte.
+   - Mejoras significativas en velocidad y precisión.
+
+7. **YOLOv5 (2020)**
+   - Desarrollo por Ultralytics con optimizaciones adicionales en el entrenamiento y la inferencia.
+   - Aumento de la flexibilidad y la facilidad de uso.
+
+8. **YOLOR (2021)**
+   - Introducción de conocimientos representacionales y operacionales unificados para mejorar la precisión.
+   - Capacidad de realizar múltiples tareas simultáneamente.
+
+9. **YOLOv6 (2022)**
+   - Mejoras en la arquitectura para una mayor eficiencia y rendimiento en dispositivos de baja potencia.
+
+10. **YOLOv7 (2022)**
+    - Introducción de técnicas avanzadas para reducir la latencia y mejorar la precisión en tiempo real.
+
+11. **YOLOv8 (2023)**
+    - Mejora en la detección de objetos pequeños y en situaciones de baja iluminación.
+    - Incorporación de módulos de atención para mejor rendimiento.
+
+12. **YOLOv9 (2024)**
+    - Primer modelo inducido por transformador, utilizando GELAN (Red de Agregación de Capas Eficientes Generalizadas) y PGI (Información de Gradiente Programable).
+    - Mejora en la eficiencia computacional y reducción de parámetros sin sacrificar precisión.
+
+13. **YOLOv10 (2024)**
+    - Introducción de entrenamiento sin NMS (Supresión No Máxima), lo que reduce la dependencia de la post-procesamiento y mejora la velocidad de inferencia.
+    - Empleo de asignaciones duales consistentes para mayor eficiencia y precisión.
+
+Estas mejoras han permitido que YOLO mantenga su posición como una de las arquitecturas de detección de objetos más rápidas y precisas, adaptándose continuamente a las necesidades y desafíos de las aplicaciones modernas de visión por computadora.
+
+Referencias:
+- [YOLOv9: El primer modelo inducido por transformador](https://visionplatform.ai/es/yolov9-el-primer-modelo-inducido-por-transformador/)
+- [YOLOv10: Mejor, más rápido y más pequeño ahora en GitHub](https://docs.ultralytics.com/es/models/yolov10/#what-are-the-performance-benchmarks-for-yolov10-models)
+- [YOLOv9 Performance Comparisons](https://arxiv.org/pdf/2405.14458v1)
+
+---
+
 # Día33
 # Día34
 # Día35
