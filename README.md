@@ -50,7 +50,7 @@
 | [Día30](#Día30) | Técnicas de Transfer Learning | 
 | [Día31](#Día31) | Detección de Objetos | 
 | [Día32](#Día32) | Evolución de YOLO: Desde 2015 hasta 2024 | 
-| [Día33](#Día33) |  | 
+| [Día33](#Día33) | YOLOv8 y sus Variantes con Ultralytics | 
 | [Día34](#Día34) |  | 
 | [Día35](#Día35) |  | 
 | [Día36](#Día36) |  | 
@@ -2761,6 +2761,60 @@ Referencias:
 ---
 
 # Día33
+---
+## YOLOv8 y sus Variantes con Ultralytics
+
+En el día de hoy, vamos a profundizar en YOLOv8 y sus variantes, así como en la suite de herramientas ofrecidas por Ultralytics que estaremos utilizando en nuestros proyectos de detección de objetos. ¡Vamos a ello!
+
+#### 🚀 Introducción a YOLOv8
+
+YOLO (You Only Look Once) ha sido una referencia en la detección de objetos desde su primera versión lanzada en 2015. YOLOv8, desarrollado por Ultralytics, es la última iteración de esta serie, trayendo mejoras significativas en precisión, velocidad y eficiencia.
+
+**Características de YOLOv8:**
+- **Alta Precisión:** Mejoras en la arquitectura que permiten detectar objetos con mayor exactitud.
+- **Velocidad de Inferencia:** Optimizado para realizar detecciones en tiempo real.
+- **Eficiencia Computacional:** Reduce la carga computacional manteniendo un rendimiento superior.
+
+#### 🛠️ Ultralytics y su Ecosistema
+
+Ultralytics no solo ha desarrollado YOLOv8, sino que también ha creado un conjunto de herramientas y recursos para facilitar su implementación y uso en diversos proyectos de visión por computadora.
+
+**Principales Componentes:**
+- **YOLOv8 Modelos:** Variantes optimizadas para diferentes necesidades, como precisión máxima (YOLOv8x) y eficiencia (YOLOv8n).
+- **Ultralytics Hub:** Plataforma centralizada para gestionar, entrenar y desplegar modelos de YOLO.
+- **Documentación y Soporte:** Guías detalladas, ejemplos y una comunidad activa para ayudar a los desarrolladores.
+
+#### 🧩 Variantes de YOLOv8
+
+Ultralytics ha lanzado varias variantes de YOLOv8, cada una ajustada para diferentes escenarios de uso:
+
+1. **YOLOv8n (Nano):**
+   - **Características:** Optimizado para dispositivos con recursos limitados, como móviles.
+   - **Ventajas:** Alta eficiencia y bajo consumo de recursos.
+
+2. **YOLOv8s (Small):**
+   - **Características:** Equilibrio entre precisión y velocidad.
+   - **Ventajas:** Ideal para aplicaciones en tiempo real en dispositivos moderadamente potentes.
+
+3. **YOLOv8m (Medium):**
+   - **Características:** Mayor precisión con un compromiso razonable en velocidad.
+   - **Ventajas:** Uso en aplicaciones que requieren un balance entre rendimiento y precisión.
+
+4. **YOLOv8l (Large):**
+   - **Características:** Alta precisión para tareas más exigentes.
+   - **Ventajas:** Uso en sistemas con capacidad computacional alta.
+
+5. **YOLOv8x (Extra Large):**
+   - **Características:** Máxima precisión disponible en la serie YOLOv8.
+   - **Ventajas:** Ideal para aplicaciones donde la precisión es crítica.
+
+#### 🔗 Recursos de Ultralytics
+
+- [Ultralytics GitHub](https://github.com/ultralytics): Repositorio oficial con código fuente y ejemplos.
+- [Documentación de YOLOv8](https://docs.ultralytics.com/yolov8): Guía completa de uso y configuración.
+- [Ultralytics Hub](https://ultralytics.com/hub): Plataforma para gestionar y desplegar modelos.
+
+---
 # Día34
 # Día35
 # Día36
