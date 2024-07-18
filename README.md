@@ -52,7 +52,7 @@
 | [Día32](#Día32) | Evolución de YOLO: Desde 2015 hasta 2024 | 
 | [Día33](#Día33) | YOLOv8 y sus Variantes con Ultralytics | 
 | [Día34](#Día34) | Aplicaciones Avanzadas de Detección de Objetos | 
-| [Día35](#Día35) |  | 
+| [Día35](#Día35) | Técnicas de Mejora de Precisión en Detección de Objetos | 
 | [Día36](#Día36) |  | 
 | [Día37](#Día37) |  | 
 | [Día38](#Día38) |  | 
@@ -2840,6 +2840,38 @@ La detección de objetos en la agricultura ayuda a monitorear el crecimiento de 
 
 ---
 # Día35
+---
+## Técnicas de Mejora de Precisión en Detección de Objetos 🎯🔍**
+
+
+#### 📈 Uso de Múltiples Escalas
+Una técnica efectiva para mejorar la precisión es el uso de múltiples escalas. Al entrenar y evaluar los modelos en diferentes resoluciones de imagen, podemos captar mejor los objetos de distintos tamaños y mejorar la detección en escenarios variados.
+
+#### 🧩 Aumento de Datos
+El aumento de datos (data augmentation) implica aplicar transformaciones como rotaciones, recortes, cambios de brillo y contraste, y más a las imágenes de entrenamiento. Esto ayuda a los modelos a generalizar mejor y a ser más robustos frente a variaciones en los datos de entrada. Ultralytics facilita el aumento de datos a través de configuraciones sencillas en sus scripts de entrenamiento.
+
+#### 🔄 Ajuste Fino de Modelos Preentrenados
+El ajuste fino (fine-tuning) de modelos preentrenados es una forma poderosa de mejorar la precisión. Podemos empezar con un modelo preentrenado en un gran conjunto de datos y ajustarlo con nuestros datos específicos. Ultralytics permite la fácil configuración y ajuste fino de modelos como YOLOv5 y YOLOv8 a través de su interfaz intuitiva y comandos accesibles.
+
+#### ⚖️ Equilibrio de Clases
+En conjuntos de datos desbalanceados, algunas clases pueden estar subrepresentadas, lo que afecta la precisión. Podemos aplicar técnicas como el re-muestreo (over-sampling y under-sampling) o la ponderación de pérdida para equilibrar las clases y mejorar el rendimiento del modelo. Ultralytics proporciona opciones para manejar desequilibrios de clase en sus configuraciones de entrenamiento.
+
+#### 📊 Evaluación y Métricas
+Es crucial usar las métricas adecuadas para evaluar el desempeño de nuestros modelos. Métricas como precisión (precision), recall, F1-score y mean Average Precision (mAP) nos proporcionan una visión completa de cómo está funcionando nuestro modelo y dónde podemos mejorar. Las herramientas de Ultralytics incluyen opciones detalladas de evaluación para obtener estos indicadores clave.
+
+#### 💡 Implementación de Ensembles
+Los modelos de ensembles combinan las predicciones de múltiples modelos para obtener un resultado final más preciso. Al promediar o votar entre las predicciones, podemos reducir el sesgo y la varianza, mejorando la precisión general. Ultralytics permite la configuración de ensembles de manera eficiente, facilitando la implementación de esta técnica avanzada.
+
+#### 🔧 Herramientas de Ultralytics
+Ultralytics ofrece una serie de herramientas y configuraciones que hacen que el proceso de entrenamiento, ajuste fino y evaluación de modelos de detección de objetos sea más accesible y eficiente. Entre las características destacadas se incluyen:
+
+- **Configuraciones de entrenamiento:** Ajustes sencillos para hiperparámetros y estrategias de aumento de datos.
+- **Modelos preentrenados:** Acceso a una variedad de modelos preentrenados, listos para ajuste fino.
+- **Evaluación avanzada:** Métricas detalladas y análisis de desempeño para una comprensión profunda del modelo.
+
+Para más detalles sobre estas herramientas, visita la [documentación de Ultralytics](https://docs.ultralytics.com/es/modes/train/#what-are-the-common-training-settings-and-how-do-i-configure-them).
+
+---
 # Día36
 # Día37
 # Día38
