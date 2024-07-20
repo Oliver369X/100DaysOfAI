@@ -54,7 +54,7 @@
 | [Día34](#Día34) | Aplicaciones Avanzadas de Detección de Objetos | 
 | [Día35](#Día35) | Técnicas de Mejora de Precisión en Detección de Objetos | 
 | [Día36](#Día36) | Segmentación de Imágenes | 
-| [Día37](#Día37) |  | 
+| [Día37](#Día37) | Implementación de Segmentación de Imágenes con YOLO | 
 | [Día38](#Día38) |  | 
 | [Día39](#Día39) |  | 
 | [Día40](#Día40) |  | 
@@ -2895,6 +2895,71 @@ Ultralytics proporciona herramientas poderosas para implementar y entrenar model
 
 ---
 # Día37
+---
+## Implementación de Segmentación de Imágenes con YOLO y Ultralytics - Demo Práctica 🛠️📊**
+
+### 🔧 Herramientas Necesarias:
+1. **Ultralytics YOLOv8:** Nuestro modelo de elección para la segmentación.
+2. **Dataset:** Un conjunto de datos adecuado para segmentación (puede ser COCO, Pascal VOC, etc.).
+3. **Entorno de Desarrollo:** Puede ser Jupyter Notebook o cualquier IDE que prefieras.
+
+### 📚 Paso a Paso:
+
+1. **Preparación del Entorno:**
+   - Asegúrate de tener Python y las bibliotecas necesarias instaladas.
+   - Clona el repositorio de Ultralytics y navega a la carpeta correspondiente.
+   - Instala las dependencias:
+     ```bash
+     pip install ultralytics
+     ```
+
+2. **Carga del Dataset:**
+   - Descarga y prepara el dataset.
+   - Configura las rutas en el archivo de configuración de Ultralytics.
+
+3. **Configuración del Modelo:**
+   - Selecciona y configura el modelo YOLOv8 para segmentación.
+   - Ajusta los parámetros de entrenamiento, como la tasa de aprendizaje y el número de épocas.
+
+4. **Entrenamiento del Modelo:**
+   - Inicia el entrenamiento utilizando el script de Ultralytics:
+     ```python
+     from ultralytics import YOLO
+
+     # Cargar el modelo
+     model = YOLO('yolov8-seg.pt')
+
+     # Entrenar el modelo
+     model.train(data='path/to/dataset', epochs=50, batch=16)
+     ```
+
+5. **Evaluación y Resultados:**
+   - Después del entrenamiento, evalúa el modelo usando el conjunto de datos de validación.
+   - Visualiza los resultados de la segmentación:
+     ```python
+     # Evaluar el modelo
+     results = model.val()
+
+     # Mostrar los resultados
+     results.show()
+     ```
+
+6. **Implementación y Demo:**
+   - Usa el modelo entrenado para realizar predicciones en imágenes nuevas.
+   - Muestra los resultados de la segmentación en una demo práctica.
+     ```python
+     # Realizar inferencia en una nueva imagen
+     results = model.predict('path/to/image.jpg')
+
+     # Mostrar el resultado de la segmentación
+     results.show()
+     ```
+
+### Recursos Adicionales:
+- [Documentación de Ultralytics](https://docs.ultralytics.com/es/modes/train/#what-are-the-common-training-settings-and-how-do-i-configure-them)
+- [Repositorio de YOLOv8 en GitHub](https://github.com/ultralytics/yolov8)
+
+---
 # Día38
 # Día39
 # Día40
