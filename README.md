@@ -53,7 +53,7 @@
 | [Día33](#Día33) | YOLOv8 y sus Variantes con Ultralytics | 
 | [Día34](#Día34) | Aplicaciones Avanzadas de Detección de Objetos | 
 | [Día35](#Día35) | Técnicas de Mejora de Precisión en Detección de Objetos | 
-| [Día36](#Día36) |  | 
+| [Día36](#Día36) | Segmentación de Imágenes | 
 | [Día37](#Día37) |  | 
 | [Día38](#Día38) |  | 
 | [Día39](#Día39) |  | 
@@ -2873,6 +2873,27 @@ Para más detalles sobre estas herramientas, visita la [documentación de Ultral
 
 ---
 # Día36
+---
+### Segmentación de Imágenes con Redes Neuronales Convolucionales 🖼️🧠**
+
+#### 🌟 ¿Qué es la Segmentación de Imágenes?
+La segmentación de imágenes es una técnica en visión por computadora que divide una imagen en segmentos significativos para facilitar su análisis. A diferencia de la clasificación de imágenes, que asigna una etiqueta a toda la imagen, la segmentación de imágenes asigna una etiqueta a cada píxel, permitiendo una comprensión más detallada y precisa del contenido visual.
+
+#### 🧩 Tipos de Segmentación de Imágenes
+1. **Segmentación Semántica:** Asigna una etiqueta a cada píxel basado en la clase a la que pertenece. Por ejemplo, en una imagen de una calle, todos los píxeles pertenecientes a "coches" se etiquetan como tal, sin distinguir entre coches individuales.
+2. **Segmentación de Instancias:** No solo clasifica cada píxel sino que también distingue entre diferentes instancias de la misma clase. Siguiendo el ejemplo anterior, no solo se etiqueta "coches", sino que se distingue entre cada coche individual.
+3. **Segmentación Panóptica:** Combina la segmentación semántica y de instancias para ofrecer una vista completa, etiquetando tanto las clases como las instancias únicas.
+
+#### 🛠️ Herramientas y Funciones de Ultralytics para Segmentación de Imágenes
+Ultralytics proporciona herramientas poderosas para implementar y entrenar modelos de segmentación de imágenes. Aquí hay algunas características clave:
+
+- **Modelos Preentrenados:** Utiliza modelos como YOLOv5 y YOLOv8, que ofrecen capacidades avanzadas de segmentación.
+- **Configuraciones de Entrenamiento:** Ajusta parámetros como tasa de aprendizaje, épocas, y aumento de datos para optimizar el rendimiento.
+- **Aumento de Datos:** Aplica técnicas de data augmentation específicas para segmentación, como rotaciones, recortes, y ajustes de brillo.
+- **Evaluación Avanzada:** Usa métricas especializadas para evaluar el rendimiento de los modelos de segmentación, como Intersection over Union (IoU) y mean Average Precision (mAP).
+
+
+---
 # Día37
 # Día38
 # Día39
