@@ -56,7 +56,7 @@
 | [Día36](#Día36) | Segmentación de Imágenes | 
 | [Día37](#Día37) | Implementación de Segmentación de Imágenes con YOLO | 
 | [Día38](#Día38) | Introducción a los Modelos Preentrenados | 
-| [Día39](#Día39) |  | 
+| [Día39](#Día39) | Explorando los Avances en Detección de Objetos con YOLOv5, YOLOv8 y YOLOv10 | 
 | [Día40](#Día40) |  | 
 | [Día41](#Día41) |  | 
 | [Día42](#Día42) |  | 
@@ -2989,6 +2989,34 @@ Los modelos preentrenados son redes neuronales que han sido previamente entrenad
 
 ---
 # Día39
+---
+
+## ¡Explorando los Avances en Detección de Objetos con YOLOv5, YOLOv8 y YOLOv10! 🚀
+
+¡Hola comunidad! 🌟 Hoy quiero compartir con ustedes una revisión fascinante sobre la evolución de los algoritmos de detección de objetos YOLO (You Only Look Once). Este documento, elaborado por Muhammad Hussain de la Universidad de Huddersfield, nos lleva a través de los hitos alcanzados por YOLOv5, YOLOv8 y el revolucionario YOLOv10. Aquí les dejo algunos puntos destacados:
+
+#### 🔍 YOLOv5
+- **Innovaciones Clave**: Introduce la columna vertebral CSPDarknet y la Augmentación de Mosaico, logrando un equilibrio perfecto entre velocidad y precisión.
+- **Rendimiento Superior**: Variantes del modelo desde Nano hasta Extra Grande, cada una optimizada para diferentes necesidades.
+
+#### ⚙️ YOLOv8
+- **Mejoras Arquitectónicas**: Detalles como la detección sin anclas y el uso del módulo PANet hacen que YOLOv8 sea una herramienta extremadamente versátil y eficiente.
+- **Eficiencia de Entrenamiento**: Optimización de hiperparámetros automatizada y entrenamiento de precisión mixta, haciendo que el proceso sea más rápido y efectivo.
+
+#### 🌟 YOLOv10
+- **Avances Revolucionarios**: Entrenamiento sin NMS, convoluciones de gran kernel y downsampling desacoplado, permitiendo una precisión sin precedentes con menor carga computacional.
+- **Perfecto para el Borde**: Diseñado específicamente para ser eficiente en dispositivos con recursos limitados, ideal para aplicaciones en tiempo real.
+
+
+
+### ¿Por qué es Importante? 💡
+Estos avances no solo mejoran la precisión y la velocidad, sino que también hacen que la implementación en dispositivos de borde sea más práctica y efectiva. ¡Imagina todas las posibilidades que esto abre en el campo de la visión por computadora!
+
+#### 📚 ¿Te interesa profundizar más?
+¡No dudes en revisar el documento completo! Conocer estos avances puede ser crucial para tus proyectos actuales y futuros en detección de objetos y visión por computadora. Aquí tienes el enlace al documento original: [YOLOV5, YOLOV8 AND YOLOV10: THE GO-TO DETECTORS FOR REAL-TIME VISION](https://arxiv.org/pdf/2407.02988v1)
+
+
+---
 # Día40
 # Día41
 # Día42
