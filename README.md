@@ -55,7 +55,7 @@
 | [Día35](#Día35) | Técnicas de Mejora de Precisión en Detección de Objetos | 
 | [Día36](#Día36) | Segmentación de Imágenes | 
 | [Día37](#Día37) | Implementación de Segmentación de Imágenes con YOLO | 
-| [Día38](#Día38) |  | 
+| [Día38](#Día38) | Introducción a los Modelos Preentrenados | 
 | [Día39](#Día39) |  | 
 | [Día40](#Día40) |  | 
 | [Día41](#Día41) |  | 
@@ -2961,6 +2961,33 @@ Ultralytics proporciona herramientas poderosas para implementar y entrenar model
 
 ---
 # Día38
+---
+## Introducción a los Modelos Preentrenados 📚💡
+
+
+### ¿Qué son los Modelos Preentrenados? 🤔
+Los modelos preentrenados son redes neuronales que han sido previamente entrenadas en grandes conjuntos de datos y están listos para ser reutilizados en diferentes tareas sin necesidad de entrenamiento desde cero.
+
+
+
+### Beneficios de Utilizar Modelos Preentrenados 🌟
+- **Ahorro de Tiempo y Recursos**: No necesitas entrenar modelos desde cero, lo que ahorra tiempo y recursos computacionales.
+- **Mejor Rendimiento**: Aprovechan el conocimiento adquirido de vastos conjuntos de datos, mejorando el rendimiento en tareas específicas.
+- **Fácil de Personalizar**: Puedes ajustar y adaptar estos modelos a tus necesidades específicas mediante fine-tuning.
+
+### Ejemplos Populares 📈
+- **ResNet**: Excelente para tareas de clasificación de imágenes.
+- **BERT**: Popular en procesamiento del lenguaje natural (NLP).
+- **YOLO**: Usado para detección de objetos en tiempo real.
+
+
+
+### Recursos para Encontrar Modelos Preentrenados 🛠️
+- **[Hugging Face](https://huggingface.co/models)**: Amplia biblioteca de modelos de NLP.
+- **[TensorFlow Hub](https://tfhub.dev/)**: Gran colección de modelos para visión por computadora y más.
+
+
+---
 # Día39
 # Día40
 # Día41
