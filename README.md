@@ -57,7 +57,7 @@
 | [Día37](#Día37) | Implementación de Segmentación de Imágenes con YOLO | 
 | [Día38](#Día38) | Introducción a los Modelos Preentrenados | 
 | [Día39](#Día39) | Explorando los Avances en Detección de Objetos con YOLOv5, YOLOv8 y YOLOv10 | 
-| [Día40](#Día40) |  | 
+| [Día40](#Día40) | RT-DETR revoluciona la detección de objetos en tiempo real | 
 | [Día41](#Día41) |  | 
 | [Día42](#Día42) |  | 
 | [Día43](#Día43) |  | 
@@ -3018,6 +3018,54 @@ Estos avances no solo mejoran la precisión y la velocidad, sino que también ha
 
 ---
 # Día40
+---
+## RT-DETR revoluciona la detección de objetos en tiempo real 🚀
+Hoy estoy emocionado de compartir algunos avances de vanguardia en la detección de objetos en tiempo real. Esto proviene de un emocionante artículo titulado **"DETRs Beat YOLOs on Real-time Object Detection"**. Escrito por investigadores de la Universidad de Huddersfield, presenta RT-DETR (Real-Time Detection Transformer), un cambio de juego que supera a los famosos modelos YOLO en velocidad y precisión. Aquí tienes un desglose amigable:
+
+#### 🚀 ¿Por qué es importante?
+La detección de objetos en tiempo real es crucial para aplicaciones como:
+- **Seguimiento de objetos**
+- **Vigilancia por video**
+- **Conducción autónoma**
+
+#### 🔍 ¿Cuál es el problema con YOLO?
+Los modelos YOLO son rápidos, pero dependen de la Supresión de Máximos No Máximos (NMS), lo que los ralentiza y afecta su precisión.
+
+#### 🌟 Presentando RT-DETR
+RT-DETR es el primer detector de objetos en tiempo real basado en la arquitectura Transformer. Elimina la necesidad de NMS, logrando una mejor velocidad y precisión. ¡Vamos a profundizar en los detalles!
+
+#### 📚 Puntos clave
+
+1. **Codificador Híbrido Eficiente**
+   - Combina la interacción de características intra-escala y la fusión de características entre escalas.
+   - Reduce la latencia computacional y aumenta la precisión.
+
+2. **Selección de Consultas con Mínima Incertidumbre**
+   - Selecciona consultas de objetos de alta calidad minimizando la incertidumbre epistémica.
+   - Mejora las puntuaciones de clasificación y la precisión de localización.
+
+3. **Compensación Flexible entre Velocidad y Precisión**
+   - Ajusta la velocidad sin necesidad de reentrenamiento mediante la modulación de capas del decodificador.
+   - Se adapta fácilmente a diferentes escenarios en tiempo real.
+
+#### 🧪 Los experimentos muestran…
+RT-DETR fue probado contra modelos YOLO y otros detectores basados en Transformer. ¿Los resultados? RT-DETR superó a todos en velocidad y precisión, demostrando su efectividad en varios escenarios.
+
+#### 🚧 Limitaciones y trabajo futuro
+- **Desafíos:** Aún hay algunos obstáculos en escenarios específicos.
+- **Mejoras Futuras:** Investigación continua para mejorar aún más el rendimiento de RT-DETR.
+
+#### 📜 Conclusión
+RT-DETR marca un avance significativo en la detección de objetos en tiempo real. Al eliminar la NMS y ofrecer ajustes flexibles de velocidad, establece un nuevo estándar, superando a los modelos avanzados de YOLO.
+
+### ¡Profundiza más!
+¿Tienes curiosidad por aprender más? Consulta el artículo completo: [DETRs Beat YOLOs on Real-time Object Detection](https://arxiv.org/pdf/2304.08069v3.pdf).
+#### Recursos para Explorar Más:
+
+- [RT-DETR: Revolucionando la Detección de Objetos en Tiempo Rea](https://youtu.be/fqgHlUH3OXQ?si=oeaOc72hnXnbigcm)
+- [Notebook](https://colab.research.google.com/github/alarcon7a/rt-detr/blob/main/RT_DETR.ipynb#scrollTo=9CWLwh3Q5ybt)
+
+---
 # Día41
 # Día42
 # Día43
