@@ -59,7 +59,7 @@
 | [Día39](#Día39) | Explorando los Avances en Detección de Objetos con YOLOv5, YOLOv8 y YOLOv10 | 
 | [Día40](#Día40) | RT-DETR revoluciona la detección de objetos en tiempo real | 
 | [Día41](#Día41) | Explorando U-Net: un hito en la segmentación de imágenes | 
-| [Día42](#Día42) |  | 
+| [Día42](#Día42) | Inferencia  con YOLOv8 sobre Santa Cruz de la Sierra | 
 | [Día43](#Día43) |  | 
 | [Día44](#Día44) |  | 
 | [Día45](#Día45) |  | 
@@ -3111,6 +3111,35 @@ Aparte de U-Net, hay varias arquitecturas modernas diseñadas para segmentación
 
 ---
 # Día42
+---
+
+## Inferencia  con YOLOv8 sobre Santa Cruz de la Sierra 🚁🔍
+
+
+🌆 **Destacado del Proyecto:** Detección de objetos en tiempo real utilizando YOLOv8 en imágenes de dron de Santa Cruz de la Sierra, Bolivia.
+
+🤖 **Stack Tecnológico:**
+* Modelo: YOLOv8 de Ultralytics ajustado finamente
+* Aplicación: Inferencia en tiempo real en transmisión de video
+
+🎥 **Qué Esperar:** En este video, verán YOLOv8 en acción mientras identifica y clasifica varios elementos urbanos en tiempo real. Observen cómo el modelo detecta:
+* Vehículos (coches, autobuses, camiones)
+* Peatones
+* Edificios
+* Espacios verdes
+* ¡Y más!
+
+🧠 **Por Qué Es Importante:** Este proyecto demuestra:
+1. El poder de la detección de objetos en tiempo real en entornos dinámicos
+2. Posibles aplicaciones en planificación urbana, gestión del tráfico y seguridad pública
+3. La adaptabilidad de los modelos de IA a contextos geográficos específicos
+
+🔬 **Perspectivas Técnicas:**
+* Rendimiento del modelo en diversas condiciones de iluminación y ángulos
+* Manejo de oclusiones y vistas parciales en un entorno urbano
+* Equilibrio entre velocidad de procesamiento y precisión en análisis en tiempo real
+
+---
 # Día43
 # Día44
 # Día45
