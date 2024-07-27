@@ -3141,6 +3141,7 @@ Aparte de U-Net, hay varias arquitecturas modernas diseñadas para segmentación
 
 ---
 # Día43
+Breve Pausa
 # Día44
 # Día45
 # Día46
