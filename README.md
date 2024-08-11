@@ -61,7 +61,7 @@
 | [Día41](#Día41) | Explorando U-Net: un hito en la segmentación de imágenes | 
 | [Día42](#Día42) | Inferencia  con YOLOv8 sobre Santa Cruz de la Sierra | 
 | [Día43](#Día43) | Mapas de Calor con Ultralytics YOLOv8 | 
-| [Día44](#Día44) |  | 
+| [Día44](#Día44) | Recuento de Objetos Mediante Ultralytics YOLOv8 | 
 | [Día45](#Día45) |  | 
 | [Día46](#Día46) |  | 
 | [Día47](#Día47) |  | 
@@ -3229,6 +3229,82 @@ Para aquellos que deseen profundizar en este tema, aquí tienes una selección d
 ---
 
 # Día44
+---
+
+## Recuento de Objetos Mediante Ultralytics YOLOv8 🎯
+
+### ¿Qué es el Recuento de Objetos?
+
+El recuento de objetos con Ultralytics YOLOv8 implica la identificación y el recuento precisos de objetos específicos en vídeos y secuencias de cámaras. YOLOv8 destaca en aplicaciones en tiempo real, proporcionando un recuento de objetos eficiente y preciso para diversos escenarios, como el análisis de multitudes y la vigilancia, gracias a sus algoritmos de última generación y a sus capacidades de aprendizaje profundo.
+
+### Ventajas del Recuento de Objetos
+
+#### Optimización de Recursos
+El recuento de objetos facilita una gestión eficaz de los recursos, proporcionando recuentos precisos y optimizando la asignación de recursos en aplicaciones como la gestión de inventarios.
+
+#### Seguridad Mejorada
+El recuento de objetos mejora la seguridad y la vigilancia mediante el seguimiento y recuento precisos de entidades, ayudando a la detección proactiva de amenazas.
+
+#### Toma de Decisiones Informada
+El recuento de objetos ofrece información valiosa para la toma de decisiones, optimizando los procesos en el comercio minorista, la gestión del tráfico y otros ámbitos diversos.
+
+### Implementación con Ultralytics YOLOv8
+
+A continuación, se muestra un ejemplo de código para implementar el recuento de objetos utilizando YOLOv8:
+
+```python
+import cv2
+from ultralytics import YOLO, solutions
+
+# Cargar el modelo YOLOv8
+model = YOLO("yolov8n.pt")
+cap = cv2.VideoCapture("ruta/al/archivo/video.mp4")
+assert cap.isOpened(), "Error al leer el archivo de video"
+w, h, fps = (int(cap.get(x)) for x in (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT, cv2.CAP_PROP_FPS))
+
+# Definir puntos de región
+region_points = [(20, 400), (1080, 404), (1080, 360), (20, 360)]
+
+# Escritor de video
+video_writer = cv2.VideoWriter("object_counting_output.avi", cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
+
+# Inicializar el contador de objetos
+counter = solutions.ObjectCounter(
+    view_img=True,
+    reg_pts=region_points,
+    names=model.names,
+    draw_tracks=True,
+    line_thickness=2,
+)
+
+while cap.isOpened():
+    success, im0 = cap.read()
+    if not success:
+        print("El procesamiento del video ha sido completado.")
+        break
+    tracks = model.track(im0, persist=True, show=False)
+
+    im0 = counter.start_counting(im0, tracks)
+    video_writer.write(im0)
+
+cap.release()
+video_writer.release()
+cv2.destroyAllWindows()
+```
+
+Este código demuestra cómo configurar un sistema de recuento de objetos utilizando YOLOv8. Los objetos detectados dentro de una región específica se contarán y se visualizarán en tiempo real.
+
+
+
+### Recursos
+
+Para profundizar más en este tema, aquí tienes algunos recursos útiles:
+
+- **Documentación Oficial:** [Ultralytics YOLOv8 Object Counting Documentation](https://docs.ultralytics.com/es/guides/object-counting/#can-i-use-yolov8-for-advanced-applications-like-crowd-analysis-and-traffic-management)
+- **Video Tutorial:** [Recuento de Objetos con YOLOv8](https://youtu.be/Ag2e-5_NpS0?si=JJP14f3g2agCnMfl)
+
+---
+
 # Día45
 # Día46
 # Día47
