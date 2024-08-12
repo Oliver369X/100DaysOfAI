@@ -63,7 +63,7 @@
 | [Día43](#Día43) | Mapas de Calor con Ultralytics YOLOv8 | 
 | [Día44](#Día44) | Recuento de Objetos Mediante Ultralytics YOLOv8 | 
 | [Día45](#Día45) | Sistema de Alarma de Seguridad con YOLOv8 | 
-| [Día46](#Día46) |  | 
+| [Día46](#Día46) | Gestión de Colas con YOLOv8 | 
 | [Día47](#Día47) |  | 
 | [Día48](#Día48) |  | 
 | [Día49](#Día49) |  | 
@@ -3437,6 +3437,94 @@ Para aprender más sobre cómo implementar y mejorar sistemas de alarma de segur
 ---
 
 # Día46
+---
+
+## Gestión de Colas Mediante Ultralytics YOLOv8 🚀
+
+### ¿Qué es la Gestión de Colas?
+
+La gestión de colas mediante Ultralytics YOLOv8 consiste en organizar y controlar colas de personas o vehículos para reducir los tiempos de espera y mejorar la eficiencia. Se trata de optimizar las colas para mejorar la satisfacción del cliente y el rendimiento del sistema en diversos entornos como comercios, bancos, aeropuertos y centros sanitarios.
+
+### Ventajas de la Gestión de Colas
+
+#### Tiempos de Espera Reducidos
+Los sistemas de gestión de colas organizan eficazmente las colas, minimizando los tiempos de espera de los clientes. Esto mejora los niveles de satisfacción, ya que los clientes pasan menos tiempo esperando y más tiempo interactuando con los productos o servicios.
+
+#### Mayor Eficiencia
+La implantación de la gestión de colas permite a las empresas asignar recursos de forma más eficaz. Analizando los datos de las colas y optimizando el despliegue de personal, las empresas pueden agilizar las operaciones, reducir costes y mejorar la productividad general.
+
+### Aplicaciones en el Mundo Real
+
+#### Logística
+- **Gestión de colas en el mostrador de venta de billetes del aeropuerto mediante Ultralytics YOLOv8:** En aeropuertos, YOLOv8 se utiliza para monitorizar y gestionar las colas en los mostradores de venta de billetes, reduciendo los tiempos de espera y mejorando la experiencia del pasajero. 
+#### Venta al por Menor
+- **Control de colas en multitudes mediante Ultralytics YOLOv8:** En tiendas minoristas, YOLOv8 ayuda a gestionar las colas en las cajas registradoras, mejorando el flujo de clientes y reduciendo la congestión. 
+
+### Ejemplo de Implementación de Gestión de Colas Mediante YOLOv8
+
+A continuación, se muestra un ejemplo de código que implementa un sistema de gestión de colas utilizando YOLOv8:
+
+```python
+import cv2
+from ultralytics import YOLO, solutions
+
+# Cargar el modelo YOLOv8
+model = YOLO("yolov8n.pt")
+
+# Capturar el video
+cap = cv2.VideoCapture("path/to/video/file.mp4")
+assert cap.isOpened(), "Error al leer el archivo de video"
+w, h, fps = (int(cap.get(x)) for x in (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT, cv2.CAP_PROP_FPS))
+
+# Configurar el escritor de video
+video_writer = cv2.VideoWriter("queue_management.avi", cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
+
+# Definir la región de la cola
+queue_region = [(20, 400), (1080, 404), (1080, 360), (20, 360)]
+
+# Inicializar el gestor de colas
+queue = solutions.QueueManager(
+    names=model.names,
+    reg_pts=queue_region,
+    line_thickness=3,
+    fontsize=1.0,
+    region_color=(255, 144, 31),
+)
+
+while cap.isOpened():
+    success, im0 = cap.read()
+
+    if success:
+        tracks = model.track(im0, show=False, persist=True, verbose=False)
+        out = queue.process_queue(im0, tracks)
+
+        video_writer.write(im0)
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            break
+        continue
+
+    print("El fotograma de video está vacío o el procesamiento de video se ha completado con éxito.")
+    break
+
+cap.release()
+cv2.destroyAllWindows()
+```
+
+Este código demuestra cómo gestionar colas en tiempo real utilizando Ultralytics YOLOv8, proporcionando un sistema eficiente para reducir los tiempos de espera y mejorar la experiencia del usuario.
+
+
+
+### Recursos
+
+Para profundizar en la gestión de colas utilizando Ultralytics YOLOv8, te recomendamos los siguientes recursos:
+
+- **Documentación Oficial:** [Ultralytics YOLOv8 Queue Management Documentation](https://docs.ultralytics.com/es/guides/queue-management/#what-are-some-real-world-applications-of-ultralytics-yolov8-in-queue-management)
+- **Video Tutorial:** [Cómo Implementar Gestión de Colas con YOLOv8](https://youtu.be/gX5kSRD56Gs?si=dN2FFjxXj0JyY_-z)
+- **Artículo Técnico:** [Revolutionizing Retail Analytics: Advancing Inventory and Customer Insight with AI](https://arxiv.org/abs/2405.00023#)
+
+
+
+---
 # Día47
 # Día48
 # Día49
