@@ -62,7 +62,7 @@
 | [Día42](#Día42) | Inferencia  con YOLOv8 sobre Santa Cruz de la Sierra | 
 | [Día43](#Día43) | Mapas de Calor con Ultralytics YOLOv8 | 
 | [Día44](#Día44) | Recuento de Objetos Mediante Ultralytics YOLOv8 | 
-| [Día45](#Día45) |  | 
+| [Día45](#Día45) | Sistema de Alarma de Seguridad con YOLOv8 | 
 | [Día46](#Día46) |  | 
 | [Día47](#Día47) |  | 
 | [Día48](#Día48) |  | 
@@ -3306,6 +3306,136 @@ Para profundizar más en este tema, aquí tienes algunos recursos útiles:
 ---
 
 # Día45
+
+---
+
+## Proyecto de Sistema de Alarma de Seguridad Mediante Ultralytics YOLOv8 🚨
+
+### Sistema de Alarma de Seguridad
+
+El Proyecto de Sistema de Alarma de Seguridad que utiliza Ultralytics YOLOv8 integra capacidades avanzadas de visión por ordenador para mejorar las medidas de seguridad. YOLOv8, desarrollado por Ultralytics, proporciona detección de objetos en tiempo real, lo que permite al sistema identificar y responder rápidamente a posibles amenazas para la seguridad. Este proyecto ofrece varias ventajas:
+
+#### Detección en Tiempo Real
+La eficacia de YOLOv8 permite al Sistema de Alarma de Seguridad detectar y responder a los incidentes de seguridad en tiempo real, minimizando el tiempo de respuesta.
+
+#### Precisión
+YOLOv8 es conocido por su precisión en la detección de objetos, lo que reduce los falsos positivos y aumenta la fiabilidad del sistema de alarma de seguridad.
+
+#### Capacidad de Integración
+El proyecto puede integrarse perfectamente con la infraestructura de seguridad existente, proporcionando una capa mejorada de vigilancia inteligente.
+
+### Implementación con Ultralytics YOLOv8
+
+A continuación, se muestra un ejemplo de código para implementar un sistema de alarma de seguridad que envía notificaciones por correo electrónico cuando se detectan objetos:
+
+```python
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from time import time
+import cv2
+import torch
+from ultralytics import YOLO
+from ultralytics.utils.plotting import Annotator, colors
+
+# Configuración de los parámetros del correo electrónico
+password = "tu_contraseña_de_aplicación"
+from_email = "tu_correo@gmail.com"
+to_email = "correo_destinatario@gmail.com"
+
+# Creación y autenticación del servidor
+server = smtplib.SMTP("smtp.gmail.com: 587")
+server.starttls()
+server.login(from_email, password)
+
+def send_email(to_email, from_email, object_detected=1):
+    """Envía una notificación por correo electrónico indicando el número de objetos detectados; por defecto 1 objeto."""
+    message = MIMEMultipart()
+    message["From"] = from_email
+    message["To"] = to_email
+    message["Subject"] = "Alerta de Seguridad"
+    message_body = f"ALERTA - ¡Se han detectado {object_detected} objetos!"
+    message.attach(MIMEText(message_body, "plain"))
+    server.sendmail(from_email, to_email, message.as_string())
+
+class ObjectDetection:
+    def __init__(self, capture_index):
+        """Inicializa una instancia de ObjectDetection con un índice de cámara dado."""
+        self.capture_index = capture_index
+        self.email_sent = False
+        self.model = YOLO("yolov8n.pt")
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    def predict(self, im0):
+        """Realiza la predicción utilizando un modelo YOLO para la imagen de entrada `im0`."""
+        results = self.model(im0)
+        return results
+
+    def display_fps(self, im0):
+        """Muestra los FPS en una imagen `im0` calculando y superponiéndolos como texto blanco sobre un rectángulo negro."""
+        fps = 1 / (time() - self.start_time)
+        text = f"FPS: {int(fps)}"
+        text_size = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 1.0, 2)[0]
+        gap = 10
+        cv2.rectangle(im0, (20 - gap, 70 - text_size[1] - gap), (20 + text_size[0] + gap, 70 + gap), (255, 255, 255), -1)
+        cv2.putText(im0, text, (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), 2)
+
+    def plot_bboxes(self, results, im0):
+        """Dibuja las cajas delimitadoras en una imagen dada los resultados de la detección; retorna la imagen anotada y las IDs de clase."""
+        class_ids = []
+        annotator = Annotator(im0, 3, results[0].names)
+        boxes = results[0].boxes.xyxy.cpu()
+        clss = results[0].boxes.cls.cpu().tolist()
+        for box, cls in zip(boxes, clss):
+            class_ids.append(cls)
+            annotator.box_label(box, label=results[0].names[int(cls)], color=colors(int(cls), True))
+        return im0, class_ids
+
+    def __call__(self):
+        """Ejecuta la detección de objetos en fotogramas de video desde una transmisión de cámara, dibujando y mostrando los resultados."""
+        cap = cv2.VideoCapture(self.capture_index)
+        assert cap.isOpened()
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        while True:
+            self.start_time = time()
+            ret, im0 = cap.read()
+            assert ret
+            results = self.predict(im0)
+            im0, class_ids = self.plot_bboxes(results, im0)
+
+            if len(class_ids) > 0 and not self.email_sent:  # Solo envía correo si no se ha enviado antes
+                send_email(to_email, from_email, len(class_ids))
+                self.email_sent = True
+            elif len(class_ids) == 0:
+                self.email_sent = False
+
+            self.display_fps(im0)
+            cv2.imshow("Detección YOLOv8", im0)
+            if cv2.waitKey(5) & 0xFF == 27:
+                break
+        cap.release()
+        cv2.destroyAllWindows()
+        server.quit()
+
+# Llama a la clase Detección de Objetos y ejecuta la inferencia
+detector = ObjectDetection(capture_index=0)
+detector()
+```
+
+Este código muestra cómo configurar un sistema de alarma de seguridad que envía una notificación por correo electrónico si se detecta algún objeto. La notificación se envía una sola vez por detección, pero puedes personalizar el código según las necesidades de tu proyecto.
+
+
+### Recursos
+
+Para aprender más sobre cómo implementar y mejorar sistemas de alarma de seguridad utilizando YOLOv8, aquí tienes algunos recursos adicionales:
+
+- **Documentación Oficial:** [Ultralytics YOLOv8 Security Alarm System Documentation](https://docs.ultralytics.com/es/guides/security-alarm-system/#how-can-i-reduce-the-frequency-of-false-positives-in-my-security-system-using-ultralytics-yolov8)
+- **Video Tutorial:** [Cómo Configurar un Sistema de Alarma de Seguridad con YOLOv8](https://youtu.be/_1CmwUzoxY4?si=iOT9_q3aRQrh3FIF)
+
+
+---
+
 # Día46
 # Día47
 # Día48
