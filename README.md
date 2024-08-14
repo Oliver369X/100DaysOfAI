@@ -65,7 +65,7 @@
 | [Día45](#Día45) | Sistema de Alarma de Seguridad con YOLOv8 | 
 | [Día46](#Día46) | Gestión de Colas con YOLOv8 | 
 | [Día47](#Día47) | Gestión de Aparcamientos Mediante Ultralytics YOLOv8 | 
-| [Día48](#Día48) |  | 
+| [Día48](#Día48) | Combatiendo Incendios Forestales con IA | 
 | [Día49](#Día49) |  | 
 | [Día50](#Día50) |  | 
 | [Día51](#Día51) |  | 
@@ -3628,6 +3628,38 @@ Para explorar más sobre la gestión de aparcamientos utilizando Ultralytics YOL
 - **Video Tutorial:** [Detección de espacios libres de parking en tiempo real](https://youtu.be/j93sLIV2bHU?si=cbY7Y_nC0m0ORHwy)
 
 # Día48
+---
+## Detección de Incendios Forestales con Tecnología Avanzada 🚁
+
+### ¿Qué es la Detección de Incendios Forestales?
+La detección de incendios forestales implica el uso de tecnologías avanzadas como la visión por computadora, drones y dispositivos IoT para identificar rápidamente señales de incendios en áreas forestales. Este enfoque combina imágenes satelitales, sensores en tiempo real y algoritmos de inteligencia artificial para monitorear vastas extensiones de terreno, alertando a las autoridades y equipos de emergencia de forma temprana y precisa.
+
+### ¿Ventajas de la Detección de Incendios Forestales?
+- **Respuesta rápida y precisa**: La tecnología avanzada permite la detección y el monitoreo en tiempo real, lo que reduce significativamente el tiempo de respuesta ante un incendio.
+- **Cobertura amplia**: Drones y satélites pueden cubrir grandes áreas, incluso en terrenos difíciles, proporcionando una vigilancia constante y detallada.
+- **Reducción de daños**: La detección temprana permite a las autoridades tomar medidas antes de que el incendio se propague, minimizando los daños ambientales y económicos.
+
+### Aplicaciones en el Mundo Real
+- **España**: El uso de drones equipados con cámaras térmicas e inteligencia artificial ha sido implementado en varias regiones para detectar focos de incendios y realizar un monitoreo constante del entorno forestal .
+- **Estados Unidos**: En California, donde los incendios forestales son un problema recurrente, se utilizan redes de sensores IoT y satélites de monitoreo para alertar de incendios en sus fases iniciales, permitiendo una respuesta más efectiva .
+- **Australia**: Después de los devastadores incendios de 2019-2020, el país ha intensificado el uso de tecnología avanzada, como drones y análisis de imágenes satelitales, para mejorar sus capacidades de respuesta ante incendios forestales .
+
+### Ejemplo de Flujo de Trabajo para la Detección de Incendios
+1. **Implementación de Drones**: Drones equipados con cámaras térmicas sobrevuelan áreas forestales.
+2. **Análisis de Imágenes**: Las imágenes capturadas son analizadas mediante algoritmos de visión por computadora que detectan patrones asociados a incendios.
+3. **Alertas en Tiempo Real**: Los dispositivos IoT y las redes de sensores envían alertas automáticas a los centros de control.
+4. **Acciones Correctivas**: Las autoridades movilizan recursos a las áreas afectadas antes de que el incendio se propague.
+
+
+
+### Recursos Adicionales
+- **[[Video sobre un sistema de prevención, detección y monitorización de incendios forestales](https://youtu.be/WF5Rwg4tajE?si=wkpDhcoIcJxNomjW)** video
+
+- **[Aprovechar la inteligencia artificial para luchar contra los incendios forestales](https://youtu.be/PECWS9aDwcY?si=SF-5BiTEYnpXzHTU)**
+
+
+---
+
 # Día49
 # Día50
 # Día51
