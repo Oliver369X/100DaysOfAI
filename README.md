@@ -64,7 +64,7 @@
 | [Día44](#Día44) | Recuento de Objetos Mediante Ultralytics YOLOv8 | 
 | [Día45](#Día45) | Sistema de Alarma de Seguridad con YOLOv8 | 
 | [Día46](#Día46) | Gestión de Colas con YOLOv8 | 
-| [Día47](#Día47) |  | 
+| [Día47](#Día47) | Gestión de Aparcamientos Mediante Ultralytics YOLOv8 | 
 | [Día48](#Día48) |  | 
 | [Día49](#Día49) |  | 
 | [Día50](#Día50) |  | 
@@ -3526,6 +3526,106 @@ Para profundizar en la gestión de colas utilizando Ultralytics YOLOv8, te recom
 
 ---
 # Día47
+## Gestión de Aparcamientos Mediante Ultralytics YOLOv8 🚀
+
+### ¿Qué es el Sistema de Gestión de Aparcamientos?
+
+La gestión de aparcamientos con Ultralytics YOLOv8 garantiza un aparcamiento eficaz y seguro, organizando las plazas y controlando la disponibilidad en tiempo real. YOLOv8 optimiza la gestión de los aparcamientos mediante la detección de vehículos en tiempo real y proporciona información sobre la ocupación de los espacios, lo que permite una experiencia de usuario más fluida y una mayor seguridad.
+
+### Ventajas del Sistema de Gestión de Aparcamientos
+
+#### Eficacia
+La gestión de aparcamientos optimiza el uso de las plazas disponibles, reduciendo la congestión y mejorando el flujo de tráfico dentro de los aparcamientos.
+
+#### Seguridad y Protección
+La integración de YOLOv8 en la gestión de aparcamientos mejora la seguridad de las personas y los vehículos mediante medidas avanzadas de vigilancia y detección de incidentes.
+
+#### Reducción de Emisiones
+La gestión eficiente del flujo de tráfico en los aparcamientos minimiza los tiempos muertos y, por ende, las emisiones de los vehículos, contribuyendo a un entorno más limpio y sostenible.
+
+### Aplicaciones en el Mundo Real
+
+#### Aparcamientos Inteligentes
+- **Aparcamientos Analíticos Utilizando Ultralytics YOLOv8:** Implementación de YOLOv8 para el análisis en tiempo real de la ocupación de plazas de aparcamiento, proporcionando datos críticos para la optimización de recursos y la mejora de la experiencia del usuario. [Leer más aquí](https://www.smartcitiesdive.com/parking-management/yolov8/).
+
+#### Gestión de Tráfico
+- **Gestión del Aparcamiento Vista Aérea Mediante Ultralytics YOLOv8:** Utilización de YOLOv8 en cámaras de visión aérea para gestionar y monitorear el uso de los aparcamientos en grandes instalaciones como centros comerciales y aeropuertos. [Leer más aquí](https://www.techrepublic.com/article/ai-in-traffic-management/).
+
+### Flujo de Trabajo del Código del Sistema de Gestión de Aparcamientos
+
+#### Selección de Puntos de Aparcamiento
+
+Definir las zonas de aparcamiento es una tarea crítica en la gestión de aparcamientos. Ultralytics facilita este proceso con una herramienta que permite delinear zonas de aparcamiento de manera sencilla y visual. A continuación, te mostramos cómo implementar esta funcionalidad:
+
+1. **Captura de Imagen:**
+   Captura un fotograma de la secuencia de vídeo o cámara donde quieras gestionar el aparcamiento.
+
+2. **Interfaz Gráfica para la Selección de Zonas:**
+   Utiliza el siguiente código para iniciar una interfaz gráfica donde puedes seleccionar una imagen y empezar a delinear las regiones de aparcamiento haciendo clic con el ratón para crear polígonos.
+
+   ```python
+   from ultralytics import solutions
+
+   solutions.ParkingPtsSelection()
+   ```
+
+3. **Guardado de Zonas:**
+   Después de definir las zonas de aparcamiento, haz clic en "save" para almacenar un archivo JSON con los datos en tu directorio de trabajo. Este archivo se utilizará para el procesamiento adicional.
+
+#### Ejemplo de Implementación del Sistema de Gestión de Aparcamientos
+
+A continuación, se muestra un ejemplo de código para gestionar un aparcamiento utilizando YOLOv8:
+
+```python
+import cv2
+from ultralytics import solutions
+
+# Ruta al archivo JSON creado con la aplicación de selección de puntos
+polygon_json_path = "bounding_boxes.json"
+
+# Captura de video
+cap = cv2.VideoCapture("Path/to/video/file.mp4")
+assert cap.isOpened(), "Error al leer el archivo de video"
+w, h, fps = (int(cap.get(x)) for x in (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT, cv2.CAP_PROP_FPS))
+
+# Escritor de video
+video_writer = cv2.VideoWriter("parking_management.avi", cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h))
+
+# Inicializar el objeto de gestión de aparcamientos
+management = solutions.ParkingManagement(model_path="yolov8n.pt")
+
+while cap.isOpened():
+    ret, im0 = cap.read()
+    if not ret:
+        break
+
+    json_data = management.parking_regions_extraction(polygon_json_path)
+    results = management.model.track(im0, persist=True, show=False)
+
+    if results[0].boxes.id is not None:
+        boxes = results[0].boxes.xyxy.cpu().tolist()
+        clss = results[0].boxes.cls.cpu().tolist()
+        management.process_data(json_data, im0, boxes, clss)
+
+    management.display_frames(im0)
+    video_writer.write(im0)
+
+cap.release()
+video_writer.release()
+cv2.destroyAllWindows()
+```
+
+Este código proporciona un flujo de trabajo completo para la gestión de aparcamientos mediante YOLOv8, desde la selección de zonas de aparcamiento hasta la monitorización y análisis en tiempo real.
+ 
+
+### Recursos
+
+Para explorar más sobre la gestión de aparcamientos utilizando Ultralytics YOLOv8, te recomendamos los siguientes recursos:
+
+- **Documentación Oficial:** [Ultralytics YOLOv8 Parking Management Documentation](https://docs.ultralytics.com/es/guides/parking-management/#what-are-some-real-world-applications-of-ultralytics-yolov8-in-parking-lot-management)
+- **Video Tutorial:** [Cómo Implementar Gestión de Aparcamientos con YOLOv8](https://www.youtube.com/watch?v=3K4vXGgf5rk)
+- **Video Tutorial:** [Detección de espacios libres de parking en tiempo real](https://youtu.be/j93sLIV2bHU?si=cbY7Y_nC0m0ORHwy)
+
 # Día48
 # Día49
 # Día50
