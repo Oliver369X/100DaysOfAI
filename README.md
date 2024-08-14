@@ -3523,9 +3523,10 @@ Para profundizar en la gestión de colas utilizando Ultralytics YOLOv8, te recom
 - **Artículo Técnico:** [Revolutionizing Retail Analytics: Advancing Inventory and Customer Insight with AI](https://arxiv.org/abs/2405.00023#)
 
 
+# Día47
 
 ---
-# Día47
+
 ## Gestión de Aparcamientos Mediante Ultralytics YOLOv8 🚀
 
 ### ¿Qué es el Sistema de Gestión de Aparcamientos?
