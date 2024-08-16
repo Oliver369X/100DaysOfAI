@@ -66,7 +66,7 @@
 | [Día46](#Día46) | Gestión de Colas con YOLOv8 | 
 | [Día47](#Día47) | Gestión de Aparcamientos Mediante Ultralytics YOLOv8 | 
 | [Día48](#Día48) | Combatiendo Incendios Forestales con IA | 
-| [Día49](#Día49) |  | 
+| [Día49](#Día49) | Agricultura Inteligente con IA | 
 | [Día50](#Día50) |  | 
 | [Día51](#Día51) |  | 
 | [Día52](#Día52) |  | 
@@ -3661,6 +3661,37 @@ La detección de incendios forestales implica el uso de tecnologías avanzadas c
 ---
 
 # Día49
+
+---
+## Detección de Plagas en Cultivos 🌾
+
+### ¿Qué es la Detección de Plagas en Cultivos?
+La detección de plagas en cultivos mediante visión artificial y tecnologías avanzadas se enfoca en identificar y monitorear la presencia de plagas y enfermedades en plantas. Este proceso es parte de la agricultura de precisión, que utiliza herramientas tecnológicas como drones, sensores IoT y algoritmos de aprendizaje automático para mejorar la gestión de cultivos y optimizar el uso de recursos.
+
+### ¿Ventajas de la Detección de Plagas en Cultivos?
+- **Monitoreo Proactivo**: La detección temprana permite a los agricultores intervenir antes de que las plagas causen daños significativos, reduciendo la necesidad de tratamientos agresivos.
+- **Uso Eficiente de Recursos**: La visión artificial permite aplicar pesticidas y fertilizantes solo en áreas afectadas, minimizando el uso de químicos y reduciendo el impacto ambiental.
+- **Aumento del Rendimiento**: Identificar problemas de manera temprana y específica mejora la salud de las plantas y, en consecuencia, el rendimiento de los cultivos.
+
+### Aplicaciones en el Mundo Real
+- **Estados Unidos**: En California, se utilizan drones equipados con cámaras multispectrales para detectar plagas en cultivos de almendras, ayudando a los agricultores a identificar áreas afectadas y aplicar tratamientos localizados .
+- **Países Bajos**: En los Países Bajos, un sistema integrado que combina sensores IoT y visión por computadora se utiliza en invernaderos para monitorear condiciones de cultivo y detectar plagas, optimizando la producción hortícola .
+- **India**: En la región agrícola de Punjab, se ha implementado un sistema basado en visión artificial para monitorear cultivos de arroz, identificando infestaciones de plagas y enfermedades con alta precisión .
+
+### Ejemplo de Flujo de Trabajo para la Detección de Plagas
+1. **Captura de Imágenes**: Drones equipados con cámaras multispectrales o sensores IoT recopilan imágenes de los cultivos.
+2. **Análisis de Imágenes**: Algoritmos de visión artificial procesan las imágenes para identificar signos de plagas y enfermedades.
+3. **Generación de Informes**: Se generan informes detallados sobre la ubicación y severidad de las infestaciones.
+4. **Intervención Selectiva**: Los agricultores aplican tratamientos específicos en las áreas afectadas, reduciendo el impacto ambiental y mejorando la eficacia del tratamiento.
+
+### Casos de Éxito
+- **Agricultura de Precisión en California**: Los agricultores han implementado sistemas de detección de plagas basados en drones y visión artificial que han logrado una reducción del 40% en el uso de pesticidas, aumentando la eficiencia y sostenibilidad de la producción de almendras .
+- **Invernaderos en los Países Bajos**: La integración de sensores y visión artificial en invernaderos ha permitido a los productores reducir los costos de control de plagas en un 30% y mejorar el rendimiento de los cultivos de vegetales .
+- **Sistema en India**: El uso de visión artificial para detectar plagas en cultivos de arroz ha permitido a los agricultores reducir las pérdidas por infestación en un 25%, optimizando el uso de recursos y aumentando el rendimiento de la cosecha .
+
+
+---
+
 # Día50
 # Día51
 # Día52
