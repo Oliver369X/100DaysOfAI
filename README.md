@@ -2,11 +2,11 @@
 
 | Libros y Recursos | Estado de Finalización |
 | ----- | -----|
-| 1. [**Machine Learning Specialization**](https://www.coursera.org/specializations/machine-learning-introduction?page=1) | ✅ |
-| 2. [**Deep Learning Specialization**](https://www.coursera.org/specializations/deep-learning?)| ✅  |
-| 3. [**IA generativa con grandes modelos lingüísticos**](https://www.coursera.org/learn/generative-ai-with-llms/) | ✅ |
-| 4. [**Curso de Deep Learning**](https://youtube.com/playlist?list=PLcfxtMhW8iFNMTFKrYMYYzVTNzu-xG-Ys&si=lqAlbDIhtOJ5zMP8) | ✅ |
-| 5. [**Computer Vision**](https://youtube.com/playlist?list=PLISuMnTdVU-yvm6X7SwKtUosfr4ZarStU&si=FOMUjJ5SvotgMhHW) | ✅ |
+| 1. [**Machine Learning Specialization**](https://www.coursera.org/specializations/machine-learning-introduction?page=1) | La "Especialización en Aprendizaje Automático" es un programa en línea de 3 cursos creado por DeepLearning.AI y Stanford Online, dirigido por Andrew Ng. Está diseñado para principiantes y ofrece una introducción completa al aprendizaje automático moderno. Los estudiantes aprenderán sobre aprendizaje supervisado, como la regresión y redes neuronales, y no supervisado, como agrupación y sistemas de recomendación. El curso también cubre las mejores prácticas en IA utilizadas en la industria. |
+| 2. [**Deep Learning Specialization**](https://www.coursera.org/specializations/deep-learning?)| La "Especialización en Aprendizaje Profundo" es un programa de 5 cursos que te capacitará para comprender y aplicar redes neuronales avanzadas. Aprenderás a construir y entrenar arquitecturas como redes convolucionales, recurrentes, LSTMs y transformadores, utilizando Python y TensorFlow. Además, adquirirás habilidades para mejorar modelos con técnicas como Dropout y BatchNorm, y aplicar el aprendizaje profundo en áreas como reconocimiento de voz, procesamiento de lenguaje natural y síntesis musical. Este curso te preparará para enfrentar desafíos industriales y avanzar en tu carrera en el campo de la IA. |
+| 3. [**IA generativa con grandes modelos lingüísticos**](https://www.coursera.org/learn/generative-ai-with-llms/) |El curso "Generative AI with Large Language Models (LLMs)" te enseña los fundamentos de la IA generativa y cómo aplicarla en situaciones reales. Aprenderás a comprender el ciclo de vida de un modelo basado en LLM, desde la recopilación de datos hasta su implementación. Además, explorarás la arquitectura de transformadores, el ajuste fino de modelos, y cómo optimizar su rendimiento utilizando leyes de escalado.  |
+| 4. [**Curso de Deep Learning**](https://youtube.com/playlist?list=PLcfxtMhW8iFNMTFKrYMYYzVTNzu-xG-Ys&si=lqAlbDIhtOJ5zMP8) | Este curso de Deep Learning en español, disponible en YouTube, abarca desde conceptos básicos de Machine Learning hasta temas avanzados de Deep Learning, utilizando PyTorch como la librería principal. A lo largo de las clases, se exploran redes neuronales simples, regresión lineal, clasificación con Softmax, redes multicapa (MLP), retropropagación, y el uso de GPU con PyTorch. Además, se cubren técnicas de regularización, validación cruzada, y optimización. También se profundiza en redes neuronales recurrentes (RNN), embeddings de palabras, modelos de secuencia a secuencia (Seq2Seq), transformers, redes convolucionales (CNN), segmentación semántica y redes generativas adversarias (GANs), proporcionando una base sólida tanto teórica como práctica para el desarrollo de proyectos de Deep Learning. |
+| 5. [**Computer Vision**](https://youtube.com/playlist?list=PLISuMnTdVU-yvm6X7SwKtUosfr4ZarStU&si=FOMUjJ5SvotgMhHW) | Esta serie de clases de Computer Vision en español, ofrecida por el Instituto Humai, cubre desde los fundamentos del procesamiento de imágenes con OpenCV hasta técnicas avanzadas de visión por computadora. A lo largo del curso, se exploran temas como convoluciones, arquitecturas clásicas de redes neuronales convolucionales (AlexNet, VGG, GoogLeNet, ResNet), visualización de características, transferencia de conocimiento, fine-tuning, y transferencia de estilos. También se abordan técnicas más avanzadas como detección de objetos, segmentación semántica, convoluciones transpuestas, redes totalmente convolucionales (FCN), y redes generativas adversarias (GANs) |
 
 | Proyectos Completados |
 | ----------------- |
@@ -3769,6 +3769,101 @@ Estos avances se deben a técnicas innovadoras como los transformers, la atenci�
 ---
 
 # Día51
+---
+## Conceptos Clave en NLP: Tokenización, Lematización y Stemming
+
+
+En el procesamiento de lenguaje natural (NLP), la **tokenización**, **lematización** y **stemming** son pasos clave en el preprocesamiento de datos de texto, permitiendo a los algoritmos de aprendizaje automático entender y manipular el lenguaje humano de manera efectiva. Vamos a explorar en qué consisten estas técnicas, sus aplicaciones más comunes y cuándo es adecuado utilizarlas en un proyecto de NLP.
+
+## 1. Tokenización
+
+### Definición
+La tokenización es el proceso de dividir un texto en partes más pequeñas llamadas "tokens", que suelen ser palabras, aunque también pueden ser frases o caracteres, dependiendo de la granularidad necesaria. 
+
+### ¿Por qué se usa?
+La tokenización se utiliza para descomponer texto en unidades que los modelos puedan entender. En muchas aplicaciones de NLP, los modelos no pueden trabajar con grandes secuencias de caracteres o palabras, por lo que dividir el texto en tokens permite el análisis y procesamiento más detallado. Es fundamental en tareas como clasificación de texto, análisis de sentimientos y traducción automática.
+
+### Casos de uso:
+- **Análisis de sentimientos**: Detectar palabras clave para determinar si una reseña es positiva o negativa.
+- **Clasificación de documentos**: Dividir los textos en palabras clave para categorizarlos.
+- **Generación de texto**: Modelos como GPT requieren tokenizar los datos para procesar la entrada y generar respuestas.
+
+### Ejemplo de código actualizado usando `nltk`:
+```python
+import nltk
+nltk.download('punkt')
+from nltk.tokenize import word_tokenize
+
+text = "El sol brilla intensamente hoy"
+tokens = word_tokenize(text)
+print(tokens)
+```
+
+### Librerías recomendadas:
+- **nltk**: Ideal para prototipos rápidos y proyectos educativos.
+- **spaCy**: Más eficiente en proyectos de gran escala.
+
+## 2. Stemming
+
+### Definición
+El stemming es un proceso que reduce las palabras a su raíz o base morfológica. El objetivo es normalizar las variaciones de una palabra que tienen significados similares pero distintas formas gramaticales.
+
+### ¿Por qué se usa?
+Se utiliza cuando se busca una forma simplificada y rápida de reducir las palabras a sus formas básicas. Aunque el stemming no siempre devuelve palabras válidas del idioma (p. ej., "corriendo" se convierte en "corr"), es útil para tareas en las que las variaciones de la misma palabra no deben tener un impacto en el modelo, como en sistemas de recuperación de información o motores de búsqueda.
+
+### Casos de uso:
+- **Motores de búsqueda**: Facilita la búsqueda encontrando la raíz común entre palabras relacionadas (p. ej., buscar "corriendo" también devuelve resultados para "correr").
+- **Clasificación de texto**: Simplificar las palabras ayuda a reducir la dimensionalidad de los datos y mejorar el rendimiento de los modelos.
+
+### Ejemplo de código actualizado usando `nltk`:
+```python
+from nltk.stem import PorterStemmer
+
+stemmer = PorterStemmer()
+words = ["corriendo", "corrí", "correrá"]
+stemmed_words = [stemmer.stem(word) for word in words]
+print(stemmed_words)
+```
+
+### Librerías recomendadas:
+- **nltk**: Implementa diversos algoritmos de stemming, como el Porter Stemmer.
+- **SnowballStemmer**: Una versión más avanzada y multilingüe del Porter Stemmer.
+
+## 3. Lematización
+
+### Definición
+La lematización es un proceso más avanzado que el stemming, ya que reduce las palabras a su lema, que es la forma base de una palabra según su categoría gramatical. A diferencia del stemming, la lematización siempre devuelve palabras reales del idioma.
+
+### ¿Por qué se usa?
+Se utiliza cuando se necesita un análisis más preciso del lenguaje. Al tener en cuenta el contexto y la gramática, la lematización permite obtener formas de palabras que son gramaticalmente correctas, lo cual es útil en aplicaciones que requieren un entendimiento detallado del lenguaje.
+
+### Casos de uso:
+- **Traducción automática**: Es importante obtener la forma correcta de una palabra según su contexto gramatical.
+- **Análisis de textos legales**: La lematización permite entender el significado preciso de las palabras, lo que es crucial en estos entornos.
+
+### Ejemplo de código actualizado usando `nltk`:
+```python
+from nltk.stem import WordNetLemmatizer
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+lemmatizer = WordNetLemmatizer()
+words = ["corriendo", "corrí", "correrá"]
+lemmatized_words = [lemmatizer.lemmatize(word, pos='v') for word in words]
+print(lemmatized_words)
+```
+
+### Librerías recomendadas:
+- **nltk**: Facilita el uso de WordNet para lematización.
+- **spaCy**: Ofrece una lematización rápida y precisa, ideal para grandes volúmenes de datos.
+
+## Recursos adicionales
+
+ **Documentación oficial:**
+   - [NLTK Documentation](https://www.nltk.org/)
+   - [spaCy Tokenization and Lemmatization](https://spacy.io/usage/linguistic-features#tokenization)
+
+---
 # Día52
 # Día53
 # Día54
