@@ -71,7 +71,7 @@
 | [Día50](#Día50) | Introducción a NLP: Definición, aplicaciones e historia | 
 | [Día51](#Día51) | Tokenización, Lematización y Stemming | 
 | [Día52](#Día52) | Preprocesamiento de texto y normalización. | 
-| [Día53](#Día53) |  | 
+| [Día53](#Día53) | Bolsas de palabras (Bag of Words), TF-IDF y N-gramas | 
 | [Día54](#Día54) |  | 
 | [Día55](#Día55) |  | 
 | [Día56](#Día56) |  | 
