@@ -3864,6 +3864,9 @@ print(lemmatized_words)
    - [NLTK Documentation](https://www.nltk.org/)
    - [spaCy Tokenization and Lemmatization](https://spacy.io/usage/linguistic-features#tokenization)
 
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1sB8GS_IzmCn1-UwVOLFar0nbtBzZ2eja?usp=sharing) [Lematización y Stemming](https://colab.research.google.com/drive/1sB8GS_IzmCn1-UwVOLFar0nbtBzZ2eja?usp=sharing) 
+
 ---
 # Día52
 ---
