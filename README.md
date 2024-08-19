@@ -3995,6 +3995,114 @@ print(clean_text)  # Resultado: La temperatura es de C pero subirá a C
 
 ---
 # Día53
+---
+## Bolsas de palabras (Bag of Words), TF-IDF y N-gramas
+
+
+En el procesamiento de lenguaje natural (NLP), **Bag of Words (BoW)**, **TF-IDF** y **n-gramas** son técnicas fundamentales para convertir texto en datos numéricos, lo que permite a los modelos de machine learning trabajar con datos textuales. Estas metodologías son ampliamente utilizadas para tareas de clasificación de textos, análisis de sentimientos, recuperación de información y otros campos del NLP.
+
+A lo largo de este día, exploraremos qué son estas técnicas, por qué son importantes y cómo aplicarlas en proyectos de NLP.
+
+## 1. Bolsa de Palabras (Bag of Words)
+
+La **Bolsa de Palabras (BoW)** es una técnica de representación del texto donde cada documento se convierte en una matriz de palabras, ignorando el orden de las mismas. El enfoque se basa en contar la frecuencia de cada palabra en un texto y representarla en un vector.
+
+### ¿Por qué se usa?
+El BoW es simple y efectivo para convertir texto a una representación numérica que los modelos de machine learning pueden procesar. Aunque no tiene en cuenta el contexto o el orden de las palabras, es útil en tareas como la clasificación de texto o análisis de sentimientos.
+
+### Casos de uso:
+- **Clasificación de correos electrónicos**: Identificar correos electrónicos de spam según la frecuencia de ciertas palabras clave.
+- **Análisis de sentimientos**: Determinar si una reseña de producto es positiva o negativa según las palabras más comunes.
+
+### Ejemplo de código:
+```python
+from sklearn.feature_extraction.text import CountVectorizer
+
+corpus = [
+    "El coche es rápido.",
+    "El coche es lento.",
+    "El coche rápido es caro."
+]
+
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(corpus)
+print(vectorizer.get_feature_names_out())
+print(X.toarray())
+```
+
+En este ejemplo, la salida sería una matriz donde las filas representan cada documento y las columnas cada palabra, con los valores de la matriz siendo las frecuencias de las palabras en cada documento.
+
+## 2. TF-IDF (Term Frequency-Inverse Document Frequency)
+
+**TF-IDF** es una técnica que evalúa la importancia de una palabra en un documento, en relación con una colección de documentos. Combina dos métricas:
+
+- **Term Frequency (TF)**: La frecuencia con la que una palabra aparece en un documento.
+- **Inverse Document Frequency (IDF)**: La inversa del número de documentos en los que aparece una palabra, para penalizar palabras muy comunes.
+
+### ¿Por qué se usa?
+A diferencia de BoW, TF-IDF no solo cuenta la frecuencia de las palabras, sino que también pondera su importancia. Esto es crucial para dar más relevancia a las palabras que son distintivas de un documento en particular y menos peso a las palabras que aparecen frecuentemente en todos los documentos.
+
+### Casos de uso:
+- **Motores de búsqueda**: Utiliza TF-IDF para medir la relevancia de un documento en relación con una consulta.
+- **Análisis de contenido web**: Clasifica o agrupa documentos según las palabras más representativas en cada uno.
+
+### Ejemplo de código:
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+corpus = [
+    "El coche es rápido.",
+    "El coche es lento.",
+    "El coche rápido es caro."
+]
+
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(corpus)
+print(vectorizer.get_feature_names_out())
+print(X.toarray())
+```
+
+Este código genera una matriz TF-IDF donde las palabras frecuentes pero no útiles son ponderadas con menos relevancia.
+
+## 3. N-gramas
+
+Los **n-gramas** son secuencias de palabras o caracteres de longitud "n". Los más comunes son:
+- **Unigramas**: Secuencias de una palabra.
+- **Bigramas**: Secuencias de dos palabras consecutivas.
+- **Trigramas**: Secuencias de tres palabras consecutivas.
+
+### ¿Por qué se usa?
+A diferencia de BoW, los n-gramas capturan algo de la estructura del texto, ya que toman en cuenta el orden y las relaciones entre palabras consecutivas. Los n-gramas son útiles para analizar patrones en frases o texto más complejo.
+
+### Casos de uso:
+- **Modelos predictivos de texto**: Para predecir la siguiente palabra basándose en las dos anteriores (usando bigramas o trigramas).
+- **Análisis de sentimientos**: Los bigramas permiten captar secuencias como "no bueno" o "muy mal", que tienen un significado negativo pero que las palabras individuales no lo tendrían por sí mismas.
+
+### Ejemplo de código:
+```python
+vectorizer = CountVectorizer(ngram_range=(2, 2))
+X = vectorizer.fit_transform(corpus)
+print(vectorizer.get_feature_names_out())
+print(X.toarray())
+```
+
+Este código genera una representación de bigramas a partir del corpus, capturando secuencias de dos palabras consecutivas.
+
+## Recursos adicionales
+
+ **Videos educativos:**    
+ 
+- [¿Qué es Bag of Words?](https://youtu.be/NKy59utXjcg?si=8XDAjYI0sNF3jaRo)
+ - [Creando un Bag of Words utilizando NLTK, Beautiful Soup y Python 3.9](https://youtu.be/g1O_l6b5KYc?si=hdoJqFi1iEwaxcgJ)
+- [definicion de n-gramas](https://youtu.be/17js65rlK5g?si=5NTDfC13hZMA9Li0)
+- [TF-IDF](https://youtu.be/YfZgJ9aVCig?si=XuIcWigCVUvM2SUG)
+
+
+**Documentación oficial:**
+   - [Documentación de Scikit-learn: Feature extraction from text](https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction)
+
+
+---
 # Día54
 # Día55
 # Día56
