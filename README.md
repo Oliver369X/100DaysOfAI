@@ -8,6 +8,7 @@
 | 4. [**Curso de Deep Learning**](https://youtube.com/playlist?list=PLcfxtMhW8iFNMTFKrYMYYzVTNzu-xG-Ys&si=lqAlbDIhtOJ5zMP8) | Este curso de Deep Learning en español, disponible en YouTube, abarca desde conceptos básicos de Machine Learning hasta temas avanzados de Deep Learning, utilizando PyTorch como la librería principal. A lo largo de las clases, se exploran redes neuronales simples, regresión lineal, clasificación con Softmax, redes multicapa (MLP), retropropagación, y el uso de GPU con PyTorch. Además, se cubren técnicas de regularización, validación cruzada, y optimización. También se profundiza en redes neuronales recurrentes (RNN), embeddings de palabras, modelos de secuencia a secuencia (Seq2Seq), transformers, redes convolucionales (CNN), segmentación semántica y redes generativas adversarias (GANs), proporcionando una base sólida tanto teórica como práctica para el desarrollo de proyectos de Deep Learning. |
 | 5. [**Computer Vision**](https://youtube.com/playlist?list=PLISuMnTdVU-yvm6X7SwKtUosfr4ZarStU&si=FOMUjJ5SvotgMhHW) | Esta serie de clases de Computer Vision en español, ofrecida por el Instituto Humai, cubre desde los fundamentos del procesamiento de imágenes con OpenCV hasta técnicas avanzadas de visión por computadora. A lo largo del curso, se exploran temas como convoluciones, arquitecturas clásicas de redes neuronales convolucionales (AlexNet, VGG, GoogLeNet, ResNet), visualización de características, transferencia de conocimiento, fine-tuning, y transferencia de estilos. También se abordan técnicas más avanzadas como detección de objetos, segmentación semántica, convoluciones transpuestas, redes totalmente convolucionales (FCN), y redes generativas adversarias (GANs) |
 
+
 | Proyectos Completados |
 | ----------------- |
 | [1. Clasificación de Flores Iris](https://colab.research.google.com/drive/1Qv7LRrhvzGuJPkelYWz9zYJz-oPYIqDJ?usp=sharing)  |
@@ -68,8 +69,8 @@
 | [Día48](#Día48) | Combatiendo Incendios Forestales con IA | 
 | [Día49](#Día49) | Agricultura Inteligente con IA | 
 | [Día50](#Día50) | Introducción a NLP: Definición, aplicaciones e historia | 
-| [Día51](#Día51) |  | 
-| [Día52](#Día52) |  | 
+| [Día51](#Día51) | Tokenización, Lematización y Stemming | 
+| [Día52](#Día52) | Preprocesamiento de texto y normalización. | 
 | [Día53](#Día53) |  | 
 | [Día54](#Día54) |  | 
 | [Día55](#Día55) |  | 
@@ -3865,6 +3866,131 @@ print(lemmatized_words)
 
 ---
 # Día52
+---
+## Preprocesamiento de Texto y Normalización
+
+
+En procesamiento de lenguaje natural (NLP), el **preprocesamiento de texto** y la **normalización** son pasos fundamentales para transformar datos textuales no estructurados en un formato que los modelos puedan entender. Este proceso involucra la limpieza y estructuración de texto, eliminando ruido y asegurando que las palabras estén en su forma más útil. Al igual que otros métodos de preprocesamiento en ciencia de datos, este paso es esencial para mejorar la precisión y eficiencia de los modelos.
+
+Vamos a explorar las principales técnicas de preprocesamiento y normalización y por qué son esenciales en cualquier proyecto de NLP.
+
+## 1. Conversión a minúsculas
+
+La conversión de texto a minúsculas asegura que todas las palabras estén en un formato consistente. Por ejemplo, "Casa" y "casa" se convertirán en "casa".
+
+### ¿Por qué se usa?
+En muchos casos, los modelos NLP no hacen distinción entre mayúsculas y minúsculas, por lo que la conversión a minúsculas reduce la cantidad de vocabulario y mejora la eficiencia del modelo.
+
+### Casos de uso:
+- **Análisis de sentimientos**: Evita considerar palabras en mayúsculas como términos diferentes.
+- **Clasificación de textos**: Simplifica el vocabulario, haciendo que las palabras se procesen de manera uniforme.
+
+### Ejemplo de código:
+```python
+text = "El Sol Brilla Intensamente."
+lower_text = text.lower()
+print(lower_text)  # Resultado: el sol brilla intensamente.
+```
+
+## 2. Eliminación de stopwords
+
+Las **stopwords** son palabras comunes como "el", "de", "y", que no aportan mucho valor semántico en el análisis y pueden ser eliminadas para reducir el ruido en el texto.
+
+### ¿Por qué se usa?
+Eliminar estas palabras puede reducir significativamente la dimensionalidad del texto sin perder significado. Esto facilita el procesamiento y mejora la velocidad de los modelos.
+
+### Casos de uso:
+- **Clasificación de documentos**: Filtra las palabras comunes que no son útiles para identificar la categoría del documento.
+- **Motores de búsqueda**: Ayuda a enfocar las búsquedas en términos relevantes.
+
+### Ejemplo de código actualizado:
+```python
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+
+text = "El sol brilla intensamente sobre el mar."
+stop_words = set(stopwords.words('spanish'))
+filtered_text = [word for word in text.split() if word.lower() not in stop_words]
+print(filtered_text)  # Resultado: ['sol', 'brilla', 'intensamente', 'mar']
+```
+
+## 3. Eliminación de puntuación
+
+La puntuación, como comas, puntos y signos de exclamación, no aporta significado en muchas tareas de NLP, por lo que se elimina durante el preprocesamiento.
+
+### ¿Por qué se usa?
+Elimina elementos que no son útiles para los modelos y que podrían distorsionar el análisis del texto.
+
+### Casos de uso:
+- **Análisis de sentimientos**: Las emociones no están influenciadas por la puntuación, por lo que eliminarla mejora la interpretación del texto.
+- **Traducción automática**: Facilita la correspondencia de términos entre idiomas al eliminar signos innecesarios.
+
+### Ejemplo de código:
+```python
+import string
+
+text = "¡Hola! ¿Cómo estás?"
+clean_text = text.translate(str.maketrans('', '', string.punctuation))
+print(clean_text)  # Resultado: Hola Cómo estás
+```
+
+## 4. Normalización de contracciones
+
+
+Este paso involucra expandir palabras contraídas como "I'm" a "I am" o "he's" a "he is". Es más común en inglés, pero también se puede aplicar en otros idiomas.
+
+### ¿Por qué se usa?
+Para evitar que las contracciones sean tratadas como términos diferentes, la expansión de contracciones unifica el vocabulario.
+
+### Casos de uso:
+- **Chatbots**: Un chatbot necesita comprender la forma completa de una palabra para dar respuestas más precisas.
+- **Análisis de texto social**: Al lidiar con texto informal, es necesario expandir contracciones para mejorar la comprensión.
+
+### Ejemplo de código:
+```python
+import contractions
+
+text = "I'm going to the store."
+expanded_text = contractions.fix(text)
+print(expanded_text)  # Resultado: I am going to the store.
+```
+
+## 5. Lematización y Stemming
+
+Estos procesos, que ya exploramos en detalle en el **Día 51**, se usan en el preprocesamiento para reducir las palabras a sus formas base.
+
+- **Stemming**: Reduce las palabras a su raíz, aunque esta no siempre es una palabra válida.
+- **Lematización**: Reduce las palabras a su forma gramatical base (lema), asegurando que el resultado sea una palabra correcta.
+
+## 6. Remoción de caracteres especiales y números
+
+Elimina caracteres no alfabéticos y números del texto que no aportan valor semántico en muchas aplicaciones de NLP.
+
+### ¿Por qué se usa?
+El texto a menudo contiene caracteres especiales, como "@" o "#", que no son relevantes para muchas tareas de procesamiento. La eliminación de estos caracteres facilita el análisis.
+
+### Casos de uso:
+- **Análisis de comentarios en redes sociales**: Remover hashtags, menciones o números que no contribuyen al análisis de sentimientos o a la comprensión de temas.
+- **Traducción automática**: Facilita el alineamiento de texto en múltiples idiomas eliminando caracteres no alfabéticos.
+
+### Ejemplo de código:
+```python
+import re
+
+text = "La temperatura es de 25°C, pero subirá a 30°C."
+clean_text = re.sub(r'\d+|\W+', ' ', text)
+print(clean_text)  # Resultado: La temperatura es de C pero subirá a C
+```
+
+## Recursos adicionales
+
+ **Documentación oficial:**
+   - [NLTK Documentation](https://www.nltk.org/)
+   - [spaCy Tokenization and Preprocessing](https://spacy.io/usage/linguistic-features#tokenization)
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_hwnv-ZM0ZKlnxthGNs8bPfB7OJffiT7?usp=sharing) [Preprocesamiento de texto](https://colab.research.google.com/drive/1_hwnv-ZM0ZKlnxthGNs8bPfB7OJffiT7?usp=sharing) 
+
+---
 # Día53
 # Día54
 # Día55
