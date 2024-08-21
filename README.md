@@ -73,7 +73,7 @@
 | [Día52](#Día52) | Preprocesamiento de texto y normalización. | 
 | [Día53](#Día53) | Bolsas de palabras (Bag of Words), TF-IDF y N-gramas | 
 | [Día54](#Día54) | Ética en IA y NLP: Sesgos, privacidad y uso responsable | 
-| [Día55](#Día55) |  | 
+| [Día55](#Día55) | Introducción a las Representaciones Vectoriales de Palabras | 
 | [Día56](#Día56) |  | 
 | [Día57](#Día57) |  | 
 | [Día58](#Día58) |  | 
@@ -4177,6 +4177,100 @@ El uso irresponsable de IA y NLP puede llevar a la **manipulación de opiniones*
 ---
 
 # Día55
+---
+## Introducción a las Representaciones Vectoriales de Palabras
+
+
+Las representaciones vectoriales de palabras, también conocidas como **word embeddings**, son una técnica fundamental en el **procesamiento del lenguaje natural (NLP)**. Estas representaciones permiten que las palabras sean expresadas como vectores numéricos en un espacio de alta dimensionalidad, capturando de manera eficiente relaciones semánticas y contextuales entre ellas. En esta publicación, exploraremos qué son los embeddings, por qué son útiles y cómo han revolucionado el campo del NLP.
+
+## ¿Qué son las representaciones vectoriales de palabras?
+
+A diferencia de las representaciones tradicionales de texto como las **bolsas de palabras (Bag of Words)**, donde cada palabra es tratada de manera aislada, los **word embeddings** asignan a cada palabra un vector que captura su significado en función del contexto. 
+
+Estos vectores permiten realizar operaciones matemáticas para medir la similitud entre palabras. Por ejemplo, el famoso caso de operaciones vectoriales:
+```text
+Rey - Hombre + Mujer ≈ Reina
+```
+
+### ¿Por qué son útiles?
+
+Las representaciones vectoriales de palabras tienen varias ventajas:
+- **Capturan la semántica**: Los embeddings pueden identificar sinónimos, analogías y relaciones semánticas de manera más precisa que las técnicas anteriores.
+- **Dimensionalidad reducida**: En lugar de tener vectores extremadamente largos y dispersos (como en la bolsa de palabras), los embeddings utilizan vectores de longitud fija, lo que los hace eficientes en memoria y procesamiento.
+- **Generalización**: Los embeddings ayudan a generalizar mejor en tareas de NLP, ya que pueden extrapolar patrones semánticos a palabras que no estaban explícitamente presentes en los datos de entrenamiento.
+
+## Métodos comunes para obtener representaciones vectoriales
+
+1. **Word2Vec**:
+   Este método, desarrollado por Google en 2013, se basa en dos enfoques:
+   - **Continuous Bag of Words (CBOW)**: predice la palabra objetivo a partir de su contexto.
+   - **Skip-gram**: predice el contexto a partir de una palabra objetivo.
+   Ambos enfoques crean vectores que representan las palabras en un espacio donde las palabras con significados similares estarán más cerca entre sí.
+
+2. **GloVe** (Global Vectors for Word Representation):
+   Este método, desarrollado por Stanford, utiliza una matriz de coocurrencia que refleja cuántas veces aparece una palabra junto a otras en grandes cantidades de texto. GloVe busca capturar relaciones globales entre las palabras.
+
+3. **FastText**:
+   FastText, creado por Facebook AI, extiende Word2Vec al considerar no solo palabras enteras, sino también subpalabras. Esto permite que FastText maneje mejor palabras raras o no vistas durante el entrenamiento.
+
+4. **BERT** (Bidirectional Encoder Representations from Transformers):
+   A diferencia de los métodos anteriores, BERT genera **embeddings contextuales**, es decir, la representación vectorial de una palabra cambia dependiendo del contexto en el que aparece. Esto mejora significativamente la comprensión del lenguaje.
+
+## Casos de Uso de Representaciones Vectoriales
+
+1. **Clasificación de Texto**: Los embeddings son clave para realizar tareas de clasificación como análisis de sentimientos, detección de spam y categorización de documentos.
+2. **Búsqueda Semántica**: En lugar de hacer coincidir palabras exactas, los embeddings permiten realizar búsquedas basadas en el significado, lo que mejora la relevancia de los resultados.
+3. **Traducción Automática**: Las relaciones semánticas entre palabras en diferentes idiomas pueden ser capturadas por modelos de embeddings para mejorar los sistemas de traducción automática.
+4. **Sistemas de Recomendación**: Los embeddings pueden ser utilizados para recomendar productos, artículos o contenidos que sean semánticamente similares a los que el usuario ha mostrado interés.
+
+## Ejemplo en código usando `gensim`
+
+Para generar embeddings con **Word2Vec** usando la librería `gensim` en Python, podemos usar el siguiente código:
+
+```python
+from gensim.models import Word2Vec
+from nltk.tokenize import word_tokenize
+
+# Ejemplo de texto
+sentences = [
+    "La inteligencia artificial está revolucionando el mundo.",
+    "El procesamiento del lenguaje natural es una rama clave de la IA.",
+    "Los embeddings son útiles para capturar el significado de las palabras."
+]
+
+# Tokenización
+tokenized_sentences = [word_tokenize(sentence.lower()) for sentence in sentences]
+
+# Entrenamiento del modelo Word2Vec
+model = Word2Vec(sentences=tokenized_sentences, vector_size=100, window=5, min_count=1, sg=1)
+
+# Obtener el vector de una palabra
+vector = model.wv['inteligencia']
+print(vector)
+
+# Medir la similitud entre dos palabras
+similarity = model.wv.similarity('inteligencia', 'artificial')
+print(f"Similaridad entre 'inteligencia' y 'artificial': {similarity}")
+```
+
+Este ejemplo genera un modelo Word2Vec básico y demuestra cómo obtener la representación vectorial de una palabra y medir la similitud entre palabras.
+
+## Recursos Adicionales
+
+1. **Videos educativos**:
+   - [¿Qué son los EMBEDDINGS?](https://youtu.be/h4GNDHC-s50?si=3B_CD8T7_VefudQ8)
+
+
+2. **Artículos recomendados**:
+   - [Efficient Estimation of Word Representations in Vector Space (Word2Vec)](https://arxiv.org/abs/1301.3781)
+   - [GloVe: Global Vectors for Word Representation](https://nlp.stanford.edu/pubs/glove.pdf)
+
+3. **Documentación oficial**:
+   - [gensim Word2Vec](https://radimrehurek.com/gensim/models/word2vec.html)
+
+
+---
+
 # Día56
 # Día57
 # Día58
