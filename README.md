@@ -75,7 +75,7 @@
 | [Día54](#Día54) | Ética en IA y NLP: Sesgos, privacidad y uso responsable | 
 | [Día55](#Día55) | Introducción a las Representaciones Vectoriales de Palabras | 
 | [Día56](#Día56) | Preprocesamiento y análisis básico de un conjunto de datos textuales | 
-| [Día57](#Día57) |  | 
+| [Día57](#Día57) | Word2Vec - Arquitectura y Aplicaciones | 
 | [Día58](#Día58) |  | 
 | [Día59](#Día59) |  | 
 | [Día60](#Día60) |  | 
@@ -4428,6 +4428,118 @@ Finalmente, podemos visualizar los datos para identificar patrones y tendencias.
 
 ---
 # Día57
+---
+## Word2Vec - Arquitectura y Aplicaciones
+
+## Introducción a Word2Vec
+
+**Word2Vec** es un método clave para representar palabras como vectores en un espacio continuo, lo que facilita la comprensión semántica de las relaciones entre palabras. Introducido por Tomas Mikolov y su equipo en 2013, Word2Vec ha revolucionado el campo del **Procesamiento de Lenguaje Natural (NLP)** al capturar contextos semánticos y sintácticos de palabras basándose en su proximidad a otras en grandes corpus de texto.
+
+En lugar de tratar cada palabra como una entidad independiente, Word2Vec asigna a cada palabra un vector de características numéricas en un espacio de alta dimensionalidad, de modo que las palabras con significados similares se encuentran cerca unas de otras.
+
+## Arquitectura de Word2Vec
+
+Word2Vec tiene dos arquitecturas clave para generar los vectores de palabras:
+
+### 1. **CBOW (Continuous Bag of Words)**
+
+CBOW predice una palabra basada en el contexto de palabras adyacentes. En este modelo, las palabras de contexto (las que rodean a una palabra objetivo) se utilizan para predecir esa palabra objetivo. Funciona bien con conjuntos de datos pequeños y es menos costoso computacionalmente.
+
+**Proceso**:
+- Se toma una ventana de palabras alrededor de la palabra objetivo.
+- Estas palabras se usan para predecir la palabra central (objetivo).
+  
+**Ventajas**:
+- Funciona mejor con conjuntos de datos pequeños.
+- Menos costoso en términos de computación.
+
+```python
+from gensim.models import Word2Vec
+
+# Ejemplo simple de Word2Vec con CBOW
+sentences = [["hello", "world"], ["machine", "learning"], ["deep", "learning"]]
+model = Word2Vec(sentences, vector_size=100, window=5, min_count=1, sg=0)  # sg=0 para CBOW
+```
+
+### 2. **Skip-Gram**
+
+En el modelo Skip-Gram, el objetivo es predecir las palabras de contexto basadas en la palabra objetivo. Este enfoque es más lento que CBOW, pero tiene un mejor rendimiento en grandes conjuntos de datos, especialmente cuando las palabras objetivo menos comunes tienen un mayor valor predictivo.
+
+**Proceso**:
+- Se toma una palabra objetivo y se utiliza para predecir las palabras de su contexto.
+  
+**Ventajas**:
+- Funciona mejor con conjuntos de datos grandes.
+- Mejora la representación de palabras raras.
+
+```python
+# Ejemplo simple de Word2Vec con Skip-Gram
+model_skip = Word2Vec(sentences, vector_size=100, window=5, min_count=1, sg=1)  # sg=1 para Skip-Gram
+```
+
+## Entrenamiento de Word2Vec
+
+Word2Vec entrena una red neuronal para asociar las palabras con su contexto y generar un vector de características que las represente. Durante el entrenamiento, se actualizan los pesos de la red, optimizando la proximidad semántica entre palabras. Esto resulta en que palabras con significados similares (ej. "rey" y "reina") tengan vectores que se encuentren cercanos en el espacio vectorial.
+
+### Técnicas clave en el entrenamiento de Word2Vec:
+
+- **Negative Sampling**: Selecciona palabras "negativas" (que no deberían estar en el contexto) para optimizar el proceso de entrenamiento.
+- **Subsampling**: Filtra palabras muy frecuentes para reducir su influencia en la construcción de vectores de palabras.
+
+## Aplicaciones de Word2Vec
+
+Word2Vec es altamente flexible y ha sido utilizado en múltiples áreas dentro del **NLP**:
+
+1. **Clasificación de texto**: Convirtiendo texto en vectores, se puede alimentar a modelos de clasificación como SVM o redes neuronales para tareas como análisis de sentimiento o categorización.
+  
+2. **Sistemas de recomendación**: Word2Vec puede generar recomendaciones semánticas al analizar el comportamiento del usuario en sistemas de recomendación, como en motores de búsqueda o plataformas de comercio electrónico.
+
+3. **Análisis de similitud semántica**: Las palabras cercanas en el espacio vectorial se pueden utilizar para encontrar sinónimos o medir la similitud entre frases.
+
+4. **Modelado de lenguaje**: Word2Vec se integra en modelos de lenguaje como LSTM o Transformers, mejorando su capacidad para comprender el contexto en frases largas.
+
+5. **Relaciones semánticas**: Gracias a la naturaleza vectorial de Word2Vec, es posible realizar operaciones aritméticas con palabras, como la famosa analogía:  
+   **rey - hombre + mujer = reina**.
+
+## Código de Ejemplo: Entrenamiento de Word2Vec en Corpus de Texto
+
+```python
+from gensim.models import Word2Vec
+from nltk.corpus import brown  # Corpus de texto
+
+# Cargar corpus de ejemplo
+sentences = brown.sents(categories='news')
+
+# Entrenar el modelo Word2Vec
+model = Word2Vec(sentences, vector_size=100, window=5, min_count=5, sg=1)  # sg=1 para Skip-Gram
+
+# Obtener la representación vectorial de una palabra
+vector = model.wv['king']
+
+# Encontrar palabras similares
+similares = model.wv.most_similar('king')
+print(similares)
+```
+
+En este código, entrenamos un modelo Word2Vec en un corpus de noticias y luego obtenemos el vector de la palabra "king". Finalmente, encontramos las palabras más similares basadas en la proximidad de sus vectores.
+
+## Recursos Adicionales
+
+- **Videos recomendados**:
+  - [Word2vec explicado: Procesamiento del lenguaje natural (NLP)
+](https://youtu.be/ErHYXszga5g?si=lTrhGvH19v0HSUS2)
+  - [¿Qué son Word EMBEDDINGS? ¡Explorando Embeddings con GloVe y Python!
+](https://youtu.be/LagcbjDkqJE?si=kedMTuCpalZmpPyb)
+  - [Understanding Word2Vec](https://www.youtube.com/watch?v=kEMJRjEdNzM)
+
+- **Documentación oficial**:
+  - [Gensim Word2Vec Documentation](https://radimrehurek.com/gensim/models/word2vec.html)
+
+- **Artículos útiles**:
+  - [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/abs/1301.3781)
+
+  ---
+  
 # Día58
 # Día59
 # Día60
