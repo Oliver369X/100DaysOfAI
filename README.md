@@ -74,7 +74,7 @@
 | [Día53](#Día53) | Bolsas de palabras (Bag of Words), TF-IDF y N-gramas | 
 | [Día54](#Día54) | Ética en IA y NLP: Sesgos, privacidad y uso responsable | 
 | [Día55](#Día55) | Introducción a las Representaciones Vectoriales de Palabras | 
-| [Día56](#Día56) |  | 
+| [Día56](#Día56) | Preprocesamiento y análisis básico de un conjunto de datos textuales | 
 | [Día57](#Día57) |  | 
 | [Día58](#Día58) |  | 
 | [Día59](#Día59) |  | 
@@ -4272,6 +4272,161 @@ Este ejemplo genera un modelo Word2Vec básico y demuestra cómo obtener la repr
 ---
 
 # Día56
+---
+
+## Preprocesamiento y análisis básico de un conjunto de datos textuales
+
+### Introducción
+
+El preprocesamiento de texto es una etapa fundamental en cualquier proyecto de **Procesamiento de Lenguaje Natural (NLP)**. Antes de aplicar técnicas avanzadas como modelado de lenguaje o clasificación de texto, es crucial limpiar y estructurar los datos textuales para que los algoritmos puedan interpretarlos correctamente. En este proyecto, se trabajará con un conjunto de datos textuales para realizar un preprocesamiento básico y un análisis exploratorio de los datos, que sentará las bases para proyectos más avanzados de NLP.
+
+### Objetivos del Proyecto
+
+1. **Preprocesamiento de texto**: Limpiar y normalizar los datos textuales.
+2. **Análisis básico**: Obtener insights iniciales como la frecuencia de palabras, las palabras más comunes y la longitud promedio de los textos.
+3. **Preparación para modelos NLP**: Asegurar que los datos estén listos para ser utilizados en modelos como bolsas de palabras (Bag of Words), TF-IDF o representaciones más avanzadas como Word Embeddings.
+
+### Flujo del Proyecto
+
+1. **Carga del conjunto de datos**.
+2. **Limpieza y normalización** de los textos.
+3. **Análisis exploratorio** de los textos.
+4. **Tokenización** y generación de estadísticas.
+5. **Visualización de datos**.
+
+### Dataset a Utilizar
+
+Para este proyecto, utilizaremos el conjunto de datos **"Amazon Fine Food Reviews"**, que contiene reseñas de productos alimenticios en Amazon, incluyendo textos y etiquetas de clasificación. Puedes descargar el dataset desde Kaggle en el siguiente enlace:
+
+- **[Amazon Fine Food Reviews Dataset](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?resource=download)**
+
+### Paso 1: Cargar el Conjunto de Datos
+
+El primer paso será cargar y explorar el conjunto de datos proporcionado en formato CSV. Como el archivo está comprimido en un archivo `.zip`, primero descomprimiremos el archivo y luego cargaremos los datos en un DataFrame de pandas.
+
+#### Código para Cargar el Dataset
+
+```python
+import pandas as pd
+import zipfile
+import os
+
+# Paso 1: Descomprimir el archivo .zip
+ruta_zip = 'ruta/al/archivo/Reviews.csv.zip'
+ruta_csv = 'ruta/al/archivo/Reviews.csv'
+
+with zipfile.ZipFile(ruta_zip, 'r') as archivo_zip:
+    archivo_zip.extractall('ruta/al/archivo/')
+
+# Paso 2: Verificar que el archivo CSV ha sido extraído
+if os.path.exists(ruta_csv):
+    print("Archivo extraído con éxito")
+
+# Paso 3: Cargar el archivo CSV en un DataFrame
+df = pd.read_csv(ruta_csv)
+
+# Mostrar las primeras filas del DataFrame para verificar
+print(df.head())
+```
+
+### Paso 2: Limpieza y Normalización de Texto
+
+Ahora que tenemos el DataFrame cargado, el siguiente paso es limpiar y normalizar los textos de las reseñas. El texto en bruto contiene muchas irregularidades como puntuación, caracteres especiales, URLs, menciones de usuarios, entre otros, que deben ser eliminados o tratados adecuadamente.
+
+#### Código para Limpiar y Normalizar Texto
+
+```python
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+nltk.download('punkt')
+nltk.download('stopwords')
+
+# Función de limpieza de texto
+def limpiar_texto(texto):
+    texto = texto.lower()  # Convertir a minúsculas
+    texto = re.sub(r'http\S+|www\S+|https\S+', '', texto, flags=re.MULTILINE)  # Eliminar URLs
+    texto = re.sub(r'\@\w+|\#', '', texto)  # Eliminar menciones y hashtags
+    texto = re.sub(r'[^\w\s]', '', texto)  # Eliminar puntuación
+    palabras = word_tokenize(texto)  # Tokenizar
+    palabras = [palabra for palabra in palabras if palabra not in stopwords.words('english')]  # Eliminar stopwords
+    return " ".join(palabras)
+
+# Aplicar la función de limpieza al DataFrame
+df['CleanedText'] = df['Text'].apply(limpiar_texto)
+
+# Mostrar las primeras filas del DataFrame con el texto limpio
+print(df[['Text', 'CleanedText']].head())
+```
+
+### Paso 3: Análisis Exploratorio de Datos (EDA)
+
+Una vez que hemos limpiado los datos, podemos realizar un análisis exploratorio básico para entender mejor nuestro conjunto de datos. Esto incluye:
+
+- **Frecuencia de palabras**: Identificar las palabras más comunes.
+- **Distribución de la longitud de los textos**: Ver cuántas palabras tiene cada reseña.
+- **Visualización de datos**: Crear una nube de palabras o gráficos de barras para visualizar las palabras más frecuentes.
+
+#### Código para Análisis Exploratorio
+
+```python
+from collections import Counter
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
+# Tokenizar todas las palabras del texto limpio
+palabras = df['CleanedText'].apply(word_tokenize)
+
+# Unir todas las palabras en una sola lista
+todas_palabras = [palabra for sublist in palabras for palabra in sublist]
+
+# Contar la frecuencia de las palabras
+contador_palabras = Counter(todas_palabras)
+
+# Mostrar las 10 palabras más comunes
+print(contador_palabras.most_common(10))
+
+# Visualización: Nube de palabras
+wordcloud = WordCloud(width=800, height=400).generate_from_frequencies(contador_palabras)
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.show()
+```
+
+### Paso 4: Tokenización y Estadísticas
+
+La **tokenización** es el proceso de dividir el texto en palabras individuales (o tokens). Esto es útil para convertir el texto en una representación que los modelos pueden procesar. También calcularemos estadísticas básicas como la cantidad de palabras por reseña y la cantidad de reseñas que contienen una determinada palabra.
+
+#### Código para Tokenización y Estadísticas
+
+```python
+# Calcular la cantidad de palabras por reseña
+df['WordCount'] = df['CleanedText'].apply(lambda x: len(x.split()))
+
+# Estadísticas básicas
+print(df['WordCount'].describe())
+
+# Histograma de la distribución de la cantidad de palabras por reseña
+plt.figure(figsize=(10, 5))
+plt.hist(df['WordCount'], bins=30, color='blue', alpha=0.7)
+plt.title('Distribución de la cantidad de palabras por reseña')
+plt.xlabel('Cantidad de palabras')
+plt.ylabel('Frecuencia')
+plt.show()
+```
+
+### Paso 5: Visualización de Datos
+
+Finalmente, podemos visualizar los datos para identificar patrones y tendencias. Las gráficas más comunes incluyen:
+
+- **Histogramas de longitud de reseñas**: Muestra la distribución de palabras en los textos.
+- **Nube de palabras**: Una representación gráfica de las palabras más comunes en el conjunto de datos.
+
+
+---
 # Día57
 # Día58
 # Día59
