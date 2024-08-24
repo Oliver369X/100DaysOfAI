@@ -76,7 +76,7 @@
 | [Día55](#Día55) | Introducción a las Representaciones Vectoriales de Palabras | 
 | [Día56](#Día56) | Preprocesamiento y análisis básico de un conjunto de datos textuales | 
 | [Día57](#Día57) | Word2Vec - Arquitectura y Aplicaciones | 
-| [Día58](#Día58) |  | 
+| [Día58](#Día58) | GloVe y FastText | 
 | [Día59](#Día59) |  | 
 | [Día60](#Día60) |  | 
 | [Día61](#Día61) |  | 
@@ -4541,6 +4541,124 @@ En este código, entrenamos un modelo Word2Vec en un corpus de noticias y luego 
   ---
   
 # Día58
+---
+## GloVe y FastText - Algoritmos y Ventajas
+
+
+Hoy profundizaremos en dos modelos populares de representaciones vectoriales de palabras: **GloVe** y **FastText**. Ambos son sucesores de Word2Vec, pero con diferencias importantes en cuanto a cómo generan y representan el significado de las palabras en un espacio vectorial. Veamos cómo funcionan y las ventajas que ofrecen en comparación con otros enfoques de representaciones de palabras.
+
+## GloVe (Global Vectors for Word Representation)
+
+**GloVe**, desarrollado por el equipo de investigación de la Universidad de Stanford, es un modelo de representación de palabras basado en la matriz de co-ocurrencia de palabras en un corpus de texto. En lugar de depender únicamente del contexto local como Word2Vec, GloVe utiliza una combinación del **contexto local** y el **contexto global** para construir sus vectores de palabras.
+
+### Algoritmo
+
+GloVe construye una matriz de co-ocurrencia de palabras, donde cada celda de la matriz cuenta cuántas veces dos palabras aparecen juntas en el corpus. A partir de esta matriz, GloVe crea un modelo que genera vectores de palabras con relaciones semánticas más ricas.
+
+### Ventajas de GloVe
+
+1. **Captura de Relaciones Globales**: GloVe no solo se enfoca en el contexto local de las palabras (como ocurre en Word2Vec), sino que también tiene en cuenta las estadísticas de co-ocurrencia global en el corpus.
+  
+2. **Precisión en Relaciones Semánticas**: GloVe es muy bueno para capturar relaciones semánticas como analogías. Ejemplo:  
+   _rey - hombre + mujer ≈ reina_
+   
+3. **Escalabilidad**: Es capaz de trabajar con grandes corpus y generar representaciones vectoriales de alta calidad con base en toda la información contextual del corpus.
+
+### Ejemplo de Uso de GloVe
+
+A continuación se muestra cómo cargar un modelo GloVe preentrenado y utilizarlo para obtener representaciones vectoriales de palabras:
+
+```python
+import numpy as np
+
+# Cargar modelo GloVe preentrenado (100 dimensiones)
+def cargar_glove_model(glove_file):
+    modelo_glove = {}
+    with open(glove_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            partes = line.split()
+            palabra = partes[0]
+            coeficientes = np.array(partes[1:], dtype=np.float32)
+            modelo_glove[palabra] = coeficientes
+    return modelo_glove
+
+modelo_glove = cargar_glove_model("glove.6B.100d.txt")
+
+# Obtener el vector de una palabra
+vector_palabra = modelo_glove.get('king')
+print(vector_palabra)
+```
+
+### Recursos Adicionales sobre GloVe
+
+- **Documentación oficial**: [GloVe: Global Vectors for Word Representation](https://nlp.stanford.edu/projects/glove/)
+
+---
+
+## FastText
+
+**FastText**, desarrollado por Facebook AI Research (FAIR), es una extensión de Word2Vec que aborda uno de sus problemas clave: la incapacidad de generalizar bien para palabras raras o fuera del vocabulario (OOV). FastText descompone las palabras en **sub-palabras** (n-gramas de caracteres), lo que permite capturar el significado de palabras nuevas o raras basándose en sus componentes.
+
+### Algoritmo
+
+FastText representa cada palabra no solo como un único vector, sino como una suma de vectores de sus **sub-palabras**. Esto permite que el modelo capture información morfológica que es ignorada por otros modelos como Word2Vec y GloVe.
+
+Por ejemplo, en lugar de asignar un vector único a la palabra *"running"*, FastText descompondría la palabra en varios n-gramas, como *"run"*, *"ning"*, etc., permitiendo que se compartan componentes entre palabras similares.
+
+### Ventajas de FastText
+
+1. **Generalización para palabras fuera del vocabulario**: Al descomponer las palabras en n-gramas, FastText puede generar representaciones útiles para palabras que no han sido vistas en el corpus de entrenamiento, mejorando la precisión en tareas de lenguaje con vocabularios extensos.
+
+2. **Mejor captura de la morfología**: Captura información morfológica, lo que lo hace muy adecuado para lenguajes con conjugaciones complejas o para tareas donde las raíces de las palabras juegan un rol importante.
+
+3. **Rendimiento en múltiples lenguajes**: FastText ha demostrado ser especialmente útil en lenguajes con ricas morfologías, como el árabe o el finés, debido a su capacidad de aprovechar los prefijos, sufijos y raíces.
+
+### Ejemplo de Uso de FastText
+
+Aquí se muestra cómo utilizar el modelo preentrenado de FastText para obtener vectores de palabras.
+
+```python
+import fasttext
+import fasttext.util
+
+# Descargar y cargar el modelo preentrenado de FastText
+fasttext.util.download_model('en', if_exists='ignore')  # Modelo en inglés
+modelo_fasttext = fasttext.load_model('cc.en.300.bin')
+
+# Obtener el vector de una palabra
+vector_palabra = modelo_fasttext.get_word_vector('king')
+print(vector_palabra)
+```
+
+### Recursos Adicionales sobre FastText
+
+- **Documentación oficial**: [FastText Documentation](https://fasttext.cc/docs/en/crawl-vectors.html)
+
+
+---
+
+## Comparación entre GloVe y FastText
+
+| Característica     | GloVe                                             | FastText                                              |
+|-------------------|---------------------------------------------------|-------------------------------------------------------|
+| **Contexto**       | Captura contexto global mediante co-ocurrencia    | Descompone palabras en sub-palabras (n-gramas)        |
+| **Palabras raras** | Menos eficaz con palabras fuera del vocabulario   | Generaliza bien a palabras fuera del vocabulario      |
+| **Morfología**     | No captura información morfológica                | Captura prefijos, sufijos y raíces                    |
+| **Velocidad**      | Entrenamiento rápido pero puede requerir más memoria | Algo más lento pero con mayor capacidad de generalización |
+  
+Ambos modelos tienen aplicaciones valiosas y complementarias. **GloVe** es útil cuando se busca una representación de palabras precisa y robusta a nivel global, mientras que **FastText** es ideal para lenguajes complejos y para trabajar con conjuntos de datos con muchas palabras raras o fuera del vocabulario.
+
+
+
+### Recursos adicionales:
+
+- [Artículo de investigación de GloVe](https://nlp.stanford.edu/pubs/glove.pdf)
+- [Embeddings: Word2Vec, GloVe y fastText (video)](https://youtu.be/xu3FC81eNKI?si=QCqbtDxXWNah42r0)
+- [FastText para múltiples lenguajes](https://fasttext.cc/docs/en/language-identification.html)
+
+
+---
+
 # Día59
 # Día60
 # Día61
