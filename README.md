@@ -77,7 +77,7 @@
 | [Día56](#Día56) | Preprocesamiento y análisis básico de un conjunto de datos textuales | 
 | [Día57](#Día57) | Word2Vec - Arquitectura y Aplicaciones | 
 | [Día58](#Día58) | GloVe y FastText | 
-| [Día59](#Día59) |  | 
+| [Día59](#Día59) | Representaciones Contextualizadas | 
 | [Día60](#Día60) |  | 
 | [Día61](#Día61) |  | 
 | [Día62](#Día62) |  | 
@@ -4532,11 +4532,12 @@ En este código, entrenamos un modelo Word2Vec en un corpus de noticias y luego 
 ](https://youtu.be/LagcbjDkqJE?si=kedMTuCpalZmpPyb)
   - [Understanding Word2Vec](https://www.youtube.com/watch?v=kEMJRjEdNzM)
 
-- **Documentación oficial**:
+- **Documentación**:
   - [Gensim Word2Vec Documentation](https://radimrehurek.com/gensim/models/word2vec.html)
 
 - **Artículos útiles**:
   - [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/abs/1301.3781)
+  - [Jay Alammar, Word2Vec ilustrado](https://jalammar.github.io/illustrated-word2vec/)
 
   ---
   
@@ -4660,6 +4661,86 @@ Ambos modelos tienen aplicaciones valiosas y complementarias. **GloVe** es útil
 ---
 
 # Día59
+---
+## Representaciones Contextualizadas
+
+El concepto de **representaciones contextualizadas** de palabras ha revolucionado el procesamiento del lenguaje natural (NLP) en los últimos años. En lugar de generar un único vector para cada palabra en el vocabulario, como en modelos como **Word2Vec**, **GloVe**, o **FastText**, las representaciones contextualizadas producen vectores que dependen del **contexto en el que aparece la palabra**. Esto significa que la representación de una palabra puede cambiar dependiendo de las palabras que la rodean, mejorando significativamente la comprensión semántica y las tareas de NLP.
+
+## ¿Qué son las Representaciones Contextualizadas?
+
+Las representaciones contextualizadas permiten que una misma palabra tenga diferentes vectores dependiendo del **contexto** en el que aparece. Este enfoque ha sido implementado por modelos como **ELMo** (Embeddings from Language Models), **BERT** (Bidirectional Encoder Representations from Transformers) y otros modelos basados en arquitecturas de transformers. Estos modelos utilizan grandes corpus de texto y técnicas de aprendizaje profundo para generar embeddings que reflejen el significado contextual de las palabras.
+
+Por ejemplo:
+- La palabra *banco* en la frase "*Voy al banco a depositar dinero*" tendrá una representación vectorial diferente que en la frase "*Me senté en el banco del parque*".
+
+### ELMo
+
+**ELMo**, desarrollado por el equipo de investigación de AllenNLP, fue uno de los primeros modelos que introdujo el concepto de representaciones contextualizadas. Su principal innovación fue el uso de **modelos de lenguaje bidireccionales** que generan embeddings diferentes para una palabra según su contexto. ELMo es especialmente útil para capturar relaciones sintácticas y semánticas en secuencias de texto.
+
+- **Ventajas de ELMo**: 
+  - **Bidireccionalidad**: Modela el contexto tanto hacia adelante como hacia atrás en una oración.
+  - **Mejora en múltiples tareas**: Ha mostrado mejoras en tareas de etiquetado de secuencias, como **NER**, **POS tagging**, y análisis de sentimientos.
+
+### BERT
+
+**BERT**, desarrollado por Google, lleva las representaciones contextualizadas a otro nivel al introducir un enfoque **completamente bidireccional** y basado en transformers. A diferencia de ELMo, que es solo bidireccional a nivel de capa, BERT utiliza **enmascaramiento de palabras** para aprender representaciones más profundas del contexto, lo que le permite comprender mejor el significado de una palabra en relación con todas las palabras en la oración.
+
+- **Ventajas de BERT**: 
+  - **Bidireccional profundo**: BERT utiliza una arquitectura de transformers para aprender de ambos lados del contexto a la vez.
+  - **Aptitud para múltiples tareas**: Con su enfoque preentrenado y la posibilidad de ajuste fino, BERT ha logrado resultados sobresalientes en una amplia variedad de tareas de NLP.
+
+### Ejemplo de uso de BERT
+
+Aquí te dejo un ejemplo sencillo de cómo puedes utilizar BERT para generar representaciones contextuales usando la biblioteca `transformers` de Hugging Face:
+
+```python
+from transformers import BertTokenizer, BertModel
+
+# Cargar el modelo y el tokenizer de BERT preentrenado
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained('bert-base-uncased')
+
+# Tokenización del texto
+text = "The bank is near the river"
+inputs = tokenizer(text, return_tensors="pt")
+
+# Generar representaciones contextuales
+outputs = model(**inputs)
+last_hidden_states = outputs.last_hidden_state
+print(last_hidden_states.shape)  # Representaciones para cada palabra en la oración
+```
+
+Este código genera representaciones vectoriales contextualizadas para cada palabra en la oración, teniendo en cuenta todo el contexto en el que aparecen.
+
+### Ventajas de las Representaciones Contextualizadas
+
+1. **Desambiguación de palabras**: Como los embeddings cambian según el contexto, es mucho más fácil desambiguar palabras polisémicas (con múltiples significados).
+  
+2. **Mejora en el rendimiento de modelos**: Las representaciones contextualizadas han demostrado mejoras notables en tareas como **traducción automática**, **preguntas y respuestas**, **análisis de sentimientos**, y otras aplicaciones de NLP.
+
+3. **Generalización mejorada**: Modelos como BERT, GPT, y sus derivados son capaces de adaptarse a tareas muy específicas gracias a su capacidad para generar embeddings ricos en información contextual.
+
+### Aplicaciones
+
+Las representaciones contextualizadas son esenciales en:
+
+- **Chatbots**: Para entender mejor las consultas de los usuarios, desambiguando los significados de las palabras según el contexto.
+- **Sistemas de traducción automática**: Para generar traducciones más precisas.
+- **Búsquedas semánticas**: Para mejorar los motores de búsqueda que dependen de la interpretación del significado de las consultas.
+
+## Recursos Adicionales:
+
+- [Documentación oficial de BERT](https://github.com/google-research/bert)
+- [BERT: el inicio de una nueva era en el Natural Language Processing](https://youtu.be/MdEYUliufmk?si=DjKGKzWFB80_V8mk)
+- [Artículo sobre Representaciones de Lenguaje Contextualizadas](https://arxiv.org/abs/1810.04805)
+
+### Lecturas Recomendadas:
+
+- **ELMo: Deep contextualized word representations** - [Investigación de ELMo](https://arxiv.org/abs/1802.05365)
+- **BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding** - [Investigación de BERT](https://arxiv.org/abs/1810.04805)
+
+
+---
 # Día60
 # Día61
 # Día62
