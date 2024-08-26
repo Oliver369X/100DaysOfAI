@@ -78,7 +78,7 @@
 | [Día57](#Día57) | Word2Vec - Arquitectura y Aplicaciones | 
 | [Día58](#Día58) | GloVe y FastText | 
 | [Día59](#Día59) | Representaciones Contextualizadas | 
-| [Día60](#Día60) |  | 
+| [Día60](#Día60) | Evaluación de Modelos de Embeddings | 
 | [Día61](#Día61) |  | 
 | [Día62](#Día62) |  | 
 | [Día63](#Día63) |  | 
@@ -4742,6 +4742,92 @@ Las representaciones contextualizadas son esenciales en:
 
 ---
 # Día60
+---
+
+## Evaluación de Modelos de Embeddings
+
+Evaluar la calidad de los **modelos de embeddings** es crucial para determinar su rendimiento en diversas tareas de procesamiento del lenguaje natural (NLP). Los embeddings transforman palabras o documentos en vectores numéricos, y su evaluación busca medir cuán bien esos vectores capturan el significado, la semántica y la relación entre las palabras o frases.
+
+### Métodos de Evaluación de Embeddings
+
+#### 1. **Evaluaciones Intrínsecas**
+
+Las evaluaciones intrínsecas se centran en medir la **calidad del espacio vectorial de los embeddings**, sin tener en cuenta ninguna tarea específica. Estas evaluaciones son útiles para entender cómo los embeddings capturan las relaciones semánticas entre palabras. Algunos métodos incluyen:
+
+- **Similitud Semántica:** La similitud semántica mide cuán cercanos son los embeddings de palabras o frases con significados similares. Se utiliza un conjunto de pares de palabras o frases con puntuaciones de similitud humana y se comparan con las distancias o cosenos de los vectores generados por los embeddings. [Más sobre la evaluación de la similitud semántica](https://zilliz.com/learn/evaluating-your-embedding-model).
+**Ejemplo de código para medir similitud semántica con `spaCy`:**
+
+```python
+import spacy
+
+# Cargar modelo preentrenado de spaCy
+nlp = spacy.load("en_core_web_md")
+
+# Definir palabras
+word1 = nlp("king")
+word2 = nlp("queen")
+
+# Medir similitud
+similarity = word1.similarity(word2)
+print(f"Similitud entre 'king' y 'queen': {similarity:.2f}")
+```
+- **Analogías de Palabras:** Otro enfoque común es probar la capacidad del modelo para resolver analogías de la forma: *"Rey es a Reina como Hombre es a..."*. Los modelos de embeddings como **Word2Vec** a menudo son evaluados en conjuntos de pruebas de analogías para medir su capacidad de capturar relaciones complejas entre palabras. Este enfoque se detalla en [Mikolov et al., 2013](https://arxiv.org/abs/1310.4546).
+
+#### 2. **Evaluaciones Extrínsecas**
+
+Las evaluaciones extrínsecas miden el rendimiento de los embeddings en tareas específicas de NLP, como clasificación de texto, traducción automática o análisis de sentimientos. Esto proporciona una evaluación más práctica, ya que refleja el impacto de los embeddings en problemas reales.
+
+- **Clasificación de Texto:** Uno de los métodos más comunes es entrenar un modelo de clasificación de texto con los embeddings y medir el rendimiento en tareas como detección de spam, clasificación de temas, o análisis de sentimientos. Modelos como **e5-large** o **BERT** son utilizados frecuentemente en estas evaluaciones, destacándose por su capacidad para manejar tareas multilingües y específicas de dominio. [Más detalles en la evaluación de embeddings](https://nlp.gluon.ai/examples/word_embedding_evaluation/word_embedding_evaluation.html).
+**Ejemplo de código para clasificación de texto utilizando embeddings preentrenados:**
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+import numpy as np
+
+# Datos de ejemplo
+texts = ["I love this movie", "This is a bad movie", "Best film of the year", "Worst film ever"]
+labels = [1, 0, 1, 0]
+
+# Generar embeddings de ejemplo usando un modelo preentrenado
+embeddings = [nlp(text).vector for text in texts]
+
+# Dividir en entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(embeddings, labels, test_size=0.2, random_state=42)
+
+# Entrenar clasificador
+clf = LogisticRegression()
+clf.fit(X_train, y_train)
+
+# Predicciones y precisión
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Precisión: {accuracy:.2f}")
+```
+- **Tareas de Inferencia Natural de Lenguaje (NLI):** Otra evaluación extrínseca es en tareas de inferencia de lenguaje natural, donde el objetivo es determinar si una oración A implica, contradice o es neutral con respecto a una oración B. Modelos como **BERT** y **RoBERTa** suelen evaluarse en estos conjuntos de datos. [Revisión completa de métodos y resultados](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/EDF43F837150B94E71DBB36B28B85E79/S204877031900012Xa.pdf/div-class-title-evaluating-word-embedding-models-methods-and-experimental-results-div.pdf).
+
+#### 3. **Evaluaciones Humanas**
+
+En algunos casos, los expertos lingüísticos evalúan directamente la calidad de los embeddings mediante inspección visual o juicio semántico en pequeños conjuntos de datos. Aunque es costoso y lento, este enfoque puede proporcionar una perspectiva valiosa sobre la calidad semántica.
+
+### Consideraciones
+
+1. **Tamaño del Corpus:** El tamaño y la calidad del corpus con el que se entrenan los embeddings influyen directamente en la capacidad del modelo para generar representaciones útiles.
+2. **Ajuste Fino:** Los embeddings preentrenados pueden ser ajustados a tareas específicas para mejorar su rendimiento en dominios concretos, como análisis de opiniones o detección de entidades.
+3. **Dominio del Texto:** Los modelos entrenados o ajustados en dominios específicos tienden a rendir mejor en esos contextos, superando a los modelos generales en tareas especializadas【11†source】.
+
+### Recursos Adicionales
+
+- [Word Embedding Evaluation Tool](https://github.com/kudkudak/word-embeddings-benchmarks)
+- [Evaluación de Word2Vec en Analogías y Similitudes](https://arxiv.org/abs/1310.4546)
+- [Documentación de spaCy para embeddings](https://spacy.io/models/en#en_core_web_md)
+- [Evaluación de Modelos de Embeddings - Zilliz](https://zilliz.com/learn/evaluating-your-embedding-model)
+- [Evaluación de Embeddings en Gluon NLP](https://nlp.gluon.ai/examples/word_embedding_evaluation/word_embedding_evaluation.html)
+- [Métodos de Evaluación y Resultados Experimentales](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/EDF43F837150B94E71DBB36B28B85E79/S204877031900012Xa.pdf/div-class-title-evaluating-word-embedding-models-methods-and-experimental-results-div.pdf)
+
+---
+
 # Día61
 # Día62
 # Día63
