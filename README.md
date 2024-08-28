@@ -80,7 +80,7 @@
 | [Día59](#Día59) | Representaciones Contextualizadas | 
 | [Día60](#Día60) | Evaluación de Modelos de Embeddings | 
 | [Día61](#Día61) | Benchmarks y Evaluaciones | 
-| [Día62](#Día62) |  | 
+| [Día62](#Día62) | Introducción a las RNNs y su arquitectura | 
 | [Día63](#Día63) |  | 
 | [Día64](#Día64) |  | 
 | [Día65](#Día65) |  | 
@@ -4974,6 +4974,91 @@ La reproducibilidad es un aspecto crucial en la evaluación de modelos de NLP. L
 
 ---
 # Día62
+---
+## Introducción a las RNNs y su arquitectura
+
+## ¿Qué son las Redes Neuronales Recurrentes (RNN)?
+
+Las Redes Neuronales Recurrentes (RNNs) son un tipo de arquitectura de redes neuronales especializadas en procesar secuencias de datos. A diferencia de las redes neuronales tradicionales, las RNNs pueden utilizar información previa para influir en el procesamiento de datos futuros. Esto las hace ideales para tareas que involucran secuencias, como series temporales, procesamiento del lenguaje natural, y reconocimiento de voz.
+
+### Estructura de las RNN
+
+La característica clave de las RNNs es su **retroalimentación** o "recurrencia", lo que significa que la salida de una neurona en un paso temporal se convierte en entrada para el siguiente. Esto permite que las RNN mantengan un "estado" interno que captura información sobre los elementos previos en la secuencia.
+
+#### Arquitectura Básica
+
+Una RNN típica tiene:
+1. **Capa de entrada**: Recibe la secuencia de datos en formato vectorial.
+2. **Capa recurrente**: Mantiene un estado oculto y procesa cada elemento de la secuencia, pasando el estado oculto actualizado a la siguiente celda de la secuencia.
+3. **Capa de salida**: Genera la salida en función del estado oculto final o de cada paso.
+
+### Ecuaciones principales de una RNN
+
+La ecuación recurrente se define como:
+
+\[ h_t = \text{tanh}(W_h h_{t-1} + W_x x_t) \]
+
+Donde:
+- \( h_t \) es el estado oculto en el tiempo \( t \).
+- \( x_t \) es la entrada en el tiempo \( t \).
+- \( W_h \) y \( W_x \) son matrices de pesos entrenables.
+- La función de activación comúnmente utilizada es la **tanh** o **ReLU**.
+
+### Desventajas y Limitaciones
+
+Aunque las RNNs son poderosas para secuencias cortas, sufren problemas para manejar secuencias largas debido al problema de **desvanecimiento del gradiente**. Esto ocurre cuando los gradientes se hacen demasiado pequeños, impidiendo que las RNN aprendan eficientemente sobre dependencias de largo plazo.
+
+### Cuándo usar RNNs
+
+Las RNNs son ideales para tareas en las que el contexto es importante, como:
+- **Procesamiento de lenguaje natural**: Traductores automáticos, análisis de sentimientos, generación de texto.
+- **Reconocimiento de voz**: Sistemas de transcripción automática y asistentes virtuales.
+- **Series temporales**: Predicción de datos como el clima, el mercado de valores o señales de sensores.
+
+## Código de Ejemplo: Implementación Básica de una RNN en PyTorch
+
+```python
+import torch
+import torch.nn as nn
+
+# Definir la RNN
+class RNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(RNN, self).__init__()
+        self.hidden_size = hidden_size
+        self.rnn = nn.RNN(input_size, hidden_size, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        h0 = torch.zeros(1, x.size(0), self.hidden_size)  # Estado oculto inicial
+        out, _ = self.rnn(x, h0)
+        out = self.fc(out[:, -1, :])  # Usamos solo la última salida oculta
+        return out
+
+# Parámetros de la RNN
+input_size = 10  # Número de características en la entrada
+hidden_size = 20  # Tamaño del estado oculto
+output_size = 1  # Tarea de regresión
+
+# Crear la RNN
+model = RNN(input_size, hidden_size, output_size)
+
+# Datos ficticios para probar el modelo
+x = torch.randn(5, 3, input_size)  # Batch de 5 secuencias de longitud 3
+output = model(x)
+print(output)
+```
+
+### Recursos adicionales
+
+1. **Documentación oficial de PyTorch sobre RNNs**: [PyTorch RNN](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html)
+3. **Explicación visual sobre las RNNs**: [Recurrent Neural Networks (RNNs)](https://medium.com/@Mandeep2002/recurrent-neural-networks-rnns-de9340eb000d)
+4. **Videos de YouTube sobre RNNs y LSTMs**:
+   - [Redes Neuronales RECURRENTES (RNN) ](https://youtu.be/grmqsgttm-M?si=KKyvYnWyNAkOtc6u)
+   - [Redes Neuronales Recurrentes: EXPLICACIÓN DETALLADA ](https://youtu.be/hB4XYst_t-I?si=vbOjbedU1QIfUajB)
+
+
+---
 # Día63
 # Día64
 # Día65
