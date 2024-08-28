@@ -79,7 +79,7 @@
 | [Día58](#Día58) | GloVe y FastText | 
 | [Día59](#Día59) | Representaciones Contextualizadas | 
 | [Día60](#Día60) | Evaluación de Modelos de Embeddings | 
-| [Día61](#Día61) |  | 
+| [Día61](#Día61) | Benchmarks y Evaluaciones | 
 | [Día62](#Día62) |  | 
 | [Día63](#Día63) |  | 
 | [Día64](#Día64) |  | 
@@ -4829,6 +4829,150 @@ En algunos casos, los expertos lingüísticos evalúan directamente la calidad d
 ---
 
 # Día61
+---
+## Métricas de Evaluación Específicas para NLP (BLEU, ROUGE, etc.)
+
+En el campo del procesamiento del lenguaje natural (NLP), la evaluación de modelos no solo requiere precisión en las predicciones, sino también una forma de medir la calidad de las secuencias generadas, como en las traducciones automáticas, el resumen de textos o la generación de respuestas en chatbots. Para este tipo de tareas, las métricas más comunes incluyen **BLEU** y **ROUGE**, entre otras. A continuación, exploraremos estas métricas, sus aplicaciones y cómo se utilizan para evaluar el rendimiento de los modelos de NLP.
+
+## Principales Métricas de Evaluación en NLP
+
+### 1. **BLEU (Bilingual Evaluation Understudy)**
+BLEU es una métrica ampliamente utilizada para evaluar la calidad de texto generado, principalmente en traducción automática. Compara las secuencias de palabras generadas por un modelo con una o más referencias humanas, calculando la precisión de los n-gramas entre el texto generado y el texto de referencia.
+
+#### ¿Cómo funciona?
+- BLEU evalúa cuántos n-gramas en la predicción generada por el modelo aparecen en el texto de referencia.
+- Utiliza un sistema de ponderación para calcular una puntuación basada en la coincidencia de palabras y penaliza las predicciones demasiado cortas.
+
+#### Ejemplo de cálculo de BLEU:
+```python
+from nltk.translate.bleu_score import sentence_bleu
+
+reference = [['this', 'is', 'a', 'test']]
+candidate = ['this', 'is', 'test']
+score = sentence_bleu(reference, candidate)
+print(f"BLEU score: {score:.2f}")
+```
+
+#### Aplicaciones:
+- Traducción automática
+- Generación de texto
+- Modelos de resumen automático
+
+**Ventajas**: Fácil de implementar y ampliamente utilizado.  
+**Desventajas**: Sensible al orden exacto de las palabras y no mide la calidad semántica.
+
+### 2. **ROUGE (Recall-Oriented Understudy for Gisting Evaluation)**
+ROUGE es una métrica que se utiliza principalmente en la evaluación de resúmenes de textos generados por un modelo. Mientras que BLEU se enfoca en la precisión, ROUGE mide la cantidad de n-gramas en la predicción que coinciden con las referencias, centrándose en el **recall**.
+
+#### Tipos de ROUGE:
+- **ROUGE-N**: Cuenta la coincidencia de n-gramas.
+- **ROUGE-L**: Basado en la longitud de la subsecuencia común más larga (longest common subsequence).
+- **ROUGE-W**: Pondera la longitud de la subsecuencia común más larga.
+
+#### Ejemplo de cálculo de ROUGE:
+```python
+from rouge import Rouge
+
+rouge = Rouge()
+reference = "this is a test"
+candidate = "this is test"
+scores = rouge.get_scores(candidate, reference)
+print(f"ROUGE scores: {scores}")
+```
+
+#### Aplicaciones:
+- Resumen automático
+- Traducción
+- Generación de texto
+
+**Ventajas**: Evalúa mejor los resúmenes y es menos sensible al orden exacto de las palabras que BLEU.  
+**Desventajas**: A menudo no refleja la calidad semántica del texto generado.
+
+### 3. **METEOR (Metric for Evaluation of Translation with Explicit ORdering)**
+METEOR mejora algunos de los problemas de BLEU, como su sensibilidad al orden exacto de las palabras. Utiliza tanto coincidencias de n-gramas como sinónimos y variaciones morfológicas para evaluar la calidad del texto generado.
+
+#### Características clave:
+- Considera sinónimos y diferentes formas de las palabras.
+- Penaliza las reordenaciones de palabras, pero menos que BLEU.
+
+#### Aplicaciones:
+- Traducción automática
+- Generación de texto
+
+**Ventajas**: Mide mejor la similitud semántica y tiene en cuenta la flexibilidad en el uso de las palabras.  
+**Desventajas**: Computacionalmente más costoso.
+
+### 4. **CIDEr (Consensus-based Image Description Evaluation)**
+CIDEr se utiliza principalmente en la evaluación de descripciones generadas para imágenes. Esta métrica combina conceptos de BLEU y ROUGE y mide la similitud de las descripciones generadas con una referencia humana.
+
+#### Aplicaciones:
+- Descripción automática de imágenes.
+
+**Ventajas**: Ideal para tareas que involucran la generación de descripciones más cortas y precisas.
+
+### 5. **Perplexity**
+La **perplejidad** es una métrica de evaluación común en modelos de lenguaje probabilístico. Mide cuán bien un modelo de lenguaje predice una secuencia de palabras. La perplejidad se calcula como la inversa de la probabilidad de la secuencia predicha, normalizada por el número de palabras.
+
+Aquí tienes la publicación completa desde el día 61 hasta el final, incluyendo la tabla que resume los diferentes benchmarks:
+
+---
+
+## Benchmarks y Evaluaciones Específicas de Tareas
+
+A medida que los modelos de lenguaje natural (NLP) han evolucionado, también lo han hecho las métricas y benchmarks para evaluarlos. Evaluar un modelo de NLP no se trata solo de mirar una métrica única; depende del contexto y la tarea específica. Aquí, exploraremos algunos de los benchmarks más destacados que se utilizan para medir el rendimiento de los modelos de lenguaje, especialmente en tareas desafiantes.
+
+**Benchmarks Específicos de Tareas**
+
+1. **IFEval**: Este benchmark se centra en la capacidad de los modelos para seguir instrucciones explícitas. Es particularmente útil para evaluar cómo un modelo puede adherirse a formatos específicos, una habilidad clave para aplicaciones que requieren precisión en la presentación, como la generación de informes o resúmenes con formato estricto.
+
+2. **Big Bench Hard (BBH)**: Un subconjunto de 23 tareas especialmente desafiantes derivadas de BigBench, diseñadas para probar los límites de los modelos de lenguaje en tareas complejas como el razonamiento algorítmico y la comprensión profunda del lenguaje. Es una excelente herramienta para medir la capacidad de un modelo en situaciones que requieren un análisis profundo y razonamiento avanzado.
+
+3. **MATH Lvl 5**: Este benchmark es una colección de problemas matemáticos de nivel de competencia de escuela secundaria. Evalúa la precisión de los modelos en resolver problemas matemáticos que requieren formatos específicos y un conocimiento profundo de conceptos matemáticos.
+
+4. **GPQA (Graduate-Level Google-Proof Q&A Benchmark)**: Un conjunto de datos diseñado con preguntas que son difíciles incluso para expertos humanos. Este benchmark evalúa el conocimiento profundo del modelo y su capacidad para manejar preguntas difíciles que no pueden ser resueltas fácilmente mediante búsquedas simples en Google.
+
+5. **MuSR (Multistep Soft Reasoning)**: Este benchmark consiste en problemas complejos que requieren razonamiento a largo plazo y un análisis detallado. Es útil para evaluar la capacidad de los modelos de lenguaje para integrar múltiples pasos de razonamiento y mantener el contexto en tareas que requieren un enfoque prolongado.
+
+6. **MMLU-PRO**: Una versión refinada del benchmark MMLU (Massive Multitask Language Understanding), este benchmark presenta desafíos de mayor dificultad con preguntas de opción múltiple revisadas por expertos en el campo. Es una herramienta clave para medir la competencia de un modelo en diversas disciplinas académicas, desde ciencias hasta humanidades.
+
+**Comparación de Métricas Clásicas en NLP**
+
+Además de los benchmarks especializados, las métricas clásicas siguen siendo esenciales para evaluar la calidad de los modelos de lenguaje. Algunas de las más importantes incluyen:
+
+- **BLEU**: Una métrica que se enfoca en la precisión de los n-gramas y es ampliamente utilizada en la traducción automática. Aunque es útil, tiene limitaciones en cuanto a evaluar la fluidez y el significado global del texto generado.
+
+- **ROUGE**: Esta métrica se centra en el recall de los n-gramas, lo que la hace especialmente útil para la evaluación de resúmenes. Sin embargo, al igual que BLEU, no siempre captura la calidad semántica del texto.
+
+- **METEOR**: A diferencia de BLEU y ROUGE, METEOR considera tanto la precisión como el recall, y tiene en cuenta la alineación de sinónimos y variaciones léxicas, lo que lo hace más robusto para evaluar la calidad del texto generado.
+
+- **CIDEr**: Específicamente diseñada para la evaluación de descripciones de imágenes, CIDEr compara las descripciones generadas por modelos con las de humanos, evaluando la similitud semántica y léxica.
+
+- **Perplexity**: Una métrica fundamental para evaluar la capacidad predictiva de un modelo de lenguaje. Indica qué tan bien el modelo predice la probabilidad de una secuencia de palabras, siendo un indicador crucial en tareas de modelado de lenguaje.
+
+**Reproducibilidad y Resultados**
+
+La reproducibilidad es un aspecto crucial en la evaluación de modelos de NLP. Los resultados detallados de las evaluaciones en estos benchmarks se pueden encontrar en datasets disponibles en plataformas como Hugging Face. Para aquellos interesados en replicar estos experimentos, se proporciona un entorno configurado para ejecutar evaluaciones específicas usando la herramienta `lm_eval`.
+
+---
+
+### Tabla de Benchmarks
+
+| **Benchmark**               | **Descripción**                                                                             | **Uso**                                                                                      | **Enlace a Publicación**                                                 |
+|-----------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| **IFEval**                   | Evalúa la adherencia de los modelos a instrucciones de formato explícitas.                  | Útil para medir la precisión en la ejecución de instrucciones específicas en generación de texto. | [IFEval Paper](https://arxiv.org/abs/2202.13233)                          |
+| **Big Bench Hard (BBH)**     | Subconjunto de tareas complejas de BigBench que evalúan razonamiento algorítmico y lenguaje.| Evaluación de la habilidad en razonamiento complejo y comprensión profunda del lenguaje.     | [BBH Paper](https://arxiv.org/abs/2109.01652)                             |
+| **MATH Lvl 5**               | Evaluación de problemas matemáticos de nivel de competencia escolar secundaria.             | Mide la precisión en la resolución de problemas matemáticos complejos y específicos.         | [MATH Paper](https://arxiv.org/abs/2103.03874)                            |
+| **GPQA**                     | Conjunto de preguntas diseñadas para evaluar conocimiento profundo en nivel de posgrado.    | Evalúa la capacidad del modelo para responder preguntas difíciles que requieren conocimientos avanzados. | [GPQA Paper](https://arxiv.org/abs/2302.00923)                            |
+| **MuSR**                     | Problemas de razonamiento multietapa que requieren análisis detallado y contexto extendido. | Uso en la evaluación del razonamiento a largo plazo e integración de múltiples pasos de análisis. | [MuSR Paper](https://arxiv.org/abs/2306.05436)                            |
+| **MMLU-PRO**                 | Versión refinada del benchmark MMLU con preguntas de opción múltiple revisadas por expertos.| Evaluación exhaustiva de conocimientos en diversas disciplinas académicas a nivel experto.   | [MMLU-PRO Paper](https://arxiv.org/abs/2205.12635)                        |
+| **BLEU**                     | Métrica que se enfoca en la precisión de los n-gramas para la traducción automática.        | Principalmente utilizada en la evaluación de la calidad de traducción automática.            | [BLEU Paper](https://www.aclweb.org/anthology/P02-1040/)                  |
+| **ROUGE**                    | Métrica centrada en el recall de n-gramas, útil para la evaluación de resúmenes.            | Se usa para medir la cobertura del contenido original en resúmenes automáticos.              | [ROUGE Paper](https://www.aclweb.org/anthology/W04-1013/)                 |
+| **METEOR**                   | Métrica que mide tanto precisión como recall, incorporando sinónimos y variantes.          | Utilizada en traducción automática y otras tareas de generación de texto para una evaluación más robusta. | [METEOR Paper](https://www.aclweb.org/anthology/W05-0909/)                |
+| **CIDEr**                    | Métrica especializada en la evaluación de descripciones de imágenes generadas por modelos. | Se emplea en tareas de generación de descripciones de imágenes para comparar con descripciones humanas. | [CIDEr Paper](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Vedantam_CIDEr_Consensus-Based_Image_2015_CVPR_paper.pdf) |
+| **Perplexity**               | Métrica que evalúa la capacidad predictiva de un modelo de lenguaje.                        | Indicador fundamental para evaluar qué tan bien un modelo predice la probabilidad de secuencias de palabras. | [Perplexity Paper](https://www.jstor.org/stable/2285892)                   |
+
+
+---
 # Día62
 # Día63
 # Día64
