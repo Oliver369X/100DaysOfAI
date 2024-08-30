@@ -81,7 +81,7 @@
 | [Día60](#Día60) | Evaluación de Modelos de Embeddings | 
 | [Día61](#Día61) | Benchmarks y Evaluaciones | 
 | [Día62](#Día62) | Introducción a las RNNs y su arquitectura | 
-| [Día63](#Día63) |  | 
+| [Día63](#Día63) | LSTMs y GRUs | 
 | [Día64](#Día64) |  | 
 | [Día65](#Día65) |  | 
 | [Día66](#Día66) |  | 
@@ -5060,6 +5060,118 @@ print(output)
 
 ---
 # Día63
+---
+---
+## LSTMs y GRUs
+
+Tanto las **LSTMs (Long Short-Term Memory)** como las **GRUs (Gated Recurrent Units)** son variantes avanzadas de Redes Neuronales Recurrentes (RNNs) que fueron diseñadas para mitigar las limitaciones de las RNNs tradicionales, como el **desvanecimiento del gradiente**. Ambas arquitecturas pueden capturar dependencias a largo plazo de manera más eficiente, lo que las hace más adecuadas para tareas con secuencias largas, como la traducción automática, el análisis de texto o el reconocimiento de voz.
+
+### LSTMs (Long Short-Term Memory)
+
+Las LSTMs fueron introducidas en 1997 por Sepp Hochreiter y Jürgen Schmidhuber como una solución a los problemas de las RNNs estándar. Su principal ventaja reside en su capacidad para **retener información a largo plazo**, gracias a su diseño de **celdas de memoria** y una serie de **puertas** que controlan el flujo de información.
+
+#### Componentes clave de una LSTM:
+1. **Puerta de olvido**: Decide qué parte de la información del estado anterior debe ser olvidada.
+2. **Puerta de entrada**: Determina qué nueva información debe ser almacenada en la celda.
+3. **Puerta de salida**: Controla la información que debe ser utilizada para generar la salida en el tiempo actual.
+
+Este conjunto de puertas hace que las LSTMs sean extremadamente eficaces para modelar secuencias largas sin perder información relevante en los pasos anteriores.
+
+#### Ecuaciones básicas de una LSTM:
+- **Estado de la celda**: \[ C_t = f_t * C_{t-1} + i_t * \tilde{C_t} \]
+- **Estado oculto**: \[ h_t = o_t * \tanh(C_t) \]
+
+Donde \( f_t \), \( i_t \), y \( o_t \) son las puertas de olvido, entrada y salida, respectivamente.
+
+### GRUs (Gated Recurrent Units)
+
+Las **GRUs**, introducidas en 2014 por Kyunghyun Cho, son una versión simplificada de las LSTMs, que también utilizan un sistema de puertas, pero con menos complejidad. Las GRUs combinan la **puerta de entrada** y la **puerta de olvido** de las LSTMs en una única **puerta de actualización**, lo que las hace más fáciles de entrenar y menos costosas computacionalmente.
+
+#### Componentes clave de una GRU:
+1. **Puerta de actualización**: Decide cuánta información del pasado debe ser olvidada y cuánta debe ser agregada.
+2. **Puerta de reinicio**: Controla qué parte del estado anterior debe ser olvidada antes de agregar nueva información.
+
+### Comparación LSTM vs GRU
+- **Rendimiento**: En muchas tareas, las LSTMs y las GRUs logran resultados similares, pero las GRUs son más ligeras y rápidas debido a su arquitectura simplificada.
+- **Complejidad**: Las LSTMs son más complejas debido a la presencia de tres puertas, mientras que las GRUs solo tienen dos.
+- **Tiempos de entrenamiento**: Las GRUs tienden a entrenarse más rápido y requieren menos datos para generalizar bien en algunas aplicaciones.
+
+### Cuándo usar LSTMs y GRUs
+- **LSTMs**: Se usan cuando es necesario retener información de largo plazo de manera precisa, como en problemas de secuencias muy largas (traducción automática, generación de texto).
+- **GRUs**: Se prefieren cuando se requiere una arquitectura menos costosa, o para tareas con secuencias más cortas o menos dependencias de largo plazo.
+
+## Código de Ejemplo: Implementación de LSTM y GRU en PyTorch
+
+### LSTM:
+
+```python
+import torch
+import torch.nn as nn
+
+class LSTMModel(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(LSTMModel, self).__init__()
+        self.lstm = nn.LSTM(input_size, hidden_size, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        h0 = torch.zeros(1, x.size(0), hidden_size)
+        c0 = torch.zeros(1, x.size(0), hidden_size)
+        out, _ = self.lstm(x, (h0, c0))
+        out = self.fc(out[:, -1, :])
+        return out
+
+# Parámetros
+input_size = 10
+hidden_size = 20
+output_size = 1
+
+model = LSTMModel(input_size, hidden_size, output_size)
+x = torch.randn(5, 3, input_size)
+output = model(x)
+print(output)
+```
+
+### GRU:
+
+```python
+import torch
+import torch.nn as nn
+
+class GRUModel(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(GRUModel, self).__init__()
+        self.gru = nn.GRU(input_size, hidden_size, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        h0 = torch.zeros(1, x.size(0), hidden_size)
+        out, _ = self.gru(x, h0)
+        out = self.fc(out[:, -1, :])
+        return out
+
+# Parámetros
+input_size = 10
+hidden_size = 20
+output_size = 1
+
+model = GRUModel(input_size, hidden_size, output_size)
+x = torch.randn(5, 3, input_size)
+output = model(x)
+print(output)
+```
+
+## Recursos adicionales
+
+1. **Documentación oficial de PyTorch** sobre [LSTMs](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html) y [GRUs](https://pytorch.org/docs/stable/generated/torch.nn.GRU.html).
+2. **Tutorial en YouTube** : 
+- [¿Qué es una red LSTM?](https://youtu.be/1BubAvTVBYs?si=dD6zGgpOqoax_fHN).
+- [¡LSTM: Todo lo que necesitas saber!](https://youtu.be/f6PaCo-NfJA?si=ZsYh3w6TXUqveimi).
+- [UNA GUÍA ILUSTRADA DE RNN - LSTM - GRU || PNL](https://youtu.be/yIvYcDQWrwQ?si=pSyuhMe7kf1hiPPb).
+3. **Blog post de Analytics Vidhya**: [LSTM vs GRU](https://analyticsindiamag.com/ai-mysteries/lstm-vs-gru-in-recurrent-neural-network-a-comparative-study/).
+
+
+---
 # Día64
 # Día65
 # Día66
