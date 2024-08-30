@@ -82,7 +82,7 @@
 | [Día61](#Día61) | Benchmarks y Evaluaciones | 
 | [Día62](#Día62) | Introducción a las RNNs y su arquitectura | 
 | [Día63](#Día63) | LSTMs y GRUs | 
-| [Día64](#Día64) |  | 
+| [Día64](#Día64) | Seq2Seq y Modelos de Atención | 
 | [Día65](#Día65) |  | 
 | [Día66](#Día66) |  | 
 | [Día67](#Día67) |  | 
@@ -5173,6 +5173,97 @@ print(output)
 
 ---
 # Día64
+---
+## Seq2Seq y Modelos de Atención
+
+
+El modelo **Seq2Seq (Sequence-to-Sequence)** es una arquitectura comúnmente utilizada para tareas de secuencias, como traducción automática, resumen de textos, y diálogo. El propósito de este modelo es transformar una secuencia de entrada en otra secuencia de salida, donde la longitud de ambas secuencias puede variar. Los modelos de **atención** surgieron como una mejora fundamental para los Seq2Seq, especialmente en tareas donde las dependencias a largo plazo son importantes.
+
+### Arquitectura Seq2Seq
+
+El modelo Seq2Seq consta de dos partes principales:
+1. **Codificador (Encoder)**: Toma la secuencia de entrada y genera una representación interna de esta.
+2. **Decodificador (Decoder)**: Utiliza la representación del codificador para generar la secuencia de salida.
+
+El codificador generalmente es una red neuronal recurrente (RNN), como una LSTM o GRU, que lee la secuencia de entrada y comprime la información en un **estado oculto** (hidden state). El decodificador es también una RNN, que toma este estado oculto y predice cada token de salida secuencialmente.
+
+#### Limitaciones de Seq2Seq
+Aunque los Seq2Seq tienen éxito en muchas aplicaciones, su diseño tiene problemas cuando la longitud de la secuencia de entrada es larga, ya que el decodificador depende totalmente del estado oculto final del codificador, lo que lleva a la pérdida de información en secuencias largas. Es aquí donde entra en juego el mecanismo de **atención**.
+
+### Modelos de Atención
+
+El mecanismo de atención, introducido por Bahdanau et al. (2014), aborda el problema de dependencia a largo plazo al permitir que el decodificador acceda a todos los estados ocultos del codificador, no solo al último.
+
+En resumen, **la atención calcula una ponderación** para cada palabra en la secuencia de entrada mientras el decodificador genera cada palabra de salida, permitiendo que el modelo "preste atención" a las palabras más relevantes de la entrada en cada paso.
+
+#### Tipos de mecanismos de atención:
+
+1. **Atención Global**: Se consideran todas las palabras de la secuencia de entrada para cada predicción.
+2. **Atención Local**: Solo se consideran una parte limitada de las palabras de la secuencia de entrada.
+
+### Transformadores: Un paso más allá
+
+Los transformadores, introducidos en el paper **"Attention is All You Need"** por Vaswani et al. en 2017, llevan la atención a otro nivel. Este modelo elimina completamente las RNNs, y en su lugar se basa solo en mecanismos de atención para procesar la información. Esto ha demostrado ser extremadamente efectivo y ha llevado al desarrollo de modelos avanzados como BERT y GPT.
+
+## Ejemplo de Implementación de Seq2Seq con Atención en PyTorch
+
+```python
+import torch
+import torch.nn as nn
+
+# Definición del Mecanismo de Atención
+class Attention(nn.Module):
+    def __init__(self, hidden_size):
+        super(Attention, self).__init__()
+        self.attn = nn.Linear(hidden_size * 2, hidden_size)
+        self.v = nn.Parameter(torch.rand(hidden_size))
+
+    def forward(self, hidden, encoder_outputs):
+        # Concatenamos el estado oculto del decodificador con los estados del codificador
+        attn_weights = torch.tanh(self.attn(torch.cat((hidden, encoder_outputs), dim=1)))
+        attn_weights = torch.sum(attn_weights * self.v, dim=2)
+        return torch.softmax(attn_weights, dim=1)
+
+# Definición del Decodificador con Atención
+class DecoderWithAttention(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(DecoderWithAttention, self).__init__()
+        self.attention = Attention(hidden_size)
+        self.gru = nn.GRU(input_size + hidden_size, hidden_size)
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, input, hidden, encoder_outputs):
+        attn_weights = self.attention(hidden, encoder_outputs)
+        context = attn_weights.bmm(encoder_outputs)
+        rnn_input = torch.cat((input, context), dim=2)
+        output, hidden = self.gru(rnn_input, hidden)
+        output = self.fc(output)
+        return output, hidden, attn_weights
+
+# Esta arquitectura puede ser utilizada junto a un codificador RNN o GRU
+```
+
+## Aplicaciones de Seq2Seq y Modelos de Atención
+
+1. **Traducción automática**: La traducción de textos entre idiomas es una de las aplicaciones más populares de los modelos Seq2Seq con atención. El decodificador puede enfocarse en diferentes partes de la oración de entrada en diferentes momentos para generar traducciones más precisas.
+2. **Resumen automático**: Los modelos de atención permiten a los modelos identificar las partes más importantes de un texto largo para generar un resumen.
+3. **Chatbots y asistentes virtuales**: Estos modelos también son clave para aplicaciones de conversación, donde se necesita mantener el contexto de las interacciones previas.
+
+## Recursos Adicionales
+
+1. **Documentación de PyTorch** sobre [Seq2Seq con atención](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html).
+2. **Tutorial de YouTube**  
+    - [Sequence to Sequence (Seq2Seq): ¡Traductor Inglés a Español! (Parte 1)
+](https://youtu.be/iKgAGnMUsHk?si=u62DkT1gPWPkL6dl).
+    - [¡Atención! (Sequence to sequence with attention): ¡Traductor Inglés a Español! (Parte 2)](https://youtu.be/pyshwfclcPM?si=3-79mpvaPJTQ69PJ).
+3. Artículo de **Analytics Vidhya**: [Attention Mechanism in Deep Learning](https://www.analyticsvidhya.com/blog/2019/11/comprehensive-guide-attention-mechanism-deep-learning/).
+4. **Blog post de Towards Data Science** sobre [Seq2Seq y modelos de atención](https://towardsdatascience.com/tagged/seq2seq).
+
+## Enlaces relevantes:
+- **Paper original de atención**: [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)
+- **Paper de Transformers**: [Attention is All You Need](https://arxiv.org/abs/1706.03762).
+
+---
 # Día65
 # Día66
 # Día67
