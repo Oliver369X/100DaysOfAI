@@ -82,7 +82,7 @@
 | [Día61](#Día61) | Benchmarks y Evaluaciones | 
 | [Día62](#Día62) | Introducción a las RNNs y su arquitectura | 
 | [Día63](#Día63) | LSTMs y GRUs | 
-| [Día64](#Día64) | Introducción a los Transformers | 
+| [Día64](#Día64) | Seq2Seq y Modelos de AtenciónIntroducción a los Transformers | 
 | [Día65](#Día65) |  | 
 | [Día66](#Día66) |  | 
 | [Día67](#Día67) |  | 
@@ -5174,67 +5174,94 @@ print(output)
 ---
 # Día64
 ---
-## Introducción a los Transformers
+## Seq2Seq y Modelos de Atención
 
-## ¿Qué son los Transformers?
 
-Los **Transformers** son una arquitectura que ha transformado por completo el campo del procesamiento del lenguaje natural (NLP) y otras áreas de la inteligencia artificial. Presentados en el influyente artículo **"Attention is All You Need"** (Vaswani et al., 2017), los Transformers superaron las limitaciones de las redes neuronales recurrentes (RNNs), dejando atrás su enfoque secuencial y permitiendo un procesamiento paralelo que ha mejorado significativamente la capacidad de los modelos para capturar relaciones complejas y de largo alcance en los datos.
+El modelo **Seq2Seq (Sequence-to-Sequence)** es una arquitectura comúnmente utilizada para tareas de secuencias, como traducción automática, resumen de textos, y diálogo. El propósito de este modelo es transformar una secuencia de entrada en otra secuencia de salida, donde la longitud de ambas secuencias puede variar. Los modelos de **atención** surgieron como una mejora fundamental para los Seq2Seq, especialmente en tareas donde las dependencias a largo plazo son importantes.
 
-### Principales Componentes de los Transformers
+### Arquitectura Seq2Seq
 
-1. **Mecanismo de Atención**: En el corazón del Transformer está el **mecanismo de autoatención (Self-Attention)**, que evalúa y pondera las relaciones entre las palabras en una secuencia, sin importar su distancia. Esto permite una comprensión profunda de las dependencias contextuales que los modelos tradicionales como las RNNs no podían manejar eficazmente.
+El modelo Seq2Seq consta de dos partes principales:
+1. **Codificador (Encoder)**: Toma la secuencia de entrada y genera una representación interna de esta.
+2. **Decodificador (Decoder)**: Utiliza la representación del codificador para generar la secuencia de salida.
 
-2. **Arquitectura Codificador-Decodificador**: 
-   - El **codificador** transforma la secuencia de entrada en una representación interna rica.
-   - El **decodificador** utiliza esta representación para generar la secuencia de salida, apoyándose en la **atención cruzada (Cross-Attention)** para vincular el contexto del codificador con la generación de cada palabra en la salida.
+El codificador generalmente es una red neuronal recurrente (RNN), como una LSTM o GRU, que lee la secuencia de entrada y comprime la información en un **estado oculto** (hidden state). El decodificador es también una RNN, que toma este estado oculto y predice cada token de salida secuencialmente.
 
-3. **Embeddings Posicionales**: Los Transformers no procesan las secuencias de manera ordenada, por lo que se utilizan **embeddings posicionales** para incorporar información sobre la posición de cada palabra, ayudando al modelo a entender el orden y la estructura de la secuencia.
+#### Limitaciones de Seq2Seq
+Aunque los Seq2Seq tienen éxito en muchas aplicaciones, su diseño tiene problemas cuando la longitud de la secuencia de entrada es larga, ya que el decodificador depende totalmente del estado oculto final del codificador, lo que lleva a la pérdida de información en secuencias largas. Es aquí donde entra en juego el mecanismo de **atención**.
 
-### ¿Por qué los Transformers son tan Revolucionarios?
+### Modelos de Atención
 
-Los Transformers han redefinido lo que es posible en la inteligencia artificial, permitiendo la creación de modelos como **BERT**, **GPT-3** y **T5**, que han establecido nuevos estándares en tareas de NLP, desde la traducción automática hasta la generación de lenguaje. Su capacidad para manejar grandes volúmenes de datos y capturar dependencias a largo plazo sin las limitaciones de las RNNs los convierte en la base de los avances más impresionantes en IA de los últimos años.
+El mecanismo de atención, introducido por Bahdanau et al. (2014), aborda el problema de dependencia a largo plazo al permitir que el decodificador acceda a todos los estados ocultos del codificador, no solo al último.
 
-### Ventajas Clave de los Transformers
+En resumen, **la atención calcula una ponderación** para cada palabra en la secuencia de entrada mientras el decodificador genera cada palabra de salida, permitiendo que el modelo "preste atención" a las palabras más relevantes de la entrada en cada paso.
 
-1. **Procesamiento Paralelo**: Los Transformers procesan todas las palabras de la secuencia simultáneamente, eliminando los cuellos de botella que enfrentaban las RNNs y acelerando drásticamente el tiempo de entrenamiento.
-2. **Escalabilidad sin Precedentes**: Gracias a su estructura paralelizable, los Transformers pueden entrenarse en conjuntos de datos masivos, soportando modelos con miles de millones de parámetros, algo impensable con arquitecturas anteriores.
-3. **Captura de Dependencias a Largo Plazo**: Los Transformers sobresalen en capturar dependencias a largo plazo sin sufrir los problemas de "vanishing gradients" que afectaban a las RNNs, lo que mejora la calidad y precisión de los modelos.
+#### Tipos de mecanismos de atención:
 
-### Ejemplo Básico de Implementación en PyTorch
+1. **Atención Global**: Se consideran todas las palabras de la secuencia de entrada para cada predicción.
+2. **Atención Local**: Solo se consideran una parte limitada de las palabras de la secuencia de entrada.
 
-A continuación, un ejemplo simplificado de cómo construir un Transformer en PyTorch:
+### Transformadores: Un paso más allá
+
+Los transformadores, introducidos en el paper **"Attention is All You Need"** por Vaswani et al. en 2017, llevan la atención a otro nivel. Este modelo elimina completamente las RNNs, y en su lugar se basa solo en mecanismos de atención para procesar la información. Esto ha demostrado ser extremadamente efectivo y ha llevado al desarrollo de modelos avanzados como BERT y GPT.
+
+## Ejemplo de Implementación de Seq2Seq con Atención en PyTorch
 
 ```python
 import torch
 import torch.nn as nn
 
-class TransformerModel(nn.Module):
-    def __init__(self, input_dim, n_heads, num_encoder_layers, num_decoder_layers, hidden_dim):
-        super(TransformerModel, self).__init__()
-        self.transformer = nn.Transformer(d_model=input_dim, nhead=n_heads, num_encoder_layers=num_encoder_layers, num_decoder_layers=num_decoder_layers, dim_feedforward=hidden_dim)
-        self.fc = nn.Linear(input_dim, hidden_dim)
-        
-    def forward(self, src, tgt):
-        out = self.transformer(src, tgt)
-        return self.fc(out)
+# Definición del Mecanismo de Atención
+class Attention(nn.Module):
+    def __init__(self, hidden_size):
+        super(Attention, self).__init__()
+        self.attn = nn.Linear(hidden_size * 2, hidden_size)
+        self.v = nn.Parameter(torch.rand(hidden_size))
 
-# Parámetros del modelo
-input_dim = 512
-n_heads = 8
-num_encoder_layers = 6
-num_decoder_layers = 6
-hidden_dim = 2048
+    def forward(self, hidden, encoder_outputs):
+        # Concatenamos el estado oculto del decodificador con los estados del codificador
+        attn_weights = torch.tanh(self.attn(torch.cat((hidden, encoder_outputs), dim=1)))
+        attn_weights = torch.sum(attn_weights * self.v, dim=2)
+        return torch.softmax(attn_weights, dim=1)
 
-# Inicializamos el modelo
-model = TransformerModel(input_dim, n_heads, num_encoder_layers, num_decoder_layers, hidden_dim)
+# Definición del Decodificador con Atención
+class DecoderWithAttention(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(DecoderWithAttention, self).__init__()
+        self.attention = Attention(hidden_size)
+        self.gru = nn.GRU(input_size + hidden_size, hidden_size)
+        self.fc = nn.Linear(hidden_size, output_size)
+
+    def forward(self, input, hidden, encoder_outputs):
+        attn_weights = self.attention(hidden, encoder_outputs)
+        context = attn_weights.bmm(encoder_outputs)
+        rnn_input = torch.cat((input, context), dim=2)
+        output, hidden = self.gru(rnn_input, hidden)
+        output = self.fc(output)
+        return output, hidden, attn_weights
+
+# Esta arquitectura puede ser utilizada junto a un codificador RNN o GRU
 ```
 
-### Recursos para Profundizar
+## Aplicaciones de Seq2Seq y Modelos de Atención
 
-- **Documentación oficial de PyTorch sobre Transformers**: [PyTorch Transformers](https://pytorch.org/docs/stable/generated/torch.nn.Transformer.html)
-- **Paper original de Vaswani et al.**: [Attention is All You Need](https://arxiv.org/abs/1706.03762)
-- **Curso de Transformers en NLP por Hugging Face**: [Hugging Face Transformers Course](https://huggingface.co/course/chapter1)
-- **Video explicativo sobre Transformers en YouTube**: [What is a Transformer?](https://www.youtube.com/watch?v=FWFA4DGuzSc)
+1. **Traducción automática**: La traducción de textos entre idiomas es una de las aplicaciones más populares de los modelos Seq2Seq con atención. El decodificador puede enfocarse en diferentes partes de la oración de entrada en diferentes momentos para generar traducciones más precisas.
+2. **Resumen automático**: Los modelos de atención permiten a los modelos identificar las partes más importantes de un texto largo para generar un resumen.
+3. **Chatbots y asistentes virtuales**: Estos modelos también son clave para aplicaciones de conversación, donde se necesita mantener el contexto de las interacciones previas.
+
+## Recursos Adicionales
+
+1. **Documentación de PyTorch** sobre [Seq2Seq con atención](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html).
+2. **Tutorial de YouTube**  
+    - [Sequence to Sequence (Seq2Seq): ¡Traductor Inglés a Español! (Parte 1)
+](https://youtu.be/iKgAGnMUsHk?si=u62DkT1gPWPkL6dl).
+    - [¡Atención! (Sequence to sequence with attention): ¡Traductor Inglés a Español! (Parte 2)](https://youtu.be/pyshwfclcPM?si=3-79mpvaPJTQ69PJ).
+3. Artículo de **Analytics Vidhya**: [Attention Mechanism in Deep Learning](https://www.analyticsvidhya.com/blog/2019/11/comprehensive-guide-attention-mechanism-deep-learning/).
+4. **Blog post de Towards Data Science** sobre [Seq2Seq y modelos de atención](https://towardsdatascience.com/tagged/seq2seq).
+
+## Enlaces relevantes:
+- **Paper original de atención**: [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473)
+- **Paper de Transformers**: [Attention is All You Need](https://arxiv.org/abs/1706.03762).
 
 ---
 # Día65
