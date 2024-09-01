@@ -82,7 +82,7 @@
 | [Día61](#Día61) | Benchmarks y Evaluaciones | 
 | [Día62](#Día62) | Introducción a las RNNs y su arquitectura | 
 | [Día63](#Día63) | LSTMs y GRUs | 
-| [Día64](#Día64) |  | 
+| [Día64](#Día64) | Introducción a los Transformers | 
 | [Día65](#Día65) |  | 
 | [Día66](#Día66) |  | 
 | [Día67](#Día67) |  | 
@@ -5173,6 +5173,70 @@ print(output)
 
 ---
 # Día64
+---
+## Introducción a los Transformers
+
+## ¿Qué son los Transformers?
+
+Los **Transformers** son una arquitectura que ha transformado por completo el campo del procesamiento del lenguaje natural (NLP) y otras áreas de la inteligencia artificial. Presentados en el influyente artículo **"Attention is All You Need"** (Vaswani et al., 2017), los Transformers superaron las limitaciones de las redes neuronales recurrentes (RNNs), dejando atrás su enfoque secuencial y permitiendo un procesamiento paralelo que ha mejorado significativamente la capacidad de los modelos para capturar relaciones complejas y de largo alcance en los datos.
+
+### Principales Componentes de los Transformers
+
+1. **Mecanismo de Atención**: En el corazón del Transformer está el **mecanismo de autoatención (Self-Attention)**, que evalúa y pondera las relaciones entre las palabras en una secuencia, sin importar su distancia. Esto permite una comprensión profunda de las dependencias contextuales que los modelos tradicionales como las RNNs no podían manejar eficazmente.
+
+2. **Arquitectura Codificador-Decodificador**: 
+   - El **codificador** transforma la secuencia de entrada en una representación interna rica.
+   - El **decodificador** utiliza esta representación para generar la secuencia de salida, apoyándose en la **atención cruzada (Cross-Attention)** para vincular el contexto del codificador con la generación de cada palabra en la salida.
+
+3. **Embeddings Posicionales**: Los Transformers no procesan las secuencias de manera ordenada, por lo que se utilizan **embeddings posicionales** para incorporar información sobre la posición de cada palabra, ayudando al modelo a entender el orden y la estructura de la secuencia.
+
+### ¿Por qué los Transformers son tan Revolucionarios?
+
+Los Transformers han redefinido lo que es posible en la inteligencia artificial, permitiendo la creación de modelos como **BERT**, **GPT-3** y **T5**, que han establecido nuevos estándares en tareas de NLP, desde la traducción automática hasta la generación de lenguaje. Su capacidad para manejar grandes volúmenes de datos y capturar dependencias a largo plazo sin las limitaciones de las RNNs los convierte en la base de los avances más impresionantes en IA de los últimos años.
+
+### Ventajas Clave de los Transformers
+
+1. **Procesamiento Paralelo**: Los Transformers procesan todas las palabras de la secuencia simultáneamente, eliminando los cuellos de botella que enfrentaban las RNNs y acelerando drásticamente el tiempo de entrenamiento.
+2. **Escalabilidad sin Precedentes**: Gracias a su estructura paralelizable, los Transformers pueden entrenarse en conjuntos de datos masivos, soportando modelos con miles de millones de parámetros, algo impensable con arquitecturas anteriores.
+3. **Captura de Dependencias a Largo Plazo**: Los Transformers sobresalen en capturar dependencias a largo plazo sin sufrir los problemas de "vanishing gradients" que afectaban a las RNNs, lo que mejora la calidad y precisión de los modelos.
+
+### Ejemplo Básico de Implementación en PyTorch
+
+A continuación, un ejemplo simplificado de cómo construir un Transformer en PyTorch:
+
+```python
+import torch
+import torch.nn as nn
+
+class TransformerModel(nn.Module):
+    def __init__(self, input_dim, n_heads, num_encoder_layers, num_decoder_layers, hidden_dim):
+        super(TransformerModel, self).__init__()
+        self.transformer = nn.Transformer(d_model=input_dim, nhead=n_heads, num_encoder_layers=num_encoder_layers, num_decoder_layers=num_decoder_layers, dim_feedforward=hidden_dim)
+        self.fc = nn.Linear(input_dim, hidden_dim)
+        
+    def forward(self, src, tgt):
+        out = self.transformer(src, tgt)
+        return self.fc(out)
+
+# Parámetros del modelo
+input_dim = 512
+n_heads = 8
+num_encoder_layers = 6
+num_decoder_layers = 6
+hidden_dim = 2048
+
+# Inicializamos el modelo
+model = TransformerModel(input_dim, n_heads, num_encoder_layers, num_decoder_layers, hidden_dim)
+```
+
+### Recursos para Profundizar
+
+- **Documentación oficial de PyTorch sobre Transformers**: [PyTorch Transformers](https://pytorch.org/docs/stable/generated/torch.nn.Transformer.html)
+- **Paper original de Vaswani et al.**: [Attention is All You Need](https://arxiv.org/abs/1706.03762)
+- **Curso de Transformers en NLP por Hugging Face**: [Hugging Face Transformers Course](https://huggingface.co/course/chapter1)
+- **Video explicativo sobre Transformers en YouTube**: [What is a Transformer?](https://www.youtube.com/watch?v=FWFA4DGuzSc)
+
+---
 # Día65
 # Día66
 # Día67
