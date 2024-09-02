@@ -84,7 +84,7 @@
 | [Día63](#Día63) | LSTMs y GRUs | 
 | [Día64](#Día64) | Seq2Seq y Modelos de Atención | 
 | [Día65](#Día65) | Introducción a los Transformers | 
-| [Día66](#Día66) |  | 
+| [Día66](#Día66) | Arquitectura Transformer en Detalle | 
 | [Día67](#Día67) |  | 
 | [Día68](#Día68) |  | 
 | [Día69](#Día69) |  | 
@@ -5331,6 +5331,114 @@ model = TransformerModel(input_dim, n_heads, num_encoder_layers, num_decoder_lay
 ---
 
 # Día66
+---
+
+# Arquitectura del Transformer en Detalle
+
+La arquitectura del Transformer ha revolucionado el procesamiento del lenguaje natural (NLP), convirtiéndose en una piedra angular de la inteligencia artificial moderna. En este post, desglosaremos cada componente clave de esta arquitectura para entender cómo trabajan en conjunto y logran resultados sobresalientes.
+
+## 1. Mecanismo de Atención (Attention Mechanism)
+El Transformer se basa en el mecanismo de atención, el cual permite al modelo asignar diferentes niveles de importancia a distintas partes de la secuencia de entrada. A diferencia de las RNNs, que procesan secuencias de forma secuencial, el mecanismo de atención permite al modelo enfocarse en palabras clave independientemente de su posición en la secuencia.
+
+El tipo de atención utilizado es la **Atención Autocodificada (Self-Attention)**, donde:
+- Cada palabra en la secuencia se compara con todas las demás para determinar cuáles son más relevantes en cada paso.
+- Se generan tres matrices: Q (Query), K (Key) y V (Value), que se combinan mediante multiplicación y normalización para asignar pesos a las palabras.
+
+**Fórmula de la atención autocodificada:**
+
+\[
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\]
+
+- **Q:** Queries.
+- **K:** Keys.
+- **V:** Values.
+- **d_k:** Dimensión de los keys.
+
+## 2. Multi-Head Attention
+Para potenciar la capacidad del Transformer de "prestar atención" a diferentes partes de la secuencia simultáneamente, se utiliza la **atención de múltiples cabezas (Multi-Head Attention)**. Este mecanismo:
+- Divide las queries, keys y values en varias "cabezas" independientes, permitiendo que cada una aplique atención por separado.
+- Luego, las salidas de todas las cabezas se concatenan y se proyectan a través de una capa lineal.
+
+Esto permite al modelo capturar múltiples aspectos y relaciones dentro de la secuencia, mejorando la comprensión contextual.
+
+## 3. Feed-Forward Networks
+Después de aplicar la atención, el Transformer usa una **red neuronal feed-forward** en cada posición de la secuencia de manera independiente. Estas redes, formadas por capas totalmente conectadas, procesan cada vector de palabra para que el modelo aprenda representaciones no lineales.
+
+**Estructura de la red:**
+
+\[
+\text{FFN}(x) = \text{ReLU}(xW_1 + b_1)W_2 + b_2
+\]
+
+Este bloque refina las representaciones aprendidas, capturando características más complejas.
+
+## 4. Embeddings Posicionales
+Dado que los Transformers no procesan secuencias en orden, como lo hacen las RNNs, es necesario añadir **información posicional**. Los embeddings posicionales se añaden a los embeddings de las palabras para que el modelo pueda inferir la posición relativa de cada palabra en la secuencia.
+
+**Fórmula de los embeddings posicionales:**
+
+\[
+PE(\text{pos}, 2i) = \sin\left(\frac{\text{pos}}{10000^{2i/d}}\right)
+\]
+\[
+PE(\text{pos}, 2i+1) = \cos\left(\frac{\text{pos}}{10000^{2i/d}}\right)
+\]
+
+- **pos:** Posición de la palabra en la secuencia.
+- **i:** Dimensión del embedding.
+
+## 5. Estructura de Codificador-Decodificador
+El Transformer sigue una arquitectura de **codificador-decodificador**, donde:
+- El **Codificador** procesa la secuencia de entrada y genera una representación interna. Está compuesto por capas de atención autocodificada y redes feed-forward.
+- El **Decodificador** toma la representación del codificador y genera la secuencia de salida, utilizando también una combinación de atención autocodificada y atención cruzada (cross-attention).
+
+El decodificador incluye máscaras para asegurar que el modelo no vea posiciones futuras en la secuencia de salida durante el entrenamiento, promoviendo un aprendizaje autoregresivo.
+
+## 6. Normalización por Capas (Layer Normalization)
+Cada capa del Transformer incluye una **normalización por capas (Layer Normalization)** y una **conexión residual**. Esto estabiliza el entrenamiento, mejora la convergencia y previene problemas como el "vanishing gradient".
+
+## Implementación Básica en PyTorch
+Aquí tienes un ejemplo simplificado de cómo puedes implementar un Transformer en PyTorch:
+
+```python
+import torch
+import torch.nn as nn
+
+class TransformerModel(nn.Module):
+    def __init__(self, input_dim, n_heads, num_encoder_layers, num_decoder_layers, hidden_dim):
+        super(TransformerModel, self).__init__()
+        self.transformer = nn.Transformer(
+            d_model=input_dim, 
+            nhead=n_heads, 
+            num_encoder_layers=num_encoder_layers, 
+            num_decoder_layers=num_decoder_layers, 
+            dim_feedforward=hidden_dim
+        )
+        self.fc = nn.Linear(input_dim, hidden_dim)
+
+    def forward(self, src, tgt):
+        out = self.transformer(src, tgt)
+        return self.fc(out)
+
+# Parámetros del modelo
+input_dim = 512
+n_heads = 8
+num_encoder_layers = 6
+num_decoder_layers = 6
+hidden_dim = 2048
+
+# Inicializamos el modelo
+model = TransformerModel(input_dim, n_heads, num_encoder_layers, num_decoder_layers, hidden_dim)
+```
+
+## Recursos Adicionales
+- [Paper original de Transformers: Attention is All You Need](https://arxiv.org/abs/1706.03762)
+- [Tutorial de PyTorch sobre Transformers: PyTorch Transformers Documentation](https://pytorch.org/tutorials/)
+- [Curso de Transformers de Hugging Face: Hugging Face Course](https://huggingface.co/course)
+- [Explicación visual de la arquitectura de Transformer: The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
+
+---
 # Día67
 # Día68
 # Día69
