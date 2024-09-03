@@ -86,7 +86,7 @@
 | [Día65](#Día65) | Introducción a los Transformers | 
 | [Día66](#Día66) | Arquitectura Transformer en Detalle | 
 | [Día67](#Día67) | Aplicaciones de Transformers en NLP | 
-| [Día68](#Día68) |  | 
+| [Día68](#Día68) | BERT y sus variantes | 
 | [Día69](#Día69) |  | 
 | [Día70](#Día70) |  | 
 | [Día71](#Día71) |  | 
@@ -5488,6 +5488,112 @@ Los Transformers, con modelos como **GPT-4o**, han optimizado la capacidad de lo
 
 ---
 # Día68
+---
+
+##  BERT y sus Variantes
+
+### Introducción a BERT
+
+**BERT (Bidirectional Encoder Representations from Transformers)** es un modelo fundamental en NLP, introducido por Google en 2018, que entiende el contexto de las palabras en ambos sentidos (bidireccional). Esto lo hace poderoso para tareas como clasificación de texto, respuestas a preguntas y más.
+
+### Arquitectura de BERT
+
+BERT se basa en la arquitectura Transformer, específicamente en la parte del encoder. A diferencia de los modelos unidireccionales, BERT analiza el contexto de una palabra en ambas direcciones (izquierda a derecha y derecha a izquierda) simultáneamente. La arquitectura de BERT consiste en múltiples capas de encoders que procesan el texto de entrada y generan representaciones contextuales profundas.
+
+#### Entrenamiento de BERT
+BERT se entrena en dos fases principales:
+
+**Pre-entrenamiento**: BERT se entrena en grandes volúmenes de texto utilizando dos tareas:
+
+- Modelo de Lenguaje Máscara (MLM): En este proceso, se ocultan algunas palabras en la oración, y BERT debe predecirlas usando el contexto de las palabras restantes.
+
+- Predicción de la Siguiente Oración (NSP): Aquí, BERT aprende a predecir si una oración B sigue a una oración A en un par de oraciones.
+
+**Afinación**: BERT se ajusta específicamente para tareas de NLP, como clasificación de texto, utilizando conjuntos de datos etiquetados.
+
+### Variantes de BERT
+
+A medida que BERT demostró ser altamente efectivo, surgieron varias variantes para optimizar su rendimiento en diferentes escenarios:
+
+#### 1. RoBERTa (Robustly Optimized BERT Pretraining Approach)
+
+**RoBERTa** es una versión mejorada de BERT que elimina la tarea de predicción de la siguiente oración y se entrena en conjuntos de datos más grandes y durante más tiempo. RoBERTa utiliza mayores lotes de datos y una tasa de aprendizaje más alta, lo que permite que el modelo capture patrones más complejos en el texto. Esto hace que sea más robusto y efectivo en muchas tareas de NLP.
+
+#### 2. ALBERT (A Lite BERT)
+
+**ALBERT** es una versión más ligera y eficiente de BERT que reduce significativamente el tamaño del modelo utilizando técnicas como la factorización de matrices y la parametrización compartida. ALBERT reduce el número de parámetros al descomponer las matrices en capas más pequeñas, manteniendo al mismo tiempo un rendimiento competitivo. Esto lo hace ideal para implementaciones en dispositivos con recursos limitados.
+
+#### 3. DistilBERT
+
+**DistilBERT** es una versión compacta de BERT, que conserva el 97% del rendimiento de BERT original pero con solo el 60% de los parámetros. DistilBERT es el resultado de un proceso de **distilación del conocimiento**, donde un modelo más pequeño aprende a replicar el comportamiento de un modelo más grande. Esto lo hace mucho más rápido y menos intensivo en recursos, ideal para aplicaciones en tiempo real.
+
+#### 4. BERTweet
+
+**BERTweet** es una adaptación de BERT para el análisis de texto en redes sociales, entrenado específicamente en tweets. Dado que el lenguaje en las redes sociales es más informal y está lleno de abreviaturas, BERTweet se entrena en grandes cantidades de tweets para comprender mejor este tipo de lenguaje. Esto lo hace especialmente útil para tareas como el análisis de sentimientos en redes sociales.
+
+#### 5. mBERT (Multilingual BERT)
+
+**mBERT** es una versión multilingüe de BERT, entrenada en textos de 104 idiomas diferentes. A diferencia de otros modelos que se entrenan en un solo idioma, mBERT es capaz de manejar tareas de NLP en múltiples idiomas sin la necesidad de traducción. Esto lo convierte en una herramienta poderosa para aplicaciones globales.
+
+### Ejemplo Práctico: Clasificación de Texto con BERT
+
+A continuación, te presento un ejemplo práctico utilizando BERT para la clasificación de texto. Este ejemplo se basa en una tarea de clasificación de sentimientos:
+
+```python
+from transformers import BertTokenizer, BertForSequenceClassification
+from torch.utils.data import DataLoader, TensorDataset
+import torch
+
+# Objetivo: Utilizar BERT para clasificar oraciones como positivas o negativas.
+
+# 1. Cargar el tokenizer de BERT
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+
+# 2. Ejemplo de datos (agregar más ejemplos para un mejor entendimiento)
+oraciones = [
+    "I love this product!", 
+    "This is the worst thing ever.", 
+    "I am not happy with the service.", 
+    "The quality is excellent!"
+]
+labels = [1, 0, 0, 1]  # 1=positivo, 0=negativo
+
+# 3. Tokenizar las oraciones (explicar padding y truncation)
+inputs = tokenizer(oraciones, padding=True, truncation=True, return_tensors='pt')
+
+# 4. Crear un TensorDataset y DataLoader
+dataset = TensorDataset(inputs['input_ids'], inputs['attention_mask'], torch.tensor(labels))
+dataloader = DataLoader(dataset, batch_size=2)
+
+# 5. Cargar el modelo preentrenado (explicar que no se entrena aquí, solo se evalúa)
+model = BertForSequenceClassification.from_pretrained('bert-base-uncased')
+
+# 6. Realizar predicciones (explicar modo de evaluación)
+model.eval()
+predicciones = []
+with torch.no_grad():
+    for batch in dataloader:
+        input_ids, attention_mask, labels = batch
+        outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+        preds = torch.argmax(outputs.logits, dim=-1)
+        predicciones.extend(preds)
+
+# 7. Evaluación simple del modelo
+correctos = sum([1 for pred, label in zip(predicciones, labels) if pred == label])
+precision = correctos / len(labels)
+print(f'Precisión del modelo: {precision:.2f}')
+
+```
+
+### Enlaces para Profundizar
+
+- [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805) - Artículo original de BERT.
+- [RoBERTa: A Robustly Optimized BERT Pretraining Approach](https://arxiv.org/abs/1907.11692) - Artículo sobre RoBERTa.
+- [Explicación detallada de la arquitectura de BERT](https://www.codificandobits.com/blog/bert-en-el-natural-language-processing/) - Análisis profundo de BERT y su funcionamiento.
+- Video: [Understanding BERT](https://www.youtube.com/watch?v=xI0HHN5XKDo) - Explicación visual de BERT.
+- [Hugging Face Transformers](https://huggingface.co/transformers/) - Guía completa para implementar BERT y sus variantes.
+
+---
 # Día69
 # Día70
 # Día71
