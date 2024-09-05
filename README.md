@@ -88,7 +88,7 @@
 | [Día67](#Día67) | Aplicaciones de Transformers en NLP | 
 | [Día68](#Día68) | BERT y sus variantes | 
 | [Día69](#Día69) | Visión General de LLMs: Conceptos y Evolución | 
-| [Día70](#Día70) |  | 
+| [Día70](#Día70) | Visualización de Modelos de Lenguaje GPT en 3D | 
 | [Día71](#Día71) |  | 
 | [Día72](#Día72) |  | 
 | [Día73](#Día73) |  | 
@@ -5656,6 +5656,53 @@ La evolución de los LLMs ha sido rápida y disruptiva, y aunque ya están trans
 
 ---
 # Día70
+---
+## Visualización de Modelos de Lenguaje GPT en 3D
+
+### Introducción
+En este día, exploraremos el trabajo de **Brendan Bycroft**, quien ha desarrollado una impresionante visualización en 3D de los modelos de lenguaje de tipo **GPT** y una simulación de una **CPU basada en RISC-V**. A través de estos proyectos, podemos obtener una comprensión más profunda del funcionamiento de los modelos de lenguaje y la arquitectura de CPUs desde sus componentes básicos. Esto es útil no solo para quienes estudian procesamiento de lenguaje natural (NLP) sino también para aquellos interesados en los fundamentos de la computación.
+
+### Preliminares
+
+#### **Modelos de Lenguaje (LLMs)**
+Los **modelos de lenguaje grandes (LLMs)** como GPT son sistemas entrenados para procesar secuencias de texto y generar predicciones. En este proyecto, se utiliza una versión pequeña inspirada en **minGPT** de **Andrej Karpathy** para ilustrar cómo los LLMs manejan y procesan secuencias de tokens. La visualización muestra cómo se ordenan las secuencias y cómo los modelos aprenden a predecir el siguiente token en función de los anteriores.
+
+#### **Simulación de CPU**
+El segundo proyecto se centra en la simulación de una **CPU basada en la arquitectura RISC-V**. A través de esta simulación, se puede visualizar cómo fluye la información dentro de una CPU y cómo se ejecutan las instrucciones a nivel de puertas lógicas. Este enfoque nos proporciona una forma interactiva de entender los principios básicos de la arquitectura computacional.
+
+### Componentes del Modelo GPT
+
+#### **Embeddings**
+El primer paso en un modelo GPT es convertir cada token de la secuencia de entrada en un **vector numérico** o embedding. Este vector representa al token en un espacio de alta dimensionalidad que captura su significado relativo en el contexto del lenguaje.
+
+#### **Layer Norm (Normalización por Capas)**
+La normalización por capas estabiliza los cálculos del modelo, garantizando que los valores que pasan a las siguientes capas mantengan una distribución uniforme. Esto es crucial para la estabilidad y el rendimiento del modelo en capas profundas.
+
+#### **Self-Attention (Atención Automática)**
+El mecanismo de self-attention permite que el modelo evalúe cada token en relación con todos los otros tokens de la secuencia. Este es el corazón de los modelos GPT, ya que ayuda al modelo a aprender las dependencias entre palabras o caracteres, sin importar la distancia entre ellas en la secuencia.
+
+#### **Proyección**
+Luego de la auto-atención, los resultados se transforman mediante una proyección lineal, lo que ajusta la información para el siguiente procesamiento. Esto prepara al modelo para captar más características complejas en capas posteriores.
+
+#### **MLP (Red Neuronal Multicapa)**
+El modelo emplea una red neuronal multicapa para aprender representaciones más complejas. A través de funciones no lineales, esta capa permite al modelo generalizar mejor y capturar patrones más abstractos del texto.
+
+#### **Transformers**
+El núcleo de GPT son las capas repetidas de **Transformers**, cada una compuesta por bloques de auto-atención y MLP. Estas capas profundas son responsables de la capacidad del modelo para aprender relaciones complejas en los datos.
+
+#### **Softmax**
+La función **softmax** convierte los valores generados por el modelo en probabilidades, lo que permite predecir el siguiente token en la secuencia. Estas probabilidades se utilizan para elegir la palabra más probable que sigue en el texto generado.
+
+#### **Salida (Output)**
+Finalmente, el modelo genera una predicción del siguiente token en la secuencia, utilizando el token predicho para continuar el proceso hasta completar la secuencia de texto.
+
+### Recursos Adicionales
+- **Visualización interactiva del modelo de GPT:** [LLM Visualizer por Brendan Bycroft](https://bbycroft.net/llm)
+- **Código fuente de minGPT:** [GitHub - minGPT](https://github.com/karpathy/minGPT)
+- **Simulación de CPU RISC-V en 3D:** [Simulación CPU por Brendan Bycroft](https://github.com/bbycroft/llm-viz)
+
+El trabajo de Bycroft es una excelente herramienta para visualizar los procesos internos de los LLMs y las CPUs, brindando una comprensión clara de conceptos complejos.
+---
 # Día71
 # Día72
 # Día73
