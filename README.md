@@ -89,7 +89,7 @@
 | [Día68](#Día68) | BERT y sus variantes | 
 | [Día69](#Día69) | Visión General de LLMs: Conceptos y Evolución | 
 | [Día70](#Día70) | Visualización de Modelos de Lenguaje GPT en 3D | 
-| [Día71](#Día71) |  | 
+| [Día71](#Día71) | Cómo Construir un LLM desde cero | 
 | [Día72](#Día72) |  | 
 | [Día73](#Día73) |  | 
 | [Día74](#Día74) |  | 
@@ -5704,6 +5704,86 @@ Finalmente, el modelo genera una predicción del siguiente token en la secuencia
 El trabajo de Bycroft es una excelente herramienta para visualizar los procesos internos de los LLMs y las CPUs, brindando una comprensión clara de conceptos complejos.
 ---
 # Día71
+---
+
+## Cómo Construir un LLM desde cero
+
+Construir un modelo de lenguaje grande (LLM) desde cero solía ser una tarea reservada para grandes organizaciones con recursos computacionales significativos y equipos de ingenieros especializados. Sin embargo, con el crecimiento del conocimiento y la disponibilidad de recursos actuales, desarrollar un LLM personalizado es cada vez más accesible. Esta guía te llevará a través de los pasos clave para crear tu propio LLM, abordando la definición de la arquitectura, la curación de datos, el entrenamiento y las técnicas de evaluación.
+
+## 1. Define el Caso de Uso de tu LLM
+
+El primer paso, y posiblemente el más importante, es definir claramente el propósito de tu LLM. Esta definición influirá en:
+
+- **Tamaño del Modelo:** El caso de uso determina la complejidad y la cantidad de parámetros necesarios.
+- **Requerimientos de Datos:** Modelos más grandes necesitan más datos de entrenamiento.
+- **Recursos Computacionales:** Conocer el caso de uso ayuda a estimar los recursos necesarios, como memoria y espacio de almacenamiento.
+
+Razones comunes para crear un LLM personalizado incluyen la especificidad de dominio, una mayor seguridad de datos y el control total sobre la propiedad del modelo.
+
+## 2. Crea la Arquitectura de tu Modelo
+
+Después de definir el caso de uso, el siguiente paso es diseñar la arquitectura del modelo. Para LLMs, la **arquitectura Transformer** es la mejor opción, destacándose por su capacidad para manejar dependencias a largo plazo en el texto y procesar entradas de longitud variable eficientemente.
+
+### Componentes Clave del Transformer:
+
+- **Capa de Embeddings:** Convierte las entradas en representaciones vectoriales.
+- **Codificador Posicional:** Añade información de posición a los embeddings.
+- **Mecanismo de Auto-Atención:** Compara y mide la relevancia semántica entre los tokens.
+- **Redes Feed-Forward y Normalización:** Capturan relaciones complejas y estabilizan el modelo.
+- **Conexiones Residuales:** Mejoran el flujo de datos y facilitan el entrenamiento.
+
+## 3. Assemble the Encoder and Decoder
+
+Una vez definidos los componentes, es momento de ensamblar el encoder y el decoder, que juntos forman la base del Transformer. Los Transformers generalmente contienen múltiples encoders y decoders apilados, mejorando la capacidad del modelo para capturar patrones y características complejas.
+
+## 4. Curación de Datos
+
+La calidad de los datos de entrenamiento es fundamental. Un modelo construido con datos de baja calidad producirá resultados inexactos, sesgados e inconsistentes. Al curar datos, es crucial:
+
+- Filtrar inexactitudes y minimizar sesgos.
+- Limpiar datos eliminando errores ortográficos, texto repetido, y componentes no textuales.
+- Redactar información privada y sensible.
+- Incluir diversidad de formatos y temas.
+
+Fuentes comunes de datos incluyen conjuntos públicos (como Common Crawl y The Pile), datos privados y, en ocasiones, scrapeo directo de la web, aunque este último conlleva riesgos.
+
+## 5. Entrena tu LLM Personalizado
+
+El entrenamiento de un LLM consiste en pasar grandes cantidades de datos a través de la red neuronal, ajustando sus parámetros (pesos y sesgos) a través de **propagación hacia adelante y hacia atrás**:
+
+- **Propagación hacia adelante:** El modelo predice la salida basada en las entradas.
+- **Propagación hacia atrás:** Ajusta los parámetros basándose en el error de predicción, minimizando la función de pérdida.
+
+La duración del entrenamiento varía según la complejidad del caso de uso, la cantidad y calidad de los datos, y los recursos disponibles.
+
+### Técnicas de Entrenamiento:
+
+- **Paralelización:** Distribuye tareas de entrenamiento a través de múltiples GPUs.
+- **Checkpointing de Gradientes:** Reduce los requisitos de memoria almacenando solo un subconjunto de activaciones intermedias.
+
+## 6. Fine-Tuning de tu LLM
+
+Tras el entrenamiento inicial, afinar tu LLM lo prepara para casos de uso específicos. Métodos comunes incluyen:
+
+- **Full Fine-Tuning:** Actualiza todos los parámetros del modelo base.
+- **Transfer Learning:** Aprovecha el conocimiento pre-entrenado, ajustando solo capas específicas.
+
+## 7. Evalúa tu LLM Personalizado
+
+Evaluar el LLM asegura que cumpla con sus objetivos. Esto se logra usando datasets no vistos previamente que simulan escenarios del mundo real.
+
+### Benchmarks para Evaluación:
+
+- **ARC (AI2 Reasoning Challenge):** Evaluación de habilidades de razonamiento.
+- **HellaSwag y MMLU:** Pruebas de razonamiento y comprensión del lenguaje.
+- **TruthfulQA y GSM8K:** Evaluaciones de veracidad y habilidades matemáticas.
+- **HumanEval:** Evaluación de generación de código funcionalmente correcto.
+
+## Conclusión
+
+Construir un LLM desde cero implica varios pasos fundamentales: definir el caso de uso, diseñar la arquitectura del modelo, curar y preparar los datos, entrenar y afinar el modelo, y evaluarlo para asegurarse de que cumple con sus objetivos. Si bien crear un LLM personalizado es un proyecto desafiante, los beneficios de tener un modelo ajustado a tus necesidades pueden ser significativos.
+
+---
 # Día72
 # Día73
 # Día74
