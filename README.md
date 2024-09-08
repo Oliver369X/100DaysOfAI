@@ -90,7 +90,7 @@
 | [Día69](#Día69) | Visión General de LLMs: Conceptos y Evolución | 
 | [Día70](#Día70) | Visualización de Modelos de Lenguaje GPT en 3D | 
 | [Día71](#Día71) | Cómo Construir un LLM desde cero | 
-| [Día72](#Día72) |  | 
+| [Día72](#Día72) | Paso 1: Definir el Caso de Uso de tu LLM | 
 | [Día73](#Día73) |  | 
 | [Día74](#Día74) |  | 
 | [Día75](#Día75) |  | 
@@ -5785,6 +5785,79 @@ Construir un LLM desde cero implica varios pasos fundamentales: definir el caso 
 
 ---
 # Día72
+---
+## Paso 1: Definir el Caso de Uso de tu LLM
+
+Cuando te propones construir un modelo de lenguaje grande (LLM) desde cero, el primer y más crítico paso es definir el caso de uso. Este paso no solo guía cada decisión posterior en el desarrollo del modelo, sino que también determina el éxito o fracaso del proyecto. Un caso de uso bien definido ayuda a alinear los objetivos del modelo con las necesidades específicas de tu organización, asegurando que los recursos invertidos produzcan resultados valiosos.
+
+
+## 1. **Identificar el Problema que Deseas Resolver**
+
+El primer paso es tener claridad sobre el problema específico que tu LLM va a abordar. Pregúntate:
+
+- **¿Cuál es el problema principal?** ¿Es un problema relacionado con la comprensión del lenguaje natural, la generación de texto, la clasificación de documentos, o algo más?
+- **¿Qué tan amplio o específico es este problema?** Un problema muy específico puede requerir un modelo pequeño y altamente especializado, mientras que uno amplio podría necesitar un modelo más generalista y con mayor capacidad.
+
+**Ejemplo:** Si tu organización trabaja en el sector de la salud, el problema podría ser la necesidad de un modelo que entienda y responda a consultas médicas de pacientes con lenguaje técnico. Aquí, la especificidad del problema indicará que el modelo debe entrenarse con datos muy enfocados en terminología médica.
+
+
+
+## 2. **Evaluar las Alternativas Existentes**
+
+Antes de decidir crear un LLM desde cero, es importante evaluar si existen modelos preentrenados que se puedan adaptar a tus necesidades. Considera las siguientes preguntas:
+
+- **¿Existen modelos preentrenados que se puedan afinar para tu caso de uso?** Modelos como GPT, BERT o LLaMA pueden ser ajustados para tareas específicas con menos recursos que construir uno nuevo.
+- **¿Qué tan bien se alinean estos modelos con tus necesidades?** Si un modelo preexistente puede ser ajustado para cumplir con un 90% de tus requisitos, podría ser más eficiente que empezar desde cero.
+
+**Decisión:** Si encuentras un modelo que cubra la mayor parte de tus necesidades, podría ser más rentable y eficiente adaptarlo. Sin embargo, si tus necesidades son altamente específicas o si el control y la seguridad de los datos son críticos, construir un modelo desde cero puede ser la mejor opción.
+
+
+## 3. **Considerar la Especificidad del Dominio**
+
+Los LLM son poderosos porque pueden manejar una variedad de tareas y dominios. Sin embargo, la especialización en un dominio específico requiere entrenamiento con datos particulares de ese dominio. Aquí es donde definir el alcance de tu LLM se vuelve crucial:
+
+- **¿Tu modelo necesita un conocimiento profundo de un área específica?** 
+  - **Sí:** Si necesitas un LLM para aplicaciones en medicina, finanzas o derecho, requerirás entrenar el modelo con grandes cantidades de datos específicos de ese campo.
+  - **No:** Si tu LLM es para una tarea más general, como asistencia al cliente en una variedad de temas, un modelo más amplio con datos diversos podría ser suficiente.
+
+**Recomendación:** Cuanto más específico sea el dominio, más importante será recopilar y curar datos relevantes de alta calidad. Un modelo especializado puede ofrecer resultados significativamente mejores en su área de aplicación.
+
+
+## 4. **Determinar la Necesidad de Seguridad y Control de Datos**
+
+Uno de los beneficios de construir tu propio LLM es el control total sobre los datos y el modelo en sí. Esto es especialmente importante en sectores donde la seguridad y privacidad son fundamentales:
+
+- **¿Tu organización maneja datos sensibles o confidenciales?** Si es así, utilizar un modelo propietario puede ser arriesgado. Un LLM personalizado permite incorporar directamente estos datos en el entrenamiento, asegurando que la información no se exponga a terceros.
+- **¿Qué nivel de control necesitas sobre la evolución del modelo?** Con un LLM propio, puedes continuar refinándolo y ajustándolo a medida que cambian las necesidades de tu organización o que se descubren nuevos datos.
+
+**Conclusión:** Si la seguridad de los datos y el control sobre la evolución del modelo son prioridades, construir un LLM propio es la mejor ruta a seguir. 
+
+
+
+## 5. **Evaluar los Recursos Disponibles**
+
+El proceso de crear un LLM es intensivo en términos de recursos. Considera los siguientes aspectos:
+
+- **Recursos Computacionales:** ¿Tienes acceso a la infraestructura necesaria para entrenar un modelo desde cero? Esto incluye servidores con GPU de alto rendimiento, almacenamiento masivo y el personal técnico adecuado.
+- **Capacidad de Curation de Datos:** ¿Puedes acceder o crear un dataset suficientemente grande y de alta calidad para entrenar el LLM?
+- **Tiempo y Personal:** ¿Tu equipo tiene la experiencia técnica y el tiempo necesario para desarrollar y mantener un LLM?
+
+**Decisión:** Si cuentas con los recursos necesarios, crear un LLM personalizado puede ofrecerte ventajas competitivas significativas. De lo contrario, puede ser más práctico ajustar un modelo preexistente.
+
+
+
+## 6. **Establecer Metas Claras y Medibles**
+
+Finalmente, define qué éxito significa para tu LLM. Establecer metas claras desde el principio te permitirá evaluar si el proyecto está en el camino correcto:
+
+- **¿Qué resultados esperas obtener?** Estos pueden incluir mejoras en eficiencia, precisión en respuestas, satisfacción del cliente, o reducción de costos.
+- **¿Cómo vas a medir el éxito?** Define métricas específicas (como exactitud, recall, precisión) y benchmarks para evaluar el rendimiento del modelo.
+
+**Consejo:** Establecer metas claras y medibles te ayudará a identificar cuándo es necesario ajustar el enfoque o reevaluar el caso de uso original.
+
+
+
+---
 # Día73
 # Día74
 # Día75
