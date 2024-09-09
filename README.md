@@ -92,7 +92,7 @@
 | [Día71](#Día71) | Cómo Construir un LLM desde cero | 
 | [Día72](#Día72) | Paso 1: Definir el Caso de Uso de tu LLM | 
 | [Día73](#Día73) | Paso 2: Crea la Arquitectura de tu Modelo | 
-| [Día74](#Día74) |  | 
+| [Día74](#Día74) | Paso 3: Curación de Datos | 
 | [Día75](#Día75) |  | 
 | [Día76](#Día76) |  | 
 | [Día77](#Día77) |  | 
@@ -5732,11 +5732,8 @@ Después de definir el caso de uso, el siguiente paso es diseñar la arquitectur
 - **Redes Feed-Forward y Normalización:** Capturan relaciones complejas y estabilizan el modelo.
 - **Conexiones Residuales:** Mejoran el flujo de datos y facilitan el entrenamiento.
 
-## 3. Assemble the Encoder and Decoder
 
-Una vez definidos los componentes, es momento de ensamblar el encoder y el decoder, que juntos forman la base del Transformer. Los Transformers generalmente contienen múltiples encoders y decoders apilados, mejorando la capacidad del modelo para capturar patrones y características complejas.
-
-## 4. Curación de Datos
+## 3. Curación de Datos
 
 La calidad de los datos de entrenamiento es fundamental. Un modelo construido con datos de baja calidad producirá resultados inexactos, sesgados e inconsistentes. Al curar datos, es crucial:
 
@@ -5747,7 +5744,7 @@ La calidad de los datos de entrenamiento es fundamental. Un modelo construido co
 
 Fuentes comunes de datos incluyen conjuntos públicos (como Common Crawl y The Pile), datos privados y, en ocasiones, scrapeo directo de la web, aunque este último conlleva riesgos.
 
-## 5. Entrena tu LLM Personalizado
+## 4. Entrena tu LLM Personalizado
 
 El entrenamiento de un LLM consiste en pasar grandes cantidades de datos a través de la red neuronal, ajustando sus parámetros (pesos y sesgos) a través de **propagación hacia adelante y hacia atrás**:
 
@@ -5761,14 +5758,14 @@ La duración del entrenamiento varía según la complejidad del caso de uso, la 
 - **Paralelización:** Distribuye tareas de entrenamiento a través de múltiples GPUs.
 - **Checkpointing de Gradientes:** Reduce los requisitos de memoria almacenando solo un subconjunto de activaciones intermedias.
 
-## 6. Fine-Tuning de tu LLM
+## 5. Fine-Tuning de tu LLM
 
 Tras el entrenamiento inicial, afinar tu LLM lo prepara para casos de uso específicos. Métodos comunes incluyen:
 
 - **Full Fine-Tuning:** Actualiza todos los parámetros del modelo base.
 - **Transfer Learning:** Aprovecha el conocimiento pre-entrenado, ajustando solo capas específicas.
 
-## 7. Evalúa tu LLM Personalizado
+## 6. Evalúa tu LLM Personalizado
 
 Evaluar el LLM asegura que cumpla con sus objetivos. Esto se logra usando datasets no vistos previamente que simulan escenarios del mundo real.
 
@@ -5932,6 +5929,90 @@ Definir la arquitectura de tu LLM es un paso fundamental que impacta directament
 
 ---
 # Día74
+---
+## Paso 3: Curación de Datos
+
+La calidad y cantidad de los datos de entrenamiento son factores cruciales en la construcción de un modelo de lenguaje grande (LLM) efectivo. Incluso la mejor arquitectura y los recursos computacionales más avanzados no pueden compensar la deficiencia de datos de entrenamiento de mala calidad. En este paso, vamos a explorar cómo curar los datos adecuados para entrenar tu LLM, desde la selección de las fuentes de datos hasta la limpieza y preparación de los mismos para optimizar el rendimiento del modelo.
+
+
+## 1. **Identificar Fuentes de Datos Adecuadas**
+
+El primer paso en la curación de datos es identificar las fuentes de datos que mejor se alineen con tu caso de uso. Es importante considerar tanto la calidad como la diversidad de los datos para asegurar que el modelo sea robusto y capaz de generalizar bien.
+
+### Fuentes Comunes:
+- **Conjuntos de Datos Públicos:** Recursos como Common Crawl, Wikipedia, y The Pile ofrecen grandes cantidades de texto que cubren una variedad de temas.
+- **Datos Propietarios:** Datos internos específicos de la organización, como documentos técnicos, registros de chat de soporte al cliente, o bases de conocimiento especializadas.
+- **Datos Comprados:** Servicios que venden conjuntos de datos específicos, como proveedores de datos de investigación académica o contenido especializado.
+- **Web Scraping:** Recopilación de datos directamente desde sitios web. Este método debe manejarse con cuidado debido a posibles problemas de calidad y propiedad de datos.
+
+**Recomendación:** Utiliza una combinación de datos públicos y privados para asegurar que tu LLM tenga un amplio rango de conocimiento general y también un enfoque específico en tu dominio de interés.
+
+
+## 2. **Evaluar la Calidad de los Datos**
+
+La calidad de los datos impacta directamente en la precisión y confiabilidad del LLM. Un paso crucial en la curación de datos es evaluar y seleccionar datos de alta calidad. 
+
+### Características de Datos de Alta Calidad:
+- **Exactitud:** Los datos deben ser precisos y libres de errores. Datos incorrectos pueden llevar a que el modelo aprenda patrones incorrectos.
+- **Consistencia:** Asegura que los datos sean consistentes en términos de estilo, formato y contenido.
+- **Diversidad y Representatividad:** Los datos deben cubrir una amplia gama de temas y estilos para ayudar al modelo a generalizar bien. Incluye datos de diferentes dominios, contextos y registros lingüísticos.
+- **Reducción de Sesgos:** Es fundamental que los datos sean equilibrados y representen una diversidad de perspectivas para minimizar sesgos en el modelo.
+
+**Consejo:** Implementa un sistema automatizado para evaluar y clasificar la calidad de los datos, utilizando tanto revisiones manuales como técnicas automatizadas de procesamiento del lenguaje natural para identificar inexactitudes o sesgos.
+
+
+
+## 3. **Limpieza y Preprocesamiento de Datos**
+
+Una vez seleccionadas las fuentes de datos, el siguiente paso es limpiar y preprocesar los datos. Este proceso implica la eliminación de información innecesaria o dañina y la normalización del contenido para que el modelo pueda procesarlo de manera efectiva.
+
+### Pasos de Limpieza y Preprocesamiento:
+- **Eliminación de Contenido Inútil:** Remueve datos no textuales (como HTML, imágenes, emojis) y contenido de baja calidad (como comentarios de spam o texto repetitivo).
+- **Corrección de Errores Ortográficos y Gramaticales:** Utiliza herramientas de corrección ortográfica y gramatical para mejorar la calidad del texto.
+- **Normalización de Texto:** Unifica variaciones en la escritura como mayúsculas, contracciones y puntuaciones para mantener consistencia en los datos.
+- **Eliminación de Duplicados:** Asegúrate de que los datos no tengan duplicados para evitar que el modelo aprenda patrones sesgados.
+- **Redacción y Filtrado de Datos Sensibles:** Remueve cualquier información confidencial o sensible para cumplir con las normativas de privacidad.
+
+**Herramientas:** Utiliza bibliotecas de NLP como SpaCy, NLTK o transformers para automatizar muchas de estas tareas de preprocesamiento.
+
+
+
+## 4. **Aumentar y Enriquecer el Dataset**
+
+Dependiendo del tamaño y la diversidad de los datos disponibles, puede ser necesario aumentar o enriquecer el dataset para mejorar su cobertura y calidad.
+
+### Estrategias de Aumento de Datos:
+- **Generación de Datos Sintéticos:** Genera ejemplos adicionales utilizando técnicas como back-translation, que traduce el texto a otro idioma y luego de vuelta para crear variaciones. Tambien la  generación utilizando LLM aprovechar estos modelos avanzados de IA para crear conjuntos de datos artificiales que imiten datos del mundo real.
+- **Data Augmentation Basado en NLP:** Técnicas como la inserción, sustitución o reordenamiento de palabras pueden crear variaciones adicionales del texto.
+- **Integración de Datos Multimodales:** Si tu caso de uso lo requiere, considera incluir datos multimodales, como texto junto con imágenes o audio, para enriquecer el contexto.
+
+**Recomendación:** La generación de datos sintéticos debe hacerse con cuidado para evitar introducir ruido o patrones no naturales en el modelo.
+
+
+
+## 5. **Segmentación y Tokenización del Texto**
+
+Antes de entrenar el modelo, los datos deben ser segmentados y tokenizados de manera que el modelo pueda procesarlos eficientemente. La tokenización convierte el texto en unidades manejables (tokens) que el modelo utiliza para el entrenamiento.
+
+### Métodos de Tokenización:
+- **Tokenización Basada en Palabras:** Divide el texto en palabras individuales.
+- **Tokenización Sub-palabras (Byte Pair Encoding, BPE):** Divide las palabras en sub-unidades como prefijos y sufijos, lo cual es especialmente útil para manejar palabras raras o nuevas.
+- **Tokenización Caracteres:** Divide el texto en caracteres individuales, utilizado en algunos modelos específicos.
+
+**Elección de Tokenización:** Los modelos como Llama 3 usan tokenización sub-palabras (como BPE), ya que ofrecen un buen equilibrio entre la capacidad de manejar vocabularios extensos y la eficiencia en el entrenamiento.
+
+
+## 6. **División del Dataset en Conjuntos de Entrenamiento, Validación y Prueba**
+
+Para evaluar correctamente el rendimiento de tu LLM, debes dividir tu dataset en conjuntos de entrenamiento, validación y prueba:
+
+- **Entrenamiento:** Utilizado para ajustar los parámetros del modelo.
+- **Validación:** Ayuda a ajustar hiperparámetros y evaluar el rendimiento durante el entrenamiento para prevenir el sobreajuste.
+- **Prueba:** Conjunto reservado para evaluar la efectividad final del modelo de manera objetiva.
+
+
+Curar datos de alta calidad es una parte esencial para el éxito de un LLM. Desde la selección de fuentes y la evaluación de calidad hasta la limpieza, preprocesamiento y segmentación, cada paso en la curación de datos influye en la capacidad del modelo para aprender y generalizar correctamente. Una curación y preparación minuciosas no solo mejoran la precisión y efectividad del modelo, sino que también reducen la necesidad de ajustes posteriores y optimizan el uso de recursos durante el entrenamiento.
+
 # Día75
 # Día76
 # Día77
