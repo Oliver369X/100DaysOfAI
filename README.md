@@ -91,7 +91,7 @@
 | [Día70](#Día70) | Visualización de Modelos de Lenguaje GPT en 3D | 
 | [Día71](#Día71) | Cómo Construir un LLM desde cero | 
 | [Día72](#Día72) | Paso 1: Definir el Caso de Uso de tu LLM | 
-| [Día73](#Día73) |  | 
+| [Día73](#Día73) | Paso 2: Crea la Arquitectura de tu Modelo | 
 | [Día74](#Día74) |  | 
 | [Día75](#Día75) |  | 
 | [Día76](#Día76) |  | 
@@ -5859,6 +5859,78 @@ Finalmente, define qué éxito significa para tu LLM. Establecer metas claras de
 
 ---
 # Día73
+---
+
+## Paso 2: Crea la Arquitectura de tu Modelo
+
+Definir la arquitectura de tu LLM es crucial para garantizar su capacidad de procesamiento, eficiencia y alineación con los objetivos específicos del proyecto. A continuación, te guío a través de los aspectos clave y decisiones importantes que debes considerar al crear la arquitectura de tu LLM, tomando en cuenta las mejores prácticas observadas en modelos modernos como Llama 3.
+
+
+## 1. **Opta por la Arquitectura Transformer**
+
+Los modelos basados en transformers son la norma para LLMs debido a su capacidad para manejar secuencias largas y capturar relaciones complejas en los datos de entrada. Llama 3 utiliza una arquitectura estándar de transformer densa, lo que facilita la estabilidad durante el entrenamiento y la escalabilidad del modelo.
+
+### Elementos Clave:
+- **Capas de Autoatención:** Permiten que el modelo atienda a diferentes partes del input simultáneamente, lo cual es esencial para capturar dependencias contextuales a lo largo de secuencias largas de texto.
+- **Atención Multi-Cabezal:** Permite a cada capa de atención enfocarse en diferentes aspectos del input, enriqueciendo la comprensión global del texto.
+- **Redes Feed-Forward:** Estas redes procesan los resultados de las capas de atención y capturan relaciones más complejas, ayudando a refinar las representaciones intermedias.
+
+**Consejo:** Mantén la arquitectura lo más simple posible para facilitar la estabilidad durante el entrenamiento. Optar por una arquitectura densa en lugar de un modelo más complejo como el de mezcla de expertos (mixture-of-experts) puede mejorar la escalabilidad y facilitar la implementación.
+
+
+
+## 2. **Determina el Tamaño del Modelo y la Escala**
+
+El tamaño del modelo influye directamente en su capacidad para manejar tareas complejas y en los recursos necesarios para su entrenamiento. Para LLMs como Llama 3, se utilizan modelos con miles de millones de parámetros para optimizar la capacidad de aprendizaje y desempeño.
+
+### Factores a Considerar:
+- **Número de Parámetros:** Define la complejidad y el tamaño del modelo. Llama 3, por ejemplo, varía entre 8B, 70B y hasta 405B parámetros dependiendo de las necesidades.
+- **Dimensión del Modelo:** Incluye el número de capas, la dimensión de las representaciones internas y el número de cabezas de atención. En el caso de Llama 3, las dimensiones aumentan con el tamaño del modelo para capturar patrones más detallados y complejos en el texto.
+  
+**Recomendación:** Utiliza leyes de escalado (scaling laws) para predecir el tamaño óptimo del modelo en función de los recursos computacionales disponibles y los requisitos de rendimiento.
+
+
+
+## 3. **Optimiza la Eficiencia de la Atención y el Almacenamiento**
+
+Para mejorar la eficiencia de la arquitectura, Llama 3 introduce adaptaciones menores como la atención de consulta agrupada (Grouped Query Attention - GQA) con múltiples cabezas clave-valor, lo que reduce la carga durante la inferencia y minimiza el uso de memoria.
+
+### Implementaciones Clave:
+- **Atención de Consulta Agrupada (GQA):** Divide la atención en cabezas clave-valor para mejorar la velocidad de inferencia y reducir la memoria utilizada.
+- **Máscara de Atención por Documento:** Se utiliza para evitar que la autoatención se realice entre diferentes documentos dentro de la misma secuencia, lo cual es crucial para el entrenamiento con secuencias largas.
+
+**Consejo:** Estas modificaciones permiten al modelo manejar de manera más efectiva las largas ventanas de contexto y mejorar la eficiencia del procesamiento durante la inferencia.
+
+
+## 4. **Incorpora Embeddings Posicionales y Manejo de Secuencias Largas**
+
+El manejo efectivo de secuencias largas es esencial para los LLMs modernos. Llama 3 emplea embeddings posicionales específicos como los Embeddings de Posición Relativa (RoPE) ajustados para soportar ventanas de contexto extendidas hasta 128K tokens.
+
+### Consideraciones:
+- **Embeddings Posicionales:** Facilitan el aprendizaje de la posición de los tokens dentro de una secuencia. Llama 3 aumenta la frecuencia base de RoPE a 500,000 para soportar contextos extremadamente largos.
+- **Entrenamiento en Secuencias Largas:** Ajusta el entrenamiento para incrementar gradualmente la longitud del contexto, comenzando con secuencias más cortas y extendiéndolas conforme avanza el entrenamiento para evitar picos de complejidad computacional.
+
+**Implementación:** Incrementar progresivamente la longitud del contexto durante el entrenamiento ayuda al modelo a adaptarse de manera efectiva a contextos más largos sin perder rendimiento en tareas de contexto corto.
+
+
+## 5. **Establece Estrategias de Escalado y Paralelización**
+
+El escalado de modelos masivos como los LLMs requiere técnicas avanzadas de paralelización para manejar eficientemente el entrenamiento y el uso de recursos. Llama 3 utiliza una combinación de paralelismo de tensor, pipeline, contexto y datos (4D Parallelism) para distribuir la carga de manera efectiva en múltiples GPUs.
+
+### Técnicas de Paralelización:
+- **Paralelismo de Tensor:** Divide los tensores de peso en múltiples partes distribuidas en diferentes dispositivos.
+- **Paralelismo de Pipeline:** Separa el modelo verticalmente en etapas por capas, permitiendo que diferentes dispositivos procesen simultáneamente diferentes partes del modelo.
+- **Paralelismo de Contexto:** Mejora la eficiencia de memoria al dividir la secuencia de entrada en segmentos, permitiendo el procesamiento de secuencias extremadamente largas.
+- **Paralelismo de Datos (FSDP):** Implementa la paralelización de datos totalmente fragmentados, dividiendo el modelo y sincronizando después de cada paso de entrenamiento.
+
+**Consejo:** Ajusta estas técnicas según la infraestructura disponible para optimizar el uso de recursos y minimizar los tiempos de entrenamiento.
+
+
+
+Definir la arquitectura de tu LLM es un paso fundamental que impacta directamente en la capacidad del modelo para cumplir con los objetivos propuestos. Optar por una arquitectura de transformer densa con ajustes específicos como GQA y RoPE permite escalar modelos masivos de manera eficiente, manteniendo la estabilidad y la capacidad de aprendizaje. Asegúrate de ajustar la arquitectura para soportar las necesidades específicas de tu caso de uso, utilizando estrategias de escalado efectivas y técnicas de paralelización para maximizar el rendimiento.
+
+
+---
 # Día74
 # Día75
 # Día76
