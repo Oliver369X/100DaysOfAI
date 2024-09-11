@@ -93,7 +93,7 @@
 | [Día72](#Día72) | Paso 1: Definir el Caso de Uso de tu LLM | 
 | [Día73](#Día73) | Paso 2: Crea la Arquitectura de tu Modelo | 
 | [Día74](#Día74) | Paso 3: Curación de Datos | 
-| [Día75](#Día75) |  | 
+| [Día75](#Día75) | Profundizando en los Datos Sintéticos | 
 | [Día76](#Día76) |  | 
 | [Día77](#Día77) |  | 
 | [Día78](#Día78) |  | 
@@ -6014,6 +6014,61 @@ Para evaluar correctamente el rendimiento de tu LLM, debes dividir tu dataset en
 Curar datos de alta calidad es una parte esencial para el éxito de un LLM. Desde la selección de fuentes y la evaluación de calidad hasta la limpieza, preprocesamiento y segmentación, cada paso en la curación de datos influye en la capacidad del modelo para aprender y generalizar correctamente. Una curación y preparación minuciosas no solo mejoran la precisión y efectividad del modelo, sino que también reducen la necesidad de ajustes posteriores y optimizan el uso de recursos durante el entrenamiento.
 
 # Día75
+---
+## Profundizando en los Datos Sintéticos para Entrenar Modelos LLM como Alpaca, WizardLM y Orca
+
+
+El entrenamiento de modelos de lenguaje de gran tamaño (LLMs) como Alpaca, WizardLM y Orca, que son afinados a partir de modelos base como LLaMA, se apoya en gran medida en datos sintéticos. Estos datos no solo permiten reducir costos y acelerar el entrenamiento, sino que también posibilitan la creación de modelos altamente especializados en tareas específicas. En esta publicación, exploraremos en profundidad los tipos de datos sintéticos utilizados en el entrenamiento de estos modelos, sus aplicaciones, costos asociados, ventajas y desafíos.
+
+### Tipos de Datos Sintéticos
+
+1. **Datos Generados por Modelos de Lenguaje Existentes**
+
+   - **Descripción**: Este enfoque utiliza modelos de lenguaje ya existentes, como GPT-3 o GPT-4, para generar nuevos conjuntos de datos que se utilizan para entrenar o afinar otros modelos. Por ejemplo, Alpaca fue entrenado utilizando datos generados por el modelo text-davinci-003 de OpenAI. Este método permite crear grandes volúmenes de datos etiquetados con un costo relativamente bajo.
+   - **Aplicación**: Es común en modelos que requieren comprensión de instrucciones o generación de lenguaje natural en tareas específicas. Alpaca, por ejemplo, fue afinado en un conjunto de 52,000 demostraciones de seguimiento de instrucciones generadas sintéticamente【35†source】 .
+
+2. **Datos Contrafactuales**
+
+   - **Descripción**: Los datos contrafactuales se generan creando escenarios hipotéticos que no están presentes en el conjunto de datos original. Estos datos permiten a los modelos aprender a manejar situaciones que podrían ocurrir en la realidad pero que no están representadas en el entrenamiento inicial.
+   - **Aplicación**: Se utilizan para mejorar la capacidad del modelo para generalizar en situaciones nuevas y para manejar preguntas o situaciones complejas que no tienen una respuesta directa en los datos reales.
+
+3. **Datos Simulados**
+
+   - **Descripción**: Este tipo de datos se generan en entornos virtuales que simulan interacciones humanas o escenarios específicos. Los datos simulados son particularmente útiles en tareas como la generación de diálogos o la planificación estratégica, donde se necesita un gran volumen de interacciones que sería difícil de recopilar manualmente.
+   - **Aplicación**: Usados en modelos de diálogo y chatbots, así como en simulaciones de comportamiento en contextos específicos, como la atención al cliente o la asistencia médica.
+
+4. **Datos Anotados Automáticamente**
+
+   - **Descripción**: Aquí, los datos son etiquetados automáticamente por sistemas de IA, reduciendo la necesidad de intervención humana. Esta técnica permite generar rápidamente grandes volúmenes de datos etiquetados, aunque a veces puede comprometer la calidad de las anotaciones.
+   - **Aplicación**: Ampliamente utilizado en tareas donde se requiere un etiquetado masivo, como la clasificación de texto o el análisis de sentimientos.
+
+### Entrenamiento y Costos Asociados
+
+El uso de datos sintéticos para entrenar LLMs no solo reduce los costos financieros, sino que también minimiza el tiempo de entrenamiento. Por ejemplo, el ajuste fino de Alpaca, que se basó en 52,000 demostraciones de seguimiento de instrucciones generadas sintéticamente, costó menos de $500 utilizando la API de OpenAI【35†source】. En comparación, recopilar y anotar manualmente un volumen equivalente de datos habría sido significativamente más costoso y demorado.
+
+### Ventajas y Desafíos de los Datos Sintéticos
+
+**Ventajas:**
+
+- **Escalabilidad**: La capacidad de generar grandes volúmenes de datos en poco tiempo.
+- **Flexibilidad**: Permite crear datos específicos para tareas que podrían no estar bien representadas en conjuntos de datos reales.
+- **Costo-Eficiencia**: Generar datos sintéticos suele ser más barato que la recolección y anotación manual de datos.
+
+**Desafíos:**
+
+- **Calidad de los Datos**: Los datos generados automáticamente pueden no tener la misma calidad o diversidad que los datos reales, lo que podría afectar el rendimiento del modelo.
+- **Riesgo de Sobreajuste**: Si los datos sintéticos no son lo suficientemente diversos, el modelo podría sobreajustarse a patrones específicos, disminuyendo su capacidad de generalización.
+
+### Recursos para Profundizar
+
+Para aquellos interesados en explorar más sobre la generación y uso de datos sintéticos en el entrenamiento de LLMs, recomiendo revisar los siguientes recursos:
+
+- [Alpaca: Datos Sintéticos para Modelos de Seguimiento de Instrucciones](https://crfm.stanford.edu/2023/03/13/alpaca.html)
+- [Autoinstrucción en Alpaca](https://arxiv.org/abs/2306.11644)
+- [Orca: Progresión del Aprendizaje desde Trazas de Explicación Complejas](https://arxiv.org/abs/2306.02707)
+
+
+---
 # Día76
 # Día77
 # Día78
