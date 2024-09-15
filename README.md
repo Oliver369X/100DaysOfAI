@@ -96,7 +96,7 @@
 | [Día75](#Día75) | Profundizando en los Datos Sintéticos | 
 | [Día76](#Día76) | Paso 4: Entrenamiento del Modelo | 
 | [Día77](#Día77) | Paso 5: Fine-Tuning del LLM | 
-| [Día78](#Día78) |  | 
+| [Día78](#Día78) | Paso 6: Evaluación del Modelo | 
 | [Día79](#Día79) |  | 
 | [Día80](#Día80) |  | 
 | [Día81](#Día81) |  | 
@@ -6234,6 +6234,121 @@ El fine-tuning es una técnica poderosa para adaptar modelos preentrenados a tar
 
 ---
 # Día78
+---
+## Paso 6: Evalúa tu LLM
+
+La evaluación de un modelo de lenguaje grande (LLM) es un paso esencial para asegurar que el modelo cumpla con los objetivos específicos y entregue resultados de alta calidad en tareas de procesamiento del lenguaje natural (NLP). Este paso implica medir la efectividad del modelo utilizando métricas cuantitativas y cualitativas, así como comparar su rendimiento con benchmarks reconocidos en la industria.
+
+A continuación, exploramos en detalle cómo evaluar un LLM, integrando conceptos discutidos en el Día 61 de tu reto, donde se abordaron métricas como BLEU, ROUGE, y otros benchmarks específicos para NLP.
+
+
+## 1. **Definir los Criterios de Evaluación**
+
+Es fundamental definir claramente los criterios de éxito antes de evaluar tu LLM. Estos criterios deben alinearse con los objetivos del caso de uso y capturar tanto la precisión como la calidad del output generado por el modelo.
+
+### Criterios Clave:
+- **Exactitud y Precisión:** Para tareas de clasificación o extracción de información, mide qué tan bien el modelo identifica y categoriza elementos dentro del texto.
+- **Calidad de Secuencias Generadas:** En tareas de generación de texto, traducción automática y resúmenes, es crucial medir la fluidez, coherencia y relevancia del contenido.
+- **Robustez y Seguridad:** Evalúa cómo el modelo maneja entradas ambiguas o fuera de su dominio, y asegúrate de que no genere respuestas inseguras o sesgadas.
+
+**Consejo:** Alinea estos criterios con las necesidades específicas de tu aplicación y las expectativas del usuario final para asegurar que el modelo proporcione un valor real.
+
+
+## 2. **Seleccionar las Métricas de Evaluación Apropiadas**
+
+La selección de métricas adecuadas es esencial para capturar la calidad y eficacia del modelo en su tarea específica. Durante el Día 61, exploraste varias métricas clave que son fundamentales en NLP.
+
+### Métricas Específicas para NLP:
+- **BLEU (Bilingual Evaluation Understudy):** Utilizado principalmente en traducción automática, mide la precisión de los n-gramas entre la salida generada por el modelo y una referencia humana.
+  
+  ```python
+  from nltk.translate.bleu_score import sentence_bleu
+  reference = [['this', 'is', 'a', 'test']]
+  candidate = ['this', 'is', 'test']
+  score = sentence_bleu(reference, candidate)
+  print(f"BLEU score: {score:.2f}")
+  ```
+  
+- **ROUGE (Recall-Oriented Understudy for Gisting Evaluation):** Centrado en el recall, es ideal para evaluar resúmenes generados automáticamente.
+  
+  ```python
+  from rouge import Rouge
+  rouge = Rouge()
+  reference = "this is a test"
+  candidate = "this is test"
+  scores = rouge.get_scores(candidate, reference)
+  print(f"ROUGE scores: {scores}")
+  ```
+  
+- **METEOR:** Considera tanto la precisión como el recall, y es más robusto al integrar sinónimos y variaciones morfológicas, lo que lo hace útil para evaluar la similitud semántica.
+  
+- **CIDEr:** Evalúa la calidad de descripciones generadas para imágenes, midiendo la similitud semántica con descripciones de referencia.
+
+- **Perplexity:** Mide qué tan bien un modelo de lenguaje predice una secuencia de palabras. Una menor perplejidad indica un mejor rendimiento en tareas de modelado de lenguaje.
+
+**Recomendación:** Utiliza las métricas que mejor reflejen las características esenciales de tu tarea. Para tareas de generación de texto y traducción, combinar BLEU y ROUGE puede proporcionar una evaluación más completa.
+
+
+## 3. **Diseñar Conjuntos de Prueba Representativos**
+
+Probar el modelo con datos que sean representativos de los escenarios de uso en producción es crucial. Esto incluye tanto datos similares a los utilizados en el entrenamiento como nuevos ejemplos que pongan a prueba la robustez y adaptabilidad del modelo.
+
+### Conjuntos de Prueba:
+- **Conjunto de Validación Cruzada:** Utilizado durante el entrenamiento y ajuste fino para optimizar hiperparámetros.
+- **Conjunto de Prueba Final:** Debe incluir datos no vistos anteriormente y reflejar el entorno de producción esperado.
+- **Escenarios Adversarios:** Diseñados para probar los límites del modelo, como entradas confusas o contrarias.
+
+**Consejo:** Incluye conjuntos de prueba que evalúen no solo la precisión, sino también la resiliencia del modelo frente a entradas inesperadas o ruidosas.
+
+
+## 4. **Incluir Evaluaciones Cualitativas**
+
+Además de las métricas cuantitativas, las evaluaciones cualitativas permiten capturar aspectos subjetivos de la salida del modelo que son críticos en muchas aplicaciones de NLP.
+
+### Métodos Cualitativos:
+- **Revisión Humana:** Expertos del dominio pueden evaluar la calidad de las respuestas generadas en tareas como soporte al cliente o generación de contenido.
+- **Análisis de Errores:** Un análisis detallado de los errores puede revelar patrones de fallo y guiar ajustes en el modelo.
+- **Simulaciones de Usuario:** Simular interacciones con usuarios reales ayuda a evaluar cómo el modelo maneja la conversación en un entorno real.
+
+**Recomendación:** Complementa las métricas con evaluaciones cualitativas para obtener una visión completa del rendimiento del modelo.
+
+
+## 5. **Comparar con Benchmarks y Estándares de la Industria**
+
+Comparar el rendimiento de tu LLM con benchmarks reconocidos proporciona un marco objetivo para evaluar su eficacia. El Día 61 también abordó varios benchmarks relevantes para tareas específicas de NLP.
+
+### Benchmarks Específicos:
+- **GLUE y SuperGLUE:** Para tareas generales de comprensión del lenguaje.
+- **BigBench y Big Bench Hard (BBH):** Para tareas complejas y desafiantes de razonamiento y comprensión.
+- **MMLU-PRO:** Evalúa el rendimiento en una amplia gama de disciplinas académicas.
+- **MATH Lvl 5:** Para evaluar la competencia del modelo en problemas matemáticos avanzados.
+
+**Consejo:** Utiliza benchmarks que sean directamente relevantes para tu dominio para obtener una evaluación comparativa clara.
+
+
+## 6. **Iterar y Mejorar Basado en los Resultados**
+
+La evaluación no es una tarea única; es un ciclo continuo de retroalimentación que debe informar iteraciones y mejoras en el modelo.
+
+### Estrategias de Iteración:
+- **Optimización de Hiperparámetros:** Ajusta la configuración de entrenamiento en función de los resultados observados durante la evaluación.
+- **Actualización de Datos:** Incorpora nuevos datos o ajusta los conjuntos existentes basados en el feedback recibido para mejorar el rendimiento del modelo.
+- **Monitorización en Producción:** Implementa herramientas de monitoreo para detectar cualquier degradación en el rendimiento del modelo una vez desplegado.
+
+**Implementación:** Asegura un proceso iterativo que permita mejorar continuamente el modelo y mantenerlo alineado con los objetivos de rendimiento.
+
+
+Evaluar un LLM es un proceso integral que combina métricas cuantitativas y evaluaciones cualitativas para asegurar que el modelo no solo sea preciso y eficiente, sino también robusto y adecuado para el entorno de producción. Mencionando las métricas y benchmarks discutidos en el Día 61 de tu reto #100DaysOfAI, este paso asegura que tu modelo esté preparado para cumplir con los desafíos específicos de tu caso de uso.
+
+---
+
+### **Para profundizar más:**
+
+- [NLP Model Evaluation - Metrics, Benchmarks, and Beyond](https://deconvoluteai.com/blog/evaluating-nlp-models)
+- [Benchmarks for Large Language Models](https://github.com/Oliver369X/100DaysOfAI?tab=readme-ov-file#D%C3%ADa61)
+- [Evaluating Large Language Model (LLM) systems: Metrics, challenges, and best practices](https://medium.com/data-science-at-microsoft/evaluating-llm-systems-metrics-challenges-and-best-practices-664ac25be7e5)
+
+---
 # Día79
 # Día80
 # Día81
