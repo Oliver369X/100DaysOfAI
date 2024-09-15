@@ -97,7 +97,7 @@
 | [Día76](#Día76) | Paso 4: Entrenamiento del Modelo | 
 | [Día77](#Día77) | Paso 5: Fine-Tuning del LLM | 
 | [Día78](#Día78) | Paso 6: Evaluación del Modelo | 
-| [Día79](#Día79) |  | 
+| [Día79](#Día79) | Optimización y Ajuste de Hiperparámetros | 
 | [Día80](#Día80) |  | 
 | [Día81](#Día81) |  | 
 | [Día82](#Día82) |  | 
@@ -6350,6 +6350,98 @@ Evaluar un LLM es un proceso integral que combina métricas cuantitativas y eval
 
 ---
 # Día79
+---
+## **Optimización y Ajuste de Hiperparámetros**
+
+El proceso de optimización de hiperparámetros es un paso crucial para mejorar el rendimiento de cualquier modelo de lenguaje. A pesar de que el modelo puede aprender muchos parámetros durante el entrenamiento, los hiperparámetros son valores predefinidos que influyen significativamente en cómo el modelo aprende y converge hacia una solución efectiva. Ajustar estos valores de manera adecuada puede marcar la diferencia entre un modelo mediocre y uno altamente eficiente.
+
+## ¿Qué son los Hiperparámetros?
+
+Los hiperparámetros son configuraciones que controlan cómo funciona el modelo durante el proceso de entrenamiento. A diferencia de los parámetros aprendidos (como los pesos en una red neuronal), los hiperparámetros no se ajustan automáticamente y deben ser definidos antes de iniciar el entrenamiento. Optimizar hiperparámetros requiere una combinación de experiencia, prueba y error, y métodos de búsqueda automatizados.
+
+### Principales Hiperparámetros en LLM
+
+A continuación, explicamos algunos de los hiperparámetros más importantes al entrenar un modelo de lenguaje:
+
+- **Tamaño del Lote (Batch Size)**: Define el número de ejemplos de datos procesados antes de actualizar los pesos del modelo. Un tamaño de lote pequeño puede resultar en actualizaciones frecuentes pero ruidosas, mientras que un tamaño grande ofrece estabilidad pero requiere más memoria y tiempo de cómputo.
+  
+  **Consejo**: Experimenta con diferentes tamaños de lote, pero si tienes limitaciones de hardware, un valor moderado como 32 o 64 puede ser un buen punto de partida.
+
+- **Tasa de Aprendizaje (Learning Rate)**: Controla la rapidez con la que el modelo ajusta sus parámetros. Una tasa de aprendizaje alta puede acelerar el proceso de convergencia, pero si es demasiado alta, puede causar fluctuaciones en el entrenamiento y evitar que el modelo alcance el mínimo óptimo.
+
+  **Consejo**: Un enfoque común es comenzar con una tasa de aprendizaje moderada (ej. 0.001) y ajustarla a medida que observas el progreso del modelo. Usa técnicas como *learning rate decay* para reducirla gradualmente.
+
+- **Número de Épocas (Epochs)**: Se refiere al número de veces que el modelo ve el conjunto completo de datos de entrenamiento. A mayor número de épocas, más oportunidades tiene el modelo para ajustar sus parámetros, pero un número excesivo puede llevar al sobreajuste (overfitting).
+
+  **Consejo**: Monitorea el rendimiento del modelo en un conjunto de validación y detén el entrenamiento cuando la pérdida de validación comience a aumentar (early stopping).
+
+- **Decaimiento de la Tasa de Aprendizaje (Learning Rate Decay)**: Reducir la tasa de aprendizaje durante el entrenamiento puede ayudar al modelo a estabilizar su aprendizaje en las etapas finales, permitiendo ajustes más precisos.
+
+- **Regularización (Regularization)**: Técnicas como L2 o el dropout evitan que el modelo se sobreajuste a los datos de entrenamiento, ayudando a generalizar mejor en datos no vistos.
+
+  **Consejo**: Experimenta con dropout (ej. 0.2 a 0.5) o regularización L2 para mejorar la robustez del modelo.
+
+## Estrategias de Ajuste de Hiperparámetros
+
+Existen múltiples métodos para ajustar estos hiperparámetros de manera eficiente. Aunque el enfoque inicial puede ser un proceso manual de prueba y error, las técnicas automatizadas facilitan encontrar la combinación óptima de hiperparámetros.
+
+### 1. **Búsqueda en Cuadrícula (Grid Search)**
+
+La búsqueda en cuadrícula es un método exhaustivo que prueba todas las combinaciones posibles de los hiperparámetros dentro de un rango predefinido. Si bien es efectiva, su principal desventaja es el alto costo computacional, ya que el número de combinaciones crece exponencialmente con el número de hiperparámetros.
+
+  **Ejemplo**: Si quieres ajustar la tasa de aprendizaje y el tamaño del lote, puedes definir varios valores posibles para cada uno (ej. tasa de aprendizaje = [0.01, 0.001, 0.0001], tamaño del lote = [32, 64, 128]) y probar todas las combinaciones.
+
+### 2. **Búsqueda Aleatoria (Random Search)**
+
+En lugar de probar todas las combinaciones posibles, la búsqueda aleatoria selecciona un subconjunto de combinaciones al azar. Estudios han demostrado que esta técnica puede ser más eficiente que la búsqueda en cuadrícula, ya que muchas veces las mejoras en el rendimiento están concentradas en rangos específicos de hiperparámetros.
+
+  **Ejemplo**: Puedes definir rangos amplios para la tasa de aprendizaje y el tamaño del lote, y dejar que el algoritmo seleccione combinaciones al azar para probar.
+
+### 3. **Optimización Bayesiana**
+
+Este método construye un modelo probabilístico del espacio de hiperparámetros y lo utiliza para elegir las combinaciones más prometedoras. A medida que se prueban nuevas combinaciones, el modelo probabilístico mejora, reduciendo el número de pruebas necesarias para encontrar la mejor combinación.
+
+  **Ventaja**: La optimización bayesiana es mucho más eficiente que la búsqueda en cuadrícula y aleatoria, especialmente cuando se trabaja con hiperparámetros complejos y costosos de evaluar.
+
+### 4. **Ajuste de Hiperparámetros con Gradientes (Hypergradient Methods)**
+
+En algunos casos, es posible ajustar ciertos hiperparámetros en función de su gradiente, lo que permite un ajuste más dinámico durante el entrenamiento. Esta técnica es más avanzada y requiere un mayor control sobre el proceso de entrenamiento.
+
+  **Ejemplo**: Algunos optimizadores como Adam o Adagrad permiten ajustar la tasa de aprendizaje de manera dinámica durante el entrenamiento.
+
+## Técnicas Avanzadas: **One Cycle Learning Rate**
+
+Una técnica emergente en la optimización de hiperparámetros es el uso de la política de tasa de aprendizaje de un ciclo (*One Cycle Learning Rate*), donde la tasa de aprendizaje se ajusta siguiendo una curva cíclica durante el entrenamiento. Esto puede acelerar la convergencia y mejorar el rendimiento general.
+
+  **Paso a Paso**:
+  1. Inicia el entrenamiento con una tasa de aprendizaje muy baja.
+  2. Incrementa la tasa de aprendizaje gradualmente hasta alcanzar un valor máximo.
+  3. Reduce la tasa de aprendizaje hasta un valor mínimo durante la fase final del entrenamiento.
+
+## Mejores Prácticas para la Optimización
+
+### 1. **Empieza con Valores Conservadores**
+Si no estás seguro de los valores ideales, comienza con hiperparámetros conservadores. Una tasa de aprendizaje moderada y un tamaño de lote pequeño a medio son puntos de partida seguros.
+
+### 2. **Monitorea el Rendimiento Constantemente**
+Usa gráficos y herramientas de visualización para monitorear el comportamiento del modelo. Métricas como la pérdida en los datos de validación y las curvas de aprendizaje te permitirán detectar sobreajuste o una tasa de aprendizaje inapropiada.
+
+### 3. **Implementa Técnicas de Early Stopping**
+Detener el entrenamiento de forma anticipada cuando la pérdida de validación deja de mejorar es una estrategia efectiva para evitar sobreentrenamiento.
+
+### 4. **Considera el Balance Entre Tiempo y Precisión**
+Dependiendo de los recursos disponibles, podría ser necesario encontrar un equilibrio entre los recursos computacionales y el rendimiento óptimo del modelo.
+
+## Ejemplo Práctico de Optimización
+
+Supongamos que estás entrenando un modelo basado en GPT para generar resúmenes de textos extensos. Decides ajustar los siguientes hiperparámetros:
+
+- Tasa de aprendizaje: [0.01, 0.001, 0.0001]
+- Tamaño de lote: [32, 64, 128]
+- Épocas: [3, 5, 10]
+
+Tras usar búsqueda aleatoria, encuentras que la mejor combinación inicial es una tasa de aprendizaje de 0.001 y un tamaño de lote de 64. Luego, aplicas *learning rate decay* para reducir la tasa de aprendizaje a medida que avanzas en el entrenamiento, lo que permite un ajuste fino y ayuda al modelo a converger de manera más estable.
+
 # Día80
 # Día81
 # Día82
