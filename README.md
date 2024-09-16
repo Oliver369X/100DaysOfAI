@@ -98,7 +98,7 @@
 | [Día77](#Día77) | Paso 5: Fine-Tuning del LLM | 
 | [Día78](#Día78) | Paso 6: Evaluación del Modelo | 
 | [Día79](#Día79) | Optimización y Ajuste de Hiperparámetros | 
-| [Día80](#Día80) |  | 
+| [Día80](#Día80) | Cómo Llevar un LLM a Producción | 
 | [Día81](#Día81) |  | 
 | [Día82](#Día82) |  | 
 | [Día83](#Día83) |  | 
@@ -6443,6 +6443,77 @@ Supongamos que estás entrenando un modelo basado en GPT para generar resúmenes
 Tras usar búsqueda aleatoria, encuentras que la mejor combinación inicial es una tasa de aprendizaje de 0.001 y un tamaño de lote de 64. Luego, aplicas *learning rate decay* para reducir la tasa de aprendizaje a medida que avanzas en el entrenamiento, lo que permite un ajuste fino y ayuda al modelo a converger de manera más estable.
 
 # Día80
+---
+## Cómo Llevar un LLM a Producción
+
+
+Los modelos de lenguaje grande (LLMs) han demostrado ser poderosos en una amplia gama de aplicaciones, desde la generación de texto hasta el análisis avanzado de datos. Sin embargo, llevar un LLM a producción implica desafíos técnicos, económicos y de mantenimiento. En esta publicación, exploraremos cómo subir un LLM a producción, las diferentes formas de hacerlo, los costos asociados y los aspectos cruciales que debes considerar para garantizar una implementación exitosa.
+
+### 1. Métodos para Subir un LLM a Producción
+Existen varias maneras de desplegar un LLM en producción. Aquí detallamos las más comunes:
+
+#### a. Despliegue en la Nube
+Los proveedores de servicios en la nube, como AWS, Google Cloud y Microsoft Azure, ofrecen soluciones para implementar modelos de IA a gran escala. Algunas opciones incluyen:
+
+- **SageMaker (AWS)**: Proporciona un entorno escalable para entrenar y desplegar modelos.
+- **AI Platform (Google Cloud)**: Ideal para entrenar y servir modelos de aprendizaje profundo.
+- **Azure Machine Learning**: Integra herramientas de MLOps para automatizar el ciclo de vida del modelo.
+
+#### b. Infraestructura On-Premise
+Para algunas empresas, especialmente aquellas con requisitos estrictos de privacidad o en industrias reguladas, el despliegue on-premise puede ser la mejor opción. Esto permite mayor control sobre los datos y la infraestructura, pero requiere una inversión significativa en hardware y mantenimiento.
+
+#### c. Plataformas de Modelos como Servicio (MaaS)
+Otra opción es utilizar servicios como **Hugging Face Inference API** o **OpenAI API**, donde los modelos están preentrenados y disponibles para integración a través de una API. Estos servicios pueden ser costosos a largo plazo, pero eliminan la necesidad de entrenar y gestionar el modelo.
+
+### 2. Consideraciones Técnicas
+
+#### a. Escalabilidad y Latencia
+Uno de los mayores desafíos al llevar un LLM a producción es garantizar que pueda manejar múltiples solicitudes simultáneamente sin sacrificar la latencia. Aquí es donde entra en juego la arquitectura de microservicios y el uso de **cachés** o **servidores especializados de inferencia**, como **TensorRT** para mejorar la velocidad.
+
+#### b. Monitoreo y MLOps
+Una vez desplegado, es fundamental monitorear continuamente el rendimiento del modelo para detectar degradaciones en la precisión o el rendimiento. Las herramientas de MLOps, como **MLflow**, ayudan a rastrear las versiones del modelo y los experimentos de entrenamiento.
+
+#### c. Optimización de Modelos
+Los LLMs pueden ser extremadamente grandes, lo que aumenta los costos de computación y almacenamiento. Técnicas como **cuantización**, **pruning** y **distillation** pueden reducir el tamaño del modelo sin sacrificar mucho la precisión.
+
+### 3. Costos de Llevar un LLM a Producción
+
+#### a. Infraestructura
+El costo de la infraestructura depende de si estás usando una solución en la nube o on-premise. La nube ofrece flexibilidad con un modelo de pago por uso, mientras que on-premise implica una mayor inversión inicial, pero con costos controlados a largo plazo.
+
+#### b. Costos de Almacenamiento y Cómputo
+- **Cómputo en la nube**: AWS, Google Cloud y Azure tienen diferentes tarifas basadas en el uso de GPU y CPU.
+- **Almacenamiento de datos**: Grandes volúmenes de datos, necesarios para la inferencia y el monitoreo, pueden incurrir en costos adicionales.
+
+#### c. Costos de Mantenimiento
+El mantenimiento del modelo en producción, como el ajuste continuo o la actualización de los datos de entrenamiento, también debe ser considerado.
+
+### 4. Requisitos de Seguridad y Privacidad
+Implementar medidas de seguridad robustas es crucial, especialmente si el LLM maneja datos sensibles. Las siguientes prácticas son recomendables:
+- **Cifrado de datos** tanto en tránsito como en reposo.
+- Cumplir con las regulaciones de privacidad, como **GDPR** o **CCPA**, si aplican.
+
+### 5. Estrategias de Despliegue
+Existen diversas estrategias para garantizar una implementación sin interrupciones:
+
+#### a. Despliegue Canario
+Despliegue gradual del nuevo modelo a un subconjunto de usuarios antes de extenderlo a todos, lo que permite detectar errores sin afectar a todos los usuarios.
+
+#### b. Blue/Green Deployment
+Se ejecutan dos versiones del entorno (producción y prueba), de manera que el nuevo modelo solo se activa cuando se ha verificado que funciona correctamente.
+
+### Conclusión
+Llevar un LLM a producción no solo implica entrenarlo correctamente, sino también tener en cuenta aspectos como la infraestructura, la escalabilidad, los costos y la seguridad. Con la planificación adecuada, es posible desplegar modelos robustos que ofrezcan valor real en un entorno de producción.
+
+
+
+### Recursos para Profundizar
+- [Guía de MLOps en Azure](https://learn.microsoft.com/es-es/azure/databricks/machine-learning/mlops/llmops)  
+- [Hugging Face - Inference API](https://huggingface.co/docs/api-inference/en/index)  
+- [Optimización de Modelos con TensorRT](https://developer.nvidia.com/tensorrt)
+
+
+---
 # Día81
 # Día82
 # Día83
