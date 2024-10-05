@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/0a9bc442-cf71-4694-8421-be3b6e5dccae
 # 100 Días de IA
 
 | Libros y Recursos | Estado de Finalización |
@@ -1433,6 +1435,8 @@ En la imagen de arriba, se muestra un ejemplo de Max Pooling aplicado a un mapa 
 - **Importancia**: Sin ellas, la red sería equivalente a un modelo lineal simple.
 
 #### ReLU (Rectified Linear Unit)
+![image](https://github.com/user-attachments/assets/643abc64-b026-406e-8525-d8f1b6ff372c)
+
 **Definición Matemática**: f(x) = max(0, x)
 **Funcionamiento**:
 - Si la entrada es negativa, la salida es 0.
@@ -1445,6 +1449,8 @@ En la imagen de arriba, se muestra un ejemplo de Max Pooling aplicado a un mapa 
 - Problema de "neuronas muertas": si una neurona siempre produce salidas negativas, puede "morir" y dejar de aprender.
 
 #### LeakyReLU
+![image](https://github.com/user-attachments/assets/4a61e8a7-111f-4cf2-b92f-856cc9c88b06)
+
 **Definición Matemática**: f(x) = max(αx, x), donde α es un valor pequeño (típicamente 0.01).
 **Funcionamiento**:
 - Similar a ReLU, pero permite un pequeño gradiente negativo cuando la unidad no está activa.
@@ -1456,6 +1462,8 @@ En la imagen de arriba, se muestra un ejemplo de Max Pooling aplicado a un mapa 
 
 #### Otras Variantes de ReLU
 **a) PReLU (Parametric ReLU)**
+![image](https://github.com/user-attachments/assets/c0301c8a-8886-4fc5-a7a6-5ab89b198d46)
+
 - Similar a LeakyReLU, pero α es un parámetro aprendible.
 - Puede adaptarse mejor a los datos específicos del problema.
 
@@ -1501,6 +1509,7 @@ model.add_module('leaky_relu', nn.LeakyReLU(negative_slope=0.01))
 # Día21
 ---
 ## Construcción de Capas en CNNs 🛠️🧱
+![image](https://github.com/user-attachments/assets/a4778fde-b8a7-4eac-b19f-2b896404fbc3)
 
 ### Construcción de Capas Convolucionales: 🔍
 * **Definición:** Las capas convolucionales son fundamentales en las CNNs para la detección de características en datos de alta dimensión, como imágenes.
@@ -1553,6 +1562,7 @@ model.compile(optimizer='adam',
 # Día22
 ---
 ## Capas Completamente Conectadas (Fully Connected Layers) 🔗🤖
+![image](https://github.com/user-attachments/assets/5d5b954b-33e7-47ed-8622-b24a5ae6ce08)
 
 #### Integración de Capas Completamente Conectadas:
 - **Definición:** Las capas completamente conectadas, también conocidas como capas densas, son aquellas donde cada neurona está conectada a todas las neuronas de la capa anterior.
@@ -1727,6 +1737,7 @@ La regularización en redes neuronales y, específicamente, en CNNs, se refiere 
 ---
 ## Actualización de Pesos y Ajuste de Filtros 🛠️🔄
 
+![image](https://github.com/user-attachments/assets/46ea76d5-52cc-4de6-a2fe-e60704d514e6)
 
 #### Actualización de Pesos y Filtros en CNNs
 
@@ -2291,6 +2302,7 @@ Estas arquitecturas han desempeñado un papel fundamental en la evolución de la
 
 
 ## Arquitecturas Específicas en Visión por Computadora 🎯🖥️
+![image](https://github.com/user-attachments/assets/28247bca-63e5-4986-a171-1b24e1f6348c)
 
 Continuando con nuestro viaje por las arquitecturas de redes neuronales, hoy exploramos cómo diferentes arquitecturas destacan en tareas específicas dentro de la visión por computadora:
 
@@ -2337,6 +2349,7 @@ Cada arquitectura brilla en su dominio, demostrando la diversidad y especializac
 
 ¡Hola a todos! En el día 29 de nuestro desafío #100DaysOfAI, vamos a explorar el fascinante concepto de **Transfer Learning**. Esta técnica ha revolucionado la forma en que abordamos problemas de aprendizaje profundo, especialmente cuando tenemos datos limitados. ¡Vamos a sumergirnos en los detalles!
 
+![image](https://github.com/user-attachments/assets/10645303-509b-428c-bdcc-0009ee784864)
 
 #### ¿Qué es el Transfer Learning?
 
@@ -2776,6 +2789,7 @@ Referencias:
 ## YOLOv8 y sus Variantes con Ultralytics
 
 En el día de hoy, vamos a profundizar en YOLOv8 y sus variantes, así como en la suite de herramientas ofrecidas por Ultralytics que estaremos utilizando en nuestros proyectos de detección de objetos. ¡Vamos a ello!
+![image](https://github.com/user-attachments/assets/3f80a241-0133-444f-a8b1-24915a31a5d0)
 
 #### 🚀 Introducción a YOLOv8
 
@@ -2886,6 +2900,7 @@ Para más detalles sobre estas herramientas, visita la [documentación de Ultral
 # Día36
 ---
 ### Segmentación de Imágenes con Redes Neuronales Convolucionales 🖼️🧠**
+![image](https://github.com/user-attachments/assets/509eb4c0-adb3-4a42-aa4f-7dc5a576a405)
 
 #### 🌟 ¿Qué es la Segmentación de Imágenes?
 La segmentación de imágenes es una técnica en visión por computadora que divide una imagen en segmentos significativos para facilitar su análisis. A diferencia de la clasificación de imágenes, que asigna una etiqueta a toda la imagen, la segmentación de imágenes asigna una etiqueta a cada píxel, permitiendo una comprensión más detallada y precisa del contenido visual.
@@ -2908,6 +2923,7 @@ Ultralytics proporciona herramientas poderosas para implementar y entrenar model
 # Día37
 ---
 ## Implementación de Segmentación de Imágenes con YOLO y Ultralytics - Demo Práctica 🛠️📊**
+![Uploading image.png…]()
 
 ### 🔧 Herramientas Necesarias:
 1. **Ultralytics YOLOv8:** Nuestro modelo de elección para la segmentación.
@@ -3032,6 +3048,7 @@ Estos avances no solo mejoran la precisión y la velocidad, sino que también ha
 ---
 ## RT-DETR revoluciona la detección de objetos en tiempo real 🚀
 Hoy estoy emocionado de compartir algunos avances de vanguardia en la detección de objetos en tiempo real. Esto proviene de un emocionante artículo titulado **"DETRs Beat YOLOs on Real-time Object Detection"**. Escrito por investigadores de la Universidad de Huddersfield, presenta RT-DETR (Real-Time Detection Transformer), un cambio de juego que supera a los famosos modelos YOLO en velocidad y precisión. Aquí tienes un desglose amigable:
+![image](https://github.com/user-attachments/assets/dbe0da99-a2b5-49b9-8dc8-f2f2222f0318)
 
 #### 🚀 ¿Por qué es importante?
 La detección de objetos en tiempo real es crucial para aplicaciones como:
@@ -3061,6 +3078,9 @@ RT-DETR es el primer detector de objetos en tiempo real basado en la arquitectur
 
 #### 🧪 Los experimentos muestran…
 RT-DETR fue probado contra modelos YOLO y otros detectores basados en Transformer. ¿Los resultados? RT-DETR superó a todos en velocidad y precisión, demostrando su efectividad en varios escenarios.
+![image](https://github.com/user-attachments/assets/95d7b291-247b-4dca-8098-1ad23b7d097d)
+
+![image](https://github.com/user-attachments/assets/e049fc1b-cee2-46cb-8512-887d95b6d354)
 
 #### 🚧 Limitaciones y trabajo futuro
 - **Desafíos:** Aún hay algunos obstáculos en escenarios específicos.
@@ -3082,6 +3102,7 @@ RT-DETR marca un avance significativo en la detección de objetos en tiempo real
 ## Exploración de Segmentadores de Imágenes: Desde U-Net hasta las Arquitecturas Modernas
 
 En mi reciente lectura del paper **"U-Net: Convolutional Networks for Biomedical Image Segmentation"** de Olaf Ronneberger, Philipp Fischer y Thomas Brox, me impresionó la innovación y eficacia de la arquitectura U-Net en la segmentación de imágenes biomédicas. Aquí les comparto un resumen y mi análisis sobre esta poderosa herramienta y otras arquitecturas relevantes en el campo.
+![image](https://github.com/user-attachments/assets/e15995ca-f93f-4598-a846-12342d3a13e2)
 
 ### Resumen del Paper de U-Net
 
@@ -3093,6 +3114,8 @@ La U-Net es una red convolucional diseñada específicamente para la segmentaci�
 2. **Arquitectura del U-Net:**
    - Consiste en un camino de contracción (para capturar el contexto) y un camino de expansión (para una localización precisa), formando una estructura en forma de "U".
    - Esta arquitectura permite entrenar la red de extremo a extremo con pocas imágenes, logrando resultados superiores en desafíos de segmentación neuronal y seguimiento de células.
+![image](https://github.com/user-attachments/assets/a3228272-6176-4837-baac-fc3776c390ec)
+![image](https://github.com/user-attachments/assets/b0234afb-840d-46e3-baca-577f7a581107)
 
 3. **Resultados y Rendimiento:**
    - U-Net ha ganado los desafíos ISBI 2012 y 2015 en sus respectivas categorías.
@@ -3539,6 +3562,7 @@ Para profundizar en la gestión de colas utilizando Ultralytics YOLOv8, te recom
 ---
 
 ## Gestión de Aparcamientos Mediante Ultralytics YOLOv8 🚀
+![image](https://github.com/user-attachments/assets/5b4c56e9-e36f-4d2c-8178-ef00a476f9f2)
 
 ### ¿Qué es el Sistema de Gestión de Aparcamientos?
 
@@ -3787,6 +3811,7 @@ Estos avances se deben a técnicas innovadoras como los transformers, la atenci�
 En el procesamiento de lenguaje natural (NLP), la **tokenización**, **lematización** y **stemming** son pasos clave en el preprocesamiento de datos de texto, permitiendo a los algoritmos de aprendizaje automático entender y manipular el lenguaje humano de manera efectiva. Vamos a explorar en qué consisten estas técnicas, sus aplicaciones más comunes y cuándo es adecuado utilizarlas en un proyecto de NLP.
 
 ## 1. Tokenización
+![image](https://github.com/user-attachments/assets/61a33ff2-755c-4a46-9fa1-b6b7d21d7b2b)
 
 ### Definición
 La tokenización es el proceso de dividir un texto en partes más pequeñas llamadas "tokens", que suelen ser palabras, aunque también pueden ser frases o caracteres, dependiendo de la granularidad necesaria. 
@@ -3841,6 +3866,7 @@ print(stemmed_words)
 - **SnowballStemmer**: Una versión más avanzada y multilingüe del Porter Stemmer.
 
 ## 3. Lematización
+![image](https://github.com/user-attachments/assets/d6aa87f2-dc6a-4246-8cc5-7970aaa4741f)
 
 ### Definición
 La lematización es un proceso más avanzado que el stemming, ya que reduce las palabras a su lema, que es la forma base de una palabra según su categoría gramatical. A diferencia del stemming, la lematización siempre devuelve palabras reales del idioma.
@@ -3867,6 +3893,8 @@ print(lemmatized_words)
 ### Librerías recomendadas:
 - **nltk**: Facilita el uso de WordNet para lematización.
 - **spaCy**: Ofrece una lematización rápida y precisa, ideal para grandes volúmenes de datos.
+
+![image](https://github.com/user-attachments/assets/51728bc3-a703-4226-a251-3a18d370aaf7)
 
 ## Recursos adicionales
 
@@ -4189,6 +4217,7 @@ El uso irresponsable de IA y NLP puede llevar a la **manipulación de opiniones*
 # Día55
 ---
 ## Introducción a las Representaciones Vectoriales de Palabras
+![image](https://github.com/user-attachments/assets/7d9e9237-25c7-43ff-b681-111d02e73618)
 
 
 Las representaciones vectoriales de palabras, también conocidas como **word embeddings**, son una técnica fundamental en el **procesamiento del lenguaje natural (NLP)**. Estas representaciones permiten que las palabras sean expresadas como vectores numéricos en un espacio de alta dimensionalidad, capturando de manera eficiente relaciones semánticas y contextuales entre ellas. En esta publicación, exploraremos qué son los embeddings, por qué son útiles y cómo han revolucionado el campo del NLP.
@@ -4440,6 +4469,7 @@ Finalmente, podemos visualizar los datos para identificar patrones y tendencias.
 # Día57
 ---
 ## Word2Vec - Arquitectura y Aplicaciones
+![image](https://github.com/user-attachments/assets/9ad2df1b-df89-4be2-91a0-757db64850e2)
 
 ## Introducción a Word2Vec
 
@@ -4986,12 +5016,14 @@ La reproducibilidad es un aspecto crucial en la evaluación de modelos de NLP. L
 # Día62
 ---
 ## Introducción a las RNNs y su arquitectura
+![image](https://github.com/user-attachments/assets/b292ce82-a287-4947-ae8d-1783f6f91fd5)
 
 ## ¿Qué son las Redes Neuronales Recurrentes (RNN)?
 
 Las Redes Neuronales Recurrentes (RNNs) son un tipo de arquitectura de redes neuronales especializadas en procesar secuencias de datos. A diferencia de las redes neuronales tradicionales, las RNNs pueden utilizar información previa para influir en el procesamiento de datos futuros. Esto las hace ideales para tareas que involucran secuencias, como series temporales, procesamiento del lenguaje natural, y reconocimiento de voz.
 
 ### Estructura de las RNN
+![image](https://github.com/user-attachments/assets/dde4564f-168d-459c-859c-29d9dd2ec5fc)
 
 La característica clave de las RNNs es su **retroalimentación** o "recurrencia", lo que significa que la salida de una neurona en un paso temporal se convierte en entrada para el siguiente. Esto permite que las RNN mantengan un "estado" interno que captura información sobre los elementos previos en la secuencia.
 
@@ -5013,6 +5045,7 @@ Donde:
 - \( x_t \) es la entrada en el tiempo \( t \).
 - \( W_h \) y \( W_x \) son matrices de pesos entrenables.
 - La función de activación comúnmente utilizada es la **tanh** o **ReLU**.
+![image](https://github.com/user-attachments/assets/ee03571c-57ad-4204-bb85-0807aaf04f3d)
 
 ### Desventajas y Limitaciones
 
@@ -5073,6 +5106,7 @@ print(output)
 ---
 ---
 ## LSTMs y GRUs
+![image](https://github.com/user-attachments/assets/787c7dd2-0841-40e0-aea4-fe77915f60fc)
 
 Tanto las **LSTMs (Long Short-Term Memory)** como las **GRUs (Gated Recurrent Units)** son variantes avanzadas de Redes Neuronales Recurrentes (RNNs) que fueron diseñadas para mitigar las limitaciones de las RNNs tradicionales, como el **desvanecimiento del gradiente**. Ambas arquitecturas pueden capturar dependencias a largo plazo de manera más eficiente, lo que las hace más adecuadas para tareas con secuencias largas, como la traducción automática, el análisis de texto o el reconocimiento de voz.
 
@@ -5185,6 +5219,7 @@ print(output)
 # Día64
 ---
 ## Seq2Seq y Modelos de Atención
+![image](https://github.com/user-attachments/assets/259877f6-d027-49de-b099-a98dfeca2137)
 
 
 El modelo **Seq2Seq (Sequence-to-Sequence)** es una arquitectura comúnmente utilizada para tareas de secuencias, como traducción automática, resumen de textos, y diálogo. El propósito de este modelo es transformar una secuencia de entrada en otra secuencia de salida, donde la longitud de ambas secuencias puede variar. Los modelos de **atención** surgieron como una mejora fundamental para los Seq2Seq, especialmente en tareas donde las dependencias a largo plazo son importantes.
@@ -5277,6 +5312,7 @@ class DecoderWithAttention(nn.Module):
 # Día65
 ---
 ## Introducción a los Transformers
+![image](https://github.com/user-attachments/assets/19ac39fd-bcbf-4550-bc40-23a8319ace0b)
 
 ## ¿Qué son los Transformers?
 
@@ -5501,12 +5537,14 @@ Los Transformers, con modelos como **GPT-4o**, han optimizado la capacidad de lo
 ---
 
 ##  BERT y sus Variantes
+![image](https://github.com/user-attachments/assets/03d35b93-d7a5-4dae-b179-12f2f184d379)
 
 ### Introducción a BERT
 
 **BERT (Bidirectional Encoder Representations from Transformers)** es un modelo fundamental en NLP, introducido por Google en 2018, que entiende el contexto de las palabras en ambos sentidos (bidireccional). Esto lo hace poderoso para tareas como clasificación de texto, respuestas a preguntas y más.
 
 ### Arquitectura de BERT
+![image](https://github.com/user-attachments/assets/b4147231-6818-472d-9a00-59ac88f0b915)
 
 BERT se basa en la arquitectura Transformer, específicamente en la parte del encoder. A diferencia de los modelos unidireccionales, BERT analiza el contexto de una palabra en ambas direcciones (izquierda a derecha y derecha a izquierda) simultáneamente. La arquitectura de BERT consiste en múltiples capas de encoders que procesan el texto de entrada y generan representaciones contextuales profundas.
 
@@ -5607,6 +5645,7 @@ print(f'Precisión del modelo: {precision:.2f}')
 # Día69
 ---
 ## Visión General de LLMs: Conceptos y Evolución
+![image](https://github.com/user-attachments/assets/fc65126c-97f1-43c1-ab5d-49fe241fb341)
 
 ### 1. **¿Qué es un LLM?**
 
@@ -5668,6 +5707,10 @@ La evolución de los LLMs ha sido rápida y disruptiva, y aunque ya están trans
 # Día70
 ---
 ## Visualización de Modelos de Lenguaje GPT en 3D
+
+
+https://github.com/user-attachments/assets/ecbe1a81-c468-4b5c-a85b-82365b0c7033
+
 
 ### Introducción
 En este día, exploraremos el trabajo de **Brendan Bycroft**, quien ha desarrollado una impresionante visualización en 3D de los modelos de lenguaje de tipo **GPT** y una simulación de una **CPU basada en RISC-V**. A través de estos proyectos, podemos obtener una comprensión más profunda del funcionamiento de los modelos de lenguaje y la arquitectura de CPUs desde sus componentes básicos. Esto es útil no solo para quienes estudian procesamiento de lenguaje natural (NLP) sino también para aquellos interesados en los fundamentos de la computación.
@@ -5871,6 +5914,7 @@ Finalmente, define qué éxito significa para tu LLM. Establecer metas claras de
 ## Paso 2: Crea la Arquitectura de tu Modelo
 
 Definir la arquitectura de tu LLM es crucial para garantizar su capacidad de procesamiento, eficiencia y alineación con los objetivos específicos del proyecto. A continuación, te guío a través de los aspectos clave y decisiones importantes que debes considerar al crear la arquitectura de tu LLM, tomando en cuenta las mejores prácticas observadas en modelos modernos como Llama 3.
+![image](https://github.com/user-attachments/assets/8c094648-b238-4bbf-bd94-0b604d64518f)
 
 
 ## 1. **Opta por la Arquitectura Transformer**
@@ -5932,6 +5976,7 @@ El escalado de modelos masivos como los LLMs requiere técnicas avanzadas de par
 
 **Consejo:** Ajusta estas técnicas según la infraestructura disponible para optimizar el uso de recursos y minimizar los tiempos de entrenamiento.
 
+![image](https://github.com/user-attachments/assets/10d33916-89cd-4fdc-b7c1-841ddbae0e9b)
 
 
 Definir la arquitectura de tu LLM es un paso fundamental que impacta directamente en la capacidad del modelo para cumplir con los objetivos propuestos. Optar por una arquitectura de transformer densa con ajustes específicos como GQA y RoPE permite escalar modelos masivos de manera eficiente, manteniendo la estabilidad y la capacidad de aprendizaje. Asegúrate de ajustar la arquitectura para soportar las necesidades específicas de tu caso de uso, utilizando estrategias de escalado efectivas y técnicas de paralelización para maximizar el rendimiento.
@@ -6029,6 +6074,7 @@ Curar datos de alta calidad es una parte esencial para el éxito de un LLM. Desd
 
 
 El entrenamiento de modelos de lenguaje de gran tamaño (LLMs) como Alpaca, WizardLM y Orca, que son afinados a partir de modelos base como LLaMA, se apoya en gran medida en datos sintéticos. Estos datos no solo permiten reducir costos y acelerar el entrenamiento, sino que también posibilitan la creación de modelos altamente especializados en tareas específicas. En esta publicación, exploraremos en profundidad los tipos de datos sintéticos utilizados en el entrenamiento de estos modelos, sus aplicaciones, costos asociados, ventajas y desafíos.
+![image](https://github.com/user-attachments/assets/38e048d0-0839-47a8-bef8-5b41ed3e79fb)
 
 ### Tipos de Datos Sintéticos
 
@@ -6184,6 +6230,7 @@ El entrenamiento de un LLM es un proceso intensivo y detallado que requiere una 
 El ajuste fino (fine-tuning) es un proceso esencial para adaptar un modelo de lenguaje grande (LLM) preentrenado a tareas específicas, optimizando su rendimiento para casos de uso concretos. A diferencia del entrenamiento desde cero, que requiere grandes volúmenes de datos y tiempo, el fine-tuning aprovecha el conocimiento existente en un modelo preentrenado, ajustándolo con datos más específicos y de menor volumen para la tarea deseada. Esto hace que el fine-tuning sea una opción rápida, rentable y efectiva para personalizar modelos de lenguaje.
 
 En este paso, exploraremos los aspectos clave del fine-tuning, incluyendo la selección de datos, técnicas, y la configuración de hiperparámetros para maximizar su efectividad.
+![image](https://github.com/user-attachments/assets/5f97204b-28ab-4745-9c55-826a26b6fabf)
 
 
 ## 1. **Entender la Necesidad del Fine-Tuning**
@@ -6680,6 +6727,7 @@ Con un enfoque proactivo para mitigar los sesgos, proteger la privacidad y asegu
 ## Análisis del Proyecto RebordGPT: Un Asistente Conversacional Optimizado
 
 Hoy analizaremos el proyecto **RebordGPT**, desarrollado por [machinelearnear-dev](https://github.com/machinelearnear-dev/), con el objetivo de crear un asistente conversacional eficiente y de alto rendimiento. RebordGPT propone soluciones innovadoras para mejorar la **eficiencia** y **calidad** en la generación de respuestas, reduciendo el costo computacional sin comprometer la precisión.
+![image](https://github.com/user-attachments/assets/6e60fd51-ba7e-4cf8-bd5b-9a5f704d120f)
 
 ### 1. Motivación
 
@@ -6694,6 +6742,8 @@ RebordGPT emplea una arquitectura modular que divide el pipeline en varias fases
 - **Optimización de Recursos**: Se introduce un sistema de gestión de memoria y optimización en tiempo real para reducir el uso de GPU. Esto permite que el modelo responda en tiempo real sin requerir grandes infraestructuras.
 
 - **Mejora Continua**: RebordGPT incorpora un sistema de aprendizaje continuo, donde las respuestas pasadas se analizan y ajustan para mejorar la precisión y relevancia en futuras interacciones.
+
+![image](https://github.com/user-attachments/assets/439d7509-7114-468a-9635-93aa07a83c00)
 
 ### 3. Implementación y Resultados
 
@@ -6998,6 +7048,7 @@ DeepSpeed ha sido adoptado por muchas organizaciones que necesitan escalar el aj
 # Día86
 ---
 ## RAG - La Alternativa Inteligente al Fine-Tuning
+![image](https://github.com/user-attachments/assets/58d4f0d7-1504-4e16-80a7-36272e0d95e7)
 
 En el desarrollo de modelos de lenguaje a gran escala (LLMs), uno de los desafíos más importantes es la capacidad de adaptar estos modelos a datos nuevos sin tener que pasar por el proceso costoso y lento de reentrenarlos, conocido como *fine-tuning*. Con la proliferación de LLMs, como GPT-3, GPT-4, y otros, surge una nueva técnica: **Retrieval Augmented Generation (RAG)**, que ofrece una solución eficiente y flexible frente a las limitaciones de modelos tradicionalmente entrenados. En este artículo, profundizaremos en qué es exactamente RAG, cómo funciona, sus ventajas en comparación con el fine-tuning y qué aplicaciones prácticas tiene en el mundo real.
 
@@ -7106,6 +7157,7 @@ A medida que la IA sigue cambiando y mejorando rápidamente, se espera que RAG t
 ## RAG Avanzado para Implementaciones en Producción
 
 Hoy quiero profundizar en técnicas avanzadas para implementar **Retrieval-Augmented Generation (RAG)** en entornos de producción. A medida que avanzamos en el desarrollo de soluciones más robustas con **Modelos de Lenguaje Grande (LLMs)**, las aplicaciones en el mundo real requieren más que simples consultas y respuestas. Incorporar técnicas como la construcción de consultas, uso de agentes, herramientas, bases de datos, y el post-procesamiento es esencial para mejorar la precisión y escalabilidad. Aquí cubriremos cómo estas herramientas pueden integrarse y mejorarse para soluciones RAG avanzadas.
+![image](https://github.com/user-attachments/assets/427fba4f-b082-4ddb-a2d1-8f9f84788b1e)
 
 ###  **Pipeline RAG: Estructura Avanzada**
 
@@ -7187,6 +7239,7 @@ En un futuro próximo, es probable que veamos más avances en técnicas de recup
 Hoy nos adentramos en un **proyecto fascinante** que combina técnicas avanzadas de **Retrieval-Augmented Generation (RAG)** y ajuste fino de modelos de lenguaje grandes (**LLMs**). Este proyecto demuestra cómo preparar un **dataset personalizado**, hacer **ajuste fino** sobre un modelo base y aplicar **RAG** para mejorar la precisión y relevancia de las respuestas generadas por el modelo.
 
 🖥️ **Fuente del video**: [Tutorial sobre RAG y ajuste fino en LLMs](https://youtu.be/bIZMgHK8Y-8?si=EX00cS3KboLt6Itx).
+![image](https://github.com/user-attachments/assets/b53b07a8-3301-4e08-9a92-bd9dfcf94eec)
 
 ### 🧩 **Fases del Proyecto**
 Este proyecto abarca varias fases críticas que implican la creación de un sistema de IA capaz de hablar y responder como una figura pública, utilizando entrevistas como datos fuente. Aquí te explico los pasos más importantes:
@@ -7444,6 +7497,7 @@ print(tokenizer.decode(outputs[0]))
 ---
 
 ### 7️⃣ **Guardar y Desplegar el Modelo**
+![image](https://github.com/user-attachments/assets/c9a6e4b2-0674-4d0f-916a-49aec6c8d562)
 
 Finalmente, el modelo ajustado se guardó utilizando la técnica de **LoRA**, permitiendo reutilizar los adaptadores para futuras inferencias o ajustes adicionales. También subimos el modelo al **Hugging Face Hub** para que esté disponible públicamente.
 
@@ -7660,6 +7714,7 @@ Los **Knowledge Graphs** están transformando los sistemas de **RAG**, permitien
 
 Hoy entramos en un nuevo capítulo de la IA: los **Modelos de Lenguaje Multimodales (LLM Multimodal)**. Estos modelos están diseñados para procesar y generar datos a través de diferentes modalidades, como texto, imágenes, audio e incluso video. Están revolucionando la manera en que interactuamos con la IA, permitiendo respuestas más ricas y naturales al combinar diversas fuentes de información.
 
+![image](https://github.com/user-attachments/assets/166575bf-e5dd-4865-89cc-96105c97bc0d)
 
 ### 1️⃣ **¿Qué es un LLM Multimodal?**
 
@@ -7749,6 +7804,7 @@ Si deseas profundizar más en este fascinante campo, aquí tienes algunos recurs
 # Día94
 ---
 ## Desentrañando el Funcionamiento Técnico de los Modelos de Lenguaje Multimodales 🧠🎨🎧
+![image](https://github.com/user-attachments/assets/8d3f6e3e-0d2c-4e98-bd88-abe12e83d6eb)
 
 Hoy nos adentramos en el funcionamiento interno de los **Modelos de Lenguaje Multimodales (M-LLMs)**. Estos modelos representan uno de los avances más emocionantes en la inteligencia artificial, ya que son capaces de procesar y generar contenido basado en múltiples modalidades, como texto, imágenes, audio y video. Vamos a profundizar en su arquitectura técnica, los componentes clave que los hacen funcionar, y las aplicaciones emergentes que están cambiando la forma en que interactuamos con la IA.
 
@@ -7783,6 +7839,8 @@ Los M-LLMs utilizan técnicas avanzadas para procesar imágenes:
 El procesamiento de audio en los M-LLMs utiliza una combinación de técnicas avanzadas:
 - **Análisis espectral**: Descompone el audio en frecuencias, permitiendo que el modelo identifique patrones específicos de sonido.
 - **Transformadores de Audio**: Similar a los Transformers de texto, estos modelos aplican mecanismos de autoatención para capturar los aspectos secuenciales del audio, siendo útiles para la transcripción o la detección de emociones.
+
+![image](https://github.com/user-attachments/assets/60086c30-0c3c-454b-bb57-9d0558f820a6)
 
 
 ### 3️⃣ **Fusión de Datos en M-LLMs**
@@ -7849,6 +7907,8 @@ Si deseas profundizar en el funcionamiento de los M-LLMs, aquí tienes algunos r
 ---
 ## La Cuantización y su Impacto en los LLMs
 
+![cuantizacion](https://github.com/user-attachments/assets/56a9a8d4-cbde-48b1-82b9-225b783ca563)
+
 Con el avance de los **Modelos de Lenguaje Grande (LLMs)**, se ha vuelto crucial mejorar la eficiencia de estos modelos sin comprometer su rendimiento. Una de las técnicas más destacadas para reducir la carga computacional es la **cuantización**. En este artículo, profundizaremos en cómo funciona la cuantización, los diferentes enfoques disponibles, y cómo puedes aplicarla en tus proyectos para ahorrar memoria y acelerar la inferencia, especialmente en entornos de producción.
 
 ### 📉 **Cuantización: Reduciendo la Precisión para Mejorar la Eficiencia**
@@ -7896,6 +7956,8 @@ La eficiencia de un modelo no solo depende del número de parámetros, sino tamb
 - **BF16 (bfloat16)**: Similar a FP16, pero con 8 bits para el exponente y 7 para la mantisa, lo que **amplía el rango** pero **reduce la precisión**.
 - **INT8 (8 bits)**: Representa los números enteros en 8 bits, lo que lo convierte en una opción extremadamente eficiente en términos de memoria. Sin embargo, su baja precisión puede **introducir errores** significativos si no se maneja correctamente.
 
+![cunatificaion ](https://github.com/user-attachments/assets/573492af-abf3-4f69-90a8-ced6d33c400c)
+
 
 ### 🔍 **Cuantización 8-Bit y Modelos LLM.int8()**
 
@@ -7935,6 +7997,7 @@ output = model_int8(input_text, return_dict=True)
 print(f"Perplexidad del modelo cuantizado: {output['perplexity']}")
 ```
 
+![comparacion](https://github.com/user-attachments/assets/222838b3-b496-4767-8d91-d7b2f01d97e2)
 
 ### 📊 **Conclusiones y Beneficios**
 
@@ -7948,232 +8011,111 @@ Si estás trabajando con grandes modelos de lenguaje y buscas una forma de **opt
 - [LLM.int8() for Transformers at Scale](https://arxiv.org/abs/2208.07339)
 
 ---
-# Día96
+Aquí está el texto arreglado:
+
 ---
+
+# Día 96  
 ## Guía Completa sobre Cuantización en LLMs
 
-Ayer, en el **Día 95**, hablamos de la cuantización, centrándonos en cómo esta técnica optimiza los **Modelos de Lenguaje Grande (LLMs)** para reducir su uso de memoria y acelerar la inferencia. Cubrimos temas como la **cuantización post-entrenamiento (PTQ)**, la **cuantización consciente del entrenamiento (QAT)**, y discutimos técnicas avanzadas como **LLM.int8()**. Hoy, vamos a profundizar aún más y te ofreceré una **guía detallada sobre cómo cuantizar modelos de cualquier tipo**, no solo Llama 2, utilizando varias técnicas y herramientas.
+En el **Día 95**, hablamos de la cuantización, enfocándonos en cómo optimiza los **Modelos de Lenguaje Grande (LLMs)** para reducir el uso de memoria y acelerar la inferencia. Cubrimos temas como **cuantización post-entrenamiento (PTQ)**, **cuantización consciente del entrenamiento (QAT)** y técnicas avanzadas como **LLM.int8()**. Hoy, vamos a profundizar más, ofreciéndote una **guía detallada sobre cómo cuantizar modelos de cualquier tipo**, no solo Llama 2, utilizando diversas técnicas y herramientas.
 
 ### 📉 **Revisando lo Básico: ¿Por Qué Cuantizar?**
 
-**Los LLMs requieren una gran cantidad de memoria y potencia de cómputo**, lo que hace difícil su despliegue en entornos con recursos limitados. La cuantización es una técnica clave para reducir la precisión de los pesos del modelo y, por lo tanto, el tamaño del modelo, permitiendo que estos modelos funcionen de manera eficiente en hardware más accesible. Con la llegada de técnicas como la **cuantización en 8 bits** o incluso **4 bits**, hemos desbloqueado la capacidad de ejecutar LLMs en dispositivos más pequeños, como GPUs de consumo o incluso CPUs.
+**Los LLMs requieren mucha memoria y potencia de cómputo**, lo que dificulta su uso en entornos con recursos limitados. La cuantización es clave para reducir la precisión de los pesos del modelo y, así, disminuir su tamaño, permitiendo que funcionen eficientemente en hardware más accesible. Con técnicas como la **cuantización en 8 bits** o **4 bits**, hemos logrado ejecutar LLMs en dispositivos más pequeños, como GPUs de consumo o incluso CPUs.
 
 ### 🔑 **Tipos de Cuantización**
 
-Ya exploramos brevemente los tipos de cuantización en el **Día 95**. Ahora vamos a profundizar en cómo se pueden aplicar estas técnicas a diferentes tipos de modelos y en qué contextos es más adecuado utilizar cada una:
+En el **Día 95**, vimos brevemente los tipos de cuantización. Hoy profundizaremos en cómo aplicar estas técnicas en diferentes modelos y contextos:
 
 1. **Cuantización Post-Entrenamiento (PTQ)**:
-   - **Ventajas**: No requiere reentrenar el modelo, lo que la hace muy rápida y fácil de implementar.
-   - **Desventajas**: La precisión del modelo puede degradarse si los pesos no están bien ajustados a la nueva representación de menor precisión.
-   - **Aplicaciones**: Modelos que se ejecutan en hardware de consumo o aplicaciones donde la velocidad es crítica y una ligera degradación en la precisión es aceptable.
+   - **Ventajas**: No requiere reentrenar el modelo, siendo rápida y fácil de implementar.
+   - **Desventajas**: Puede degradarse la precisión si los pesos no se ajustan bien a la nueva representación.
+   - **Aplicaciones**: Modelos donde la velocidad es crítica y se tolera una leve pérdida de precisión.
 
 2. **Cuantización Consciente del Entrenamiento (QAT)**:
-   - **Ventajas**: Se integra durante el entrenamiento del modelo, permitiendo que el modelo ajuste sus pesos para adaptarse a la menor precisión, mejorando el rendimiento.
-   - **Desventajas**: **Computacionalmente costosa**, ya que requiere reentrenamiento y más datos.
-   - **Aplicaciones**: Modelos que requieren alta precisión y deben ejecutarse en hardware más limitado.
+   - **Ventajas**: Permite al modelo adaptarse a la menor precisión durante el entrenamiento, mejorando su rendimiento.
+   - **Desventajas**: Costosa computacionalmente, ya que requiere reentrenamiento.
+   - **Aplicaciones**: Modelos que requieren alta precisión en hardware limitado.
 
 3. **Cuantización Mixta (LLM.int8())**:
-   - **Ventajas**: Técnica avanzada que cuantiza la mayoría de los pesos a **8 bits**, pero mantiene ciertos "outliers" en **FP16** para preservar la precisión.
-   - **Desventajas**: Requiere hardware capaz de manejar cuantización mixta y puede ser más lenta en algunos casos.
-   - **Aplicaciones**: Ideal para ejecutar modelos grandes en hardware con **memoria limitada** y **alta capacidad de procesamiento** (como GPUs).
+   - **Ventajas**: Cuantiza la mayoría de los pesos a **8 bits**, preservando la precisión en valores críticos con **FP16**.
+   - **Desventajas**: Requiere hardware compatible con cuantización mixta y puede ser más lenta en algunos casos.
+   - **Aplicaciones**: Modelos grandes en hardware con **memoria limitada** y **alta capacidad de procesamiento**.
 
 ### 🔍 **Representaciones Numéricas: FP32, FP16, BF16, INT8, 4-Bit**
 
-Para comprender mejor la cuantización, es importante revisar las diferentes **representaciones numéricas** que se utilizan para almacenar los pesos de los modelos:
+Para entender mejor la cuantización, revisemos las diferentes **representaciones numéricas** que se usan para almacenar los pesos de los modelos:
 
-- **FP32**: Representación estándar en LLMs, pero con un **alto costo en memoria y cómputo**.
-- **FP16**: Mitad de la precisión de FP32, reduce el costo de memoria y **acelera las operaciones** sin perder demasiada precisión.
-- **BF16**: Versión de precisión media entre FP32 y FP16, **ideal para modelos grandes** y **más robusto** contra errores numéricos que FP16.
-- **INT8**: Representación extremadamente eficiente para almacenar valores en solo **8 bits**. Ideal para modelos de alto rendimiento en hardware más limitado.
-- **4-Bit Cuantización**: Técnicas más recientes, como **GPTQ y GGML**, que permiten almacenar los pesos en tan solo 4 bits, reduciendo el uso de memoria drásticamente.
+- **FP32**: Representación estándar, pero costosa en memoria y cómputo.
+- **FP16**: Reduce el costo de memoria y **acelera operaciones** sin mucha pérdida de precisión.
+- **BF16**: Entre FP32 y FP16, **más robusto** contra errores numéricos que FP16.
+- **INT8**: Representación eficiente, ideal para **modelos en hardware limitado**.
+- **4-Bit Cuantización**: Nuevas técnicas como **GPTQ** y **GGML** almacenan los pesos en solo 4 bits, reduciendo drásticamente el uso de memoria.
 
 ### 📚 **Técnicas Avanzadas: GPTQ, GGML y NF4**
 
-Ahora que tienes una comprensión básica de las técnicas de cuantización, veamos algunas de las técnicas más avanzadas que puedes utilizar en tus proyectos de LLMs.
+Veamos algunas técnicas avanzadas para cuantizar LLMs.
 
-#### 1. **GPTQ (Gradient-based Post-Training Quantization)**
-   - **Qué es**: Una técnica de cuantización basada en gradientes que ajusta los pesos del modelo después del entrenamiento para minimizar la pérdida de precisión.
-   - **Cómo funciona**: Optimiza los pesos utilizando información de gradientes, lo que permite una **mejor retención de precisión** en modelos cuantizados.
-   - **Aplicaciones**: Ideal para **inferencias de alto rendimiento** en GPUs y se está convirtiendo en una técnica estándar para modelos con alta precisión.
+#### 1. **GPTQ (Gradient-based Post-Training Quantization)**:
+   - **Qué es**: Ajusta los pesos del modelo después del entrenamiento utilizando gradientes para minimizar la pérdida de precisión.
+   - **Aplicaciones**: Ideal para inferencias de **alto rendimiento en GPUs**.
 
-#### 2. **GGML (Georgi Gerganov Machine Learning)**
-   - **Qué es**: Una librería en C++ diseñada para ejecutar LLMs en **CPUs**, utilizando cuantización en 4 o 5 bits.
-   - **Cómo funciona**: Almacena los pesos en bloques y los redondea a menor precisión, con algunas capas clave cuantizadas a una precisión más alta para preservar el rendimiento.
-   - **Ventajas**: Te permite ejecutar modelos como **Llama 2** en hardware más limitado, ideal para CPUs.
+#### 2. **GGML (Georgi Gerganov Machine Learning)**:
+   - **Qué es**: Librería en C++ que ejecuta LLMs en **CPUs** con cuantización en 4 o 5 bits.
+   - **Aplicaciones**: Ejecuta modelos como **Llama 2** en hardware más limitado.
 
-#### 3. **NF4 (Normal Float 4-bit)**
-   - **Qué es**: Un método de cuantización usado principalmente en técnicas de ajuste fino como **QLoRA**, que permite reducir la precisión de los pesos a **4 bits** mientras mantiene un buen rendimiento.
-   - **Aplicaciones**: Perfecto para entornos donde los **recursos de cómputo son muy limitados**, como dispositivos móviles.
-
+#### 3. **NF4 (Normal Float 4-bit)**:
+   - **Qué es**: Usado en técnicas como **QLoRA**, permite reducir la precisión a 4 bits mientras mantiene buen rendimiento.
+   - **Aplicaciones**: Ideal para dispositivos con **recursos muy limitados**, como móviles.
 
 ### 🔧 **Guía de Cuantización para Cualquier Modelo**
 
-Ahora que comprendemos las diferentes técnicas de cuantización, veamos cómo aplicar estos métodos a **cualquier modelo**, no solo a Llama 2. A continuación, te muestro los pasos para cuantizar un modelo LLM usando **GPTQ o GGML**, con el fin de que puedas utilizarlo en **hardware local** o en una **GPU de consumo**.
+Ahora que entendemos las técnicas de cuantización, veamos cómo aplicarlas a **cualquier modelo**, no solo Llama 2.
 
 #### 1. **Instalación de Dependencias**
-   Comienza instalando las dependencias necesarias para ejecutar y cuantizar tu modelo. Esto puede incluir librerías como **llama.cpp**, **bitsandbytes**, o **GPTQ**.
+   Instala librerías como **llama.cpp**, **bitsandbytes**, o **GPTQ**:
 
    ```bash
-   # Instalar llama.cpp
-   !git clone https://github.com/ggerganov/llama.cpp
-   !cd llama.cpp && make
+   git clone https://github.com/ggerganov/llama.cpp
+   cd llama.cpp && make
    ```
 
 #### 2. **Descarga del Modelo**
-   Puedes descargar el modelo desde **Hugging Face**. Para este ejemplo, usaremos un modelo de Llama como base:
+   Desde **Hugging Face**, descarga el modelo:
 
    ```bash
    MODEL_ID="TheBloke/Llama-2-13B-GGML"
-   !git clone https://huggingface.co/{MODEL_ID}
+   git clone https://huggingface.co/{MODEL_ID}
    ```
 
 #### 3. **Cuantización con GGML**
-   Una vez descargado el modelo, puedes aplicar técnicas de cuantización en **4 bits o 5 bits**:
+   Cuantiza el modelo en **4 o 5 bits**:
 
    ```bash
-   # Cuantizar con Q4_K_M y Q5_K_M
    QUANT_METHODS = ["q4_k_m", "q5_k_m"]
    for method in QUANT_METHODS:
-       !./llama.cpp/quantize model.f16.bin model.{method}.gguf {method}
+       ./llama.cpp/quantize model.f16.bin model.{method}.gguf {method}
    ```
 
 #### 4. **Inferencia con el Modelo Cuantizado**
-   Después de la cuantización, puedes ejecutar el modelo con llama.cpp, y dependiendo del hardware, puedes descargar capas a la GPU para mejorar la inferencia:
+   Ejecuta la inferencia con llama.cpp:
 
    ```python
-   import os
-   model_list = [file for file in os.listdir(MODEL_ID) if "gguf" in file]
    prompt = "Escribe una función en Python para calcular el Fibonacci"
-   
-   # Ejecutar inferencia
-   !./llama.cpp/main -m {model_list[0]} -n 128 -p "{prompt}"
+   ./llama.cpp/main -m model.q4_k_m.gguf -n 128 -p "{prompt}"
    ```
 
 #### 5. **Comparación de Tamaño y Rendimiento**
-   Después de la cuantización, compara los tamaños de los modelos para verificar cuánta memoria has ahorrado y evalúa la **precisión** usando métricas como la **perplexidad**.
+   Compara los tamaños de los modelos y evalúa la precisión:
 
    ```bash
-   # Comparar tamaño del modelo
-   !ls -lh model.*
+   ls -lh model.*
    ```
-
 
 ### 🔗 **Conclusión**
 
-La cuantización de modelos de lenguaje grande es una técnica fundamental para ejecutar LLMs en hardware limitado sin comprometer gravemente el rendimiento. Con técnicas avanzadas como **GGML, GPTQ** y **NF4**, puedes reducir significativamente el tamaño de los modelos y hacer que sean accesibles incluso en **dispositivos móviles** o **CPUs**. 
-
-Recuerda que elegir la técnica de cuantización adecuada depende del equilibrio que necesitas entre **rendimiento y eficiencia**. Si aún no lo has hecho, te recomiendo visitar el artículo completo de **Maxime Labonne** sobre cómo aplicar estas técnicas en Llama 2 y otros modelos. Aquí está el enlace: [Quantizing Llama 2 with GGML
-
-## Guía Completa sobre Cuantización en LLMs** 🧠💾
-
-Los **Modelos de Lenguaje Grande (LLMs)** han evolucionado rápidamente, pero con ello también lo han hecho sus **requisitos computacionales**. Una solución crucial para hacer estos modelos más eficientes es la **cuantización**, una técnica que permite reducir la precisión de los pesos del modelo para ahorrar memoria y acelerar la inferencia. En el **Día 95**, exploramos conceptos básicos como **cuantización post-entrenamiento (PTQ)**, **cuantización consciente del entrenamiento (QAT)** y técnicas avanzadas como **LLM.int8()**. Hoy vamos a profundizar en técnicas específicas de cuantización y veremos cómo puedes aplicarlas a **cualquier modelo LLM**, no solo a Llama 2.
-
-**Créditos especiales a Maxime Labonne** por su excelente trabajo sobre cuantización, disponible en su [artículo](https://mlabonne.github.io/blog/posts/Quantize_Llama_2_models_using_ggml.html). Te recomiendo revisar su [GitHub](https://github.com/mlabonne) para más ejemplos y guías.
-
-
-### 📉 **Revisando los Fundamentos: ¿Por Qué Cuantizar?**
-
-La **cuantización** es una técnica que reduce la precisión de los pesos del modelo, pasando de representaciones de alta precisión como **FP32** a formatos más eficientes como **FP16** o incluso **INT8**. Al hacer esto, se **disminuye el tamaño del modelo** y se **acelera la inferencia**, lo que es esencial para ejecutar modelos en hardware de consumo o en dispositivos con recursos limitados. Sin embargo, la clave está en encontrar el **equilibrio entre eficiencia y precisión**, para que el modelo siga proporcionando respuestas precisas sin perder demasiada información.
-
-
-### 🔑 **Tipos de Cuantización: Aplicaciones y Profundización**
-
-En el **Día 95**, cubrimos los dos enfoques principales de cuantización: **Post-Entrenamiento (PTQ)** y **Cuantización Consciente del Entrenamiento (QAT)**. Aquí vamos a detallar más los enfoques y cuándo es mejor utilizarlos:
-
-#### 1. **Cuantización Post-Entrenamiento (PTQ)**
-
-- **Pros**: Rápido y fácil de implementar, no requiere acceso a datos de entrenamiento. Es ideal para situaciones donde se necesita ahorrar memoria rápidamente.
-- **Contras**: La **pérdida de precisión** puede ser significativa en tareas sensibles a la exactitud.
-- **Aplicaciones**: PTQ es adecuado para **entornos de producción** donde el rendimiento es prioritario y una pequeña pérdida de precisión es aceptable.
-
-#### 2. **Cuantización Consciente del Entrenamiento (QAT)**
-
-- **Pros**: Integra la cuantización durante el entrenamiento, lo que permite ajustar los pesos de manera que se adapten a la precisión reducida. Esto mejora la precisión comparada con PTQ.
-- **Contras**: **Computacionalmente costosa**, ya que requiere reentrenamiento con datos representativos.
-- **Aplicaciones**: Ideal para modelos que necesitan **alta precisión** y están destinados a funcionar en entornos donde la eficiencia es clave.
-
-#### 3. **Cuantización Mixta (LLM.int8())**
-
-- **Pros**: Utiliza una **cuantización mixta** donde los valores fuera de rango (outliers) se procesan en **FP16**, mientras que la mayoría de los pesos se cuantizan a **INT8**. Esto permite mantener un alto rendimiento y ahorrar memoria.
-- **Contras**: La implementación es más compleja y puede ser más lenta en algunos casos.
-- **Aplicaciones**: Modelos grandes que necesitan funcionar en **hardware con memoria limitada** sin comprometer significativamente la precisión.
-
-
-### 💾 **Técnicas de Cuantización Avanzadas: GPTQ, GGML y NF4**
-
-Existen varias técnicas avanzadas de cuantización que puedes aplicar dependiendo del modelo y el hardware disponible. Estas técnicas te permiten ajustar el modelo para que funcione de manera eficiente en entornos de baja memoria, sin sacrificar mucho rendimiento.
-
-#### 1. **GPTQ (Quantization-Aware Post-Training Quantization)**
-
-- **Descripción**: GPTQ es un método avanzado que permite ajustar los pesos del modelo utilizando **gradientes** después del entrenamiento. Esto mejora la precisión y minimiza el impacto de la cuantización en el rendimiento del modelo.
-- **Aplicaciones**: Ideal para modelos de **inferencia en tiempo real**, especialmente en **GPUs de consumo**.
-
-#### 2. **GGML (Georgi Gerganov Machine Learning)**
-
-- **Descripción**: GGML es una librería escrita en C/C++ diseñada para ejecutar **modelos LLM en CPUs**. Utiliza un formato binario eficiente para almacenar los modelos y cuantizar los pesos a **4 o 5 bits**, permitiendo que se ejecuten en hardware más limitado.
-- **Aplicaciones**: Excelente para ejecutar modelos LLM como **Llama 2** en hardware que no tiene capacidad para manejar **GPUs** grandes. GGML permite la descarga de capas a la GPU, lo que acelera la inferencia en sistemas mixtos.
-
-#### 3. **NF4 (Normal Float 4-bit)**
-
-- **Descripción**: Esta técnica, utilizada en **QLoRA** (Quantized Low-Rank Adaptation), cuantiza los pesos a **4 bits**, manteniendo un rendimiento relativamente alto en modelos ajustados a tareas específicas.
-- **Aplicaciones**: Es la técnica ideal para ajustar modelos grandes en **dispositivos móviles o embebidos**, donde el uso de memoria y la eficiencia energética son factores críticos.
-
-
-### 🛠️ **Guía Paso a Paso para Cuantizar Cualquier Modelo LLM**
-
-A continuación, te muestro cómo aplicar técnicas de cuantización utilizando **GPTQ** o **GGML**. Este proceso no está limitado a Llama 2, puedes aplicarlo a cualquier modelo basado en **Transformers**.
-
-#### 1. **Instalar las Herramientas Necesarias**
-
-Primero, necesitamos instalar las herramientas de cuantización como **llama.cpp** o **GPTQ**. Esto te permitirá cuantizar y ejecutar el modelo en tu entorno.
-
-```bash
-# Instalar llama.cpp
-!git clone https://github.com/ggerganov/llama.cpp
-!cd llama.cpp && make clean && LLAMA_CUBLAS=1 make
-```
-
-#### 2. **Descargar el Modelo desde Hugging Face**
-
-Para este ejemplo, descargaremos un modelo preentrenado desde **Hugging Face**.
-
-```bash
-# Descargar el modelo
-MODEL_ID="TheBloke/Llama-2-13B-GGML"
-!git clone https://huggingface.co/{MODEL_ID}
-```
-
-#### 3. **Convertir los Pesos a FP16 o INT8**
-
-Si estás utilizando **GGML** o **GPTQ**, puedes aplicar la cuantización en **4 o 5 bits**. Aquí utilizamos el método **Q5_K_M** para optimizar el modelo para inferencia.
-
-```bash
-# Cuantización con GGML usando Q4_K_M y Q5_K_M
-QUANT_METHODS = ["q4_k_m", "q5_k_m"]
-for method in QUANT_METHODS:
-    !./llama.cpp/quantize model.f16.bin model.{method}.gguf {method}
-```
-
-#### 4. **Ejecutar el Modelo Cuantizado**
-
-Ahora que hemos cuantizado el modelo, podemos ejecutar la inferencia. Este paso también permite descargar capas a la GPU para mejorar la velocidad.
-
-```python
-import os
-model_list = [file for file in os.listdir(MODEL_ID) if "gguf" in file]
-
-prompt = "Escribe una función en Python para calcular la secuencia de Fibonacci."
-!./llama.cpp/main -m {model_list[0]} -n 128 --color -ngl 35 -p "{prompt}"
-```
-
-#### 5. **Comparar Tamaño y Precisión**
-
-Una vez que hemos cuantizado el modelo, podemos comparar el tamaño del archivo original con el archivo cuantizado y medir el impacto en la precisión utilizando métricas como la **perplexidad**.
-
-```bash
-# Comprobar el tamaño del archivo cuantizado
-!ls -lh model.*
-```
+La cuantización permite ejecutar LLMs en hardware limitado sin sacrificar mucho rendimiento. Con técnicas como **GGML, GPTQ** y **NF4**, puedes hacer modelos más accesibles, incluso en **dispositivos móviles o CPUs**.
 
 
 
@@ -8264,7 +8206,10 @@ Los LLMs han transformado la forma en que interactuamos con la inteligencia arti
 ---
 # Día98
 ---
-## Agentes vs RAG - ¿Cuál es más Eficaz? 🤖🔍
+## Agentes vs RAG - ¿Cuál es más Eficaz? 
+
+![ragvs agent](https://github.com/user-attachments/assets/3f573f46-680c-4ab6-872f-8701f0ea87dc)
+🤖🔍
 
 A lo largo del desafío, hemos explorado las capacidades de los **RAG (Retrieval-Augmented Generation)** y cómo mejoran los **Modelos de Lenguaje Grande (LLMs)** al integrar fuentes externas de conocimiento. Sin embargo, los **agentes de IA** están ganando popularidad debido a su capacidad para **tomar decisiones autónomas** y realizar tareas complejas sin intervención humana. Hoy, analizaremos por qué los **agentes de IA** están comenzando a superar a los sistemas basados en RAG en términos de flexibilidad, escalabilidad, y autonomía, y cómo estos agentes pueden coordinarse de manera efectiva mediante sistemas **multi-agente** como los proporcionados por **LlamaIndex**.
 
@@ -8289,6 +8234,7 @@ A diferencia de los chatbots RAG, los **agentes de IA** no solo proporcionan inf
 1. **Automatización de Tareas**: Los agentes son ideales para **automatizar tareas repetitivas**, como la administración de sistemas o la toma de decisiones en tiempo real.
 2. **Toma de Decisiones Autónoma**: Los agentes utilizan datos y reglas predefinidas para tomar decisiones sin intervención humana, lo que mejora la eficiencia operativa.
 3. **Orientación a Objetivos**: Los agentes están diseñados para **alcanzar objetivos específicos**, como autenticar usuarios, realizar transacciones o ejecutar flujos de trabajo complejos.
+
 
 
 ### 🔄 **Comparación: RAG Chatbots vs. Agentes de IA**
@@ -8318,7 +8264,12 @@ Los agentes de IA ofrecen múltiples ventajas sobre los sistemas RAG debido a su
 3. **Escalabilidad Flexible**: Los agentes de IA pueden **integrarse con APIs y sistemas** diversos, lo que les permite adaptarse a diferentes aplicaciones, desde automatización de tareas empresariales hasta flujos de trabajo personalizados.
 
 
+<img width="1440" alt="agent_flow" src="https://github.com/user-attachments/assets/b2689d51-37f1-496a-8c2c-515eed53367e">
+
+
 ### 🤖 **Multi-Agentes con LlamaIndex: El Futuro de la IA Autónoma**
+
+![multiagente](https://github.com/user-attachments/assets/b643c437-73be-4579-bbb1-fd22d6e88243)
 
 Con la creciente complejidad de los sistemas de IA, los **multi-agentes** están emergiendo como una solución para manejar flujos de trabajo que involucran múltiples tareas y decisiones. El uso de múltiples agentes permite descomponer un sistema en **agentes especializados**, cada uno responsable de una tarea específica.
 
