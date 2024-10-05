@@ -1,5 +1,4 @@
 
-https://github.com/user-attachments/assets/0a9bc442-cf71-4694-8421-be3b6e5dccae
 # 100 Días de IA
 
 | Libros y Recursos | Estado de Finalización |
