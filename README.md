@@ -1,14 +1,15 @@
 
 # 100 Días de IA
+![100daysoAi](https://github.com/user-attachments/assets/161128ab-4dc7-405b-b746-e5c15a25c2c6)
 
-| Libros y Recursos | Estado de Finalización |
+| Libros y Recursos | Descripción |
 | ----- | -----|
 | 1. [**Machine Learning Specialization**](https://www.coursera.org/specializations/machine-learning-introduction?page=1) | La "Especialización en Aprendizaje Automático" es un programa en línea de 3 cursos creado por DeepLearning.AI y Stanford Online, dirigido por Andrew Ng. Está diseñado para principiantes y ofrece una introducción completa al aprendizaje automático moderno. Los estudiantes aprenderán sobre aprendizaje supervisado, como la regresión y redes neuronales, y no supervisado, como agrupación y sistemas de recomendación. El curso también cubre las mejores prácticas en IA utilizadas en la industria. |
 | 2. [**Deep Learning Specialization**](https://www.coursera.org/specializations/deep-learning?)| La "Especialización en Aprendizaje Profundo" es un programa de 5 cursos que te capacitará para comprender y aplicar redes neuronales avanzadas. Aprenderás a construir y entrenar arquitecturas como redes convolucionales, recurrentes, LSTMs y transformadores, utilizando Python y TensorFlow. Además, adquirirás habilidades para mejorar modelos con técnicas como Dropout y BatchNorm, y aplicar el aprendizaje profundo en áreas como reconocimiento de voz, procesamiento de lenguaje natural y síntesis musical. Este curso te preparará para enfrentar desafíos industriales y avanzar en tu carrera en el campo de la IA. |
 | 3. [**IA generativa con grandes modelos lingüísticos**](https://www.coursera.org/learn/generative-ai-with-llms/) |El curso "Generative AI with Large Language Models (LLMs)" te enseña los fundamentos de la IA generativa y cómo aplicarla en situaciones reales. Aprenderás a comprender el ciclo de vida de un modelo basado en LLM, desde la recopilación de datos hasta su implementación. Además, explorarás la arquitectura de transformadores, el ajuste fino de modelos, y cómo optimizar su rendimiento utilizando leyes de escalado.  |
 | 4. [**Curso de Deep Learning**](https://youtube.com/playlist?list=PLcfxtMhW8iFNMTFKrYMYYzVTNzu-xG-Ys&si=lqAlbDIhtOJ5zMP8) | Este curso de Deep Learning en español, disponible en YouTube, abarca desde conceptos básicos de Machine Learning hasta temas avanzados de Deep Learning, utilizando PyTorch como la librería principal. A lo largo de las clases, se exploran redes neuronales simples, regresión lineal, clasificación con Softmax, redes multicapa (MLP), retropropagación, y el uso de GPU con PyTorch. Además, se cubren técnicas de regularización, validación cruzada, y optimización. También se profundiza en redes neuronales recurrentes (RNN), embeddings de palabras, modelos de secuencia a secuencia (Seq2Seq), transformers, redes convolucionales (CNN), segmentación semántica y redes generativas adversarias (GANs), proporcionando una base sólida tanto teórica como práctica para el desarrollo de proyectos de Deep Learning. |
 | 5. [**Computer Vision**](https://youtube.com/playlist?list=PLISuMnTdVU-yvm6X7SwKtUosfr4ZarStU&si=FOMUjJ5SvotgMhHW) | Esta serie de clases de Computer Vision en español, ofrecida por el Instituto Humai, cubre desde los fundamentos del procesamiento de imágenes con OpenCV hasta técnicas avanzadas de visión por computadora. A lo largo del curso, se exploran temas como convoluciones, arquitecturas clásicas de redes neuronales convolucionales (AlexNet, VGG, GoogLeNet, ResNet), visualización de características, transferencia de conocimiento, fine-tuning, y transferencia de estilos. También se abordan técnicas más avanzadas como detección de objetos, segmentación semántica, convoluciones transpuestas, redes totalmente convolucionales (FCN), y redes generativas adversarias (GANs) |
-
+| 6. [**IA para todos**](https://www.coursera.org/learn/ai-for-everyone-es) | Un curso diseñado para que personas no técnicas comprendan la IA. Cubre temas como el significado de términos clave (redes neuronales, aprendizaje profundo, ciencia de datos), las capacidades y limitaciones de la IA, cómo aplicar IA en organizaciones, y cómo liderar proyectos de ciencia de datos y aprendizaje automático. También enseña a crear una estrategia de IA en la empresa y a abordar debates sociales y éticos relacionados con la IA. Aunque es no técnico, es útil para ingenieros que buscan comprender los aspectos comerciales. |
 
 | Proyectos | Estado |
 | ----------------- | ------------------ |
@@ -8010,10 +8011,6 @@ Si estás trabajando con grandes modelos de lenguaje y buscas una forma de **opt
 - [LLM.int8() for Transformers at Scale](https://arxiv.org/abs/2208.07339)
 
 ---
-Aquí está el texto arreglado:
-
----
-
 # Día 96  
 ## Guía Completa sobre Cuantización en LLMs
 
@@ -8111,11 +8108,6 @@ Ahora que entendemos las técnicas de cuantización, veamos cómo aplicarlas a *
    ```bash
    ls -lh model.*
    ```
-
-### 🔗 **Conclusión**
-
-La cuantización permite ejecutar LLMs en hardware limitado sin sacrificar mucho rendimiento. Con técnicas como **GGML, GPTQ** y **NF4**, puedes hacer modelos más accesibles, incluso en **dispositivos móviles o CPUs**.
-
 
 
 La cuantización de **LLMs** es una técnica esencial para optimizar el rendimiento en hardware limitado. Ya sea que estés trabajando con **GPTQ, GGML, o NF4**, las técnicas de cuantización te permiten ejecutar modelos grandes en dispositivos como **GPUs de consumo** o **CPUs**, manteniendo un buen equilibrio entre **eficiencia** y **precisión**.
