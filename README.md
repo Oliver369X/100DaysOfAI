@@ -8361,6 +8361,7 @@ La implementación de **sistemas multi-agente** con herramientas como **LlamaInd
 # Día99
 ---
 ## El Estado Actual de la IA en Latinoamérica con el Índice ILIA 2024 🌍💡
+![Captura de pantalla 2024-10-04 185811](https://github.com/user-attachments/assets/2e98d28f-a3d3-4d47-acd1-6850649595a7)
 
 En un mundo donde la transformación digital y la inteligencia artificial (IA) están redefiniendo industrias y sociedades, **Latinoamérica** busca no quedarse atrás. El **Índice Latinoamericano de Inteligencia Artificial 2024 (ILIA)**, desarrollado por organizaciones clave en la región, emerge como una herramienta esencial para medir los avances en la adopción de la IA en los países de América Latina y el Caribe. Este índice ofrece un análisis profundo de los logros, brechas y oportunidades, con un enfoque en el desarrollo de un ecosistema de IA **ético y sostenible**.
 
@@ -8391,6 +8392,9 @@ El índice divide a los países en tres categorías según su nivel de desarroll
 Estos países son considerados los **pioneros** en la región. **Chile** ha desarrollado un entorno regulatorio avanzado y políticas públicas que impulsan el uso ético de la IA. **Brasil** destaca por su capacidad en **investigación científica** y productividad tecnológica, mientras que **Uruguay** ha revertido la fuga de talento y atraído profesionales especializados en IA, gracias a una combinación de políticas públicas y la inversión privada.
 
 - **Brasil**, por ejemplo, es líder en investigación científica, acumulando la mayor cantidad de publicaciones sobre IA en América Latina, además de contar con una industria tecnológica robusta que está impulsando innovaciones en sectores como energía, manufactura y finanzas.
+
+
+![ilia ](https://github.com/user-attachments/assets/ae50e861-6591-4ac1-b573-d249cf9e40cb)
 
 #### **Desafíos Persistentes: Infraestructura y Talento**
 A pesar de los avances en algunos países, el **ILIA 2024** revela que muchos países aún enfrentan importantes desafíos:
