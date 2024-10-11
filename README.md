@@ -159,7 +159,7 @@ Las redes neuronales profundas están compuestas por capas de neuronas artificia
 
 
  **Recursos para comenzar**🧠:
-- **[APRENDIZAJE PROFUNDO EN INTELIGENCIA ARTIFICIAL](https://youtu.be/Zcb8R2TF3bI?si=f1NIEJgXh7cWdadV)** - Una breve esplicacion dew que es deep learning.
+- **[APRENDIZAJE PROFUNDO EN INTELIGENCIA ARTIFICIAL](https://youtu.be/Zcb8R2TF3bI?si=f1NIEJgXh7cWdadV)** - Una breve esplicacion de que es deep learning.
 - **[¿QUE ES EL DEEP LEARNING? - EXPLICADO MUY FACIL](https://youtu.be/s0SbvGiG28w?si=Rr51xld8H8ilsrz9)** - Video de Dalto explicando que es deep learning.
 - **[¿Qué son el MACHINE LEARNING y el DEEP LEARNING?](https://youtu.be/HMEjoBnCc9c?si=U5MXn98cY7Yovy8w)** - Diferencias entre el Machine Learning y el Deep Learning.
 - **[¿De qué es capaz la inteligencia artificial? ](https://youtu.be/34Kz-PP_X7c?si=sbV0ENQYtvT2JKiI)** - Documental de DW.
